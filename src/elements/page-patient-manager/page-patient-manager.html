@@ -1,0 +1,665 @@
+<link rel="import" href="../../bower-assets/paper-button/paper-button.html">
+<link rel="import" href="../../bower-assets/paper-card/paper-card.html">
+<link rel="import" href="../../bower-assets/paper-input/paper-input.html">
+<link rel="import" href="../../bower-assets/paper-listbox/paper-listbox.html">
+<link rel="import" href="../../bower-assets/paper-item/paper-item.html">
+<link rel="import" href="../../bower-assets/paper-fab/paper-fab.html">
+<link rel="import" href="../../bower-assets/paper-toggle-button/paper-toggle-button.html">
+<link rel="import" href="../../bower-assets/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="../../bower-assets/paper-spinner/paper-spinner.html">
+<link rel="import" href="../../bower-assets/paper-menu-button/paper-menu-button.html">
+<link rel="import" href="../../elements/custom-vital-search/custom-vital-search.html">
+<!-- style -->
+<link rel="import" href="../../styles/common-style.html">
+
+<link rel="import" href="../../bower-assets/paper-tabs/paper-tabs.html">
+<link rel="import" href="../../bower-assets/paper-tabs/paper-tab.html">
+
+<!-- behavior -->
+<link rel="import" href="../../behaviors/translating.html">
+<link rel="import" href="../../behaviors/page-like.html">
+<link rel="import" href="../../behaviors/api-calling.html">
+<link rel="import" href="../../behaviors/common-computes.html">
+<link rel="import" href="../../behaviors/db-using.html">
+
+<!-- custom-elements -->
+
+<!-- element -->
+<dom-module id="page-patient-manager">
+  <template>
+
+    <!-- style -->
+
+    <style is="custom-style" include="common-style">
+    
+      .limiting-container {
+        margin-top: 10px;
+      }
+      
+      
+      .more-optons {
+        color: #777777;
+      }
+      
+      
+      .new-patient-fab {
+        position: fixed;
+        right: 24px;
+        bottom: 128px;
+        background-color: #43A047;
+      }
+      
+      
+      paper-button {
+        margin: 3px;
+      }
+
+
+      .card-custom-header {
+        padding: 15px;
+        border-bottom: 1px solid var(--paper-grey-200);
+        background-color: var(--paper-grey-50);
+      }
+  
+      .card-custom-header .title {
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 28px;
+        color: var(--brand-primary-color);
+      }
+
+      .modifier {
+        font-size: 14px;
+        /*background: #000000;*/
+        /*color: #ffffff;*/
+        margin: 0 4px;
+        /*padding: 2px 4px;*/
+        /*border-radius: 3px;*/
+        text-transform: uppercase;
+        font-weight: 500;
+      }
+      
+      .modifier.online {
+        color: #757575;
+      }
+      
+      .modifier.local-only {
+        color: #039BE5;
+      }
+      
+      .modifier.locally-updated {
+        color: #009688;
+      }
+      
+      .modifier.imported {
+        color: #4CAF50;
+      }
+      #search-tab {
+        background-color:#43A047;
+      }
+      #log-tab {
+        background-color:var(--paper-teal-800);
+      }
+      .btn-add {
+        min-width: 0;
+        padding-top: 0.5em;
+        padding-bottom: 0.5em;
+        background-color: #eceff1;
+        color: rgba(0, 0, 0, .87);
+      }
+      .paper-input-custom ::content input {
+        font-size: 18px !important;
+        color: rgba(0, 0, 0, .87) !important;
+      }
+
+      .paper-input-custom ::content label {
+        font-size: 18px !important;
+        color: #737373 !important;
+      }
+      .preview-title {
+        padding-left: 12px;
+        padding-right: 12px;
+        background-color: #f7f7f7;
+        min-height: 60px;
+        /*border-bottom: 1px solid #eee;*/
+      }
+
+      .custom-menu-button {
+        position: fixed;
+        right: 16px;
+        bottom: 112px;
+      }
+
+      .custom-menu-button ::content .dropdown-content {
+        background-color: transparent;
+        bottom: 80px !important;
+        box-shadow: none !important;
+      }
+
+      paper-fab {
+        background-color: #5c4575;
+      }
+
+      .custom-menu {
+
+      }
+
+      .p-8 {
+        padding: 8px;
+      }
+
+      .custom-item {
+        padding: 8px 16px;
+        background-color: #5c4575;
+        color: #fff;
+        border-radius: 6px;
+        margin: 8px 0;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 32px;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+      }
+
+      .custom-item:hover {
+        cursor: pointer;
+      }
+
+      .custom-img {
+        border-radius: 50%;
+      }
+      
+    </style>
+
+    <!-- local DOM -->
+
+    <div class="tabs-container">
+      <paper-tabs  id="tabs" selected="{{selectedSearchViewIndex}}" scrollable noink='true' on-iron-select="onPageIndexChange">
+        <paper-tab>[[$TRANSLATE('Search',LANG)]]</paper-tab>
+        <paper-tab>[[$TRANSLATE('Imported/Local Patients',LANG)]]</paper-tab>
+        <paper-tab>[[$TRANSLATE('Logs',LANG)]]</paper-tab>
+        <paper-tab>[[$TRANSLATE('Pending Patients',LANG)]]</paper-tab>
+      </paper-tabs>
+    </div>
+
+    <div class="master-container">
+
+      <div class="limiting-container">
+
+        <iron-pages selected="{{selectedSearchViewIndex}}">
+
+          <!-- Search Patient - start -->
+          <section>
+            <!-- Card - Search - start -->
+            <paper-card>
+              <div class="p-8 preview-title">
+             
+                <paper-input class="flex paper-input-custom" value="{{searchFieldMainInput}}" label="Search Patient" on-keyup="searchOnlineEnterKeyPressed"></paper-input>
+
+                <div class="horizontal layout end-justifed center flex">
+                  <paper-toggle-button class="flex" checked="{{isAdvancedSearchEnabled}}">Advanced Search</paper-toggle-button>
+                  <paper-button class="btn-add colored" raised on-tap="searchOnlineButtonPressed"><iron-icon icon="search" class="m-right-8"></iron-icon>SEARCH</paper-button>
+                </div>
+              </div>
+
+              <!-- advanced search - start -->
+              <template is="dom-if" if="{{isAdvancedSearchEnabled}}">
+                <paper-listbox>
+                  <paper-item class="custom">
+                    <div class="layout horizontal center wrap">
+                      <paper-checkbox checked="{{advancedSearchParameters.initialVisitDate.enabled}}">Initial Visited date Between </paper-checkbox>
+                      <paper-input class="m-horizontal-8" type="date" value="{{advancedSearchParameters.initialVisitDate.lowerBound}}" no-label-float></paper-input>
+                      <div> and </div>
+                      <paper-input class="m-horizontal-8" type="date" value="{{advancedSearchParameters.initialVisitDate.upperBound}}" no-label-float></paper-input>
+                    </div>
+                  </paper-item>
+                  <paper-item class="custom">
+                    <div class="horizontal layout center wrap">
+                      <paper-checkbox checked="{{advancedSearchParameters.lastVisitDate.enabled}}">Last Visited date Between </paper-checkbox>
+                      <paper-input class="m-horizontal-8" type="date" value="{{advancedSearchParameters.lastVisitDate.lowerBound}}" no-label-float></paper-input>
+                      <div> and </div>
+                      <paper-input class="m-horizontal-8" type="date" value="{{advancedSearchParameters.lastVisitDate.upperBound}}" no-label-float></paper-input>
+                    </div>
+                  </paper-item>
+                  <paper-item class="custom">
+                    <div class="horizontal layout center wrap">
+                      <paper-checkbox checked="{{advancedSearchParameters.admissionDate.enabled}}">Admission Between </paper-checkbox>
+                      <paper-input class="m-horizontal-8" type="date" value="{{advancedSearchParameters.admissionDate.lowerBound}}" no-label-float></paper-input>
+                      <div> and </div>
+                      <paper-input class="m-horizontal-8" type="date" value="{{advancedSearchParameters.admissionDate.upperBound}}" no-label-float></paper-input>
+                    </div>
+                  </paper-item>
+                  <paper-item class="custom">
+                    <div class="horizontal layout center wrap">
+                      <paper-checkbox checked="{{advancedSearchParameters.createdDate.enabled}}">Created Between </paper-checkbox>
+                      <paper-input class="m-horizontal-8" type="date" value="{{advancedSearchParameters.createdDate.lowerBound}}" no-label-float></paper-input>
+                      <div> and </div>
+                      <paper-input class="m-horizontal-8" type="date" value="{{advancedSearchParameters.createdDate.upperBound}}" no-label-float></paper-input>
+                    </div>
+                  </paper-item>
+                  <paper-item class="custom">
+                    <div class="horizontal layout center wrap">
+                      <paper-checkbox>Handled by me between</paper-checkbox>
+                      <paper-input class="m-horizontal-8" type="date" value="{{advancedSearchParameters.handledDate.lowerBound}}" no-label-float></paper-input>
+                      <div>and</div>
+                      <paper-input class="m-horizontal-8" type="date" value="{{advancedSearchParameters.handledDate.upperBound}}" no-label-float></paper-input>
+                    </div>
+                  </paper-item>
+                  <paper-item class="custom">
+                    <div class="horizontal layout center">
+                      <paper-checkbox>Show only patients created by me</paper-checkbox>
+                    </div>
+                  </paper-item>
+                  <paper-item class="custom">
+                    <div class="horizontal layout center">
+                      <paper-checkbox>Show only patients handled by me at least once</paper-checkbox>
+                    </div>
+                  </paper-item>
+                  <paper-item class="custom">
+                    <div class="horizontal layout center end-justified">
+                      <span class="more-optons" on-tap="moreOptionsPressed">more options?</span>
+                    </div>
+                  </paper-item>
+                </paper-listbox>
+              </template>
+              <!-- advanced search - end -->
+
+            </paper-card>
+            <!-- Card - Search - end -->
+
+            <template is="dom-if" if="[[$compareFn(arbitaryCounter, '>', 0)]]">
+              <paper-card class="m-top-8">
+                <div class="card-content">
+                  <div class="vertical layout center">
+                    <paper-spinner active></paper-spinner>
+                    <div class="type body secondary">please wait for a while...</div>
+                  </div>
+                </div>
+              </paper-card>
+            </template>
+
+            <!-- Card - Search Results - start -->
+            <template is="dom-if" if="[[$compareFn(arbitaryCounter, '==', 0)]]">
+              <paper-card class="m-top-8">
+        
+                <div class="card-custom-header">
+                  <div class="layout horizontal center">
+                    <div class="flex">
+                      <!-- <div class="title">Search Results</div> -->
+                      <div class="type body secondary">[[matchingPatientList.length]] Patient(s) found</div>
+                    </div>
+
+                    <custom-vital-search on-date-select="searchResultFilterByDateClicked" on-clear="searchResultFilterByDateClearButtonClicked"></custom-vital-search>
+
+                    <!-- <paper-icon-button icon="clear" on-tap="clearSearchResultsClicked"></paper-icon-button> -->
+                  </div>
+                </div>
+                
+                <div class="p-0">
+                  <paper-listbox>
+                    
+                    <template id="patient-list-repeater" is="dom-repeat" items="[[matchingPatientList]]" as="patient">
+                      <paper-item class="custom layout horizontal center wrap">
+                        <div class="type caption secondary">[[patient.serial]]</div>
+                        
+                        <div class="flex m-left-8">
+                          <div class="type body capitalize">[[$getFullName(patient.name)]]</div>
+                          <div class="type caption">[[patient.email]]</div>
+                          <div class="type caption">[[patient.phone]]</div>
+                          <!-- <div class="type caption">[[$mkDate(patient.createdDatetimeStamp)]]</div> -->
+                          <template is="dom-if" if="[[patient.doctorsPrivateNote]]">
+                            <div class="type caption">([[$truncate(patient.doctorsPrivateNote, 20)]])</div>
+                          </template>
+                        </div>
+                        <div class="layout horizontal m-horizontal-4 wrap">
+                          <template is="dom-if" if="[[patient.flags.isOnlineOnly]]">
+                            <div class="modifier online">online Only</div>
+                          </template>
+                          <template is="dom-if" if="[[patient.flags.isImported]]">
+                            <div class="modifier imported">imported</div>
+                          </template>
+                          <template is="dom-if" if="[[patient.flags.isLocalOnly]]">
+                            <div class="modifier local-only">local only</div>
+                          </template>
+                          <!-- <template is="dom-if" if="[[patient.flags.isLocallyUpdated]]">
+                            <div class="modifier locally-updated">locally updated</div>
+                          </template> -->
+                        </div>
+
+                        <!-- <paper-icon-button icon="visibility" on-tap="viewPatientIconPressed" hidden="[[!patient.flags.isImported]]"></paper-icon-button> -->
+
+                        <!-- <paper-button raised class="btn-add colored" on-tap="viewPatient" hidden="[[!patient.flags.isImported]]"><iron-icon icon="icons:visibility" class="m-right-8"></iron-icon>View</paper-button> -->
+              
+                        <paper-menu-button horizontal-align="right" no-animations>
+                          <paper-icon-button icon="more-vert" class="dropdown-trigger"></paper-icon-button>
+                          <paper-menu class="dropdown-content">
+                            <template is="dom-if" if="[[$or(patient.flags.isImported, patient.flags.isLocalOnly)]]">
+                              <!-- <paper-item on-tap="viewPatientPressed">View</paper-item> -->
+                              <paper-item on-tap="viewPatient">View Patient</paper-item>
+                              <paper-item on-tap="editPatientPressed">Edit Patient Info</paper-item>
+                              <!-- <paper-item on-tap="editPatientPreconceptionRecord">Edit PCC Record <img class="m-left-8" width="24" height="24" src="../../assets/img/partners/badas_logo.png" alt=""></paper-item> -->
+                              <!-- <paper-item on-tap="_shortcutToNewPrescription">New Prescription</paper-item> -->
+                            </template>
+                            <!-- export/import start -->
+                            <template is="dom-if" if="[[patient.flags.isOnlineOnly]]">
+                              <paper-item on-tap="importPatientPressed">Import from Cloud</paper-item>
+                            </template>
+                            <template is="dom-if" if="[[$or(patient.flags.isLocalOnly, patient.flags.isImported)]]">
+                              <paper-item on-tap="publishPatientPressed">Publish to Cloud</paper-item>
+                            </template>
+                            <template is="dom-if" if="[[patient.flags.isImported]]">
+                              <paper-item on-tap="importLatestPatientPressed">Import Latest from Cloud</paper-item>
+                            </template>
+                        <template is="dom-repeat" items="[[organizationsIBelongToList]]" as="organization">
+                          <paper-item on-tap="putInWaitlistTapped">Put in [[organization.name]]'s Waitlist</paper-item>
+                        </template>
+
+
+                            <!-- export/import end -->
+
+                            <template is="dom-if" if="[[$or(patient.flags.isImported, patient.flags.isLocalOnly)]]">
+                              <paper-item on-tap="deletePatientPressed">Delete local copy</paper-item>
+                            </template>
+
+                          </paper-menu>
+                        </paper-menu-button>
+                        
+
+                      </paper-item>
+                    </template>
+
+                  </paper-listbox>
+                  
+                </div>
+              </paper-card>
+            </template>
+            <!-- Card - Search Results - end -->
+          </section>
+          <!-- Search Patient - end -->
+
+          <!-- Imported/Offline Patients - start -->
+          <section>
+            <!-- Card - Search - start -->
+            <paper-card>
+              <div class="p-8 preview-title">
+             
+                <paper-input class="flex paper-input-custom" value="{{searchFieldMainInput}}" label="Search Local Patient"></paper-input>
+
+                <div class="horizontal layout end-justifed center flex">
+                  <paper-toggle-button class="flex" checked="{{isAdvancedSearchEnabled}}">Advanced Search</paper-toggle-button>
+                  <paper-button class="btn-add colored" raised on-tap="searchOfflineButtonPressed"><iron-icon icon="search" class="m-right-8"></iron-icon>SEARCH</paper-button>
+                </div>
+              </div>
+
+              <!-- advanced search - start -->
+              <template is="dom-if" if="{{isAdvancedSearchEnabled}}">
+                <paper-listbox>
+                  <paper-item class="custom">
+                    <div class="layout horizontal center wrap">
+                      <paper-checkbox checked="{{advancedSearchParameters.initialVisitDate.enabled}}">Initial Visited date Between </paper-checkbox>
+                      <paper-input class="m-horizontal-8" type="date" value="{{advancedSearchParameters.initialVisitDate.lowerBound}}" no-label-float></paper-input>
+                      <div> and </div>
+                      <paper-input class="m-horizontal-8" type="date" value="{{advancedSearchParameters.initialVisitDate.upperBound}}" no-label-float></paper-input>
+                    </div>
+                  </paper-item>
+                  <paper-item class="custom">
+                    <div class="horizontal layout center wrap">
+                      <paper-checkbox checked="{{advancedSearchParameters.lastVisitDate.enabled}}">Last Visited date Between </paper-checkbox>
+                      <paper-input class="m-horizontal-8" type="date" value="{{advancedSearchParameters.lastVisitDate.lowerBound}}" no-label-float></paper-input>
+                      <div> and </div>
+                      <paper-input class="m-horizontal-8" type="date" value="{{advancedSearchParameters.lastVisitDate.upperBound}}" no-label-float></paper-input>
+                    </div>
+                  </paper-item>
+                  <paper-item class="custom">
+                    <div class="horizontal layout center wrap">
+                      <paper-checkbox checked="{{advancedSearchParameters.admissionDate.enabled}}">Admission Between </paper-checkbox>
+                      <paper-input class="m-horizontal-8" type="date" value="{{advancedSearchParameters.admissionDate.lowerBound}}" no-label-float></paper-input>
+                      <div> and </div>
+                      <paper-input class="m-horizontal-8" type="date" value="{{advancedSearchParameters.admissionDate.upperBound}}" no-label-float></paper-input>
+                    </div>
+                  </paper-item>
+                  <paper-item class="custom">
+                    <div class="horizontal layout center wrap">
+                      <paper-checkbox checked="{{advancedSearchParameters.createdDate.enabled}}">Created Between </paper-checkbox>
+                      <paper-input class="m-horizontal-8" type="date" value="{{advancedSearchParameters.createdDate.lowerBound}}" no-label-float></paper-input>
+                      <div> and </div>
+                      <paper-input class="m-horizontal-8" type="date" value="{{advancedSearchParameters.createdDate.upperBound}}" no-label-float></paper-input>
+                    </div>
+                  </paper-item>
+                  <paper-item class="custom">
+                    <div class="horizontal layout center wrap">
+                      <paper-checkbox>Handled by me between</paper-checkbox>
+                      <paper-input class="m-horizontal-8" type="date" value="{{advancedSearchParameters.handledDate.lowerBound}}" no-label-float></paper-input>
+                      <div>and</div>
+                      <paper-input class="m-horizontal-8" type="date" value="{{advancedSearchParameters.handledDate.upperBound}}" no-label-float></paper-input>
+                    </div>
+                  </paper-item>
+                  <paper-item class="custom">
+                    <div class="horizontal layout center">
+                      <paper-checkbox>Show only patients created by me</paper-checkbox>
+                    </div>
+                  </paper-item>
+                  <paper-item class="custom">
+                    <div class="horizontal layout center">
+                      <paper-checkbox>Show only patients handled by me at least once</paper-checkbox>
+                    </div>
+                  </paper-item>
+                  <paper-item class="custom">
+                    <div class="horizontal layout center end-justified">
+                      <span class="more-optons" on-tap="moreOptionsPressed">more options?</span>
+                    </div>
+                  </paper-item>
+                </paper-listbox>
+              </template>
+              <!-- advanced search - end -->
+
+            </paper-card>
+            <!-- Card - Search - end -->
+
+            <!-- Card - Search Results - start -->
+            <template is="dom-if" if="[[$compareFn(arbitaryCounter, '>', 0)]]">
+              <paper-card class="m-top-8">
+                <div class="card-content">
+                  <div class="vertical layout center">
+                    <paper-spinner active></paper-spinner>
+                    <div class="type body secondary">please wait for a while...</div>
+                  </div>
+                </div>
+              </paper-card>
+            </template>
+            <template is="dom-if" if="[[$compareFn(arbitaryCounter, '==', 0)]]">
+              <paper-card class="m-top-8">
+        
+                <div class="card-custom-header">
+                  <div class="layout horizontal center">
+                    <div class="flex">
+                      <!-- <div class="title">Search Results</div> -->
+                      <div class="type body secondary">[[matchingPatientList.length]] Imported/Offline Patient(s) found</div>
+                    </div>
+
+                    <custom-vital-search on-date-select="searchResultFilterByDateClicked" on-clear="searchResultFilterByDateClearButtonClicked"></custom-vital-search>
+
+                    <!-- <paper-icon-button icon="clear" on-tap="clearSearchResultsClicked"></paper-icon-button> -->
+                  </div>
+                </div>
+
+                <div class="p-0">
+                  <paper-listbox>
+                    
+                    <template id="patient-list-repeater" is="dom-repeat" items="[[matchingPatientList]]" as="patient">
+                      <paper-item class="custom layout horizontal center">
+                        <div class="type caption secondary">[[patient.serial]]</div>
+                        
+                        <div class="flex m-left-8">
+                          <div class="type body capitalize">[[$getFullName(patient.name)]]</div>
+                          <div class="type caption">[[patient.email]]</div>
+                          <div class="type caption">[[patient.phone]]</div>
+                          <!-- <div class="type caption">[[$mkDate(patient.createdDatetimeStamp)]]</div> -->
+                          <template is="dom-if" if="[[patient.doctorsPrivateNote]]">
+                            <div class="type caption">([[$truncate(patient.doctorsPrivateNote, 20)]])</div>
+                          </template>
+                        </div>
+                        <div class="layout horizontal m-horizontal-4 wrap">
+                          <template is="dom-if" if="[[patient.flags.isOnlineOnly]]">
+                            <div class="modifier online">online Only</div>
+                          </template>
+                          <template is="dom-if" if="[[patient.flags.isImported]]">
+                            <div class="modifier imported">imported</div>
+                          </template>
+                          <template is="dom-if" if="[[patient.flags.isLocalOnly]]">
+                            <div class="modifier local-only">local only</div>
+                          </template>
+                          <!-- <template is="dom-if" if="[[patient.flags.isLocallyUpdated]]">
+                            <div class="modifier locally-updated">locally updated</div>
+                          </template> -->
+                        </div>
+
+                        <!-- <paper-icon-button icon="visibility" on-tap="viewPatientIconPressed" hidden="[[!patient.flags.isImported]]"></paper-icon-button> -->
+
+                        <!-- <paper-button raised class="btn-add colored" on-tap="viewPatientIconPressed" hidden="[[!patient.flags.isImported]]"><iron-icon icon="icons:visibility" class="m-right-8"></iron-icon>View</paper-button> -->
+              
+                        <paper-menu-button horizontal-align="right" no-animations>
+                          <paper-icon-button icon="more-vert" class="dropdown-trigger"></paper-icon-button>
+                          <paper-menu class="dropdown-content">
+                            <template is="dom-if" if="[[$or(patient.flags.isImported, patient.flags.isLocalOnly)]]">
+                              <!-- <paper-item on-tap="viewPatientPressed">View</paper-item> -->
+                              <paper-item on-tap="viewPatient">View Patient</paper-item>
+                              <paper-item on-tap="editPatientPressed">Edit</paper-item>
+                              <!-- <paper-item on-tap="editPatientPreconceptionRecord">Edit PCC Record <img class="m-left-8" width="24" height="24" src="../../assets/img/partners/badas_logo.png" alt=""></paper-item> -->
+                              <!-- <paper-item on-tap="_shortcutToNewPrescription">New Prescription</paper-item> -->
+                            </template>
+                            <!-- export/import start -->
+                            <template is="dom-if" if="[[patient.flags.isOnlineOnly]]">
+                              <paper-item on-tap="importPatientPressed">Import from Cloud</paper-item>
+                            </template>
+                            <template is="dom-if" if="[[$or(patient.flags.isLocalOnly, patient.flags.isImported)]]">
+                              <paper-item on-tap="publishPatientPressed">Publish to Cloud</paper-item>
+                            </template>
+                            <template is="dom-if" if="[[patient.flags.isImported]]">
+                              <paper-item on-tap="importLatestPatientPressed">Import Latest from Cloud</paper-item>
+                            </template>
+                        <template is="dom-repeat" items="[[organizationsIBelongToList]]" as="organization">
+                          <paper-item on-tap="putInWaitlistTapped">Put in [[organization.name]]'s Waitlist</paper-item>
+                        </template>
+
+
+                            <!-- export/import end -->
+
+                            <template is="dom-if" if="[[$or(patient.flags.isImported, patient.flags.isLocalOnly)]]">
+                              <paper-item on-tap="deletePatientPressed">Delete local copy</paper-item>
+                            </template>
+
+                          </paper-menu>
+                        </paper-menu-button>
+                        
+
+                      </paper-item>
+                    </template>
+
+                  </paper-listbox>
+                  
+                </div>
+              </paper-card>
+            </template>
+            <!-- Card - Search Results - end -->
+          </section>
+          <!-- Imported/Offline Patients - end -->
+
+          <!-- Patient Log - end -->
+          <section>
+            <!-- Card - Visited Patient Log - start -->
+            <paper-card>
+      
+              <div class="card-custom-header">
+                <div class="layout horizontal center">
+                  <div class="title flex">Visited Patient Log</div>
+
+
+                  <custom-vital-search on-date-select="searchResultFilterByDateClickedForPatientLog" on-clear="searchResultFilterByDateClearButtonClickedForPatientLog"></custom-vital-search>
+
+                  <!-- <paper-icon-button icon="clear" on-tap="clearSearchResultsClicked"></paper-icon-button> -->
+                </div>
+              </div>
+
+              <template is="dom-if" if="[[_isEmptyArray(matchingVisitedPatientLogList)]]">
+                <div class="card-content layout horizontal center center-justified">
+                  <div class="type body secondary">-- no data available --</div>
+                </div>
+              </template>
+
+              <paper-listbox>
+                
+                <template id="visited-patient-log-repeater" is="dom-repeat" items="[[matchingVisitedPatientLogList]]" as="patient">
+                  <paper-item class="custom layout horizontal center">
+                    <div class="type caption secondary">[[patient.patientSerial]]</div>
+                    
+                    <div class="flex m-left-8">
+                      <div class="type body capitalize">[[$getFullName(patient.patientName)]]</div>
+                      <div class="type caption">
+                        <strong>Visited Date: </strong>
+                        <span>[[$mkDateTime(patient.visitedDateTimeStamp)]]</span>
+                      </div>
+                    </div>
+          
+                    <paper-button raised class="btn-add" on-tap="viewPatientPressedFromLog"><iron-icon icon="visibility" class="m-right-8"></iron-icon>view</paper-button>
+
+                </template>
+              </paper-listbox>
+           
+            </paper-card>
+            <!-- Card - Visited Patient Log - end -->
+          </section>
+          <!-- Patient Log - end -->
+
+          <!-- sync - start -->
+          <section>
+            <paper-card>
+              <div class="card-custom-header">
+                <div class="layout horizontal center">
+                  <div class="title flex">Conflicted Patients list</div>
+                  <!-- <paper-button raised class="btn-add colored" on-tap="uploadAllOfflineRegisteredPatient"><iron-icon icon="icons:cloud-upload" class="m-right-8"></iron-icon>Upload All</paper-button> -->
+                </div>
+                <!-- <template is="dom-if" if="[[_isEmptyArray(conflictedPatientList)]]">
+                  <div class="type body-caption secondary">Your offline created patient already exist on our server. your can either change phone/email or provide patients Doctor Access Pin in order to upload all the records related to this patients.</div>
+                </template> -->
+                
+              </div>
+
+              <paper-listbox>
+                
+                <template id="conflicted-patient-repeater" is="dom-repeat" items="[[conflictedPatientList]]" as="patient">
+                  <paper-item class="custom layout horizontal center wrap">
+                    
+                    <div class="flex m-left-8">
+                      <div class="type caption secondary">[[patient.data.serial]]</div>
+                      <div class="type body capitalize">[[$getFullName(patient.data.name)]]</div>
+                      <div class="type caption-2">[[patient.data.phone]]</div>
+                    </div>
+            
+                    <paper-input label="Pin" value="{{patient.doctorAccessPin}}"></paper-input>
+              
+          
+                    
+          
+                    <paper-button raised class="btn-add" on-tap="checkAndUpdateConflictedPatientData"><iron-icon icon="save" class="m-right-8"></iron-icon>save</paper-button>
+
+                </template>
+              </paper-listbox>
+          </section>
+          <!-- sync registered - end -->
+
+
+        </iron-pages>
+
+      </div>
+
+    </div>
+
+    
+
+    <paper-fab class="custom-menu-button" icon="add" on-tap="newPatientFabPressed"></paper-fab>
+     
+
+
+  </template>
+  <script src="page-patient-manager.coffee-compiled.js"></script>
+</dom-module>

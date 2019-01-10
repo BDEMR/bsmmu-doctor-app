@@ -1,0 +1,1193 @@
+{
+    "type": "systemRoot",
+    "key": "systemRoot",
+    "childList": [
+        {
+            "type": "category",
+            "key": "Operation Note",
+            "label": "Operation Note",
+            "childList": [
+                {
+                    "type": "collection",
+                    "key": "Operation Note Details",
+                    "label": "Operation Note Details",
+                    "childList": [
+                        {
+                            "type": "group",
+                            "key": "List",
+                            "label": "List",
+                            "print": {
+                                "passThrough": true
+                            },
+                            "childList": [
+                                {
+                                    "type": "card",
+                                    "key": "Details",
+                                    "label": "Details",
+                                    "print": {
+                                        "passThrough": true
+                                    },
+                                    "childList": [
+                                        {
+                                            "key": "Patient Info",
+                                            "label": "Patient Info",
+                                            "type": "toggleableContainer",
+                                            "print": {
+                                                "boldLabel": true,
+                                                "newLineBeforeThis": 1
+                                            },
+                                            "childList": [
+                                                {
+                                                    "type": "input",
+                                                    "key": "Name",
+                                                    "label": "Name",
+                                                    "labelType": "float",
+                                                    "valueType": "multilineText",
+                                                    "injection": {
+                                                        "ref": "patient-name"
+                                                    }
+                                                },
+                                                {
+                                                    "type": "input",
+                                                    "key": "Age",
+                                                    "label": "Age",
+                                                    "labelType": "float",
+                                                    "valueType": "multilineText",
+                                                    "injection": {
+                                                        "ref": "patient-age"
+                                                    }
+                                                },
+                                                {
+                                                    "type": "input",
+                                                    "key": "DOB",
+                                                    "label": "DOB",
+                                                    "labelType": "float",
+                                                    "valueType": "date",
+                                                    "injection": {
+                                                        "ref": "patient-dob"
+                                                    }
+                                                },
+                                                {
+                                                    "type": "input",
+                                                    "key": "Address",
+                                                    "label": "Address",
+                                                    "labelType": "float",
+                                                    "valueType": "multilineText",
+                                                    "injection": {
+                                                        "ref": "patient-address"
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "key": "Name of Department",
+                                            "label": "Name of Department",
+                                            "type": "toggleableContainer",
+                                            "print": {
+                                                "newLineBeforeThis": 1,
+                                                "boldLabel": true
+                                            },
+                                            "childList": [
+                                                {
+                                                    "type": "autocomplete",
+                                                    "key": "Name of Department",
+                                                    "label": "Name of Department",
+                                                    "sourceDataList": [
+                                                        {
+                                                            "text": "General Surgery",
+                                                            "alt": ""
+                                                        },
+                                                        {
+                                                            "text": "Obstetrics & Gyn",
+                                                            "alt": ""
+                                                        },
+                                                        {
+                                                            "text": "Paediatric Surgery",
+                                                            "alt": ""
+                                                        },
+                                                        {
+                                                            "text": "Orthopaedics",
+                                                            "alt": ""
+                                                        },
+                                                        {
+                                                            "text": "Vascular Surgery",
+                                                            "alt": ""
+                                                        },
+                                                        {
+                                                            "text": "Neurosurgery",
+                                                            "alt": ""
+                                                        },
+                                                        {
+                                                            "text": "Plastic Surgery",
+                                                            "alt": ""
+                                                        },
+                                                        {
+                                                            "text": "Cardiac Surgery",
+                                                            "alt": ""
+                                                        },
+                                                        {
+                                                            "text": "Dental",
+                                                            "alt": ""
+                                                        },
+                                                        {
+                                                            "text": "ENT (Ear, Nose & Throat)",
+                                                            "alt": ""
+                                                        },
+                                                        {
+                                                            "text": "Psychiatry",
+                                                            "alt": ""
+                                                        },
+                                                        {
+                                                            "text": "Maxilo-Facial",
+                                                            "alt": ""
+                                                        },
+                                                        {
+                                                            "text": "Urology",
+                                                            "alt": ""
+                                                        }
+                                                    ],
+                                                    "selectionType": "container",
+                                                    "childListForEachContainer": [
+                                                        {
+                                                            "key": "text",
+                                                            "defaultLabel": "@VALUE@",
+                                                            "type": "label"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "key": "Operation proposed",
+                                            "label": "Operation proposed",
+                                            "type": "toggleableContainer",
+                                            "print": {
+                                                "newLineBeforeThis": 1,
+                                                "boldLabel": true
+                                            },
+
+                                            "childList": [
+                                                {
+                                                    "type": "autocomplete",
+                                                    "key": "Name of Operation proposed",
+                                                    "label": "Operation proposed",
+                                                    "sourceDataPlugin": {
+                                                        "external": true,
+                                                        "name": "operationNameList"
+                                                    },
+                                                    "selectionType": "container",
+                                                    "childListForEachContainer": [
+                                                        {
+                                                            "key": "text",
+                                                            "defaultLabel": "@VALUE@",
+                                                            "type": "label"
+                                                        }
+                                                    ],
+                                                    "injection": {
+                                                        "ref": null,
+                                                        "from": "opAnaesthesia//Information//General Information//List//<array>//Details//<array>//Name of Operation//<array>//Name of Operation"
+                                                    }
+                                                }
+                                            ]
+                                            
+                                        },
+                                        {
+                                            "key": "Name of Surgeon",
+                                            "label": "Name of Surgeon",
+                                            "type": "toggleableContainer",
+                                            "print": {
+                                                "newLineBeforeThis": 1,
+                                                "boldLabel": true
+                                            },
+                                            "childList": [
+                                                {
+                                                    "type": "autocomplete",
+                                                    "key": "Name of Surgeon",
+                                                    "label": "Name of Surgeon",
+                                                    "sourceDataList": [],
+                                                    "selectionType": "container",
+                                                    "childListForEachContainer": [
+                                                        {
+                                                            "type": "input",
+                                                            "key": "name Of Surgeon",
+                                                            "label": "Name of Surgeon",
+                                                            "labelType": "float",
+                                                            "prefilledValue": "Dr. @VALUE@",
+                                                            "valueType": "text",
+                                                            "print": {
+                                                                "noColonAfterThis": true,
+                                                                "hideLabel": true
+                                                            }
+                                                        },
+                                                        {
+                                                            "key": "Type of Surgeon",
+                                                            "defaultLabel": "Type of Surgeon",
+                                                            "type": "container",
+                                                            "print": {
+                                                                "passThrough": true
+                                                            },
+                                                            "childList": [
+                                                                {
+                                                                    "type": "radioList",
+                                                                    "key": "Stairs",
+                                                                    "possibleValueList": [
+                                                                        "Actual",
+                                                                        "Supervisor",
+                                                                        "Assistant"
+                                                                    ],
+                                                                    "preselectedValue": "Actual",
+                                                                    "allowCustomValue": true
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "key": "Anesthesia type",
+                                            "label": "Anesthesia type",
+                                            "type": "toggleableContainer",
+                                            "print": {
+                                                "newLineAfterThis": 1,
+                                                "boldLabel": true
+                                            },
+                                            "childList": [
+                                                {
+                                                    "key": "Local Anesthesia",
+                                                    "label": "Local Anesthesia",
+                                                    "type": "toggleableContainer",
+                                                    "print": {
+                                                        "hideChildren": true
+                                                    },
+                                                    "childList": [
+                                                        {
+                                                            "key": "Local Infiltration Anaesthesia  By Surgeon",
+                                                            "label": "Local Infiltration Anaesthesia  By Surgeon",
+                                                            "type": "checkbox"
+                                                        },
+                                                        {
+                                                            "key": "Local Infiltration Anaesthesia And Sedation By Anaesthetist / Anaesthesiologist",
+                                                            "label": "Local Infiltration Anaesthesia And Sedation By Anaesthetist / Anaesthesiologist",
+                                                            "type": "checkbox"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "key": "General Anesthesia",
+                                                    "label": "General Anesthesia",
+                                                    "type": "checkbox"
+                                                },
+                                                {
+                                                    "key": "Neuraxial Type",
+                                                    "label": "Neuraxial Type",
+                                                    "type": "toggleableContainer",
+                                                    "childList": [
+                                                        {
+                                                            "key": "Epidural",
+                                                            "label": "Epidural",
+                                                            "type": "checkbox"
+                                                        },
+                                                        {
+                                                            "key": "Spinal",
+                                                            "label": "Spinal",
+                                                            "type": "checkbox"
+                                                        },
+                                                        {
+                                                            "key": "Caudal",
+                                                            "label": "Caudal",
+                                                            "type": "checkbox"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "key": "Nerve Block",
+                                                    "label": "Nerve Block",
+                                                    "type": "checkbox"
+                                                },
+                                                {
+                                                    "key": "Sedation",
+                                                    "label": "Sedation",
+                                                    "type": "checkbox"
+                                                },
+                                                {
+                                                    "key": "Monitored Anaesthesia Care",
+                                                    "label": "Monitored Anaesthesia Care",
+                                                    "type": "checkbox"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "key": "Name of Anaesthetist",
+                                            "label": "Name of Anaesthetist",
+                                            "type": "toggleableContainer",
+                                            "print": {
+                                                "newLineBeforeThis": 1,
+                                                "boldLabel": true
+                                            },
+                                            "childList": [
+                                                {
+                                                    "type": "autocomplete",
+                                                    "key": "Name of Anaesthetist",
+                                                    "label": "Name of Anaesthetist",
+                                                    "sourceDataList": [],
+                                                    "selectionType": "container",
+                                                    "childListForEachContainer": [
+                                                        {
+                                                            "type": "input",
+                                                            "key": "name Of Anaesthetist",
+                                                            "label": "Name of Anaesthetist",
+                                                            "labelType": "float",
+                                                            "prefilledValue": "Dr. @VALUE@",
+                                                            "valueType": "text",
+                                                            "print": {
+                                                                "noColonAfterThis": true,
+                                                                "hideLabel": true
+                                                            }
+                                                        },
+                                                        {
+                                                            "key": "Anesthetist Position",
+                                                            "defaultLabel": "Anesthetist Position",
+                                                            "type": "container",
+                                                            "print": {
+                                                                "passThrough": true
+                                                            },
+                                                            "childList": [
+                                                                {
+                                                                    "type": "radioList",
+                                                                    "key": "Stairs",
+                                                                    "possibleValueList": [
+                                                                        "Consultant",
+                                                                        "Staff",
+                                                                        "Resident 1",
+                                                                        "Resident 2",
+                                                                        "Resident 3",
+                                                                        "Resident 4",
+                                                                        "Resident 5",
+                                                                        "Attending",
+                                                                        "SHO",
+                                                                        "Registrar",
+                                                                        "Specialist Registrar",
+                                                                        "ST 1",
+                                                                        "ST 2",
+                                                                        "ST 3",
+                                                                        "ST 4",
+                                                                        "ST 5",
+                                                                        "ST 6",
+                                                                        "ST 7",
+                                                                        "Asstt. Professor",
+                                                                        "Assoc. Professor",
+                                                                        "Professor"
+                                                                    ],
+                                                                    "preselectedValue": "Consultant",
+                                                                    "allowCustomValue": true
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "key": "Type of Anaesthetist",
+                                                            "defaultLabel": "Type of Anaesthetist",
+                                                            "type": "container",
+                                                            "print": {
+                                                                "passThrough": true
+                                                            },
+                                                            "childList": [
+                                                                {
+                                                                    "type": "radioList",
+                                                                    "key": "Stairs",
+                                                                    "possibleValueList": [
+                                                                        "Actual",
+                                                                        "Supervising (OBWAC)",
+                                                                        "Assistant"
+                                                                    ],
+                                                                    "preselectedValue": "Actual",
+                                                                    "allowCustomValue": true
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "key": "Indication",
+                                            "label": "Indication",
+                                            "type": "toggleableContainer",
+                                            "print": {
+                                                "newLineAfterThis": 1,
+                                                "boldLabel": true
+                                            },
+                                            "childList": [
+                                                {
+                                                    "type": "input",
+                                                    "key": "comments",
+                                                    "label": "",
+                                                    "labelType": "hidden",
+                                                    "valueType": "multilineText",
+                                                    "print": {
+                                                        "noColonAfterThis": true,
+                                                        "hideLabel": true
+                                                    },
+                                                    "injection": {
+                                                        "ref": null,
+                                                        "from": "preopAssessment//History//History of Current problem / Diagnosis//Default//<array>//Default//<array>//comments//<array>//comments"
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "key": "Position of the Patient",
+                                            "label": "Position of the Patient",
+                                            "type": "toggleableContainer",
+                                            "print": {
+                                                "newLineAfterThis": 2,
+                                                "boldLabel": true
+                                            },
+                                            "childList": [
+                                                {
+                                                    "type": "checkList",
+                                                    "key": "Position of the patientlist",
+                                                    "possibleValueList": [
+                                                        "Supine",
+                                                        "Lithotomy",
+                                                        "Prone",
+                                                        "Beach Chair",
+                                                        "Trendelenberg",
+                                                        "R Trendelenberg",
+                                                        "Complete Rt Lateral",
+                                                        "Complete Lt Lateral",
+                                                        "Fracture Table",
+                                                        "Kidney Position",
+                                                        "Lt Lateral Tilt",
+                                                        "Undo  Lt Lateral Tilt",
+                                                        "Rt Wedge",
+                                                        "Partial Rt Lateral",
+                                                        "Partial Lt Lateral"
+                                                    ],
+                                                    "allowCustomValue": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "key": "Prep",
+                                            "label": "Prep",
+                                            "type": "toggleableContainer",
+                                            "print": {
+                                                "newLineAfterThis": 1,
+                                                "boldLabel": true
+                                            },
+                                            "childList": [
+                                                {
+                                                    "key": "Chlorhexidine",
+                                                    "label": "Chlorhexidine",
+                                                    "type": "toggleableContainer",
+                                                    "childList": [
+                                                        {
+                                                            "type": "input",
+                                                            "key": "Chlorhexidine input",
+                                                            "label": "Chlorhexidine input ",
+                                                            "labelType": "float",
+                                                            "valueType": "multilineText"
+                                                        },
+                                                        {
+                                                            "key": "%",
+                                                            "defaultLabel": "%",
+                                                            "type": "label"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "checkList",
+                                                    "key": "Prep",
+                                                    "possibleValueList": [
+                                                        "Iodine",
+                                                        "Betadine"
+                                                    ],
+                                                    "allowCustomValue": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "key": "Incision",
+                                            "label": "Incision",
+                                            "type": "toggleableContainer",
+                                            "print": {
+                                                "newLineBeforeThis": 1,
+                                                "boldLabel": true
+                                            },
+                                            "childList": [
+                                                {
+                                                    "type": "autocomplete",
+                                                    "key": "Incision",
+                                                    "label": "Incision",
+                                                    "sourceDataList": [],
+                                                    "selectionType": "container",
+                                                    "childListForEachContainer": [
+                                                        {
+                                                            "type": "input",
+                                                            "key": "Incision",
+                                                            "label": "Incision",
+                                                            "labelType": "float",
+                                                            "prefilledValue": "@VALUE@",
+                                                            "valueType": "text",
+                                                            "print": {
+                                                                "noColonAfterThis": true,
+                                                                "hideLabel": true
+                                                            }
+                                                        },
+                                                        {
+                                                            "type": "radioList",
+                                                            "key": "Finding",
+                                                            "possibleValueList": [
+                                                                "Midline",
+                                                                "Lower midline",
+                                                                "Upper midline"
+                                                            ],
+                                                            "preselectedValue": "Midline",
+                                                            "allowCustomValue": true
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "key": "Port",
+                                            "label": "Port",
+                                            "type": "toggleableContainer",
+                                            "print": {
+                                                "newLineBeforeThis": 1,
+                                                "boldLabel": true
+                                            },
+                                            "childList": [
+                                                {
+                                                    "type": "autocomplete",
+                                                    "key": "Port ",
+                                                    "label": "Port ",
+                                                    "sourceDataList": [],
+                                                    "selectionType": "container",
+                                                    "childListForEachContainer": [
+                                                        {
+                                                            "type": "input",
+                                                            "key": "Port ",
+                                                            "label": "Port ",
+                                                            "labelType": "float",
+                                                            "prefilledValue": "@VALUE@",
+                                                            "valueType": "text",
+                                                            "print": {
+                                                                "noColonAfterThis": true,
+                                                                "hideLabel": true
+                                                            }
+                                                        },
+                                                        {
+                                                            "type": "radioList",
+                                                            "key": "Finding",
+                                                            "possibleValueList": [
+                                                                "Umbilical"
+                                                            ],
+                                                            "preselectedValue": "Umbilical",
+                                                            "allowCustomValue": true
+                                                        },
+                                                        {
+                                                            "key": "10 mm port",
+                                                            "defaultLabel": "10 mm port",
+                                                            "type": "container",
+                                                            "childList": [
+                                                                {
+                                                                    "type": "radioList",
+                                                                    "key": "10 mm port",
+                                                                    "possibleValueList": [
+                                                                        "1",
+                                                                        "2",
+                                                                        "3",
+                                                                        "4",
+                                                                        "5",
+                                                                        "6"
+                                                                    ],
+                                                                    "preselectedValue": "1",
+                                                                    "allowCustomValue": true
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "key": "5 mm port",
+                                                            "defaultLabel": "5 mm port",
+                                                            "type": "container",
+                                                            "childList": [
+                                                                {
+                                                                    "type": "radioList",
+                                                                    "key": "5 mm port",
+                                                                    "possibleValueList": [
+                                                                        "1",
+                                                                        "2",
+                                                                        "3",
+                                                                        "4",
+                                                                        "5",
+                                                                        "6"
+                                                                    ],
+                                                                    "preselectedValue": "1",
+                                                                    "allowCustomValue": true
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "key": "Custom Port",
+                                                            "defaultLabel": "Custom Port",
+                                                            "type": "container",
+                                                            "childList": [
+                                                                {
+                                                                    "type": "input",
+                                                                    "key": "Custom Port key",
+                                                                    "label": "Custom Port Title",
+                                                                    "labelType": "float",
+                                                                    "valueType": "text",
+                                                                    "print": {
+                                                                        "noColonAfterThis": true,
+                                                                        "hideLabel": true
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "type": "radioList",
+                                                                    "key": "custom port radio",
+                                                                    "possibleValueList": [],
+                                                                    "allowCustomValue": true
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "key": "Finding",
+                                            "label": "Finding",
+                                            "type": "toggleableContainer",
+                                            "print": {
+                                                "newLineBeforeThis": 1,
+                                                "boldLabel": true
+                                            },
+                                            "childList": [
+                                                {
+                                                    "type": "autocomplete",
+                                                    "key": "Finding",
+                                                    "label": "Finding",
+                                                    "sourceDataList": [],
+                                                    "selectionType": "container",
+                                                    "childListForEachContainer": [
+                                                        {
+                                                            "type": "input",
+                                                            "key": "Finding",
+                                                            "label": "Finding",
+                                                            "labelType": "float",
+                                                            "prefilledValue": "@VALUE@",
+                                                            "valueType": "text",
+                                                            "print": {
+                                                                "noColonAfterThis": true,
+                                                                "hideLabel": true
+                                                            }
+                                                        },
+                                                        {
+                                                            "type": "radioList",
+                                                            "key": "Stairs",
+                                                            "possibleValueList": [
+                                                                "Inflamed organ",
+                                                                "Perforated organ",
+                                                                "Matted",
+                                                                "Difficulty identifying structure",
+                                                                "Normal looking organs",
+                                                                "Corresponding to ultrasound / CT / MRI",
+                                                                "Not Corresponding to ultrasound / CT / MRI"
+                                                            ],
+                                                            "preselectedValue": "Inflamed organ",
+                                                            "allowCustomValue": true
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "key": "comments",
+                                            "label": "comments",
+                                            "type": "toggleableContainer",
+                                            "print": {
+                                                "newLineAfterThis": 1,
+                                                "boldLabel": true
+                                            },
+                                            "childList": [
+                                                {
+                                                    "type": "input",
+                                                    "key": "comments",
+                                                    "label": "Comments",
+                                                    "labelType": "float",
+                                                    "valueType": "multilineText",
+                                                    "print": {
+                                                        "noColonAfterThis": true,
+                                                        "hideLabel": true
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "key": "Complication",
+                                            "label": "Complication",
+                                            "type": "toggleableContainer",
+                                            "print": {
+                                                "newLineBeforeThis": 1,
+                                                "boldLabel": true
+                                            },
+                                            "childList": [
+                                                {
+                                                    "type": "autocomplete",
+                                                    "key": "Complication",
+                                                    "label": "Complication",
+                                                    "sourceDataList": [],
+                                                    "selectionType": "container",
+                                                    "childListForEachContainer": [
+                                                        {
+                                                            "type": "input",
+                                                            "key": "Complication",
+                                                            "label": "Complication",
+                                                            "labelType": "float",
+                                                            "prefilledValue": "@VALUE@",
+                                                            "valueType": "text",
+                                                            "print": {
+                                                                "noColonAfterThis": true,
+                                                                "hideLabel": true
+                                                            }
+                                                        },
+                                                        {
+                                                            "type": "radioList",
+                                                            "key": "Stairs",
+                                                            "possibleValueList": [
+                                                                "Nil",
+                                                                "Perforation of viscera",
+                                                                "Injury to the vessels",
+                                                                "Injury to other viscera"
+                                                            ],
+                                                            "preselectedValue": "Nil",
+                                                            "allowCustomValue": true
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "key": "Operation performed",
+                                            "label": "Operation performed",
+                                            "type": "toggleableContainer",
+                                            "print": {
+                                                "newLineBeforeThis": 1,
+                                                "boldLabel": true
+                                            },
+                                            "childList": [
+                                                {
+                                                    "type": "autocomplete",
+                                                    "key": "Operation performed",
+                                                    "label": "Operation performed",
+                                                    "sourceDataPlugin": {
+                                                        "external": true,
+                                                        "name": "operationNameList"
+                                                    },
+                                                    "selectionType": "container",
+                                                    "childListForEachContainer": [
+                                                        {
+                                                            "key": "text",
+                                                            "defaultLabel": "@VALUE@",
+                                                            "type": "label"
+                                                        }
+                                                    ],
+                                                    "injection": {
+                                                        "ref": null,
+                                                        "from": "opAnaesthesia//Information//General Information//List//<array>//Details//<array>//Name of Operation//<array>//Name of Operation"
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "key": "Drain",
+                                            "label": "Drain",
+                                            "type": "toggleableContainer",
+                                            "print": {
+                                                "newLineAfterThis": 1,
+                                                "boldLabel": true
+                                            },
+                                            "childList": [
+                                                {
+                                                    "type": "checkList",
+                                                    "key": "Yes",
+                                                    "possibleValueList": [
+                                                        "Upper abdominal  Rt/Lt",
+                                                        "Lower abdominal Rt/Lt",
+                                                        "Thoracic Rt/Lt",
+                                                        "Neck",
+                                                        "Brain"
+                                                    ],
+                                                    "allowCustomValue": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "key": "Shunt ",
+                                            "label": "Shunt ",
+                                            "type": "toggleableContainer",
+                                            "childList": [
+                                                {
+                                                    "type": "checkList",
+                                                    "key": "Shunt ",
+                                                    "possibleValueList": [
+                                                        "Cerebral",
+                                                        "Peritoneal"
+                                                    ],
+                                                    "allowCustomValue": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "key": "Closure",
+                                            "label": "Closure",
+                                            "type": "toggleableContainer",
+                                            "print": {
+                                                "newLineBeforeThis": 1,
+                                                "boldLabel": true
+                                            },
+                                            "childList": [
+                                                {
+                                                    "type": "autocomplete",
+                                                    "key": "Closure ",
+                                                    "label": "Closure ",
+                                                    "sourceDataList": [],
+                                                    "selectionType": "container",
+                                                    "childListForEachContainer": [
+                                                        {
+                                                            "type": "input",
+                                                            "key": "Closure ",
+                                                            "label": "Closure ",
+                                                            "labelType": "float",
+                                                            "prefilledValue": "@VALUE@",
+                                                            "valueType": "text",
+                                                            "print": {
+                                                                "noColonAfterThis": true,
+                                                                "hideLabel": true
+                                                            }
+                                                        },
+                                                        {
+                                                            "type": "radioList",
+                                                            "key": "All layer ",
+                                                            "possibleValueList": [
+                                                                "All layer"
+                                                            ],
+                                                            "preselectedValue": "All layer",
+                                                            "allowCustomValue": true
+                                                        },
+                                                        {
+                                                            "key": "Peritoneum",
+                                                            "label": "Peritoneum",
+                                                            "type": "toggleableContainer",
+                                                            "childList": [
+                                                                {
+                                                                    "key": "Prolene ",
+                                                                    "label": "Prolene ",
+                                                                    "type": "toggleableContainer",
+                                                                    "childList": [
+                                                                        {
+                                                                            "type": "radioList",
+                                                                            "key": "Prolene ",
+                                                                            "possibleValueList": [
+                                                                                "0",
+                                                                                "00",
+                                                                                "000",
+                                                                                "1",
+                                                                                "2",
+                                                                                "3",
+                                                                                "4"
+                                                                            ],
+                                                                            "preselectedValue": "0",
+                                                                            "allowCustomValue": true
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "key": "Nylon  ",
+                                                                    "label": "Nylon  ",
+                                                                    "type": "toggleableContainer",
+                                                                    "childList": [
+                                                                        {
+                                                                            "type": "radioList",
+                                                                            "key": "Nylon  ",
+                                                                            "possibleValueList": [
+                                                                                "0",
+                                                                                "00",
+                                                                                "000",
+                                                                                "1",
+                                                                                "2",
+                                                                                "3",
+                                                                                "4"
+                                                                            ],
+                                                                            "preselectedValue": "0",
+                                                                            "allowCustomValue": true
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "key": "Catgut  ",
+                                                                    "label": "Catgut  ",
+                                                                    "type": "toggleableContainer",
+                                                                    "childList": [
+                                                                        {
+                                                                            "type": "radioList",
+                                                                            "key": "Catgut  ",
+                                                                            "possibleValueList": [
+                                                                                "0",
+                                                                                "00",
+                                                                                "000",
+                                                                                "1",
+                                                                                "2",
+                                                                                "3",
+                                                                                "4"
+                                                                            ],
+                                                                            "preselectedValue": "0",
+                                                                            "allowCustomValue": true
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "key": "Vicry  ",
+                                                                    "label": "Vicry  ",
+                                                                    "type": "toggleableContainer",
+                                                                    "childList": [
+                                                                        {
+                                                                            "type": "radioList",
+                                                                            "key": "Vicry ",
+                                                                            "possibleValueList": [
+                                                                                "0",
+                                                                                "00",
+                                                                                "000",
+                                                                                "1",
+                                                                                "2",
+                                                                                "3",
+                                                                                "4"
+                                                                            ],
+                                                                            "preselectedValue": "0",
+                                                                            "allowCustomValue": true
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "key": "PDS   ",
+                                                                    "label": "PDS   ",
+                                                                    "type": "toggleableContainer",
+                                                                    "childList": [
+                                                                        {
+                                                                            "type": "radioList",
+                                                                            "key": "PDS  ",
+                                                                            "possibleValueList": [
+                                                                                "0",
+                                                                                "00",
+                                                                                "000",
+                                                                                "1",
+                                                                                "2",
+                                                                                "3",
+                                                                                "4"
+                                                                            ],
+                                                                            "preselectedValue": "0",
+                                                                            "allowCustomValue": true
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "key": "Fascia",
+                                                            "label": "Fascia",
+                                                            "type": "toggleableContainer",
+                                                            "childList": [
+                                                                {
+                                                                    "key": "Prolene ",
+                                                                    "label": "Prolene ",
+                                                                    "type": "toggleableContainer",
+                                                                    "childList": [
+                                                                        {
+                                                                            "type": "radioList",
+                                                                            "key": "Prolene ",
+                                                                            "possibleValueList": [
+                                                                                "0",
+                                                                                "00",
+                                                                                "000",
+                                                                                "1",
+                                                                                "2",
+                                                                                "3",
+                                                                                "4"
+                                                                            ],
+                                                                            "preselectedValue": "0",
+                                                                            "allowCustomValue": true
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "key": "Nylon  ",
+                                                                    "label": "Nylon  ",
+                                                                    "type": "toggleableContainer",
+                                                                    "childList": [
+                                                                        {
+                                                                            "type": "radioList",
+                                                                            "key": "Nylon  ",
+                                                                            "possibleValueList": [
+                                                                                "0",
+                                                                                "00",
+                                                                                "000",
+                                                                                "1",
+                                                                                "2",
+                                                                                "3",
+                                                                                "4"
+                                                                            ],
+                                                                            "preselectedValue": "0",
+                                                                            "allowCustomValue": true
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "key": "Catgut  ",
+                                                                    "label": "Catgut  ",
+                                                                    "type": "toggleableContainer",
+                                                                    "childList": [
+                                                                        {
+                                                                            "type": "radioList",
+                                                                            "key": "Catgut  ",
+                                                                            "possibleValueList": [
+                                                                                "0",
+                                                                                "00",
+                                                                                "000",
+                                                                                "1",
+                                                                                "2",
+                                                                                "3",
+                                                                                "4"
+                                                                            ],
+                                                                            "preselectedValue": "0",
+                                                                            "allowCustomValue": true
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "key": "Vicry  ",
+                                                                    "label": "Vicry  ",
+                                                                    "type": "toggleableContainer",
+                                                                    "childList": [
+                                                                        {
+                                                                            "type": "radioList",
+                                                                            "key": "Vicry ",
+                                                                            "possibleValueList": [
+                                                                                "0",
+                                                                                "00",
+                                                                                "000",
+                                                                                "1",
+                                                                                "2",
+                                                                                "3",
+                                                                                "4"
+                                                                            ],
+                                                                            "preselectedValue": "0",
+                                                                            "allowCustomValue": true
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "key": "PDS   ",
+                                                                    "label": "PDS   ",
+                                                                    "type": "toggleableContainer",
+                                                                    "childList": [
+                                                                        {
+                                                                            "type": "radioList",
+                                                                            "key": "PDS  ",
+                                                                            "possibleValueList": [
+                                                                                "0",
+                                                                                "00",
+                                                                                "000",
+                                                                                "1",
+                                                                                "2",
+                                                                                "3",
+                                                                                "4"
+                                                                            ],
+                                                                            "preselectedValue": "0",
+                                                                            "allowCustomValue": true
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "key": "Skin",
+                                            "label": "Skin",
+                                            "type": "toggleableContainer",
+                                            "print": {
+                                                "newLineBeforeThis": 1,
+                                                "boldLabel": true
+                                            },
+                                            "childList": [
+                                                {
+                                                    "type": "autocomplete",
+                                                    "key": "Skin",
+                                                    "label": "Skin",
+                                                    "sourceDataList": [],
+                                                    "selectionType": "container",
+                                                    "childListForEachContainer": [
+                                                        {
+                                                            "type": "input",
+                                                            "key": "Skin",
+                                                            "label": "Skin",
+                                                            "labelType": "float",
+                                                            "prefilledValue": "@VALUE@",
+                                                            "valueType": "text",
+                                                            "print": {
+                                                                "noColonAfterThis": true,
+                                                                "hideLabel": true
+                                                            }
+                                                        },
+                                                        {
+                                                            "type": "radioList",
+                                                            "key": "Skin",
+                                                            "possibleValueList": [
+                                                                "Stitch",
+                                                                "Intradermal Stitch",
+                                                                "Staple"
+                                                            ],
+                                                            "preselectedValue": "Stitch",
+                                                            "allowCustomValue": true
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "key": "Final comments",
+                                            "label": "Final comments",
+                                            "type": "toggleableContainer",
+                                            "print": {
+                                                "newLineAfterThis": 1,
+                                                "boldLabel": true
+                                            },
+                                            "childList": [
+                                                {
+                                                    "type": "input",
+                                                    "key": "Final comments",
+                                                    "label": "Final comments",
+                                                    "labelType": "float",
+                                                    "valueType": "multilineText",
+                                                    "print": {
+                                                        "noColonAfterThis": true,
+                                                        "hideLabel": true
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,88 @@
+<link rel="import" href="../../bower-assets/paper-card/paper-card.html">
+<link rel="import" href="../../bower-assets/paper-input/paper-input.html">
+
+<!-- style -->
+<link rel="import" href="../../styles/common-style.html">
+
+<!-- behavior -->
+<link rel="import" href="../../behaviors/common-computes.html">
+<link rel="import" href="../../behaviors/db-using.html">
+<link rel="import" href="../../behaviors/translating.html">
+<link rel="import" href="../../behaviors/page-like.html">
+<link rel="import" href="../../behaviors/api-calling.html">
+
+<!-- custom-elements -->
+
+<!-- element -->
+<dom-module id="page-attachement-preview">
+  <template>
+
+    <!-- style -->
+
+    <style is="custom-style" include="common-style">
+      .limiting-container {
+        margin-top: 10px;
+      }
+
+      .image {width: 100%;}
+      
+    </style>
+
+    <!-- local DOM -->
+
+    <div class="master-container">
+
+      <div class="limiting-container document">
+
+        <template is="dom-if" if="{{!isTestResultsValid}}">
+          TestResults Invalid
+        </template>
+     
+
+        <!-- editing visit - start -->
+        <template is="dom-if" if="{{isTestResultsValid}}">
+
+          <!-- Attachement Preview - start -->
+         
+          <paper-card class="m-top-16" heading="Test Results Attachement">
+            <template is="dom-if" if="[[attachmentList]]">
+              <div class="attachment-card-list horizontal layout wrap">
+                
+                <template is="dom-repeat" items="[[attachmentList]]" as="attachment" index-as="attachmentIndex">
+                  <paper-material elevation="1">
+                    <div class="attachment-card vertical layout">
+                      <img class="image" src$="[[$getImageSrc(attachment)]]" hidden$="[[!attachment.isImage]]"/>
+                      <div class="footer">
+                        <div class="title horizontal layout center">
+                          <div class="flex m-left-8">[[attachment.title]]</div>
+                          <paper-icon-button on-tap="downloadPressed" icon="file-download"></paper-icon-button>
+                        </div>
+                      </div>
+                    </div>
+                  </paper-material>
+                </template>
+
+              </div>
+            </template>
+          </paper-card>
+     
+          <!-- Attachement Preview - end -->
+
+
+        </template>
+        <!-- editing visit - end -->
+
+      </div>
+
+    </div>
+
+
+
+
+    
+
+  </template>
+  <script src="page-attachement-preview.coffee-compiled.js"></script>
+</dom-module>
+
+

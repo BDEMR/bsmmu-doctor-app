@@ -1,0 +1,2852 @@
+<!-- iron-* -->
+<link rel="import" href="../../bower-assets/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower-assets/iron-icon/iron-icon.html">
+<link rel="import" href="../../bower-assets/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../bower-assets/iron-list/iron-list.html">
+<link rel="import" href="../../bower-assets/iron-icons/communication-icons.html">
+
+<!-- paper-* -->
+<link rel="import" href="../../bower-assets/paper-button/paper-button.html">
+<link rel="import" href="../../bower-assets/paper-card/paper-card.html">
+<link rel="import" href="../../bower-assets/paper-input/paper-input.html">
+<link rel="import" href="../../bower-assets/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower-assets/paper-tabs/paper-tabs.html">
+<link rel="import" href="../../bower-assets/paper-tabs/paper-tab.html">
+<link rel="import" href="../../bower-assets/paper-menu/paper-menu.html">
+<link rel="import" href="../../bower-assets/iron-selector/iron-selector.html">
+<link rel="import" href="../../bower-assets/paper-item/paper-item.html">
+<link rel="import" href="../../bower-assets/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="../../bower-assets/paper-listbox/paper-listbox.html">
+<link rel="import" href="../../bower-assets/paper-menu-button/paper-menu-button.html">
+<link rel="import" href="../../bower-assets/paper-fab/paper-fab.html">
+<link rel="import" href="../../bower-assets/app-layout/app-drawer/app-drawer.html">
+<link rel="import" href="../../bower-assets/paper-toggle-button/paper-toggle-button.html">
+<link rel="import" href="../../bower-assets/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower-assets/paper-input/paper-textarea.html">
+<link rel="import" href="../../bower-assets/paper-tooltip/paper-tooltip.html">
+<link rel="import" href="../../bower-assets/paper-radio-group/paper-radio-group.html">
+<link rel="import" href="../../bower-assets/paper-radio-button/paper-radio-button.html">
+
+
+<!-- 3rd party elements -->
+<link rel="import" href="../../bower-assets/vaadin-date-picker/vaadin-date-picker.html">
+<link rel="import" href="../../bower-assets/vaadin-combo-box/vaadin-combo-box.html">
+
+<!-- Custom AutoComplete -->
+<link rel="import" href="../../bower-assets/paper-autocomplete/paper-autocomplete.html">
+
+
+<!-- custom-elements -->
+<link rel="import" href="../html-block/html-block.html">
+
+<!-- style -->
+<link rel="import" href="../../styles/common-style.html">
+
+<!-- behavior -->
+<link rel="import" href="../../behaviors/common-computes.html">
+<link rel="import" href="../../behaviors/db-using.html">
+<link rel="import" href="../../behaviors/translating.html">
+<link rel="import" href="../../behaviors/page-like.html">
+<link rel="import" href="../../behaviors/api-calling.html">
+
+<!-- custom-elements -->
+
+<!-- element -->
+<dom-module id="page-visit-editor">
+  <template>
+
+    <style is="custom-style" include="common-style">
+      .limiting-container {
+        width: 95%;
+        box-sizing: border-box;
+      }
+
+      .external-card-title {
+        margin-top: 20px;
+        margin-left: 20px;
+        margin-right: 10px;
+        color: #777777;
+      }
+
+      .b-radius paper-listbox {
+        border-radius: 6px;
+      }
+
+      .info-card {
+        @apply(--layout-vertical);
+        /*@apply(--layout-center);*/
+        margin-top: 10px;
+        margin-left: 10px;
+        margin-right: 10px;
+        padding-bottom: 20px;
+      }
+
+      .info-card .row {
+        margin-left: 10px;
+        /*margin-right: 10px;*/
+        margin-top: 10px;
+      }
+
+      .info-card .hr {
+        margin-left: 20px;
+        margin-right: 20px;
+        height: 1px;
+        /*width: 100px;*/
+        background: #dddddd;
+      }
+
+      .info-card .row .modifier {
+        font-size: 14px;
+        background: #000000;
+        color: #ffffff;
+        margin-left: 5px;
+        padding-top: 2px;
+        padding-bottom: 2px;
+        padding-left: 4px;
+        padding-right: 4px;
+        border-radius: 4px;
+        text-transform: uppercase;
+      }
+
+      .info-card .row .modifier.online {
+        background: #757575;
+      }
+
+      .info-card .row .modifier.local-only {
+        background: #039BE5;
+      }
+
+      .info-card .row .modifier.locally-updated {
+        background: #009688;
+      }
+
+      .info-card .row .modifier.imported {
+        background: #4CAF50;
+      }
+
+      .info-row {
+        margin-top: 10px;
+      }
+
+      .top-info-row {
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+
+      .serial-number {
+        background: #37474F;
+        color: #ffffff;
+        margin-left: 5px;
+        padding-top: 2px;
+        padding-bottom: 2px;
+        padding-left: 4px;
+        padding-right: 4px;
+        border-radius: 4px;
+        text-transform: uppercase;
+        font-weight: bold;
+        display: inline-block;
+        font-size: 14px;
+      }
+
+      .address1 {
+        margin-right: 10px;
+      }
+
+      .name {
+        margin-left: 5px;
+        font-size: 24px;
+      }
+
+      .email {
+        margin-left: 5px;
+        font-size: 14px;
+      }
+
+      .phone {
+        margin-left: 5px;
+      }
+
+      .val {
+        text-decoration: underline;
+      }
+
+      .account-box {
+        --iron-icon-width: 96px;
+        --iron-icon-height: 96px;
+      }
+
+      .list-item {
+        margin-top: 8px;
+        margin-bottom: 8px;
+      }
+
+      .copy-button {
+        background-color: #1FAE0B;
+      }
+
+      .paste-button {
+        background-color: #f44336;
+        color: white;
+      }
+
+      .table {
+        width: 100%;
+      }
+
+      .table th {
+        text-align: left;
+      }
+
+
+
+      .item-action {
+        border-top: 1px solid #e8e8e8;
+        padding: 5px 16px;
+        position: relative;
+        padding: 15px;
+        text-align: right;
+      }
+
+      paper-dropdown-menu {
+        width: 100%;
+      }
+
+
+      paper-checkbox.remind {
+        padding: 15px 25px;
+      }
+
+      paper-checkbox.guideline-checkbox {
+        --paper-checkbox-size: 14px;
+      }
+
+      .guideline {
+        margin-left: 10px;
+        margin-top: 70px;
+        height: 90%;
+        overflow: auto;
+      }
+
+      .guideline h1 {
+        text-align: left;
+        padding: 10px 0;
+        border-bottom: 1px solid var(--paper-green-500);
+        color: var(--brand-primary-color);
+      }
+
+      .guideline .dose {
+        margin: 10px 0;
+        padding: 10px;
+      }
+
+      .guideline .subDose {
+        padding: 10px;
+        margin: 5px 0;
+        border: 1px solid #e0e0e0;
+        border-radius: 3px;
+        /*background-color: var(--paper-grey-50);*/
+      }
+
+      .guideline .age-group {
+        border-bottom: 1px solid #ccc;
+      }
+
+      .disclaimer p {
+        color: red;
+      }
+
+      app-drawer {
+        --app-drawer-width: 400px;
+        --app-drawer-scrim-background: rgba(0, 0, 0, 0.1);
+        --app-drawer-content-container: {
+          border-left: 1px solid #ccc;
+          padding-left: 10px;
+        }
+        text-align: left;
+      }
+
+      paper-material {
+        border: 1px solid var(--paper-grey-200);
+      }
+
+      paper-fab {
+        float: right;
+        margin-right: 10px;
+        margin-top: 30px;
+      }
+
+      .indication-group {
+        border: 1px solid var(--paper-blue-grey-100);
+        padding: 15px;
+        border-radius: 3px;
+      }
+
+      .indication-group paper-dropdown-menu {
+        --paper-input-container-color: var(--paper-orange-500);
+      }
+
+      .card-custom-header {
+        padding: 15px;
+        border-bottom: 1px solid var(--paper-grey-200);
+        background-color: var(--paper-grey-50);
+      }
+
+      .card-custom-header .title {
+        font-size: 20px;
+        font-weight: 500;
+        color: var(--brand-primary-color);
+      }
+
+      @media screen and (max-width: 480px) {
+        app-drawer {
+          --app-drawer-width: 95%;
+        }
+
+        .btn-add.m-vert {
+          margin: 0.29em;
+        }
+      }
+
+      .card-item-2 {
+        border-radius: 2px;
+        margin: 8px 4px;
+        border: 2px solid #eee;
+        background-color: #fff;
+      }
+
+      .card-item {
+        border-radius: 6px;
+        border: 1px solid #eee;
+        margin: 3px;
+      }
+
+      .custom-card-content {
+        background-color: #f7f7f7;
+      }
+
+
+
+      .card-item div {
+        background-color: #fafafa;
+        /*border-right: 1px solid #eee;*/
+      }
+
+      paper-checkbox {
+        margin: 8px;
+      }
+
+      .btn-custom {
+        background-color: #fafafa !important;
+        border: 1px solid #eee;
+        margin: 3px;
+      }
+
+      .btn-custom-2 {
+        background-color: #fafafa !important;
+        border-radius-top-left: 0;
+        border-radius-bottom-left: 0;
+        margin: 0 !important;
+      }
+
+      .combobox-custom {
+        padding: 8px 16px;
+        background-color: #f7f7f7;
+        border-bottom: 1px solid #eee;
+      }
+
+      /*Full Visit Preview - start*/
+
+      .document {
+        font-family: 'Times New Roman';
+        background: white;
+      }
+
+      .document-title {
+        font-size: 16px;
+        text-decoration: underline;
+        font-weight: bold;
+        @apply(--layout-vertical);
+        @apply(--layout-center);
+      }
+
+
+
+      .external-card-title {
+        margin-top: 20px;
+        margin-left: 20px;
+        margin-right: 10px;
+        color: #777777;
+      }
+
+      .info-card {
+        @apply(--layout-vertical);
+        /*@apply(--layout-center);*/
+        margin-top: 10px;
+        margin-left: 10px;
+        margin-right: 10px;
+        padding-bottom: 20px;
+      }
+
+      .info-card .row {
+        margin-left: 10px;
+        /*margin-right: 10px;*/
+        margin-top: 10px;
+      }
+
+      .info-card .hr {
+        margin-left: 20px;
+        margin-right: 20px;
+        height: 1px;
+        /*width: 100px;*/
+        background: #dddddd;
+      }
+
+      .info-card .row .modifier {
+        font-size: 14px;
+        background: #000000;
+        color: #ffffff;
+        margin-left: 5px;
+        padding-top: 2px;
+        padding-bottom: 2px;
+        padding-left: 4px;
+        padding-right: 4px;
+        border-radius: 4px;
+        text-transform: uppercase;
+      }
+
+      .info-card .row .modifier.online {
+        background: #757575;
+      }
+
+      .info-card .row .modifier.local-only {
+        background: #039BE5;
+      }
+
+      .info-card .row .modifier.locally-updated {
+        background: #009688;
+      }
+
+      .info-card .row .modifier.imported {
+        background: #4CAF50;
+      }
+
+      .info-row {
+        margin-top: 10px;
+      }
+
+      .top-info-row {
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+
+      .serial-number {
+        background: #37474F;
+        color: #ffffff;
+        margin-left: 5px;
+        padding-top: 2px;
+        padding-bottom: 2px;
+        padding-left: 4px;
+        padding-right: 4px;
+        border-radius: 4px;
+        text-transform: uppercase;
+        font-weight: bold;
+        display: inline-block;
+        font-size: 14px;
+      }
+
+      .address1 {
+        margin-right: 10px;
+      }
+
+      .name {
+        margin-left: 5px;
+        font-size: 24px;
+      }
+
+      .email {
+        margin-left: 5px;
+        font-size: 14px;
+      }
+
+      .phone {
+        margin-left: 5px;
+      }
+
+      .val {
+        text-decoration: underline;
+      }
+
+      .account-box {
+        --iron-icon-width: 96px;
+        --iron-icon-height: 96px;
+      }
+
+      .document {
+        font-family: 'Times New Roman';
+        background: white;
+      }
+
+      .document-title {
+        font-size: 20px;
+        font-weight: bold;
+      }
+
+      .collection {
+        color: red;
+        background: grey;
+      }
+
+      .document-header {
+        /*background-color: #fafafa;*/
+        padding-left: 10px;
+        padding-right: 10px;
+        border-bottom: 1px solid #eee;
+      }
+
+      .document-header .logo {
+        max-width: 128px;
+        max-height: 128px;
+      }
+
+      .horiline {
+        width: 100%;
+        height: 0px;
+        /*background: black;*/
+        border: 1px solid black;
+        margin-bottom: 6px;
+      }
+
+      .leftSide {
+        margin-left: 6px;
+      }
+
+      .leftSideLine1 {
+        font-size: 24px;
+      }
+
+      .rightSideLine1 {
+        font-size: 22px;
+      }
+
+
+      .document-header2 .logo {
+        max-width: 128px;
+        max-height: 128px;
+      }
+
+
+      .item {
+        padding: 10px;
+        border: 1px solid grey;
+      }
+
+      #printPreview {
+        word-break: break-word;
+        display: none !important;
+
+      }
+
+      @media print {
+
+        #hideOnPrint {
+          display: none !important;
+        }
+
+        #printPreview {
+          display: block !important;
+          background-color: transparent;
+        }
+      }
+
+      @media print {
+        app-header-layout #contentContainer {
+          overflow-y: unset !important;
+        }
+      }
+
+      .preview-title {
+        @apply(--layout-horizontal);
+        @apply(--layout-center);
+        padding-left: 12px;
+        padding-right: 8px;
+        background-color: #fff;
+        min-height: 60px;
+        /*border-bottom: 1px solid #eee;*/
+      }
+
+      .custom-content {
+        @apply(--layout-horizontal);
+        @apply(--layout-wrap);
+        @apply(--layout-center);
+        padding-left: 12px;
+        padding-right: 8px;
+      }
+
+      .b-top {
+        border-top: 1px solid #eee;
+      }
+
+      /*.content {
+        padding-top: 8px;
+      }*/
+
+      .content.top {}
+
+      .content.left {
+        width: 40%;
+        /*padding-right: 8px;*/
+      }
+
+      .content.right {
+        width: 60%;
+      }
+
+      @media screen and (max-width: 639px) {
+        .content.left {
+          /*margin-top: 8px;*/
+          width: 100%;
+          /*padding: 0;*/
+        }
+
+        .content.right {
+          width: 100%;
+          /*padding: 0;*/
+          /*margin-top: 8px;*/
+        }
+      }
+
+      .tabColor {
+        background-color: teal !important;
+      }
+
+      vaadin-combo-box.combobox-custom-style {
+        padding: 2px;
+      }
+
+      vaadin-combo-box.combobox-custom-style ::content paper-input-container {
+        padding: 4px 0;
+      }
+
+      vaadin-combo-box.combobox-custom-style ::content label {
+        font-size: 18px !important;
+        /*color: rgba(0, 0, 0, .87) !important;*/
+      }
+
+      /*vaadin-combo-box.combobox-custom-style ::content .unfocused-line {
+        border-bottom: none;
+      }*/
+
+      vaadin-combo-box.combobox-custom-style ::content input {
+        font-size: 18px !important;
+        color: rgba(0, 0, 0, .87) !important;
+      }
+
+      .paper-input-custom ::content input {
+        font-size: 18px !important;
+        color: rgba(0, 0, 0, .87) !important;
+      }
+
+      .paper-input-custom ::content label {
+        font-size: 18px !important;
+        color: #737373 !important;
+      }
+
+
+      paper-textarea.textarea-custom-style ::content label {
+        font-size: 18px !important;
+      }
+
+      paper-textarea.textarea-custom-style ::content iron-autogrow-textarea {
+        font-size: 18px !important;
+      }
+
+      /*paper-textarea ::content .unfocused-line{
+        border-bottom: none;
+      }*/
+
+      .type.title-2 {
+        font-size: 18px;
+        line-height: 50px;
+      }
+
+      vaadin-date-picker.date-picker-custom-style ::content paper-input-container {
+        padding: 0;
+      }
+
+      /*vaadin-date-picker.date-picker-custom-style ::content .unfocused-line {
+        border-bottom: none;
+      }*/
+
+      vaadin-date-picker.date-picker-custom-style ::content label {
+        font-size: 18px !important;
+      }
+
+      vaadin-date-picker.date-picker-custom-style ::content input {
+        font-size: 18px !important;
+      }
+
+      vaadin-date-picker.date-picker-custom-style ::content .floated-label-placeholder {
+        display: none;
+      }
+
+      vaadin-date-picker.date-picker-custom-style {
+        padding: 8px 8px 8px 0;
+      }
+
+      paper-dropdown-menu.dropdown-menu-custom-style ::content label {
+        font-size: 18px !important;
+      }
+
+      paper-dropdown-menu.dropdown-menu-custom-style ::content input {
+        font-size: 18px !important;
+      }
+
+      .border-top {
+        border-top: 1px solid #eee;
+      }
+
+      .action-area {
+        padding: 5px 0 5px 8px;
+      }
+
+      .btn-add {
+        min-width: 0;
+        padding-top: 0.5em;
+        padding-bottom: 0.5em;
+        background-color: #eceff1;
+        color: rgba(0, 0, 0, .87);
+      }
+
+      .btn-add.small {
+        margin: 3px;
+        font-size: 14px;
+      }
+
+
+      paper-tabs.custom-tabs {
+        background-color: #f7f7f7;
+        height: 56px;
+      }
+
+      /*Print Preview*/
+
+      .patient-details {
+        background-color: #5c4575;
+        color: #fff;
+      }
+
+      .print-content {
+        border-top: 1px solid #eee;
+        @apply(--layout-horizontal);
+      }
+
+      .print-content .left {
+        width: 34%;
+        border-right: 1px solid #eee;
+      }
+
+      .print-content .right {
+        width: 66%;
+      }
+
+      ol.order-list {
+        margin: 4px 0;
+        padding-left: 16px;
+        list-style-type: lower-alpha;
+      }
+
+      ul.unorderd-list-custom {
+        margin: 4px 0;
+        padding-left: 16px;
+      }
+
+      ol.order-list li {
+        margin: 4px 0;
+      }
+
+      .print-sub-header {
+        font-size: bold;
+        background-color: #fafafa;
+        margin-bottom: 8px;
+      }
+
+      .profile-image {
+        height: 78px;
+        width: 78px;
+        border-radius: 50%;
+        border: 2px solid #f7f7f7;
+      }
+    </style>
+
+    <!-- local DOM -->
+    <!-- <template is="dom-if" if="{{!isVisitValid}}">
+      Visit invalid
+    </template>
+
+    <template is="dom-if" if="{{!isPatientValid}}">
+      Patient invalid
+    </template> -->
+
+    <div class="master-container">
+      <div class="limiting-container">
+
+        <!-- Page :: New Visit - Start -->
+        <paper-card id="hideOnPrint">
+
+          <!-- visit content - start -->
+          <div class="custom-card-content">
+
+            <div class="card-item-2 p-8 layout center horizontal">
+              <iron-image class="profile-image m-right-8" src$="[[$getProfileImage(patient.profileImage)]]" preload sizing="cover"></iron-image>
+
+              <div class="flex">
+                <div class="horizontal layout center">
+                  <div class="m-horizontal-4 horizontal layout flex">
+                    <div class="type body-lead capitalize">{{$getFullName(patient.name)}}</div>
+                    <div class="m-left-8 type caption bg-gray">{{patient.serial}}</div>
+                  </div>
+                  <paper-button style="background: green !important;" raised class="colored btn-add m-vert" on-tap="_gotoPatientQuickPreviewPage">
+                    <iron-icon icon="icons:preview" class="m-right-8"></iron-icon>Quick info
+                  </paper-button>
+                </div>
+                
+
+                <div class="horizontal layout wrap type caption-2 secondary">
+                  <template is="dom-if" if="[[orgSpecificPatientId]]">
+                    <div class="m-horizontal-4">
+                      <strong>Patient Id: </strong>
+                      <span>[[orgSpecificPatientId]]</span>
+                    </div>
+                  </template>
+                  <div class="m-horizontal-4">
+                    <strong>Registerd Phone Number: </strong>
+                    <span>{{patient.phone}}</span>
+                  </div>
+                </div>
+
+                <div class="horizontal layout wrap type caption-2 secondary">
+
+                  <!-- <template is="dom-if" if="[[!patient.isForOrganizationOnly]]"> -->
+
+                  <div class="m-horizontal-4">
+                    <strong>Sex: </strong>
+                    <span>{{patient.gender}}</span>
+                  </div>
+                  <div class="m-horizontal-4">
+                    <strong>Age: </strong>
+                    <span>[[_computeAge(patient.dateOfBirth)]] years </span>
+                  </div>
+                  <div class="m-horizontal-4">
+                    <strong>Blood Group: </strong>
+                    <span> [[patient.bloodGroup]]</span>
+                  </div>
+                  <div class="m-horizontal-4">
+                    <strong>Allergy: </strong>
+                    <span>[[patient.allergy]] </span>
+                  </div>
+                  <!-- </template> -->
+
+                  <!-- <template is="dom-if" if="[[patient.isForOrganizationOnly]]">
+                      <div class="m-horizontal-4">
+                        <strong>Patient Name: </strong>
+                        <i>REDACTED FOR CONFIDENTIALITY</i>
+                      </div>
+                      <div class="m-horizontal-4">
+                        <strong>Age: </strong>
+                        <i>REDACTED FOR CONFIDENTIALITY</i>
+                      </div>
+                      <div class="m-horizontal-4">
+                        <strong>Blood Group: </strong>
+                        <span>[[patient.bloodGroup]]</span>
+                      </div>
+                      <div class="m-horizontal-4">
+                        <strong>Allergy: </strong>
+                        <span>[[patient.allergy]]</span>
+                      </div>
+                    </template> -->
+                </div>
+              </div>
+            </div>
+
+            <!-- visit details - start -->
+            <div class="card-item-2 horizontal layout wrap center p-8">
+
+              <div class="content left horizontal layout wrap type caption-2">
+                <div class="m-4">
+                  <strong>Record:</strong> [[visit.serial]]</div>
+                <div class="m-4">
+                  <strong>Created Date:</strong> [[$mkDate(visit.createdDatetimeStamp)]]</div>
+                <div class="m-4">
+                  <strong>Created By:</strong> {{visit.doctorName}}</div>
+              </div>
+
+              <div class="content right horizontal layout end-justified">
+                <paper-button class="btn-add m-vert" on-tap="openVisitSettingsDialog">
+                  <iron-icon icon="icons:settings"></iron-icon>
+                </paper-button>
+
+                <paper-button class="btn-add m-vert" on-tap="printButtonPressed">
+                  <iron-icon icon="icons:print" class="m-right-8"></iron-icon>Print
+                </paper-button>
+
+                <!-- <paper-button raised class="btn-add m-vert" on-tap="openVisitSettingsDialog">
+                  <iron-icon icon="communication:email"></iron-icon>
+                </paper-button> -->
+
+                <paper-button raised class="colored btn-add m-vert" on-tap="arrowBackButtonPressed">
+                  <iron-icon icon="icons:check" class="m-right-8"></iron-icon>Finish
+                </paper-button>
+
+                <paper-button style="background: green !important;" raised class="colored btn-add m-vert" on-tap="makeNewVisitButtonPressed">
+                  <iron-icon icon="icons:check" class="m-right-8"></iron-icon>New Visit
+                </paper-button>
+
+
+              </div>
+            </div>
+            <!-- visit details - end -->
+          </div>
+
+          <div class="custom-card-content horizontal layout wrap">
+
+            <div class="content left">
+
+              <!-- Card - Symptoms - start -->
+              <div class="card-item-2">
+                <div class="preview-title">
+                  <!-- <iron-ajax url="../../static-data/symptoms-list.json" last-response="{{symptomsDataList}}" auto></iron-ajax> -->
+                  <!-- <iron-icon class="m-right-8" src="../../images/icons/ico_symptoms.png"></iron-icon> -->
+                  <vaadin-combo-box class="flex combobox-custom-style" label="Symptoms" id="comboBoxSymptoms" items="{{symptomsDataList}}"
+                    allow-custom-value="true" value-changed="onComboBoxSymptomsValueChanged" on-keyup="comboBoxKeyUpSymptomsValueChanged"
+                    selected-item="{{comboBoxSymptomsSelectedItem}}" value="{{comboBoxSymptomsInputValue}}">
+                  </vaadin-combo-box>
+                  <div class="action-area">
+                    <paper-button class="btn-add" on-tap="addSymptoms">
+                      <iron-icon icon="icons:add"></iron-icon>
+                    </paper-button>
+                  </div>
+                </div>
+                <div class="horizontal layout center end-justified">
+                  <paper-button class="btn-add colored" style="margin-bottom: 8px; margin-right: 12px; font-size: 14px;" on-tap="addAsFavoriteSymptom">add as favorite</paper-button>
+                  <paper-button class="btn-add " style="margin-bottom: 8px; margin-right: 12px; font-size: 14px;" on-tap="showFavoriteSymptomDialog">favorite list</paper-button>
+                </div>
+                <template is="dom-if" if="[[!_isEmpty(addedIdentifiedSymptomsList.length)]]">
+                  <div class="b-radius p-0">
+                    <paper-listbox>
+                      <template is="dom-repeat" items="[[addedIdentifiedSymptomsList]]">
+                        <paper-item class="custom layout horizontal center">
+
+                          <div class="type caption secondary">[[_returnSerial(index)]]</div>
+                          <div class="flex type body m-left-8 vertical layout">
+                            <div>
+                              {{item.name}}
+                              <template is="dom-if" if="[[_compareFn(item.possibleValueList.length, '>', 0)]]">
+                                [
+                                <template is="dom-repeat" items="[[item.possibleValueList]]">
+                                  <span class="type caption-2">{{item}}, </span>
+                                </template>]
+                              </template>
+                            </div>
+                          </div>
+                          <paper-icon-button icon="delete" on-tap="_selectedAddedIdentifiedSymtomsDeleteBtnPressed"></paper-icon-button>
+                        </paper-item>
+                      </template>
+                    </paper-listbox>
+                  </div>
+                </template>
+              </div>
+              <!-- Card - Symptoms - end -->
+
+              <!-- Card - Examination - start -->
+              <div class="card-item-2">
+                <div class="preview-title">
+                  <!-- <iron-icon class="m-right-8" src="../../images/icons/ico_stethoscope.png"></iron-icon> -->
+                  <vaadin-combo-box class="flex combobox-custom-style" label="Examination" id="comboBoxExamination" items="{{examinationDataList}}"
+                    allow-custom-value="true" value-changed="onComboBoxExaminationValueChanged" on-keyup="comboBoxKeyUpExaminationValueChanged"
+                    selected-item="{{comboBoxExaminationSelectedItem}}" value="{{comboBoxExaminationInputValue}}">
+                  </vaadin-combo-box>
+                  <div class="action-area">
+                    <paper-button class="btn-add" on-tap="addExamination">
+                      <iron-icon icon="icons:add"></iron-icon>
+                    </paper-button>
+                  </div>
+                </div>
+                <div class="horizontal layout center end-justified">
+                  <paper-button class="btn-add colored" style="margin-bottom: 8px; margin-right: 12px; font-size: 14px;" on-tap="addAsFavoriteExamination">add as favorite</paper-button>
+                  <paper-button class="btn-add " style="margin-bottom: 8px; margin-right: 12px; font-size: 14px;" on-tap="showFavoriteExaminationDialog">favorite list</paper-button>
+                </div>
+                <template is="dom-if" if="[[!_isEmpty(addedExaminationList.length)]]">
+                  <div class="p-0 b-radius">
+                    <paper-listbox>
+                      <template id="added-examination-list-repeater" is="dom-repeat" items="[[addedExaminationList]]">
+                        <paper-item class="custom layout horizontal center">
+
+                          <div class="type caption secondary">[[_returnSerial(index)]]</div>
+                          <div class="flex type body m-left-8 vertical layout">
+                            <div class="type body-lead">{{item.name}}</div>
+                            <div class="horizontal layout wrap center">
+                              <template is="dom-repeat" items="[[item.examinationValueList]]">
+                                <!-- <div class="horizontal layout center" class="m-horizontal-4">
+                                  <paper-icon-button icon="icons:remove-circle" class="m-right-4" on-tap="removeExaminationMember"></paper-icon-button>
+                                  <div class="type body">{{item.value}}</div>
+
+                                </div> -->
+                                <paper-checkbox checked="{{item.checked}}" on-tap="checkExaminationMember">{{item.value}}</paper-checkbox>
+                              </template>
+
+                            </div>
+                          </div>
+                          <paper-icon-button icon="icons:add-circle" class="colored" on-tap="openDialogForExaminationMember"></paper-icon-button>
+                          <paper-icon-button icon="delete" on-tap="_selectedAddedExaminationDeleteBtnPressed"></paper-icon-button>
+                        </paper-item>
+                      </template>
+                    </paper-listbox>
+                  </div>
+                </template>
+              </div>
+              <!-- Card - Examination - end -->
+
+              <!-- Card - Vitals - start -->
+              <div class="card-item-2">
+                <div class="preview-title">
+                  <!-- <iron-icon class="m-right-8" src="../../images/icons/ico_pulse_rate.png"></iron-icon> -->
+                  <!-- <div class="type title-2">Vitals</div> -->
+                  <div class="flex">
+                    <paper-dropdown-menu class="dropdown-menu-custom-style" label="[[$TRANSLATE('Vital',LANG)]]">
+                      <paper-menu class="dropdown-content" selected="{{selectedVitalIndex}}" on-iron-select="onVitalIndexChange">
+                        <paper-item disabled$="{{isBPAdded}}">
+                          <iron-icon class="m-right-8" src="../../images/icons/ico_blood_pressure.png"></iron-icon>Blood Pressure</paper-item>
+                        <paper-item disabled$="{{isHRAdded}}">
+                          <iron-icon class="m-right-8" src="../../images/icons/ico_pulse_rate.png"></iron-icon>Heart Rate</paper-item>
+                        <paper-item disabled$="{{isBMIAdded}}">
+                          <iron-icon class="m-right-8" src="../../images/icons/ico_body_shape.png"></iron-icon>BMI</paper-item>
+                        <paper-item disabled$="{{isRRAdded}}">
+                          <iron-icon class="m-right-8" src="../../images/icons/ico_lungs.png"></iron-icon>Respiratory Rate</paper-item>
+                        <paper-item disabled$="{{isSpO2Added}}">
+                          <iron-icon class="m-right-8" src="../../images/icons/oxygen-symbol.png"></iron-icon>SpO2</paper-item>
+                        <paper-item disabled$="{{isTempAdded}}">
+                          <iron-icon class="m-right-8" src="../../images/icons/ico_thermometer.png"></iron-icon>Temperature</paper-item>
+                      </paper-menu>
+                    </paper-dropdown-menu>
+                  </div>
+                  <div class="action-area">
+                    <template is="dom-if" if="{{_compareFn(selectedVitalIndex, '==', 0)}}">
+                      <paper-button class="btn-add" on-tap="addBloodPressureButtonClicked">
+                        <iron-icon icon="icons:add"></iron-icon>
+                      </paper-button>
+                    </template>
+                    <template is="dom-if" if="{{_compareFn(selectedVitalIndex, '==', 1)}}">
+                      <paper-button class="btn-add" on-tap="addPulseRateButtonClicked">
+                        <iron-icon icon="icons:add"></iron-icon>
+                      </paper-button>
+                    </template>
+                    <template is="dom-if" if="{{_compareFn(selectedVitalIndex, '==', 2)}}">
+                      <paper-button class="btn-add" on-tap="calculateBMIButtonClicked">
+                        <iron-icon icon="icons:add"></iron-icon>
+                      </paper-button>
+                    </template>
+                    <template is="dom-if" if="{{_compareFn(selectedVitalIndex, '==', 3)}}">
+                      <paper-button class="btn-add" on-tap="addRespiratoryRateButtonClicked">
+                        <iron-icon icon="icons:add"></iron-icon>
+                      </paper-button>
+                    </template>
+
+                    <template is="dom-if" if="{{_compareFn(selectedVitalIndex, '==', 4)}}">
+                      <paper-button class="btn-add" on-tap="addOxygenSaturationButtonClicked">
+                        <iron-icon icon="icons:add"></iron-icon>
+                      </paper-button>
+                    </template>
+
+                    <template is="dom-if" if="{{_compareFn(selectedVitalIndex, '==', 5)}}">
+                      <paper-button class="btn-add" on-tap="addTemperatureButtonClicked">
+                        <iron-icon icon="icons:add"></iron-icon>
+                      </paper-button>
+                    </template>
+
+                  </div>
+                </div>
+                <iron-pages style="background-color: #fafafa;" selected="{{selectedVitalIndex}}">
+                  <!-- Add Blood Pressure -->
+                  <section hidden$="{{isBPAdded}}">
+
+                    <div class="custom-content">
+                      <paper-input class="p-horizontal-4 flex one" id="systolic" label="[[$TRANSLATE('Systolic',LANG)]]" type="number" min="0"
+                        max="300" value="{{bloodPressure.data.systolic}}" auto-validate error-message="Value must be within 1-300"></paper-input>
+                      <paper-input class="p-horizontal-4 flex one" id="diastolic" label="[[$TRANSLATE('Diastolic',LANG)]]" type="number" min="0"
+                        max="200" value="{{bloodPressure.data.diastolic}}" disabled$="[[!bloodPressure.data.systolic]]" auto-validate
+                        error-message="Value must not be greater than 200 and Systolic Value"></paper-input>
+                      <paper-input class="p-horizontal-4 flex one" label="[[$TRANSLATE('Unit',LANG)]]" readonly value="[[$TRANSLATE('mm Hg',LANG)]]"></paper-input>
+                    </div>
+                  </section>
+                  <!-- /Add Blood Pressure -->
+
+                  <!-- Add Heart Rate -->
+                  <section hidden$="{{isHRAdded}}">
+                    <div class="card-content">
+                      <div class="form-group">
+                        <div>
+                          <paper-input label="[[$TRANSLATE('Heart Rate',LANG)]]" type="number" min="20" max="225" auto-validate value="{{pulseRate.data.bpm}}"
+                            error-message="Value must be within 20-225">
+                            <div class="text-muted" suffix>[[$TRANSLATE('bpm',LANG)]]</div>
+                          </paper-input>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+                  <!-- /Add Heart Rate -->
+
+                  <!-- Add BMI -->
+                  <section hidden$="{{isBMIAdded}}">
+                    <div class="card-content">
+
+                      <div class="form-group">
+                        <div>
+                          <paper-dropdown-menu label="[[$TRANSLATE('Unit',LANG)]]">
+                            <paper-menu class="dropdown-content" selected="{{heightUnitSelectedIndex}}" on-iron-select="heightUnitSelectedIndexChanged">
+                              <paper-item>[[$TRANSLATE('cm',LANG)]]</paper-item>
+                              <paper-item>[[$TRANSLATE('metre',LANG)]]</paper-item>
+                              <paper-item>[[$TRANSLATE('ft/inch',LANG)]]</paper-item>
+                            </paper-menu>
+                          </paper-dropdown-menu>
+                        </div>
+                        <template is="dom-if" if="[[ifChosenCmMtAsHeight(heightUnitSelectedIndex)]]">
+                          <div>
+                            <paper-input label="[[$TRANSLATE('Height',LANG)]]" type="number" value="{{bmi.data.height}}" error-message="Value must be within 250"></paper-input>
+                          </div>
+                        </template>
+                        <!--If Chosen Ft/inch as Unit-->
+                        <template is="dom-if" if="[[ifChosenFtInchAsHeight(heightUnitSelectedIndex)]]">
+                          <div>
+                            <paper-input label="[[$TRANSLATE('Ft',LANG)]]" type="number" max="8" min="0" auto-validate value="{{bmi.data.heightInFt}}"
+                              error-message="Value must be within 8"></paper-input>
+                          </div>
+                          <div>
+                            <paper-input label="[[$TRANSLATE('Inch',LANG)]]" type="number" max="12" min="0" auto-validate value="{{bmi.data.heightInInch}}"
+                              error-message="Value must be within 12"></paper-input>
+                          </div>
+                        </template>
+                      </div>
+
+                      <div class="form-group">
+                        <div>
+                          <paper-dropdown-menu label="[[$TRANSLATE('Unit',LANG)]]">
+                            <paper-menu class="dropdown-content" selected="{{weightUnitSelectedIndex}}" on-iron-select="weightUnitSelectedIndexChanged">
+                              <paper-item>[[$TRANSLATE('kgs',LANG)]]</paper-item>
+                              <paper-item>[[$TRANSLATE('lbs',LANG)]]</paper-item>
+                              <paper-item>stone-lbs</paper-item>
+                            </paper-menu>
+                          </paper-dropdown-menu>
+                        </div>
+                        <div>
+                          <paper-input label="[[$TRANSLATE('Weight',LANG)]]" type="number" value="{{bmi.data.weight}}" min="0"></paper-input>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+                  <!-- /Add BMI -->
+
+                  <!-- Add Respiratory Rate -->
+                  <section hidden$="{{isRRAdded}}">
+                    <div class="card-content">
+                      <div class="form-group">
+                        <div>
+                          <paper-input id="rr" label="[[$TRANSLATE('Respiratory Rate',LANG)]]" type="number" min="1" max="65" auto-validate value="{{respiratoryRate.data.respiratoryRate}}"
+                            error-message="Value Must be within 1-65">
+                            <div class="text-muted" suffix>[[$TRANSLATE('rpm',LANG)]]</div>
+                          </paper-input>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+                  <!-- /Add Respiratory Rate -->
+                  <!-- Add Oxygen Saturation -->
+                  <section hidden$="{{isSpO2Added}}">
+                    <div class="card-content">
+                      <div class="form-group">
+                        <div>
+                          <paper-input label="[[$TRANSLATE('Oxygen Saturation',LANG)]]" type="number" min="0" max="100" auto-validate value="{{oxygenSaturation.data.spO2Percentage}}"
+                            error-message="Value must be within 100">
+                            <div class="text-muted" suffix>%</div>
+                          </paper-input>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+                  <!-- /Add Oxygen Saturation -->
+
+                  <!-- Add Temperature -->
+                  <section hidden$="{{isTempAdded}}">
+                    <div class="card-content">
+                      <div class="form-group">
+                        <div>
+                          <template is="dom-if" if="[[isTempCelsius(tempUnitSelectedIndex)]]">
+                            <paper-input label="[[$TRANSLATE('Temperature in Celsius',LANG)]]" type="number" max="48" auto-validate value="{{temperature.data.temperature}}"
+                              error-message="Value must be within 48"></paper-input>
+                          </template>
+                          <template is="dom-if" if="[[!isTempCelsius(tempUnitSelectedIndex)]]">
+                            <paper-input label="[[$TRANSLATE('Temperature in Fahrenheit',LANG)]]" type="number" max="115" auto-validate value="{{temperature.data.temperature}}"
+                              error-message="Value must be within 115"></paper-input>
+                          </template>
+                        </div>
+                        <div>
+                          <paper-dropdown-menu label="[[$TRANSLATE('Unit',LANG)]]">
+                            <paper-menu class="dropdown-content" selected="{{tempUnitSelectedIndex}}" on-iron-select="tempUnitSelected">
+                              <paper-item>[[$TRANSLATE('°C',LANG)]]</paper-item>
+                              <paper-item>[[$TRANSLATE('°F',LANG)]]</paper-item>
+                            </paper-menu>
+                          </paper-dropdown-menu>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+                  <!-- /Add Temperature -->
+                </iron-pages>
+                <template is="dom-if" if="[[!_isEmpty(addedVitalList.length)]]">
+                  <div class="p-0 border-top">
+                    <paper-listbox>
+                      <template is="dom-repeat" items="[[addedVitalList]]">
+
+                        <paper-item class="custom layout horizontal center">
+
+                          <div class="flex layout horizontal center">
+                            <div class="type caption secondary">[[_returnSerial(index)]]</div>
+                            <div class="m-left-16 flex">
+                              <div class="type body">{{item.vitalType}}: [[_pritifyVitalData(item)]]</div>
+                              <div class="type caption secondary">{{_formatDateTime(item.vitalObject.createdDatetimeStamp)}}</div>
+                            </div>
+                            <paper-icon-button icon="delete" on-tap="_deleteAddedVitalItemClicked"></paper-icon-button>
+                          </div>
+
+                        </paper-item>
+                      </template>
+
+                    </paper-listbox>
+                  </div>
+                </template>
+              </div>
+              <!-- Card - Vitals - end -->
+
+              <!-- Card - Test Advised - start -->
+              <div class="card-item-2">
+                <div class="preview-title">
+                  <!-- <iron-icon class="m-right-8" src="../../images/icons/ico_medicine_flask.png"></iron-icon> -->
+                  <vaadin-combo-box class="flex combobox-custom-style" label="Investigation" id="comboBoxInvestigaiton" items="{{investigationDataList}}"
+                    allow-custom-value="true" value-changed="onComboBoxInvestigationValueChanged" on-keyup="comboBoxKeyUpInvestigationValueChanged"
+                    selected-item="{{comboBoxInvestigationSelectedItem}}" value="{{comboBoxInvestigationInputValue}}">
+                  </vaadin-combo-box>
+                  <div class="action-area">
+                    <paper-button class="btn-add" on-tap="addInvestigation">
+                      <iron-icon icon="icons:add"></iron-icon>
+                    </paper-button>
+                  </div>
+                </div>
+                <div class="horizontal layout center end-justified">
+                  <paper-button class="btn-add colored" style="margin-bottom: 8px; margin-right: 12px; font-size: 14px;" on-tap="addAsFavoriteInvestigation">add as favorite</paper-button>
+                  <paper-button class="btn-add " style="margin-bottom: 8px; margin-right: 12px; font-size: 14px;" on-tap="showFavoriteInvestigationDialog">favorite list</paper-button>
+                </div>
+                <template is="dom-if" if="[[!_isEmpty(addedInvestigationList.length)]]">
+
+                  <div class="p-0 b-radius">
+                    <paper-listbox>
+                      <template id="added-advised-test-list-repeater" is="dom-repeat" items="[[addedInvestigationList]]">
+                        <paper-item class="custom layout horizontal center">
+
+                          <div class="type caption secondary">[[_returnSerial(index)]]</div>
+                          <div class="flex type body m-left-8 vertical layout">
+                            <div class="type body-lead">{{item.investigationName}}</div>
+                            <div class="horizontal layout wrap">
+
+                              <!-- <template is="dom-if" if="[[_compareFn(item.testList.length, '==', 1)]]">
+                                <div class="type body">{{item.testList.0.name}}</div>
+                              </template> -->
+
+                              <template is="dom-if" if="[[_compareFn(item.testList.length, '>', 1)]]">
+                                <template is="dom-repeat" items="[[item.testList]]">
+                                  <div class="horizontal layout center" class="m-horizontal-4">
+                                    <paper-icon-button icon="icons:remove-circle-outline" class="m-right-4" on-tap="removeInvestigationMember"></paper-icon-button>
+                                    <div class="type body">{{item.name}}</div>
+                                  </div>
+                                </template>
+                              </template>
+
+                            </div>
+                            <div class="type caption-2 secondary italic capitalize">
+                              <template is="dom-if" if="[[_isEmptyString(item.suggestedInstitutionName)]]">
+                                <paper-button style="padding: 3px !important;" on-click="_openSuggestedInstitutionDialog">add suggeted institution</paper-button>
+                              </template>
+
+
+
+                              <template is="dom-if" if="[[!_isEmptyString(item.suggestedInstitutionName)]]">
+                                <strong>Suggested Institution: </strong>
+                                <span class="flex">[[item.suggestedInstitutionName]]</span>
+                                <paper-button class="btn btn-default" style="padding: 3px !important;" on-click="_openSuggestedInstitutionDialog">change</paper-button>
+                              </template>
+                            </div>
+                            <!-- <div class="type caption-2 secondary">
+                              <strong>Suggested Institution: </strong>
+                              <span class="flex">{{item.suggestedInstitutionName}}</span>
+                            </div> -->
+
+                          </div>
+                          <paper-icon-button icon="icons:add-circle" on-tap="showInevestigationMemberDialog"></paper-icon-button>
+                          <paper-icon-button icon="delete" on-tap="_selectedAddedInvestigationtDeleteBtnPressed"></paper-icon-button>
+                        </paper-item>
+                      </template>
+                    </paper-listbox>
+                  </div>
+                </template>
+              </div>
+              <!-- Card - Test Advised - end -->
+
+              <!-- Card - Diagnosis - start -->
+              <div class="card-item-2">
+                <div class="preview-title">
+                  <!-- <iron-icon class="m-right-8" src="../../images/icons/ico_medical_records.png"></iron-icon> -->
+                  <!-- <iron-ajax url="../../static-data/diagnosis-list.json" last-response="{{response}}" auto></iron-ajax> -->
+                  <vaadin-combo-box class="flex combobox-custom-style" label="New Diagnosis" id="comboBoxDiagnosis" items="{{diagnosisListArray}}"
+                    allow-custom-value="true" value-changed="onComboBoxDiagnosisValueChanged" on-keyup="comboBoxKeyUpDiagnosisValueChanged"
+                    selected-item="{{comboBoxDiagnosisSelectedItem}}" value="{{comboBoxDiagnosisInputValue}}"></vaadin-combo-box>
+                  <div class="action-area">
+                    <paper-button class="btn-add" on-tap="addDiagnosis">
+                      <iron-icon icon="icons:add"></iron-icon>
+                    </paper-button>
+                  </div>
+                </div>
+                <template is="dom-if" if="{{!_isEmpty(diagnosis.data.diagnosisList.length)}}">
+                  <div class="p-0 b-radius">
+                    <paper-listbox>
+                      <template is="dom-repeat" items="[[diagnosis.data.diagnosisList]]">
+                        <paper-item class="custom layout horizontal">
+                          <div class="type caption secondary m-right-8">[[_returnSerial(index)]].</div>
+                          <div class="type body flex">
+                            {{item.name}}
+                          </div>
+                          <paper-icon-button icon="delete" on-tap="_deleteSelectedDiagnosisButtonPressed"></paper-icon-button>
+                        </paper-item>
+                      </template>
+                    </paper-listbox>
+                  </div>
+                </template>
+              </div>
+              <!-- Card - Diagnosis - end -->
+
+              <!-- Card - Notes - start -->
+              <div class="card-item-2">
+                <div class="preview-title">
+                  <!-- <iron-icon class="m-right-8" src="../../images/icons/ico_notes.png"></iron-icon> -->
+                  <div class="flex">
+                    <paper-input class="paper-input-custom" label="Note/Advised" value="{{doctorNotesMessage}}"></paper-input>
+                  </div>
+                  <div class="action-area">
+                    <paper-button class="btn-add" on-tap="_addNotePressed">
+                      <iron-icon icon="icons:add"></iron-icon>
+                    </paper-button>
+                  </div>
+                </div>
+                <div class="horizontal layout center end-justified">
+                  <paper-button class="btn-add colored" style="margin-bottom: 8px; margin-right: 12px; font-size: 14px;" on-tap="addAsFavoriteNote">add as favorite</paper-button>
+                  <paper-button class="btn-add " style="margin-bottom: 8px; margin-right: 12px; font-size: 14px;" on-tap="showFavoriteNoteDialog">favorite list</paper-button>
+                </div>
+                <template is="dom-if" if="{{!_isEmpty(doctorNotes.data.messageList.length)}}">
+
+                  <div class="p-0 b-radius">
+                    <paper-listbox>
+                      <template is="dom-repeat" items="[[doctorNotes.data.messageList]]">
+                        <paper-item class="custom layout horizontal center">
+                          <div class="type caption secondary">[[_returnSerial(index)]]</div>
+                          <div class="m-left-8 flex type body" style="word-break: break-word;">
+                            {{item}}
+                          </div>
+                          <paper-icon-button icon="delete" on-tap="_onDoctorNoteDeletedButtonPressed"></paper-icon-button>
+                        </paper-item>
+                      </template>
+                    </paper-listbox>
+                  </div>
+                </template>
+              </div>
+              <!-- Card - Notes - end -->
+
+              <!-- Card - Next Visit - start -->
+              <div class="card-item-2">
+
+                <div class="preview-title wrap">
+                  <!-- <iron-icon class="m-right-8" src="../../images/icons/ico_calander_time.png"></iron-icon> -->
+                  <vaadin-date-picker style="padding-top: 27px;" label="[[$TRANSLATE('Next Visit Date',LANG)]]" class="flex one date-picker-custom-style"
+                    value="{{nextVisit.data.nextVisitDateTimestamp}}"></vaadin-date-picker>
+                  <vaadin-combo-box class="flex one combobox-custom-style" label="Add Priority" items="{{priorityTypeList}}" allow-custom-value="true"
+                    on-keyup="comboBoxKeyUpPriorityValueChanged" value="{{priorityValue}}" class="flex one">
+                  </vaadin-combo-box>
+                  <div class="action-area">
+                    <paper-button class="btn-add" on-tap="_addNextVisitPressed">
+                      <iron-icon icon="icons:save"></iron-icon>
+                    </paper-button>
+                  </div>
+
+                </div>
+                <template is="dom-if" if="[[!_isEmptyString(nextVisit.data.nextVisitDateTimestamp)]]">
+                  <div class="card-content">
+                    <div class="type body">
+                      <span class="type bold">Date: [[$mkDate(nextVisit.data.nextVisitDateTimestamp)]]</span>
+                      (
+                      <span>{{nextVisit.data.priorityType}}</span>)
+                    </div>
+                  </div>
+                </template>
+              </div>
+              <!-- Card - Next Visit - end -->
+
+              <!-- Card :: Invoice - start -->
+              <div class="card-item-2">
+
+                <div class="preview-title layout">
+                  <!-- <iron-icon class="m-right-8" src="../../images/icons/ico_invoice.png"></iron-icon> -->
+                  <div class="type title-2 flex">Invoice</div>
+                  <div class="action-area">
+                    <template is="dom-if" if="{{!isInvoiceValid}}">
+                      <paper-button class="btn-add m-vert" on-tap="createInvoicePressed">
+                        <iron-icon icon="icons:add"></iron-icon>
+                      </paper-button>
+                    </template>
+                    <template is="dom-if" if="{{isInvoiceValid}}">
+                      <paper-button class="btn-add m-vert" on-tap="printInvoicePressed">
+                        <iron-icon icon="icons:print"></iron-icon>
+                      </paper-button>
+                      <paper-button class="btn-add m-vert" on-tap="editInvoicePressed">
+                        <iron-icon icon="icons:create"></iron-icon>
+                      </paper-button>
+                    </template>
+                  </div>
+                </div>
+
+                <template is="dom-if" if="[[!_isEmptyString(visit.invoiceSerial)]]">
+                  <div class="card-content">
+                    <table class="table">
+                      <tr>
+                        <th>Patient Name</th>
+                        <th>Service</th>
+                        <th>Billed</th>
+                        <th>Paid</th>
+                      </tr>
+                      <tr>
+                        <td>[[invoice.data.nameOfPatient]]</td>
+                        <td>[[_getServiceRendered(invoice.data.serviceRenderedSelectedIndex)]]</td>
+                        <td>[[invoice.data.feeBilledAmount]]</td>
+                        <td>[[invoice.data.feePaidAmount]]</td>
+                      </tr>
+                    </table>
+                  </div>
+                </template>
+              </div>
+              <!-- Card :: Invoice - end -->
+            </div>
+
+            <div class="content right">
+
+              <!-- Card - History And Physical - start -->
+              <div class="card-item-2">
+
+                <!-- preview-title - start -->
+                <div class="preview-title layout wrap">
+                  <!-- <iron-icon class="m-right-8" src="../../images/icons/ico_history_and_physical.png"></iron-icon> -->
+
+                  <div class="type title-2 flex">History & Physical</div>
+
+
+                  <div class="layout horizontal wrap">
+
+
+                    <template is="dom-if" if="[[_isEmptyString(visit.historyAndPhysicalRecordSerial)]]">
+                      <paper-button class="btn-add" on-tap="historyAndPhysicalRecordCreate">
+                        <iron-icon icon="icons:add"></iron-icon>
+                      </paper-button>
+
+
+                      <template is="dom-if" if="[[recordInClipboard]]">
+                        <paper-button class="btn-add btn btn-default" on-tap="pasteRecordPressed">
+                          <iron-icon icon="icons:content-paste" class="m-right-8"></iron-icon>Paste Record: [[recordInClipboard.serial]]
+                        </paper-button>
+                      </template>
+                    </template>
+
+                    <template is="dom-if" if="[[!_isEmptyString(visit.historyAndPhysicalRecordSerial)]]">
+                      <paper-checkbox checked="[[historyAndPhysicalRecord.availableToPatient]]" on-change="historyAndPhysicalAvailableToPatientCheckBoxChanged">Available to Patient</paper-checkbox>
+
+                      <!-- <paper-icon-button icon="print" on-tap="historyAndPhysicalRecordPrint"></paper-icon-button> -->
+
+                      <paper-icon-button icon="create" on-tap="historyAndPhysicalRecordEdit"></paper-icon-button>
+                      <paper-icon-button icon="icons:content-copy" on-tap="historyAndPhysicalRecordCopy"></paper-icon-button>
+                      <paper-icon-button icon="icons:delete" on-tap="historyAndPhysicalRecordRemove"></paper-icon-button>
+
+                      <!-- <div>[[$mkDate(record.content.preopAssessment.lastChangedDatetimeStamp)]]</div> -->
+                    </template>
+                  </div>
+                </div>
+                <!-- preview-title - end -->
+
+
+                <template is="dom-if" if="[[shouldRender]]">
+                  <div class="p-horizontal-16" style="background: #fff;">
+                    <html-block html="[[recordPartHtmlContent]]"></html-block>
+                  </div>
+                </template>
+              </div>
+              <!-- Card - History And Physical - end -->
+
+              <!-- Card :: Prescription - start -->
+              <div class="card-item-2">
+                <div class="preview-title horizontal layout center">
+                  <!-- <iron-icon class="m-right-8" src="../../images/icons/medical-kit.png"></iron-icon> -->
+                  <div class="type title-2"> Prescription </div>
+                </div>
+
+                <template is="dom-if" if="[[!_isEmpty(matchingPrescribedMedicineList.length)]]">
+                  <div class="p-0 b-radius">
+                    <paper-listbox>
+
+
+                      <template is="dom-repeat" items="[[matchingPrescribedMedicineList]]">
+                        <paper-item class="custom layout horizontal center">
+                          <div class="type caption secondary">[[_returnSerial(index)]]</div>
+
+                          <div class="flex m-left-8">
+                            <div class="layout horizontal wrap center">
+
+
+                              <div class="flex">
+                                <div class="type body">{{item.data.brandName}}
+                                  <template is="dom-if" if="[[!item.data.flags.hideMedicineManufacturerName]]">
+                                    <span class="type caption bg-gray">[[item.data.manufacturer]]</span>
+                                  </template>
+                                </div>
+                                <div class="type caption italic secondary">
+                                  <template is="dom-if" if="[[!item.data.flags.hideMedicineGenericName]]">
+                                    <span>{{item.data.genericName}}</span>
+                                  </template>
+
+                                  <span>{{item.data.strength}}</span>
+                                </div>
+                              </div>
+
+                              <div>
+                                <div class="type caption m-horizontal-4">
+                                  <!-- <span>[[$TRANSLATE_NUMBER(item.data.dose, LANG)]] [[$TRANSLATE(item.data.form, LANG)]] [[$TRANSLATE('As', LANG)]]</span> -->[[$TRANSLATE_NUMBER(item.data.doseDirection, LANG)]] [[$TRANSLATE('for', LANG)]] [[_computeTotalDaysCount(item.data.endDateTimeStamp,item.data.startDateTimeStamp)]]
+                                  <span hidden$="[[!item.data.endDateTimeStamp]]">[[$TRANSLATE('Days',LANG)]]</span>
+                                </div>
+
+                                <div class="type caption m-horizontal-4">
+                                  <span>[[$TRANSLATE('By', LANG)]] </span>
+                                  <span class="text-cap">[[$TRANSLATE(item.data.route, LANG)]]</span>
+                                  <span>[[$TRANSLATE(item.data.direction, LANG)]] </span>
+                                </div>
+                                <div class="type caption m-horizontal-4">[[item.data.comments]]</div>
+                              </div>
+
+                            </div>
+                          </div>
+
+                          <paper-icon-button icon="delete" on-tap="deleteMedicinePressed"></paper-icon-button>
+
+                        </paper-item>
+                      </template>
+                    </paper-listbox>
+                  </div>
+                </template>
+
+                <paper-tabs class="basic-tabs" selected="{{selectedMedicinePage}}" class="flex" scrollable hide-scroll-buttons="true">
+                  <paper-tab class="p-horizontal-16">Patient Current Medicine</paper-tab>
+                  <paper-tab class="p-horizontal-16">New Medicine</paper-tab>
+                  <paper-tab class="p-horizontal-16">Favorite(s)</paper-tab>
+                  <paper-tab class="p-horizontal-16">Insulin</paper-tab>
+                </paper-tabs>
+
+                <iron-pages selected="{{selectedMedicinePage}}">
+                  <!-- current medicine - start -->
+                  <section>
+                    <template is="dom-if" if="[[_isEmpty(matchingCurrentMedicineList.length)]]">
+                      <div class="card-content layout horizontal center center-justified">
+                        <div class="type body secondary">-- empty --</div>
+                      </div>
+                    </template>
+
+                    <div class="p-0 b-radius">
+                      <paper-listbox>
+                        <template id="current-medicine-list-repeater" is="dom-repeat" items="[[matchingCurrentMedicineList]]">
+                          <paper-item class="custom layout horizontal center">
+                            <div class="type caption secondary">[[_returnSerial(index)]]</div>
+                            <div class="flex m-left-8">
+                              <div class="layout horizontal wrap center">
+
+                                <div class="flex">
+                                  <div class="type body">{{item.data.brandName}} {{item.data.strength}}
+                                    <template is="dom-if" if="[[!item.data.flags.hideMedicineManufacturerName]]">
+                                      <span class="type caption bg-gray">[[item.data.manufacturer]]</span>
+                                    </template>
+                                  </div>
+                                  <div class="type caption italic secondary">
+                                    <template is="dom-if" if="[[!item.data.flags.hideMedicineGenericName]]">
+                                      <span>{{item.data.genericName}}</span>
+                                    </template>
+
+                                    <span>{{item.data.strength}}</span>
+                                  </div>
+                                </div>
+
+                                <div>
+                                  <div class="type caption m-horizontal-4">
+                                    <!-- <span>[[$TRANSLATE_NUMBER(item.data.dose, LANG)]] [[$TRANSLATE(item.data.form, LANG)]] [[$TRANSLATE('As', LANG)]]</span> -->
+                                    <span hidden="[[!item.data.doseDirection]]">
+                                      [[$TRANSLATE_NUMBER(item.data.doseDirection, LANG)]]</span>
+                                    [[$TRANSLATE('for',LANG)]] [[_computeTotalDaysCount(item.data.endDateTimeStamp,item.data.startDateTimeStamp)]]
+                                    <span hidden$="[[!item.data.endDateTimeStamp]]">[[$TRANSLATE('Days',LANG)]]</span>
+                                  </div>
+
+                                  <div class="type caption m-horizontal-4">
+                                    <span>[[$TRANSLATE('By',LANG)]] </span>
+                                    <span class="text-cap">[[$TRANSLATE(item.data.route, LANG)]]</span>
+                                    <span>[[$TRANSLATE(item.data.direction, LANG)]] </span>
+                                  </div>
+                                  <div class="type caption m-horizontal-4">[[item.data.comments]]</div>
+                                </div>
+
+                              </div>
+                            </div>
+                            <paper-menu-button class="p-0 b-radius" vertical-align="bottom" horizontal-align="right">
+                              <paper-icon-button icon="icons:more-vert" class="dropdown-trigger" alt="options"></paper-icon-button>
+                              <paper-menu class="dropdown-content">
+                                <paper-item on-tap="continueMedicinePressed">Continue</paper-item>
+                                <paper-item on-tap="stopMedicinePressed">Stop</paper-item>
+                              </paper-menu>
+                            </paper-menu-button>
+                          </paper-item>
+                        </template>
+
+                      </paper-listbox>
+                    </div>
+                  </section>
+                  <!-- current medicine - end -->
+
+                  <!-- add medicine - start -->
+                  <section>
+                    <div class="card-content">
+                      <div class="layout horizontal wrap end-justified">
+                        <paper-checkbox class="m-4" on-change="onCheckToggleManufaturerName" checked="{{settings.flags.hideMedicineManufacturerName}}">Hide manufacturer name</paper-checkbox>
+                        <paper-checkbox class="m-4" on-change="onCheckToggleGenericName" checked="{{settings.flags.hideMedicineGenericName}}">Hide generic name</paper-checkbox>
+                      </div>
+                      <div class="layout horizontal justified center end m-top-16">
+                        <paper-toggle-button checked="{{showDetailedForm}}">Show Advanced</paper-toggle-button>
+                      </div>
+                      <div class="form-group">
+                        <div>
+                          <paper-autocomplete id="brandName" label="[[$TRANSLATE('Brand Name',LANG)]]" text="{{medicine.brandName}}" source="[[brandNameSourceDataList]]"
+                            on-autocomplete-selected="brandNameAutocompleteSelected" on-autocomplete-reset="brandNameCleared"
+                            min-length="2" on-input="validate" error-message="Input Required" required></paper-autocomplete>
+                        </div>
+                      </div>
+
+                      <div hidden="[[!showDetailedForm]]">
+                        <div class="form-group">
+                          <div>
+                            <paper-autocomplete id="genericName" label="[[$TRANSLATE('Generic Name',LANG)]]" text="{{medicine.genericName}}" source="[[genericNameSourceDataList]]"
+                              on-autocomplete-selected="genericNameAutocompleteSelected" on-autocomplete-reset="genericNameCleared"
+                              min-length="2" error-message="Input Required" on-input="validate" required></paper-autocomplete>
+                          </div>
+                          <div>
+                            <paper-autocomplete id="manufacturer" label="[[$TRANSLATE('Manufacturer Name',LANG)]]" text="{{medicine.manufacturer}}" source="[[manufacturerSourceDataList]]"
+                              on-autocomplete-selected="manufacturerAutocompleteSelected" on-autocomplete-reset="manufacturerCleared"
+                              error-message="Input Required" min-length="2" on-input="validate" required></paper-autocomplete>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <!--Dose-->
+                        <div>
+                          <vaadin-combo-box label="Dose" items="[[doseList]]" allow-custom-value="true" on-keyup="doseSelected" value="{{medicine.doseDirection}}"></vaadin-combo-box>
+                        </div>
+                        <!--Dose-->
+                      </div>
+
+                      <div class="form-group">
+                        <!--Direction-->
+                        <div>
+                          <paper-dropdown-menu label="[[$TRANSLATE('Direction',LANG)]]">
+                            <paper-menu selected="{{directionSelectedIndex}}" class="dropdown-content" on-iron-select="_directionSelectedIndexChanged">
+                              <template is="dom-repeat" items="[[directionList]]">
+                                <paper-item>[[$TRANSLATE(item,LANG)]]</paper-item>
+                              </template>
+                            </paper-menu>
+                          </paper-dropdown-menu>
+                        </div>
+                        <!--Direction-->
+                        <!--Form-->
+                        <div>
+                          <paper-dropdown-menu id="form" error-message="Chose an option" label="[[$TRANSLATE('Form',LANG)]]" required>
+                            <paper-menu selected="{{medicineFormSelectedIndex}}" class="dropdown-content" on-iron-select="_medicineFormSelectedIndexChanged">
+                              <template is="dom-repeat" items="{{medicineFormList}}">
+                                <paper-item>{{item}}</paper-item>
+                              </template>
+                            </paper-menu>
+                          </paper-dropdown-menu>
+                        </div>
+                        <template is="dom-if" if="[[_isFormCustom(matchingMedicineList, medicineFormSelectedIndex)]]">
+                          <div>
+                            <paper-input label="Form" value="{{medicine.form}}" id="custom-form" error-message="Input Required" required></paper-input>
+                          </div>
+                        </template>
+                        <!--Form-->
+                      </div>
+
+                      <div hidden="[[!showDetailedForm]]">
+                        <div class="form-group">
+                          <!--Strength-->
+                          <template is="dom-if" if="[[_isStregnthDropdown(matchingMedicineList)]]">
+                            <div>
+                              <paper-dropdown-menu label="[[$TRANSLATE('Strength',LANG)]]" id="strength" error-message="Chose an Option">
+                                <paper-menu id="strengthDropdown" selected="{{strengthSelectedIndex}}" class="dropdown-content" on-iron-select="_strengthSelectedIndexChanged">
+                                  <template is="dom-repeat" items="{{strengthList}}">
+                                    <paper-item>{{item}}</paper-item>
+                                  </template>
+                                </paper-menu>
+                              </paper-dropdown-menu>
+                            </div>
+                          </template>
+                          <template is="dom-if" if="[[_isStregnthCustom(matchingMedicineList, strengthSelectedIndex)]]">
+                            <div>
+                              <paper-input label="[[$TRANSLATE('Strength',LANG)]]" required value="{{medicine.strength}}" id="strength" error-message="Input Required"
+                                on-input="validate"></paper-input>
+                            </div>
+                          </template>
+                          <!--Strength-->
+                          <!--Route-->
+                          <div>
+                            <paper-dropdown-menu label="[[$TRANSLATE('Route',LANG)]]">
+                              <paper-menu selected="{{routeSelectedIndex}}" class="dropdown-content" on-iron-select="_routeSelectedIndexChanged">
+                                <template is="dom-repeat" items="[[routeList]]">
+                                  <paper-item>[[$TRANSLATE(item,LANG)]]</paper-item>
+                                </template>
+                              </paper-menu>
+                            </paper-dropdown-menu>
+                          </div>
+                          <template is="dom-if" if="[[_isRouteCustom(routeSelectedIndex)]]">
+                            <div>
+                              <paper-input label="[[$TRANSLATE('Route',LANG)]]" value="{{medicine.route}}" error-message="Input Required"></paper-input>
+                            </div>
+                          </template>
+                          <!--Route-->
+                        </div>
+
+                        <div class="form-group">
+                          <!--Unit-->
+                          <div>
+                            <paper-dropdown-menu id="doseUnit" error-message="Chose an option" label="[[$TRANSLATE('Unit',LANG)]]" required>
+                              <paper-menu selected="{{doseUnitSelectedIndex}}" class="dropdown-content" on-iron-select="_doseUnitSelectedIndexChanged">
+                                <template is="dom-repeat" items="[[doseUnitList]]">
+                                  <paper-item>{{item}}</paper-item>
+                                </template>
+                              </paper-menu>
+                            </paper-dropdown-menu>
+                          </div>
+                          <template is="dom-if" if="[[_isUnitCustom(doseUnitSelectedIndex)]]">
+                            <div>
+                              <paper-input id="custom-dose-unit" label="Custom Unit" value="{{medicine.doseUnit}}" required id="doseUnit" error-message="Input Required"></paper-input>
+                            </div>
+                          </template>
+                          <!--Unit-->
+                        </div>
+                      </div>
+
+
+                      <div class="form-group layout horizontal end screen-sm">
+                        <!--Start Date-->
+                        <div>
+                          <vaadin-date-picker label="[[$TRANSLATE('Start Date',LANG)]]" value="{{medicine.startDateTimeStamp}}"></vaadin-date-picker>
+                        </div>
+                        <!--Start Date-->
+
+                        <!--End Date-->
+
+                        <div>
+                          <vaadin-date-picker id="endDate" label="[[$TRANSLATE('Ends on',LANG)]]" value="{{medicine.endDateTimeStamp}}"></vaadin-date-picker>
+                        </div>
+                        <div>
+                          <paper-checkbox checked="{{medicine.continue}}" on-change="asNeededSelected">[[$TRANSLATE('Continue As Needed',LANG)]]</paper-checkbox>
+                        </div>
+                        <!--End Date-->
+                      </div>
+
+                      <br>
+                      <br>
+
+                      <div hidden="[[!showDetailedForm]]">
+                        <div class="form-group">
+                          <div>
+                            <paper-textarea label="[[$TRANSLATE('Comments',LANG)]]" value="{{medicine.comments}}"></paper-textarea>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- <div class="layout horizontal end-justified">
+                      <paper-checkbox class="remind" checked="{{medicine.remind}}">[[$TRANSLATE('Remind Me To Take This Medicine',LANG)]]</paper-checkbox>
+                    </div> -->
+
+                    <div class="preview-title layout end-justified" style='padding-top: 4px;'>
+
+                      <paper-button class="btn-dd" on-click="cancelButtonClicked">Clear</paper-button>
+                      <paper-button class="btn-add" on-click="saveAndAddAsFavoriteMedicinePressed" raised>
+                        <iron-icon class="m-right-8" src="../../images/icons/medical-assistance-symbol.png"></iron-icon>Favorite</paper-button>
+                      <paper-button class="btn-add colored" on-click="saveMedicineButtonClicked" raised>
+                        <iron-icon class="m-right-8" icon="add"></iron-icon>Add</paper-button>
+                    </div>
+                  </section>
+                  <!-- add medicine - end -->
+
+                  <!-- favorite medicine - start -->
+                  <section>
+                    <template is="dom-if" if="[[_isEmpty(matchingFavoriteMedicineList.length)]]">
+                      <div class="card-content layout horizontal center center-justified">
+                        <div class="type body secondary">-- empty --</div>
+                      </div>
+                    </template>
+
+                    <div class="p-0 b-radius">
+                      <paper-listbox>
+                        <template id="favorite-medicine-list-repeater" is="dom-repeat" items="[[matchingFavoriteMedicineList]]">
+                          <paper-item class="custom" on-tap="favoriteMedicineTapped">
+
+                            <div class="custom-list-item">
+                              <div class="item-header layout horizontal center">
+                                <div class="type caption secondary">[[_returnSerial(index)]]</div>
+                                <div class="flex m-left-8">
+                                  <span class="type body capitalize">{{item.data.brandName}}</span>
+                                  <span class="m-horizontal-4 type caption secondary italic lowercase">[
+                                    <template is="dom-if" if="[[!item.data.flags.hideMedicineGenericName]]">
+                                      <span>{{item.data.genericName}}</span>
+                                    </template>
+                                    <span>{{item.data.strength}}</span> ]
+                                  </span>
+
+                                  <template is="dom-if" if="[[!item.data.flags.hideMedicineManufacturerName]]">
+                                    <span class="type caption bg-gray">[[item.data.manufacturer]]</span>
+                                  </template>
+                                </div>
+                                <paper-icon-button class="m-left-8" icon="add" on-tap="addFavMedicineAsNewMedicineBtnPressed"></paper-icon-button>
+                                <paper-icon-button icon="delete" on-tap="deleteFavoriteMedicinePressed"></paper-icon-button>
+
+                              </div>
+
+                              <div class="item-content" hidden$="[[_isFavoriteMedicineContentHidden(index, favoriteMedicineShownIndex)]]">
+
+                                <div class="form-group screen-sm">
+                                  <div>
+                                    <paper-input label="Dose Administer Timing e.g 1+1+1" value="{{item.data.doseDirection}}"></paper-input>
+                                  </div>
+
+                                  <!--End Date-->
+                                  <div>
+                                    <paper-dropdown-menu id="duplicateMedicineEndDateTimeStamp" error-message="Chose an Date" label="Ends on">
+                                      <paper-menu selected="{{endDateTimeTypeSelectedIndex}}" class="dropdown-content" on-iron-select="_endDateTimeTypeSelectedIndexChanged">
+                                        <template is="dom-repeat" items="[[endDateTimeTypeList]]">
+                                          <paper-item>[[item]]</paper-item>
+                                        </template>
+                                      </paper-menu>
+                                    </paper-dropdown-menu>
+                                    <template is="dom-if" if="[[computedEndDate]]">
+                                      <span class="text-sm text-primary">Ends on [[computedEndDate]]</span>
+                                    </template>
+                                  </div>
+                                  <!--If chosen Weeks-->
+                                  <template is="dom-if" if="[[_isNthWeekSelectedAsEndDate(endDateTimeTypeSelectedIndex, endDateTimeTypeList)]]">
+                                    <div>
+                                      <paper-dropdown-menu label="Days">
+                                        <paper-menu selected="{{endDateTimeTypeArgument2SelectedIndex}}" class="dropdown-content" on-iron-select="_endDateTimeTypeSelectedIndexChanged">
+                                          <template is="dom-repeat" items="{{endDateTimeTypeArgument2List}}">
+                                            <paper-item>{{item}}</paper-item>
+                                          </template>
+                                        </paper-menu>
+                                      </paper-dropdown-menu>
+                                    </div>
+                                  </template>
+                                  <!--If chosen Custom-->
+                                  <template is="dom-if" if="[[_isCustomSelectedAsEndDate(endDateTimeTypeSelectedIndex, endDateTimeTypeList)]]">
+                                    <div>
+                                      <vaadin-date-picker label="Ends on" value="{{duplicateMedicineEditablePart.endDateTimeStamp}}"></vaadin-date-picker>
+                                    </div>
+                                  </template>
+                                  <!--End Date-->
+
+                                </div>
+                              </div>
+                            </div>
+                          </paper-item>
+                        </template>
+                      </paper-listbox>
+                    </div>
+                  </section>
+                  <!-- favorite medicine - start -->
+
+                  <!-- insulin - start -->
+                  <section>
+                    <template is="dom-if" if="[[_isEmptyArray(insulineMedicineList)]]">
+                      <div class="card-content layout horizontal center center-justified">
+                        <div class="type body secondary">-- no data available --</div>
+                      </div>
+                    </template>
+                    <template is="dom-if" if="[[!_isEmptyArray(insulineMedicineList)]]">
+                      <div class="p-0 b-radius">
+                        <paper-listbox>
+                          <template id="insulin-medicine-list-repeater" is="dom-repeat" items="[[insulineMedicineList]]" as="insulin">
+                            <paper-item class="custom layout horizontal center">
+                              <div class="type caption secondary">[[_returnSerial(index)]]</div>
+                              <div class="flex m-left-8">
+                                <div class="layout horizontal wrap center">
+
+                                  <div class="flex">
+                                    <div class="type body">{{insulin.data.drugName}}</div>
+                                    <div class="type caption-2 secondary">Type: {{insulin.data.type}}</div>
+                                  </div>
+
+                                  <div class="horizontal layout wrap">
+                                    <template id="current-medicine-list-repeater" is="dom-repeat" items="[[insulin.data.dosageList]]">
+                                      <div class="m-horizontal-4">
+                                        <strong>{{item.time}}: </strong>{{item.value}}</div>
+                                    </template>
+                                  </div>
+                                  <paper-icon-button icon="delete" on-tap="deleteInsulinMedicin"></paper-icon-button>
+                                </div>
+                              </div>
+                            </paper-item>
+                          </template>
+                        </paper-listbox>
+                      </div>
+
+                    </template>
+                    <div class="card-actions">
+                      <paper-button raised class="btn-add colored" on-tap="showAddInsulinMedicineDialog">Add medicine</paper-button>
+                    </div>
+                  </section>
+                  <!-- insulin - end -->
+                </iron-pages>
+              </div>
+              <!-- Card :: Prescription - end -->
+
+              <!-- Card :: Patient Stay - start -->
+              <template is="dom-if" if="[[_checkUserAccess('D015')]]">
+                <div class="card-item-2">
+
+                  <div class="preview-title layout">
+                    <!-- <iron-icon class="m-right-8" src="../../images/icons/ico_patient_stay.png"></iron-icon> -->
+                    <div class="type title-2 flex">Patient Stay</div>
+                    <div class="action-area">
+                      <paper-button class="btn-add m-vert" on-tap="savePatientStayPressed">
+                        <iron-icon icon="icons:save"></iron-icon>
+                      </paper-button>
+                    </div>
+                  </div>
+
+                  <iron-pages selected="{{selectedView}}">
+
+                    <section id="admission-section">
+
+                      <div class="type body-lead p-vertical-8 p-horizontal-16">Type</div>
+                      <div class="card-content layout vertical types">
+                        <paper-radio-group id="admissionTypeRadioGroup" selected="{{patientStay.data.admissionType}}" class="layout vertical" on-iron-select="admissionTypeChanged">
+                          <template is="dom-repeat" items="[[admissionTypeList]]">
+                            <paper-radio-button name="[[item]]">[[item]]</paper-radio-button>
+                          </template>
+                        </paper-radio-group>
+
+                        <template is="dom-if" if="[[!advisedAdmission]]">
+                          <paper-input class="p-16" label="Advice" value="{{patientStay.data.advise}}"></paper-input>
+                        </template>
+                        <template is="dom-if" if="[[advisedAdmission]]">
+                          <paper-input label="Referred By" value="{{patientStay.data.referredByDoctorName}}"></paper-input>
+                          <paper-input label="Admitted By" value="{{patientStay.data.admittedByDoctorName}}"></paper-input>
+                        </template>
+                      </div>
+
+
+                      <template is="dom-if" if="[[advisedAdmission]]">
+
+                        <!-- Admission to - start -->
+                        <div class="type body-lead p-vertical-8 p-horizontal-16">Admission to</div>
+                        <div class="card-content layout horizontal start">
+                          <div class="m-right-8">
+                            <vaadin-date-picker label="Admission Date" value="{{patientStay.data.admissionDateTimeStamp}}"></vaadin-date-picker>
+                          </div>
+                          <paper-dropdown-menu class="m-right-8" label="Clinic/Hospital" id="organizationDropdown">
+                            <paper-listbox class="dropdown-content" on-iron-select="organizationSelected" selected="{{selectedOrganizationIndex}}">
+                              <template is="dom-repeat" items="[[organizationsIBelongToList]]" as="organization">
+                                <paper-item>[[organization.name]]</paper-item>
+                              </template>
+                            </paper-listbox>
+                          </paper-dropdown-menu>
+
+                          <template is="dom-if" if="[[$notUndefined(selectedOrganizationIndex)]]">
+                            <paper-dropdown-menu class="m-right-8" label="Department" id="departmentDropdown">
+                              <paper-listbox class="dropdown-content" on-iron-select="departmentSelected" selected="{{selectedDepartmentIndex}}">
+                                <template is="dom-repeat" items="[[patientStayObject.departmentList]]" as="department">
+                                  <paper-item>[[department.name]]</paper-item>
+                                </template>
+                              </paper-listbox>
+                            </paper-dropdown-menu>
+                          </template>
+
+                          <template is="dom-if" if="[[$notUndefined(selectedDepartmentIndex)]]">
+                            <paper-dropdown-menu class="m-right-8" label="Unit" id="unitDropdown">
+                              <paper-listbox class="dropdown-content" on-iron-select="unitSelected" selected="{{selectedUnitIndex}}">
+                                <template is="dom-repeat" items="[[unitList]]" as="unit">
+                                  <paper-item>[[unit.name]]</paper-item>
+                                </template>
+                              </paper-listbox>
+                            </paper-dropdown-menu>
+                          </template>
+
+                          <template is="dom-if" if="[[$notUndefined(selectedUnitIndex)]]">
+                            <paper-dropdown-menu class="m-right-8" label="Ward" id="wardDropdown">
+                              <paper-listbox class="dropdown-content" on-iron-select="wardSelected" selected="{{selectedWardIndex}}">
+                                <template is="dom-repeat" items="[[wardList]]" as="ward">
+                                  <paper-item>[[ward.name]]</paper-item>
+                                </template>
+                              </paper-listbox>
+                            </paper-dropdown-menu>
+                          </template>
+                        </div>
+                        <!-- Admission to - end -->
+
+                        <!-- Seat List - start -->
+                        <template is="dom-if" if="[[seatList.length]]">
+                          <div class="card-content">
+                            <iron-list id="seatList" items="[[seatList]]" style="max-height: 300px;">
+                              <template>
+                                <paper-item class="layout horizontal seat center">
+                                  <div class="m-right-16">
+                                    <paper-input value="[[item.department]]" label="department" disabled="disabled"></paper-input>
+                                  </div>
+                                  <div class="m-right-16">
+                                    <paper-input value="[[item.unit]]" label="unit" disabled="disabled"></paper-input>
+                                  </div>
+                                  <div class="m-right-16">
+                                    <paper-input value="[[item.ward]]" label="ward" disabled="disabled"></paper-input>
+                                  </div>
+                                  <div class="m-right-16">[[item.name]]</div>
+                                  <template is="dom-if" if="[[item.isOverflow]]">
+                                    <div style="color: red">OVERFLOW</div>
+                                  </template>
+                                  <template is="dom-if" if="[[$equals(patient.serial, item.patientSerial)]]">
+                                    Occupied by this patient ([[item.location]])
+                                    <div hidden>[[index]]</div>
+                                    <paper-button class="btn btn-default btn-sm btn-danger" raised on-tap="dischargeTapped">Discharge</paper-button>
+                                  </template>
+                                  <template is="dom-if" if="[[!$equals(patient.serial, item.patientSerial)]]">
+                                    <template is="dom-if" if="[[!item.patientSerial]]">
+                                      Vacant &nbsp;
+                                      <div hidden>[[index]]</div>
+                                      <paper-button class="btn btn-default btn-sm" raised on-tap="fillTapped">Fill</paper-button>
+                                    </template>
+                                    <template is="dom-if" if="[[item.patientSerial]]">
+                                      Occupied
+                                    </template>
+                                  </template>
+                                </paper-item>
+                              </template>
+                            </iron-list>
+                          </div>
+                          <div class="card-actions">
+                            <paper-button class="btn btn-default" raised on-tap="addOverflow">Add as overflow</paper-button>
+                          </div>
+                        </template>
+                        <!-- Seat List - end -->
+
+                        <template is="dom-if" if="[[seatList.length]]">
+
+                          <!-- Location Logs - start -->
+                          <div class="type body-lead p-vertical-8 p-horizontal-16">Location Logs</div>
+                          <div class="card-content" style="max-height: 200px;overflow: auto">
+                            <template is="dom-repeat" items="[[patientStay.data.currentLocation]]" sort="_sortByDate">
+                              <paper-item class="layout center">
+                                <div class="flex">[[$mkDateTime(item.datetimeStamp)]] :
+                                  <span class="type primary">[[item.location]]</span>
+                                </div>
+                                <paper-icon-button class="type danger" icon="delete" on-tap="deleteLocationEntry"></paper-icon-button>
+                              </paper-item>
+                            </template>
+                          </div>
+                          <!-- Location Logs - end -->
+
+                          <!-- Patient's Current Location - start -->
+                          <div class="type body-lead p-vertical-8 p-horizontal-16">Patient's Current Location</div>
+                          <div class="card-content">
+                            <paper-radio-group id="locationRadioGroup" selected="{{selectedLocation}}" class="layout" on-iron-select="locationChanged">
+                              <template is="dom-repeat" items="[[patientStayObject.locations]]">
+                                <paper-radio-button name="[[item]]">[[item]]</paper-radio-button>
+                              </template>
+                            </paper-radio-group>
+                            <paper-textarea label="Custom Location" on-keyup="customLocationAdded"></paper-textarea>
+                          </div>
+                          <!-- Patient's Current Location - end -->
+
+                        </template>
+
+                      </template>
+                    </section>
+
+                    <section id="discharge-section">
+                      <template is="dom-if" if="[[patientDischarged]]">
+
+                        <!-- Discharged Reason - start -->
+                        <div class="type body-lead p-vertical-8 p-horizontal-16">Discharged Reason</div>
+                        <div class="card-content layout vertical discharge-reason">
+                          <div>
+                            <vaadin-date-picker class="m-left-16" label="Discharged Date" value="{{patientStay.data.dischargeDatetimeStamp}}"></vaadin-date-picker>
+                            <br>
+                          </div>
+                          <div class="checkbox-group layout vertical m-left-16">
+                            <template is="dom-repeat" items="[[dischargeReasonList]]">
+                              <paper-checkbox on-change="dischargeReasonChanged" name="[[item]]">[[item]]</paper-checkbox>
+                            </template>
+                          </div>
+
+                          <template is="dom-if" if="[[patientStay.data.dischargeReason.length]]">
+                            <div class="p-16 bg-gray" style="text-align: left;">
+                              <template is="dom-repeat" items="[[patientStay.data.dischargeReason]]">
+                                <span class="type italic bold m-right-8 primary">[[item]]</span>,
+                              </template>
+                            </div>
+                          </template>
+
+                          <paper-textarea class="m-left-16" label="Discharged Custom Resaon" on-keyup="customDischargeReasonAdded"></paper-textarea>
+                        </div>
+                        <!-- Discharged Reason - end -->
+
+                        <!-- Discharged - start -->
+                        <div class="type body-lead p-vertical-8 p-horizontal-16">Discharged to</div>
+                        <div class="card-content layout vertical discharge-reason">
+                          <div class="checkbox-group layout vertical m-left-16">
+                            <template is="dom-repeat" items="[[dischargedToList]]">
+                              <paper-checkbox on-change="dischargedToChanged" name="[[item]]">[[item]]</paper-checkbox>
+                            </template>
+                          </div>
+                          <template is="dom-if" if="[[patientStay.data.dischargeTo.length]]">
+                            <div class="p-16 bg-gray" style="text-align: left;">
+                              <template is="dom-repeat" items="[[patientStay.data.dischargeTo]]">
+                                <span class="type italic bold m-right-8 primary">[[item]]</span>,
+                              </template>
+                            </div>
+                          </template>
+                          <paper-textarea class="m-left-16" label="Discharged To Custom Resaon" on-keyup="customDischargeToAdded"></paper-textarea>
+
+                          <paper-input label="Discharged By" value="{{patientStay.data.dischargedByDoctorName}}"></paper-input>
+                        </div>
+                        <!-- Discharged - end -->
+
+                      </template>
+                    </section>
+
+                  </iron-pages>
+                </div>
+              </template>
+              <!-- Card :: Patient Stay - end -->
+
+            </div>
+          </div>
+          <!-- visit content - end -->
+        </paper-card>
+        <!-- Page :: New Visit - end -->
+
+      </div>
+    </div>
+
+    <!-- Dialog for - Continue Current Medication - start -->
+    <paper-dialog id="dialogContinueCurrentMedication">
+      <div>
+        <vaadin-date-picker id="continueEndDate" label="[[$TRANSLATE('Ends on',LANG)]]" value="{{continueMedicineEndsOnDate}}"></vaadin-date-picker>
+      </div>
+      <div class="buttons">
+        <paper-button dialog-dismiss>Cancel</paper-button>
+        <paper-button on-click="addSelectedCurrentMedicine" autofocus raised>Save</paper-button>
+      </div>
+    </paper-dialog>
+    <!-- Dialog for - Continue Current Medication - end -->
+
+    <!-- Dialog for - Suggested Institution - start -->
+    <paper-dialog id="dialogSuggestedInstitution">
+      <div>
+        <vaadin-combo-box label="Suggested Institution" items="{{machingUserAddedInstitutionList}}" allow-custom-value="true" on-keyup="comboBoxKeyUpSeggestedInstitutionNameChanged"
+          value="{{suggestedInstitutionValue}}">
+        </vaadin-combo-box>
+      </div>
+      <div class="buttons">
+        <paper-button dialog-dismiss>Cancel</paper-button>
+        <!-- <paper-button on-click="_saveSuggestedInstituonName" autofocus raised>Save</paper-button> -->
+      </div>
+    </paper-dialog>
+    <!-- Dialog for - Suggested Institution - end -->
+
+    <!-- Dialog for - Investigation Member Name - start -->
+    <paper-dialog id="dialogInvestigationMemberValue">
+      <div>
+        <paper-input label="Add Test" value="{{investigationMemberValue}}"></paper-input>
+      </div>
+      <div class="buttons">
+        <paper-button dialog-dismiss>Cancel</paper-button>
+        <paper-button on-click="addInvestigationMember" autofocus raised>Add</paper-button>
+      </div>
+    </paper-dialog>
+    <!-- Dialog for - Investigation Member Name - end -->
+
+    <!-- Dialog for - Examination Member Name - start -->
+    <paper-dialog id="dialogExaminationMemberValue">
+      <div>
+        <paper-input label="Add Examination" value="{{customExaminationValue}}"></paper-input>
+      </div>
+      <div class="buttons">
+        <paper-button dialog-dismiss>Cancel</paper-button>
+        <paper-button on-click="addExaminationMember" autofocus raised>Add</paper-button>
+      </div>
+    </paper-dialog>
+    <!-- Dialog for - Examination Member Name - end -->
+
+    <!-- Dialog for - Custom Investigation - start -->
+    <paper-dialog id="dialogCustomInvestigation">
+
+      <div class="dialog-content">
+        <div class="type body-lead" style="color: green;">[[comboBoxInvestigationInputValue]]</div>
+        <paper-input label="[[$TRANSLATE('Reference Range',LANG)]]" value="{{customInvestigationObject.data.investigationList.0.referenceRange}}"></paper-input>
+
+        <div class="horizontal layout center wrap">
+          <paper-input class="flex" label="[[$TRANSLATE('Add Unit',LANG)]]" value="{{customInvestigationUnitValue}}"></paper-input>
+          <paper-icon-button icon="add" on-click="_addUnitValueForCustomInvestigation"></paper-icon-button>
+        </div>
+
+        <div>
+          <template is="dom-if" if="{{!_isEmpty(customInvestigationUnitList.length)}}">
+            <strong>Added Units: </strong>
+            <div class="horizontal layout wrap">
+              <template is="dom-repeat" items="{{customInvestigationUnitList}}">
+                <div class="card-item horizontal layout center">
+                  <div class="type body flex p-horizontal-8">{{item}}</div>
+                  <div style="border-left: 1px solid #eee;" class="horizontal layout center">
+                    <paper-icon-button style="color: red;" icon="delete" on-tap="_deleteSelectedUnit"></paper-icon-button>
+                  </div>
+                </div>
+              </template>
+            </div>
+
+          </template>
+        </div>
+
+      </div>
+
+      <div class="buttons">
+        <paper-button dialog-dismiss>Cancel</paper-button>
+        <paper-button class="btn btn-success" on-click="_saveCustomInvestigation" autofocus raised>Save</paper-button>
+      </div>
+    </paper-dialog>
+    <!-- Dialog for - Custom Investigation - end -->
+
+
+    <!-- Dialog for - Favorite Investigation - start -->
+    <paper-dialog id="dialogFavoriteInvestigation">
+      <div class="type body-lead">Favorite Investigation(s)</div>
+      <div class="dialog-content">
+        <template is="dom-if" if="[[_isEmptyArray(favoriteInvestigaitonList)]]">
+          <div class="card-content layout horizontal center center-justified">
+            <div class="type body secondary">-- no data available --</div>
+          </div>
+        </template>
+        <template is="dom-if" if="[[!_isEmptyArray(favoriteInvestigaitonList)]]">
+          <template is="dom-repeat" items="[[favoriteInvestigaitonList]]">
+            <paper-checkbox checked="{{item.isSelected}}">{{item.data.name}}</paper-checkbox>
+            <paper-icon-button icon="delete" on-tap="deleteSelectedFavoriteInvestigation"></paper-icon-button>
+          </template>
+        </template>
+      </div>
+
+      <div class="buttons m-top-24">
+        <paper-button dialog-dismiss>Cancel</paper-button>
+        <template is="dom-if" if="[[!_isEmptyArray(favoriteInvestigaitonList)]]">
+          <paper-button class="colored" on-click="addInvestigationFromFavorite" autofocus raised>Add</paper-button>
+        </template>
+      </div>
+    </paper-dialog>
+    <!-- Dialog for - Favorite Investigation - end -->
+
+    <!-- Dialog for - Favorite Symptom - start -->
+    <paper-dialog id="dialogFavoriteSymptom">
+      <div class="type body-lead">Favorite Symptom(s)</div>
+      <div class="dialog-content">
+        <template is="dom-if" if="[[_isEmptyArray(favoriteSymptomList)]]">
+          <div class="card-content layout horizontal center center-justified">
+            <div class="type body secondary">-- no data available --</div>
+          </div>
+        </template>
+        <template is="dom-if" if="[[!_isEmptyArray(favoriteSymptomList)]]">
+          <template is="dom-repeat" items="[[favoriteSymptomList]]">
+            <paper-checkbox checked="{{item.isSelected}}">{{item.data.name}}</paper-checkbox>
+            <paper-icon-button icon="delete" on-tap="deleteSelectedFavoriteSymptom"></paper-icon-button>
+          </template>
+        </template>
+      </div>
+
+      <div class="buttons m-top-24">
+        <paper-button dialog-dismiss>Cancel</paper-button>
+        <template is="dom-if" if="[[!_isEmptyArray(favoriteSymptomList)]]">
+          <paper-button class="colored" on-click="addSymptomFromFavorite" autofocus raised>Add</paper-button>
+        </template>
+      </div>
+    </paper-dialog>
+    <!-- Dialog for - Favorite Symptom - end -->
+
+    <!-- Dialog for - Favorite Notes - start -->
+    <paper-dialog id="dialogFavoriteNote">
+        <div class="type body-lead">Favorite Note(s)</div>
+        <div class="dialog-content">
+          <template is="dom-if" if="[[_isEmptyArray(favoriteNoteList)]]">
+            <div class="card-content layout horizontal center center-justified">
+              <div class="type body secondary">-- no data available --</div>
+            </div>
+          </template>
+          <template is="dom-if" if="[[!_isEmptyArray(favoriteNoteList)]]">
+            <template is="dom-repeat" items="[[favoriteNoteList]]">
+              <paper-checkbox checked="{{item.isSelected}}">{{item.data}}</paper-checkbox>
+              <paper-icon-button icon="delete" on-tap="deleteSelectedFavoriteNote"></paper-icon-button>
+            </template>
+          </template>
+        </div>
+  
+        <div class="buttons m-top-24">
+          <paper-button dialog-dismiss>Cancel</paper-button>
+          <template is="dom-if" if="[[!_isEmptyArray(favoriteNoteList)]]">
+            <paper-button class="colored" on-click="addNoteFromFavorite" autofocus raised>Add</paper-button>
+          </template>
+        </div>
+      </paper-dialog>
+      <!-- Dialog for - Favorite Notes - end -->
+
+    <!-- Dialog for - Favorite Examination - start -->
+    <paper-dialog id="dialogFavoriteExamination">
+      <div class="type body-lead">Favorite Examination(s)</div>
+      <div class="dialog-content">
+        <template is="dom-if" if="[[_isEmptyArray(favoriteExaminationList)]]">
+          <div class="card-content layout horizontal center center-justified">
+            <div class="type body secondary">-- no data available --</div>
+          </div>
+        </template>
+        <template is="dom-if" if="[[!_isEmptyArray(favoriteExaminationList)]]">
+          <template is="dom-repeat" items="[[favoriteExaminationList]]">
+            <paper-checkbox checked="{{item.isSelected}}">{{item.data.name}}</paper-checkbox>
+            <paper-icon-button icon="delete" on-tap="deleteSelectedFavoriteExamination"></paper-icon-button>
+          </template>
+        </template>
+      </div>
+
+      <div class="buttons m-top-24">
+        <paper-button dialog-dismiss>Cancel</paper-button>
+        <template is="dom-if" if="[[!_isEmptyArray(favoriteExaminationList)]]">
+          <paper-button class="colored" on-click="addExaminationFromFavorite" autofocus raised>Add</paper-button>
+        </template>
+      </div>
+    </paper-dialog>
+    <!-- Dialog for - Favorite Examination - end -->
+
+    <!-- Dialog - Visit Settings - start -->
+    <paper-dialog id="dialogVisitSettings">
+      <div class="dialog-content">
+        <div class="type body-lead">
+          <iron-icon icon="icons:settings" class="m-right-8 "></iron-icon>Visit Settings</div>
+
+
+        <vaadin-combo-box class="flex combobox-custom-style" label="Change Record Title" id="comboBoxRecordTitle" items="{{visitHeaderTitleList}}"
+          allow-custom-value="true" on-keyup="comboBoxKeyUpRecordTitleValueChanged" value="{{visit.recordTitle}}"></vaadin-combo-box>
+        <!-- <paper-dropdown-menu label="Institution " class="flex ">
+          <paper-listbox class="dropdown-content " selected="{{doctorInstitutionSelectedIndex}} " on-iron-select="_institutionSelectedIndexChanged ">
+            <template is="dom-repeat " items="{{doctorInstitutionList}} ">
+              <paper-item>{{item}}</paper-item>
+            </template>
+
+          </paper-listbox>
+        </paper-dropdown-menu> -->
+        <paper-input label="Institution" value="[[currentOrganization.name]]" disabled></paper-input>
+
+        <paper-dropdown-menu label="Speciality " class="flex ">
+          <paper-listbox class="dropdown-content " selected="{{doctorSpecialitySelectedIndex}} " on-iron-select="_specialitySelectedIndexChanged ">
+            <template is="dom-repeat " items="{{doctorSpecialityList}} ">
+              <paper-item>{{item}}</paper-item>
+            </template>
+
+          </paper-listbox>
+        </paper-dropdown-menu>
+      </div>
+
+      <div class="buttons ">
+        <paper-button dialog-dismiss autofocus raised on-tap="saveVisitSettings">
+          <iron-icon icon="save" class="m-right-8"></iron-icon>Save</paper-button>
+      </div>
+    </paper-dialog>
+    <!-- Dialog - Visit Settings - end -->
+
+    <!-- Dialog for - Insulin Medicine - start -->
+    <paper-dialog id="dialogInsulinMedicine">
+      <div class="type body-lead">Add Insulin Medicine</div>
+      <div>
+        <vaadin-combo-box class="flex" label="Type" items="{{insulinTypeList}}" allow-custom-value="true" value="{{insulinMedicine.data.type}}">
+        </vaadin-combo-box>
+      </div>
+      <div>
+        <vaadin-combo-box label="Type" items="{{insulinDrugList}}" allow-custom-value="true" value="{{insulinMedicine.data.drugName}}">
+        </vaadin-combo-box>
+      </div>
+
+      <div class="horizontal layout wrap">
+        <template is="dom-repeat" items=[[insulinMedicine.data.dosageList]]>
+          <paper-input class="m-horizontal-8" label="{{item.time}}" value={{item.value}}></paper-input>
+        </template>
+      </div>
+
+      <div class="buttons">
+        <paper-button dialog-dismiss>Cancel</paper-button>
+        <paper-button on-click="upsertInsulinMedicine" class="btn-add colored" autofocus raised>Save</paper-button>
+      </div>
+    </paper-dialog>
+    <!-- Dialog for - Insulin Medicine - end -->
+
+    <!-- Print Preview Area - start -->
+    <div id="printPreview">
+
+      <div class="print-header horizontal layout center center-justified">
+        <h1>[[settings.printDecoration.headerLine]]</h1>
+      </div>
+
+      <!-- Print Header - Main - start -->
+      <div class="document-header horizontal layout center">
+        <template is="dom-if" if="[[settings.printDecoration.logoDataUri]]">
+          <img class="logo" src="[[settings.printDecoration.logoDataUri]]" alt="">
+        </template>
+
+        <div class="leftSide">
+          <div class="leftSideLine1">[[settings.printDecoration.leftSideLine1]]</div>
+          <div class="leftSideLine2">[[settings.printDecoration.leftSideLine2]]</div>
+          <div class="leftSideLine3">[[settings.printDecoration.leftSideLine3]]</div>
+        </div>
+        <div class="flex"></div>
+        <div class="rightSide layout end-justified">
+          <div class="rightSideLine1">[[settings.printDecoration.rightSideLine1]]</div>
+          <div class="rightSideLine2">[[settings.printDecoration.rightSideLine2]]</div>
+          <div class="rightSideLine3">[[settings.printDecoration.rightSideLine3]]</div>
+        </div>
+      </div>
+      <!-- Print Header - Main - end -->
+
+      <!-- Print Header - Patient Details - start -->
+      <div class="document-header horizontal layout center p-vertical-8">
+        <template is="dom-if" if="[[!patient.isForOrganizationOnly]]">
+          <div class="m-horizontal-4">
+            <strong>Patient Serial: </strong>
+            <span>{{patient.serial}}</span>
+          </div>
+          <div class="m-horizontal-4">
+            <strong>Patient Name: </strong>
+            <span>{{$getFullName(patient.name)}}</span>
+          </div>
+          <div class="m-horizontal-4">
+            <strong>Sex: </strong>
+            <span>{{patient.gender}}</span>
+          </div>
+          <div class="m-horizontal-4">
+            <strong>Age: </strong>
+            <span>[[_computeAge(patient.dateOfBirth)]] years </span>
+          </div>
+          <div class="m-horizontal-4">
+            <strong>Blood Group: </strong>
+            <span>[[patient.bloodGroup]]</span>
+          </div>
+          <div class="m-horizontal-4">
+            <strong>Allergy: </strong>
+            <span>[[patient.allergy]]</span>
+          </div>
+        </template>
+
+        <template is="dom-if" if="[[patient.isForOrganizationOnly]]">
+          <div class="m-horizontal-4">
+            <strong>Patient Name: </strong>
+            <i></i>
+          </div>
+          <div class="m-horizontal-4">
+            <strong>Age: </strong>
+            <i>REDACTED FOR CONFIDENTIALITY</i>
+          </div>
+          <div class="m-horizontal-4">
+            <strong>Blood Group: [[patient.bloodGroup]]</strong>
+            <span> </span>
+          </div>
+          <div class="m-horizontal-4">
+            <strong>Allergy: [[patient.allergy]]</strong>
+            <span> </span>
+          </div>
+        </template>
+      </div>
+      <!-- Print Header - Patient Details - end -->
+
+      <!-- Print Header - record Title - start -->
+      <div class="p-16 horizontal layout center center-justified" hidden$="{{!printPrescriptionOnly}}">
+        <div class="type headline">{{visit.recordTitle}}</div>
+      </div>
+      <!-- Print Header - record Title - start -->
+
+      <!-- Print Content [FULL] - start -->
+      <div class="print-content" hidden$="{{printPrescriptionOnly}}">
+        <!-- Print Content - Left - start -->
+        <div class="left">
+
+          <!-- Print - Symptoms - start -->
+          <template is="dom-if" if="[[!_isEmpty(addedIdentifiedSymptomsList.length)]]">
+            <div class="horizontal layout center print-sub-header">
+              <div class="type body">Symptoms</div>
+            </div>
+            <template is="dom-repeat" items="[[addedIdentifiedSymptomsList]]">
+              <div class="type caption-2">
+                <span class="type secondary">[[_returnSerial(index)]]. </span>
+                <span>{{item.name}}</span>
+                <template is="dom-if" if="[[_compareFn(item.possibleValueList.length, '>', 0)]]">
+                  (
+                  <template is="dom-repeat" items="[[item.possibleValueList]]">
+                    <span>{{item}}, </span>
+                  </template>)
+                </template>
+              </div>
+            </template>
+            <div class="b-top m-top-8"></div>
+          </template>
+          <!-- Print - Symptoms - end -->
+
+          <!-- Print - Examination - start -->
+          <template is="dom-if" if="[[!_isEmpty(addedExaminationList2.length)]]">
+            <div class="horizontal layout center print-sub-header">
+              <div class="type body">Examination</div>
+            </div>
+            <template is="dom-repeat" items="[[addedExaminationList2]]" as="examination">
+              <div class="type caption-2">
+                <span class="type secondary">[[_returnSerial(index)]]. </span>
+                <span>{{examination.name}}</span>
+                (
+                <template is="dom-repeat" items="[[examination.examinationValueList]]" as="examItem">
+                  <span hidden$="{{!examItem.checked}}">{{examItem.value}}, </span>
+                </template>)
+              </div>
+            </template>
+            <div class="b-top m-top-8 "></div>
+          </template>
+          <!-- Print - Examination - end -->
+
+          <!-- Print - Vitals - start -->
+          <template is="dom-if" if="[[!_isEmpty(addedVitalList.length)]]">
+            <div class="horizontal layout center print-sub-header">
+              <div class="type body">Vitals</div>
+            </div>
+            <template is="dom-repeat" items="[[addedVitalList]]">
+              <div class="type caption-2">
+                <strong>{{item.vitalType}}: </strong>
+                <span>[[_pritifyVitalData(item)]]</span>
+              </div>
+            </template>
+            <div class="b-top m-top-8"></div>
+          </template>
+          <!-- Print - Vitals - end -->
+
+          <!-- Print - Test Advised - start -->
+          <template is="dom-if" if="[[!_isEmpty(addedInvestigationList.length)]]">
+            <div class="horizontal layout center print-sub-header">
+              <div class="type body">Advised Test</div>
+            </div>
+            <template is="dom-repeat" items="[[addedInvestigationList]]">
+              <div class="type caption-2 layout horizontal">
+                <div class="type secondary m-right-8">[[_returnSerial(index)]]. </div>
+                <div class="flex vertical layout">
+                  <div>{{item.investigationName}}</div>
+                  <!-- <template is="dom-if" if="[[_compareFn(item.testList.length, '==', 1)]]">
+                    <ol class="order-list">
+                      <li>{{item.testList.0.name}}</li>
+                    </ol>
+                  </template> -->
+                  <template is="dom-if" if="[[_compareFn(item.testList.length, '>', 1)]]">
+                    <ol class="order-list">
+                      <template is="dom-repeat" items="[[item.testList]]">
+                        <li>{{item.name}}</li>
+                      </template>
+                    </ol>
+                  </template>
+                </div>
+              </div>
+              <template is="dom-if" if="[[item.suggestedInstitutionName]]">
+                <div class="type caption secondary m-left-16">
+                  <strong>Suggested Institution: </strong>
+                  <span class="flex">{{item.suggestedInstitutionName}}</span>
+                </div>
+              </template>
+
+            </template>
+            <div class="b-top"></div>
+          </template>
+          <!-- Print - Test Advised - end -->
+
+          <!-- Print - Diagnosis - start -->
+          <template is="dom-if" if="{{!_isEmpty(diagnosis.data.diagnosisList.length)}}">
+            <div class="horizontal layout center print-sub-header">
+              <div class="type body">Diagnosis</div>
+            </div>
+            <template is="dom-repeat" items="[[diagnosis.data.diagnosisList]]">
+              <div class="type caption-2">
+                <span class="type secondary">[[_returnSerial(index)]]. </span>
+                <span>{{item.name}}</span>
+                <template is="dom-if" if="[[_compareFn(item.possibleValueList.length, '>', 0)]]">
+                  (
+                  <template is="dom-repeat" items="[[item.possibleValueList]]">
+                    <span>{{item}}, </span>
+                  </template>)
+                </template>
+              </div>
+            </template>
+            <div class="b-top m-top-8"></div>
+          </template>
+          <!-- Print - Diagnosis - end -->
+
+          <!-- Print - Notes - start -->
+          <template is="dom-if" if="{{!_isEmpty(doctorNotes.data.messageList.length)}}">
+            <div class="horizontal layout center print-sub-header">
+              <div class="type body">Doctor Advised/Notes</div>
+            </div>
+            <ul class="unorderd-list-custom">
+              <template is="dom-repeat" items="[[doctorNotes.data.messageList]]">
+                <li class="type caption-2" style="word-break: break-word; margin-right: 4px;">{{item}}</li>
+              </template>
+            </ul>
+            <div class="b-top m-top-8"></div>
+          </template>
+          <!-- Print - Notes - end -->
+
+          <!-- Print - Next Visit - start -->
+          <template is="dom-if" if="[[!_isEmptyString(nextVisit.data.nextVisitDateTimestamp)]]">
+            <div class="horizontal layout center print-sub-header">
+              <div class="type body">Next Visit</div>
+            </div>
+            <div class="type caption-2">
+              <div>
+                <strong>Date: </strong>
+                <span>[[$mkDate(nextVisit.data.nextVisitDateTimestamp)]]</span>
+              </div>
+              <div>{{nextVisit.data.priorityType}}</div>
+            </div>
+            <div class="b-top m-top-8"></div>
+          </template>
+          <!-- Print - Next Visit - end -->
+        </div>
+        <!-- Print Content - Left - end -->
+
+        <!-- Print Content - right - start -->
+        <div class="right">
+
+          <!-- Print - History And Physical - start -->
+          <template is="dom-if" if="[[shouldRender]]">
+            <div class="horizontal layout center">
+              <div class="type body print-sub-header">[[recordPartTitle]]</div>
+            </div>
+            <div class="p-horizontal-16">
+              <html-block html="[[recordPartHtmlContent]]"></html-block>
+            </div>
+            <div class="b-top m-top-8"></div>
+          </template>
+          <!-- Print - History And Physical - end -->
+
+          <br>
+          <br>
+
+          <!-- Print - Prescription - start -->
+          <template is="dom-if" if="[[!_isEmpty(matchingPrescribedMedicineList.length)]]">
+            <div class="horizontal layout center print-sub-header">
+              <div class="type body p-left-16">Prescription</div>
+            </div>
+
+            <template is="dom-repeat" items="[[matchingPrescribedMedicineList]]">
+              <div class="m-vertical-8 p-left-16 horizontal layout center">
+                <div class="type caption secondary m-right-8">[[_returnSerial(index)]].</div>
+                <div>
+                  <div>
+                    <span class="type caption-2 text-bold">{{item.data.brandName}}</span>
+                    <template is="dom-if" if="[[!item.data.flags.hideMedicineManufacturerName]]">
+                      <span class="type caption bg-gray">[[item.data.manufacturer]]</span>
+                    </template>
+                    <div class="type caption italic secondary">
+                      <template is="dom-if" if="[[!item.data.flags.hideMedicineGenericName]]">
+                        <span>{{item.data.genericName}}</span>
+                      </template>
+
+                      <span>{{item.data.strength}}</span>
+                    </div>
+                  </div>
+
+
+                  <div class="type caption">
+                    <strong>Instruction: </strong>
+                    <span>[[$TRANSLATE_NUMBER(item.data.doseDirection, LANG)]] [[$TRANSLATE('for', LANG)]] [[_computeTotalDaysCount(item.data.endDateTimeStamp,item.data.startDateTimeStamp)]]
+                      <span hidden$="[[!item.data.endDateTimeStamp]]">[[$TRANSLATE('Days',LANG)]]</span>
+                    </span>
+                    <span>[[$TRANSLATE('By', LANG)]] </span>
+                    <span>[[$TRANSLATE(item.data.route, LANG)]]</span>
+                    <span>[[$TRANSLATE(item.data.direction, LANG)]] </span>
+                  </div>
+                  <div class="type caption">[[item.data.comments]]</div>
+                </div>
+              </div>
+            </template>
+
+          </template>
+          <!-- Print - Prescription - end -->
+          <br>
+          <!-- Patient Stay Preview -->
+          <template is="dom-if" if="[[patientStay.serial]]">
+            <div class="horizontal layout center print-sub-header">
+              <div class="type body p-left-16">Patient Stay</div>
+            </div>
+            <div class="p-horizontal-16">
+              <div class="layout horizontal">
+                <span class="type bold"> Admission Date: </span>
+                <span>&nbsp;[[$mkDate(patientStay.data.admissionDateTimeStamp)]]</span>
+              </div>
+              <div>
+                <span class="type bold">Type: </span> [[patientStay.data.admissionType]]
+              </div>
+              <template is="dom-if" if="[[patientStay.adviseOnly]]">
+                <div>
+                  <span class="type bold">Advice: </span> [[patientStay.data.advise]]
+                </div>
+              </template>
+              <template is="dom-if" if="[[!patientStay.adviseOnly]]">
+                <div>
+                  <span class="type bold">Referred By: </span> [[patientStay.data.referredByDoctorName]]
+                </div>
+                <div>
+                  <span class="type bold">Admitted By: </span> [[patientStay.data.admittedByDoctorName]]
+                </div>
+                <div class="type italic">
+                  <span>[[patientStay.data.locationHospitalName]]</span> >
+                  <span>[[patientStay.data.locationDepartment]]</span> >
+                  <span>[[patientStay.data.locationUnit]]</span> >
+                  <span>[[patientStay.data.locationWard]]</span> >
+                  <span>[[patientStay.data.locationBed]]</span>
+                </div>
+              </template>
+              <template is="dom-if" if="[[patientStay.data.currentLocation.length]]">
+                <div>
+                  <span class="type bold"> Current Location:</span>
+                  <span>[[patientStay.data.currentLocation.0.location]]</span>
+                </div>
+              </template>
+              <template is="dom-if" if="[[patientStay.data.dischargeDatetimeStamp]]">
+                <div>
+                  <span class="type bold"> Discharge Date:</span>
+                  <span>[[$mkDate(patientStay.data.dischargeDatetimeStamp)]]</span>
+                </div>
+                <div>
+                  <span class="type bold">Discharged By: </span> [[patientStay.data.dischargedByDoctorName]]
+                </div>
+                <div>
+                  <span class="type bold"> Length of Stay:</span>
+                  <span>[[calculateLengthOfStay(patientStay.data.admissionDateTimeStamp, patientStay.data.dischargeDatetimeStamp)]]
+                    Days
+                  </span>
+                </div>
+              </template>
+              <template is="dom-if" if="[[patientStay.data.dischargeReason.length]]">
+                <div>
+                  <span class="type bold">Discharge Reason: </span> [[patientStay.data.dischargeReason]]</div>
+              </template>
+              <template is="dom-if" if="[[patientStay.data.dischargeTo.length]]">
+                <div>
+                  <span class="type bold"> Discharged To:</span> [[patientStay.data.dischargeTo]]</div>
+              </template>
+            </div>
+          </template>
+          <!-- Patient Stay Preview End -->
+        </div>
+        <!-- Print Content - right - end -->
+      </div>
+      <!-- Print Content [FULL] - end -->
+
+      <!-- Print Content - [Prescripton only] - start -->
+      <div hidden$="{{!printPrescriptionOnly}}">
+        <template is="dom-if" if="[[!_isEmpty(matchingPrescribedMedicineList.length)]]">
+          <div class="horizontal layout center print-sub-header">
+            <div class="type body p-left-16">Prescription</div>
+          </div>
+
+          <template is="dom-repeat" items="[[matchingPrescribedMedicineList]]">
+            <div class="m-vertical-8 p-left-16 horizontal layout center">
+              <div class="type caption secondary m-right-8">[[_returnSerial(index)]].</div>
+              <div>
+                <div>
+                  <span class="type caption-2 text-bold">{{item.data.brandName}}</span>
+                  <template is="dom-if" if="[[!item.data.flags.hideMedicineManufacturerName]]">
+                    <span class="type caption bg-gray">[[item.data.manufacturer]]</span>
+                  </template>
+                  <div class="type caption italic secondary">
+                    <template is="dom-if" if="[[!item.data.flags.hideMedicineGenericName]]">
+                      <span>{{item.data.genericName}}</span>
+                    </template>
+
+                    <span>{{item.data.strength}}</span>
+                  </div>
+                </div>
+
+
+                <div class="type caption">
+                  <strong>Instruction: </strong>
+                  <span>[[$TRANSLATE_NUMBER(item.data.doseDirection, LANG)]] [[$TRANSLATE('for', LANG)]] [[_computeTotalDaysCount(item.data.endDateTimeStamp,item.data.startDateTimeStamp)]]
+                    <span hidden$="[[!item.data.endDateTimeStamp]]">[[$TRANSLATE('Days',LANG)]]</span>
+                  </span>
+                  <span>[[$TRANSLATE('By', LANG)]] </span>
+                  <span>[[$TRANSLATE(item.data.route, LANG)]]</span>
+                  <span>[[$TRANSLATE(item.data.direction, LANG)]] </span>
+                </div>
+                <div class="type caption">[[item.data.comments]]</div>
+              </div>
+            </div>
+          </template>
+        </template>
+      </div>
+      <!-- Print Content - [Prescripton only] - end -->
+
+      <div>
+        <div class="horizontal layout end-justified center">
+          <template is="dom-if" if="[[settings.printDecoration.signatureDataUri]]">
+            <img height="96" width="128" class="logo" src="[[settings.printDecoration.signatureDataUri]]" alt="signature">
+          </template>
+        </div>
+
+        <template is="dom-if" if="[[settings.flags.showUserNameOnPrintPreview]]">
+          <div class="type caption secondary" style="text-align: center; padding: 8px;">
+            <div>
+              <i>
+                <strong>prepared by: </strong>{{user.name}}</i>
+            </div>
+          </div>
+        </template>
+
+        <template is="dom-if" if="[[settings.flags.showFooterLine]]">
+          <div class="b-top">
+            <div class="type caption secondary">[[settings.printDecoration.footerLine]]</div>
+          </div>
+        </template>
+      </div>
+
+
+    </div>
+
+    <!-- Print Preview Area - end -->
+
+    <!-- local DOM -->
+  </template>
+  <script src="../mixin/mixin-patient-stay.coffee-compiled.js "></script>
+  <script src="page-visit-editor.coffee-compiled.js "></script>
+</dom-module>

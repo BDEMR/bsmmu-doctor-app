@@ -1,0 +1,181 @@
+<link rel="import" href="../../bower-assets/paper-card/paper-card.html">
+<link rel="import" href="../../bower-assets/paper-input/paper-input.html">
+
+<!-- style -->
+<link rel="import" href="../../styles/common-style.html">
+
+<!-- behavior -->
+<link rel="import" href="../../behaviors/translating.html">
+<link rel="import" href="../../behaviors/page-like.html">
+<link rel="import" href="../../behaviors/api-calling.html">
+<link rel="import" href="../../behaviors/common-computes.html">
+<link rel="import" href="../../behaviors/db-using.html">
+
+<!-- custom-elements -->
+
+<!-- element -->
+<dom-module id="page-activate">
+  <template>
+
+    <!-- style -->
+
+    <style is="custom-style" include="common-style">
+    .limiting-container {
+      margin-top: 10px;
+    }
+    
+    .patient-info-card-counter {
+      margin-top: 20px;
+      margin-left: 20px;
+      margin-right: 10px;
+      color: #777777;
+    }
+    
+    .patient-info-cards {
+      @apply(--layout-vertical);
+      /*@apply(--layout-center);*/
+      margin-top: 10px;
+      margin-left: 10px;
+      margin-right: 10px;
+      padding-bottom: 20px;
+    }
+    
+    .patient-info-cards .row {
+      margin-left: 10px;
+      /*margin-right: 10px;*/
+      margin-top: 10px;
+    }
+    
+    .patient-info-cards .hr {
+      margin-left: 20px;
+      margin-right: 20px;
+      height: 1px;
+      /*width: 100px;*/
+      background: #dddddd;
+    }
+    
+    .patient-info-cards .row .modifier {
+      font-size: 14px;
+      background: #000000;
+      color: #ffffff;
+      margin-left: 5px;
+      padding-top: 2px;
+      padding-bottom: 2px;
+      padding-left: 4px;
+      padding-right: 4px;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+    
+    .patient-info-cards .row .modifier.online {
+      background: #757575;
+    }
+    
+    .patient-info-cards .row .modifier.local-only {
+      background: #039BE5;
+    }
+    
+    .patient-info-cards .row .modifier.locally-updated {
+      background: #009688;
+    }
+    
+    .patient-info-cards .row .modifier.imported {
+      background: #4CAF50;
+    }
+    
+    .info-row {
+      margin-top: 10px;
+    }
+    
+    .top-info-row {
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+    
+    .serial-number {
+      background: #37474F;
+      color: #ffffff;
+      margin-left: 5px;
+      padding-top: 2px;
+      padding-bottom: 2px;
+      padding-left: 4px;
+      padding-right: 4px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+    
+    .address1 {
+      margin-right: 10px;
+    }
+    
+    .break-on-tablet {
+      @apply(--layout-horizontal);
+    }
+    
+    @media screen and (max-width: 740px) {
+      .break-on-tablet {
+        display: block;
+      }
+    }
+    
+    .val {
+      text-decoration: underline;
+    }
+    
+    paper-button {
+      background: white;
+    }
+    </style>
+
+    <!-- local DOM -->
+
+    <div class="master-container">
+
+      <div class="limiting-container">
+
+        <!-- editing patient - start -->
+
+        <div class="patient-info-card-counter">
+          <div>Please enter your activation code below.</div>
+        </div>
+
+        <paper-card class="patient-info-cards">
+          <div class="card-content">
+            <div class="info-row">
+              <paper-input always-float-label value="{{activationCode}}" label="Activation Code"></paper-input>
+            </div>
+            <template is="dom-if" if="[[isValid]]">
+              <div class="info-row">
+                <div>This coupon will add [[daysWorth]] days to your currently allowed [[daysLeft]] days. After activation, you will have access to Doctor App for [[$sum(daysWorth,daysLeft)]] days.</div>
+              </div>
+            </template>
+
+            <template is="dom-if" if="[[!isValid]]">
+              <div class="info-row">
+                <div class="type body primary">to get activation code email: <a href="mailto:ab@bdemr.com" class="type link">ab@bdemr.com</a></div>
+              </div>
+            </template>
+
+            <div class="info-row horizontal layout end-justified">
+              <paper-button on-tap="logoutPressed">Logout</paper-button>
+              <template is="dom-if" if="[[!isValid]]">
+                <paper-button on-tap="checkButtonPressed" class="colored" raised>CHECK</paper-button>
+              </template>
+              <template is="dom-if" if="[[isValid]]">
+                <paper-button  on-tap="activateButtonPressed" raised class="colored">ACTIVATE</paper-button>
+              </template>
+              
+            </div>
+          </div>
+        </paper-card>
+
+        <!-- editing patient - end -->
+
+      </div>
+
+    </div>
+
+  </template>
+  <script src="page-activate.coffee-compiled.js"></script>
+</dom-module>

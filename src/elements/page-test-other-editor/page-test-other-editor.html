@@ -1,0 +1,165 @@
+
+<link rel="import" href="../../bower-assets/paper-card/paper-card.html">
+
+<link rel="import" href="../../bower-assets/paper-input/paper-input.html">
+<link rel="import" href="../../bower-assets/paper-button/paper-button.html">
+
+<link rel="import" href="../../bower-assets/paper-tabs/paper-tabs.html">
+<link rel="import" href="../../bower-assets/paper-tabs/paper-tab.html">
+
+<!-- style -->
+<link rel="import" href="../../styles/common-style.html">
+
+<!-- behavior -->
+<link rel="import" href="../../behaviors/common-computes.html">
+<link rel="import" href="../../behaviors/db-using.html">
+<link rel="import" href="../../behaviors/translating.html">
+<link rel="import" href="../../behaviors/page-like.html">
+<link rel="import" href="../../behaviors/api-calling.html">
+
+
+
+
+
+<dom-module id='page-test-other-editor'>
+  <template>
+    <style is='custom-style' include="common-style">
+      paper-dropdown-menu {
+        width: 100%;
+      }
+      .limiting-container {
+        margin-top: 10px;
+      }
+    </style>
+
+    <div class="master-container">
+
+      <div class="limiting-container">
+
+        <paper-card>
+          <paper-tabs class="basic-tabs" selected="{{selectedTestViewIndex}}">
+            <paper-tab><iron-icon src="../../images/icons/ico_medicine_flask.png" class="m-right-8"></iron-icon>[[$TRANSLATE('Test',LANG)]]</paper-tab>
+            <paper-tab><iron-icon icon="attachment" class="m-right-8"></iron-icon>[[$TRANSLATE('Attachment',LANG)]]</paper-tab>
+          </paper-tabs>
+
+          <iron-pages selected="{{selectedTestViewIndex}}">
+
+            <!-- Test - start -->
+            <section>
+              
+              <div class="card-content">
+                <div class="form-group">
+                  <div><paper-input label="[[$TRANSLATE('Name',LANG)]]" type="text" value="{{otherTest.data.name}}"></paper-input></div>
+                  <div><paper-input label="[[$TRANSLATE('Institution',LANG)]]" type="text" value="{{otherTest.data.institution}}"></paper-input></div>
+                </div>
+                <div class="form-group">
+                  <div><paper-input label="[[$TRANSLATE('Result',LANG)]]" type="text" value="{{otherTest.data.result}}"></paper-input></div>
+                  <div><paper-input label="[[$TRANSLATE('Unit',LANG)]]" type="text" value="{{otherTest.data.unit}}"></paper-input></div>
+                  <vaadin-date-picker label="Date" value="{{otherTest.data.date}}" max="{{currentDate}}"></vaadin-date-picker>
+                </div>
+              </div>
+
+              <div class="card-actions">
+                <template is="dom-if" if="[[isThatNewTest]]">
+                  <paper-button class="" on-tap="cancelButtonClicked">Cancel</paper-button>
+                  <paper-button class="colored" raised on-tap="addOtherTestButtonClicked">Add (5 BDT, Patient)</paper-button>
+                </template>
+                <template is="dom-if" if="[[!isThatNewTest]]">
+                  <paper-button class="btn btn-success" on-click="updateOtherTestPressed" raised>Update</paper-button>
+                </template>
+              </div>
+            </section>
+            <!-- Test - end -->
+
+            <!-- test - start -->
+            <section>
+              <div class="card-content">
+                <template is="dom-if" if="[[newAttachment]]">
+
+                  <div class="horizontal layout wrap">
+                    <div class="vertical layout center descriptive-area">
+                      <template is="dom-if" if="[[newAttachment.isImage]]">
+                        <img class="new-attachment-preview" src$="[[newAttachment.dataUri]]" />
+                      </template>
+                      <template is="dom-if" if="[[!newAttachment.isImage]]">
+                        <img class="new-attachment-preview" src="./../../assets/no-preview.png" />
+                      </template>
+                      <paper-progress value="[[newAttachment.progress]]"></paper-progress>
+                    </div>
+                    <div class="vertical layout descriptive-area">
+                      <paper-input class="logo-input" type="file" accept="*/*" on-change="fileInputChanged" no-ink></paper-input>
+
+                      <template is="dom-if" if="[[newAttachment.isLoaded]]">
+
+                        <paper-input label="Title" value="{{newAttachment.title}}"></paper-input>
+
+                        <paper-input label="Description" value="{{newAttachment.description}}"></paper-input>
+
+                        <paper-input readonly label="Space Needed" value="[[$toMega(newAttachment.sizeInChars)]]MB"></paper-input>
+
+                        <div class="horizontal layout">
+                          <div class="layout horizontal center" hidden$="[[!isUploading]]">
+                            <paper-spinner style="margin-right: 10px;" active></paper-spinner>
+                            <paper-button disabled>UPLOADING...</paper-button>
+                          </div>
+                          <paper-button raised on-tap="uploadPressed" hidden$="[[isUploading]]">UPLOAD</paper-button>
+                          <paper-button raised on-tap="saveLocallyPressed">SAVE LOCALLY</paper-button>
+                          <paper-button raised on-tap="keepUntilBrowserClosedPressed">KEEP UNTIL BROWSER IS CLOSED</paper-button>
+                        </div>
+
+                      </template>
+                    </div>
+                  </div>
+
+                </template>
+
+                <div class="layout horizontal center" hidden$="[[!isDownloading]]">
+                  <paper-spinner active></paper-spinner>
+                  <span class="text-muted"> &nbsp; &nbsp; Loading Images...</span>
+                </div>
+                <template is="dom-if" if="[[attachmentList]]">
+                  <div class="attachment-card-list horizontal layout wrap">
+                    
+                    <template is="dom-repeat" items="[[attachmentList]]" as="attachment" index-as="attachmentIndex">
+                      <paper-material elevation="1">
+                        <div class="attachment-card vertical layout">
+                          <img class="image" src$="[[$getImageSrc(attachment)]]" hidden$="[[!attachment.isImage]]"/>
+                          <div class="footer">
+                            <div class="title horizontal layout center">
+                              <div class="flex">[[attachment.title]]</div>
+                              <paper-icon-button on-tap="downloadPressed" icon="file-download"></paper-icon-button>
+                              <paper-icon-button on-tap="deletePressed" icon="delete"></paper-icon-button>
+                            </div>
+                          </div>
+                        </div>
+                      </paper-material>
+                    </template>
+
+                  </div>
+                </template>
+              </div>
+
+              <div class="card-actions">
+                <div class="usage horizontal layout around-justified center">
+                  <div class="vertical layout">
+                    <div class="title">[[localDataUsedPercentage]]%</div>
+                    <paper-progress value="[[localDataUsedPercentage]]"></paper-progress>
+                  </div>
+                  <div>You are currently using [[localDataUsedPercentage]]% of your local store capacity for images.</div>
+                </div>
+              </div>
+            </section>
+            <!-- Attachment - end -->
+          </iron-pages>
+          
+          
+
+        </paper-card>
+
+      </div>
+    </div>
+
+  </template>
+  <script src='page-test-other-editor.coffee-compiled.js'></script>
+</dom-module>
+

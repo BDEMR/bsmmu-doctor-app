@@ -1,0 +1,106 @@
+<!-- element -->
+<dom-module id="de-collection">
+  <template>
+    <!-- style -->
+    <style is="custom-style" include="common-style">
+    :host {
+      width: 50%;
+    }
+    
+    @media screen and (max-width: 740px) {
+      :host {
+        width: 100%;
+      }
+    }
+    
+    :host.opened {
+      width: 100%;
+    }
+    
+    .collection-container {
+      margin: 2px;
+    }
+    
+    .collection-container .title {
+      padding-left: 10px;
+      padding-right: 10px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      background: #607D8B;
+      color: white;
+    }
+    
+    .collection-container.hasData .title {
+      background: #455A64;
+    }
+    
+    .collection-container .content {
+      background: #CFD8DC;
+    }
+    
+    paper-tabs.group-tabs {
+      --paper-tabs-selection-bar-color: white;
+      --paper-tabs: {
+        background: #607D8B;
+        color: white;
+      }
+    }
+
+    .dismiss-defaults {
+      background: white;
+      margin-top: 4px;
+    }
+    </style>
+    <!-- local DOM - start -->
+    <template is="dom-if" if="[[$both(def,data)]]">
+      <div class$="collection-container vertical layout [[$getDataClass(hasData)]]">
+        <!-- collection-container - start -->
+        <div class="title horizontal layout center">
+          <paper-icon-button icon="class"></paper-icon-button>
+          <div>[[def.label]]</div>
+          <div class="flex"></div>
+          <template is="dom-if" if="[[!hasData]]">
+            <paper-icon-button on-tap="collectionCreatePressed" icon="add"></paper-icon-button>
+          </template>
+          <template is="dom-if" if="[[hasData]]">
+            <template is="dom-if" if="[[!isOpened]]">
+              <paper-icon-button on-tap="collectionExpandPressed" icon="expand-more"></paper-icon-button>
+            </template>
+            <template is="dom-if" if="[[isOpened]]">
+              <paper-icon-button on-tap="collectionErasePressed" icon="clear"></paper-icon-button>
+              <paper-icon-button on-tap="collectionCollapsePressed" icon="expand-less"></paper-icon-button>
+            </template>
+          </template>
+        </div>
+        <template is="dom-if" if="[[isOpened]]">
+          <div class="content">
+
+            <template is="dom-if" if="[[$hasActiveDefaultGroup(def, data.isDefaultGroupDismissed)]]">
+              <div class="horizontal layout">
+                <div class="flex"></div>
+                <paper-button class="dismiss-defaults" raised on-tap="dismissDefaultsPressed">DISSMISS DEFAULTS</paper-button>
+              </div>
+            </template>
+
+            <template is="dom-if" if="[[!$hasActiveDefaultGroup(def, data.isDefaultGroupDismissed)]]">
+              <paper-tabs class="group-tabs" selected="{{groupTabSelectedIndex}}" scrollable on-iron-select="groupTabSelected">
+                <template is="dom-repeat" items="[[def.childList]]" as="group">
+                  <paper-tab>[[group.label]]</paper-tab>
+                </template>
+              </paper-tabs>
+            </template>
+
+            <template is="dom-if" if="[[currentGroup]]">
+              <div class="group-container">
+                <de-array data="[[currentGroupData]]" def="[[currentGroup]]"></de-array>
+              </div>
+            </template>
+          </div>
+        </template>
+        <!-- collection-container - end -->
+      </div>
+    </template>
+    <!-- local DOM - end -->
+  </template>
+  <script src="de-collection.coffee-compiled.js"></script>
+</dom-module>

@@ -1,0 +1,4754 @@
+[
+    {
+        "name": "Mallampati",
+        "examinationValueList": [
+            {
+                "value": "1"
+            },
+            {
+                "value": "2"
+            }
+        ]
+    },
+    {
+        "name": "Mouth opening",
+        "examinationValueList": [
+            {
+                "value": "3 finger"
+            },
+            {
+                "value": "> 3 cm"
+            },
+            {
+                "value": "< 3 cm"
+            },
+            {
+                "value": "> 3 finger"
+            },
+            {
+                "value": "2.5 finger"
+            },
+            {
+                "value": "2 finger"
+            },
+            {
+                "value": "< 2 finger"
+            }
+        ]
+    },
+    {
+        "name": "Thyro-Mental Distance (TMD)",
+        "examinationValueList": [
+            {
+                "value": "> 3 finger"
+            },
+            {
+                "value": "3 finger"
+            },
+            {
+                "value": "2.5 finger"
+            },
+            {
+                "value": "< 2 finger"
+            },
+            {
+                "value": "2 finger"
+            }
+        ]
+    },
+    {
+        "name": "Mandibular sublaxation",
+        "examinationValueList": [
+            {
+                "value": "Present"
+            },
+            {
+                "value": "Absent"
+            }
+        ]
+    },
+    {
+        "name": "Atlanto-Axial Joint Extension",
+        "examinationValueList": [
+            {
+                "value": "Grade 1 (>35%)"
+            },
+            {
+                "value": "Grade 2 (22-34%)"
+            },
+            {
+                "value": "Grade 3 (12-21%)"
+            },
+            {
+                "value": "Grade 4 (<12%)"
+            }
+        ]
+    },
+    {
+        "name": "Neck mobility",
+        "examinationValueList": [
+            {
+                "value": "Good Range of Neck Movement"
+            },
+            {
+                "value": "Decreased flexion"
+            },
+            {
+                "value": "Decreased extension"
+            },
+            {
+                "value": "Restricted side to side movement"
+            },
+            {
+                "value": "Pain on movement"
+            },
+            {
+                "value": "Paresthesia in arm/hand on movement"
+            },
+            {
+                "value": "History of dizziness on extension"
+            },
+            {
+                "value": "History of syncope on extension"
+            }
+        ]
+    },
+    {
+        "name": "Teeth",
+        "examinationValueList": [
+            {
+                "value": "Own Teeth"
+            },
+            {
+                "value": "No Loose Teeth"
+            },
+            {
+                "value": "No Cap or Crown"
+            },
+            {
+                "value": "Loose (Top)",
+                "hasValue": true
+            },
+            {
+                "value": "Loose (bottom)",
+                "hasValue": true
+            },
+            {
+                "value": "Broken tooth (Top)",
+                "hasValue": true
+            },
+            {
+                "value": "Broken tooth (bottom)",
+                "hasValue": true
+            },
+            {
+                "value": "Missing (Top)",
+                "hasValue": true
+            },
+            {
+                "value": "Missing (bottom)",
+                "hasValue": true
+            },
+            {
+                "value": "Cap (Top)",
+                "hasValue": true
+            },
+            {
+                "value": "Cap (Bottom)",
+                "hasValue": true
+            },
+            {
+                "value": "Crown (Top)",
+                "hasValue": true
+            },
+            {
+                "value": "Crown (bottom)",
+                "hasValue": true
+            },
+            {
+                "value": "Other",
+                "hasValue": true
+            }
+        ]
+    },
+    {
+        "name": "Denture",
+        "examinationValueList": [
+            {
+                "value": "No Denture"
+            },
+            {
+                "value": "Full"
+            },
+            {
+                "value": "Top partial"
+            },
+            {
+                "value": "Bottom partial"
+            },
+            {
+                "value": "Partial top & bottom"
+            },
+            {
+                "value": "Top"
+            },
+            {
+                "value": "Bottom"
+            }
+        ]
+    },
+    {
+        "name": "Anatomical",
+        "examinationValueList": [
+            {
+                "value": "Anatomical",
+                "hasValue": true
+            }
+        ]
+    },
+    {
+        "name": "Sacral oedema",
+        "examinationValueList": [
+            {
+                "value": "Nil"
+            },
+            {
+                "value": "+"
+            },
+            {
+                "value": "++"
+            },
+            {
+                "value": "+++"
+            }
+        ]
+    },
+    {
+        "name": "Pedal oedema (pitting)",
+        "examinationValueList": [
+            {
+                "value": "Nil"
+            },
+            {
+                "value": "+"
+            },
+            {
+                "value": "++"
+            },
+            {
+                "value": "+++"
+            }
+        ]
+    },
+    {
+        "name": "Pedal oedema (non-pitting)",
+        "examinationValueList": [
+            {
+                "value": "Nil"
+            },
+            {
+                "value": "+"
+            },
+            {
+                "value": "++"
+            },
+            {
+                "value": "+++"
+            }
+        ]
+    },
+    {
+        "name": "Apical impulse",
+        "examinationValueList": [
+            {
+                "value": "Normal"
+            },
+            {
+                "value": "Displaced lateral"
+            },
+            {
+                "value": "Displaced inferior"
+            },
+            {
+                "value": "Palpable S3"
+            },
+            {
+                "value": "Palpable S4"
+            }
+        ]
+    },
+    {
+        "name": "Thrills",
+        "examinationValueList": [
+            {
+                "value": "NIL"
+            },
+            {
+                "value": "Aortic area"
+            },
+            {
+                "value": "Tricuspid valve area"
+            },
+            {
+                "value": "Apical"
+            },
+            {
+                "value": "Mitral valve area"
+            }
+        ]
+    },
+    {
+        "name": "Other Palpation",
+        "examinationValueList": [
+            {
+                "value": "Other",
+                "hasValue": true
+            }
+        ]
+    },
+    {
+        "name": "Auscultation",
+        "examinationValueList": [
+            {
+                "value": "S1 & S2"
+            },
+            {
+                "value": "S3 present"
+            },
+            {
+                "value": "S4 present"
+            },
+            {
+                "value": "S3 & S4 present"
+            }
+        ]
+    },
+    {
+        "name": "Systolic click",
+        "examinationValueList": [
+            {
+                "value": "Early Systole"
+            },
+            {
+                "value": "Late Systole"
+            }
+        ]
+    },
+    {
+        "name": "Opening Snap",
+        "examinationValueList": [
+            {
+                "value": "Early Diastole"
+            }
+        ]
+    },
+    {
+        "name": "Basal Crackles",
+        "examinationValueList": [
+            {
+                "value": "Nil"
+            },
+            {
+                "value": "+"
+            },
+            {
+                "value": "++"
+            },
+            {
+                "value": "+++"
+            }
+        ]
+    },
+    {
+        "name": "Midsystolic (Murmur grade)",
+        "examinationValueList": [
+            {
+                "value": "1"
+            },
+            {
+                "value": "2"
+            },
+            {
+                "value": "3"
+            },
+            {
+                "value": "4"
+            },
+            {
+                "value": "5"
+            },
+            {
+                "value": "6"
+            }
+        ]
+    },
+    {
+        "name": "Midsystolic (Murmur quality)",
+        "examinationValueList": [
+            {
+                "value": "Low pitch"
+            },
+            {
+                "value": "Medium pitch"
+            },
+            {
+                "value": "High pitch"
+            }
+        ]
+    },
+    {
+        "name": "Pansystolic (Murmur grade)",
+        "examinationValueList": [
+            {
+                "value": "1"
+            },
+            {
+                "value": "2"
+            },
+            {
+                "value": "3"
+            },
+            {
+                "value": "4"
+            },
+            {
+                "value": "5"
+            },
+            {
+                "value": "6"
+            }
+        ]
+    },
+    {
+        "name": "Pansystolic (Murmur quality)",
+        "examinationValueList": [
+            {
+                "value": "Low pitch"
+            },
+            {
+                "value": "Medium pitch"
+            },
+            {
+                "value": "High pitch"
+            }
+        ]
+    },
+    {
+        "name": "Latesystolic (Murmur grade)",
+        "examinationValueList": [
+            {
+                "value": "1"
+            },
+            {
+                "value": "2"
+            },
+            {
+                "value": "3"
+            },
+            {
+                "value": "4"
+            },
+            {
+                "value": "5"
+            },
+            {
+                "value": "6"
+            }
+        ]
+    },
+    {
+        "name": "Latesystolic (Murmur quality)",
+        "examinationValueList": [
+            {
+                "value": "Low pitch"
+            },
+            {
+                "value": "Medium pitch"
+            },
+            {
+                "value": "High pitch"
+            }
+        ]
+    },
+    {
+        "name": "Earley Diastolic (Murmur grade)",
+        "examinationValueList": [
+            {
+                "value": "1"
+            },
+            {
+                "value": "2"
+            },
+            {
+                "value": "3"
+            },
+            {
+                "value": "4"
+            },
+            {
+                "value": "5"
+            },
+            {
+                "value": "6"
+            }
+        ]
+    },
+    {
+        "name": "Earley Diastolic (Murmur quality)",
+        "examinationValueList": [
+            {
+                "value": "Low pitch"
+            },
+            {
+                "value": "Medium pitch"
+            },
+            {
+                "value": "High pitch"
+            }
+        ]
+    },
+    {
+        "name": "Mid-diastolic (Murmur grade)",
+        "examinationValueList": [
+            {
+                "value": "1"
+            },
+            {
+                "value": "2"
+            },
+            {
+                "value": "3"
+            },
+            {
+                "value": "4"
+            },
+            {
+                "value": "5"
+            },
+            {
+                "value": "6"
+            }
+        ]
+    },
+    {
+        "name": "Mid-diastolic (Murmur quality)",
+        "examinationValueList": [
+            {
+                "value": "Low pitch"
+            },
+            {
+                "value": "Medium pitch"
+            },
+            {
+                "value": "High pitch"
+            }
+        ]
+    },
+    {
+        "name": "Presystolic (Murmur grade)",
+        "examinationValueList": [
+            {
+                "value": "1"
+            },
+            {
+                "value": "2"
+            },
+            {
+                "value": "3"
+            },
+            {
+                "value": "4"
+            },
+            {
+                "value": "5"
+            },
+            {
+                "value": "6"
+            }
+        ]
+    },
+    {
+        "name": "Presystolic (Murmur quality)",
+        "examinationValueList": [
+            {
+                "value": "Low pitch"
+            },
+            {
+                "value": "Medium pitch"
+            },
+            {
+                "value": "High pitch"
+            }
+        ]
+    },
+    {
+        "name": "Holosystolic (Murmur grade)",
+        "examinationValueList": [
+            {
+                "value": "1"
+            },
+            {
+                "value": "2"
+            },
+            {
+                "value": "3"
+            },
+            {
+                "value": "4"
+            },
+            {
+                "value": "5"
+            },
+            {
+                "value": "6"
+            }
+        ]
+    },
+    {
+        "name": "Holosystolic (Murmur quality)",
+        "examinationValueList": [
+            {
+                "value": "Low pitch"
+            },
+            {
+                "value": "Medium pitch"
+            },
+            {
+                "value": "High pitch"
+            }
+        ]
+    },
+    {
+        "name": "Innocent (Murmur grade)",
+        "examinationValueList": [
+            {
+                "value": "1"
+            },
+            {
+                "value": "2"
+            },
+            {
+                "value": "3"
+            },
+            {
+                "value": "4"
+            },
+            {
+                "value": "5"
+            },
+            {
+                "value": "6"
+            }
+        ]
+    },
+    {
+        "name": "Innocent (Murmur quality)",
+        "examinationValueList": [
+            {
+                "value": "Low pitch"
+            },
+            {
+                "value": "Medium pitch"
+            },
+            {
+                "value": "High pitch"
+            }
+        ]
+    },
+    {
+        "name": "Musical (Murmur grade)",
+        "examinationValueList": [
+            {
+                "value": "1"
+            },
+            {
+                "value": "2"
+            },
+            {
+                "value": "3"
+            },
+            {
+                "value": "4"
+            },
+            {
+                "value": "5"
+            },
+            {
+                "value": "6"
+            }
+        ]
+    },
+    {
+        "name": "Musical (Murmur quality)",
+        "examinationValueList": [
+            {
+                "value": "Low pitch"
+            },
+            {
+                "value": "Medium pitch"
+            },
+            {
+                "value": "High pitch"
+            }
+        ]
+    },
+    {
+        "name": "Pansystolic (Murmur grade)",
+        "examinationValueList": [
+            {
+                "value": "1"
+            },
+            {
+                "value": "2"
+            },
+            {
+                "value": "3"
+            },
+            {
+                "value": "4"
+            },
+            {
+                "value": "5"
+            },
+            {
+                "value": "6"
+            }
+        ]
+    },
+    {
+        "name": "Pansystolic (Murmur quality)",
+        "examinationValueList": [
+            {
+                "value": "Low pitch"
+            },
+            {
+                "value": "Medium pitch"
+            },
+            {
+                "value": "High pitch"
+            }
+        ]
+    },
+    {
+        "name": "Regurgitant (Murmur grade)",
+        "examinationValueList": [
+            {
+                "value": "1"
+            },
+            {
+                "value": "2"
+            },
+            {
+                "value": "3"
+            },
+            {
+                "value": "4"
+            },
+            {
+                "value": "5"
+            },
+            {
+                "value": "6"
+            }
+        ]
+    },
+    {
+        "name": "Regurgitant (Murmur quality)",
+        "examinationValueList": [
+            {
+                "value": "Low pitch"
+            },
+            {
+                "value": "Medium pitch"
+            },
+            {
+                "value": "High pitch"
+            }
+        ]
+    },
+    {
+        "name": "Hemic (Murmur grade)",
+        "examinationValueList": [
+            {
+                "value": "1"
+            },
+            {
+                "value": "2"
+            },
+            {
+                "value": "3"
+            },
+            {
+                "value": "4"
+            },
+            {
+                "value": "5"
+            },
+            {
+                "value": "6"
+            }
+        ]
+    },
+    {
+        "name": "Hemic (Murmur quality)",
+        "examinationValueList": [
+            {
+                "value": "Low pitch"
+            },
+            {
+                "value": "Medium pitch"
+            },
+            {
+                "value": "High pitch"
+            }
+        ]
+    },
+    {
+        "name": "Flow (Murmur grade)",
+        "examinationValueList": [
+            {
+                "value": "1"
+            },
+            {
+                "value": "2"
+            },
+            {
+                "value": "3"
+            },
+            {
+                "value": "4"
+            },
+            {
+                "value": "5"
+            },
+            {
+                "value": "6"
+            }
+        ]
+    },
+    {
+        "name": "Flow (Murmur quality)",
+        "examinationValueList": [
+            {
+                "value": "Low pitch"
+            },
+            {
+                "value": "Medium pitch"
+            },
+            {
+                "value": "High pitch"
+            }
+        ]
+    },
+    {
+        "name": "Austin Flint (Murmur grade)",
+        "examinationValueList": [
+            {
+                "value": "1"
+            },
+            {
+                "value": "2"
+            },
+            {
+                "value": "3"
+            },
+            {
+                "value": "4"
+            },
+            {
+                "value": "5"
+            },
+            {
+                "value": "6"
+            }
+        ]
+    },
+    {
+        "name": "Austin Flint (Murmur quality)",
+        "examinationValueList": [
+            {
+                "value": "Low pitch"
+            },
+            {
+                "value": "Medium pitch"
+            },
+            {
+                "value": "High pitch"
+            }
+        ]
+    },
+    {
+        "name": "Diamond-Shaped (Murmur grade)",
+        "examinationValueList": [
+            {
+                "value": "1"
+            },
+            {
+                "value": "2"
+            },
+            {
+                "value": "3"
+            },
+            {
+                "value": "4"
+            },
+            {
+                "value": "5"
+            },
+            {
+                "value": "6"
+            }
+        ]
+    },
+    {
+        "name": "Diamond-Shaped (Murmur quality)",
+        "examinationValueList": [
+            {
+                "value": "Low pitch"
+            },
+            {
+                "value": "Medium pitch"
+            },
+            {
+                "value": "High pitch"
+            }
+        ]
+    },
+    {
+        "name": "Pulmonic Stenosis (Murmur grade)",
+        "examinationValueList": [
+            {
+                "value": "1"
+            },
+            {
+                "value": "2"
+            },
+            {
+                "value": "3"
+            },
+            {
+                "value": "4"
+            },
+            {
+                "value": "5"
+            },
+            {
+                "value": "6"
+            }
+        ]
+    },
+    {
+        "name": "Pulmonic Stenosis (Murmur quality)",
+        "examinationValueList": [
+            {
+                "value": "Low pitch"
+            },
+            {
+                "value": "Medium pitch"
+            },
+            {
+                "value": "High pitch"
+            }
+        ]
+    },
+    {
+        "name": "Early Diastolic (Murmur grade)",
+        "examinationValueList": [
+            {
+                "value": "1"
+            },
+            {
+                "value": "2"
+            },
+            {
+                "value": "3"
+            },
+            {
+                "value": "4"
+            },
+            {
+                "value": "5"
+            },
+            {
+                "value": "6"
+            }
+        ]
+    },
+    {
+        "name": "Early Diastolic (Murmur quality)",
+        "examinationValueList": [
+            {
+                "value": "Low pitch"
+            },
+            {
+                "value": "Medium pitch"
+            },
+            {
+                "value": "High pitch"
+            }
+        ]
+    },
+    {
+        "name": "Ejection (Murmur grade)",
+        "examinationValueList": [
+            {
+                "value": "1"
+            },
+            {
+                "value": "2"
+            },
+            {
+                "value": "3"
+            },
+            {
+                "value": "4"
+            },
+            {
+                "value": "5"
+            },
+            {
+                "value": "6"
+            }
+        ]
+    },
+    {
+        "name": "Ejection (Murmur quality)",
+        "examinationValueList": [
+            {
+                "value": "Low pitch"
+            },
+            {
+                "value": "Medium pitch"
+            },
+            {
+                "value": "High pitch"
+            }
+        ]
+    },
+    {
+        "name": "Pulmonic Stenosis (Murmur grade)",
+        "examinationValueList": [
+            {
+                "value": "1"
+            },
+            {
+                "value": "2"
+            },
+            {
+                "value": "3"
+            },
+            {
+                "value": "4"
+            },
+            {
+                "value": "5"
+            },
+            {
+                "value": "6"
+            }
+        ]
+    },
+    {
+        "name": "Pulmonic Stenosis (Murmur quality)",
+        "examinationValueList": [
+            {
+                "value": "Low pitch"
+            },
+            {
+                "value": "Medium pitch"
+            },
+            {
+                "value": "High pitch"
+            }
+        ]
+    },
+    {
+        "name": "Cardiopulmonary (Murmur grade)",
+        "examinationValueList": [
+            {
+                "value": "1"
+            },
+            {
+                "value": "2"
+            },
+            {
+                "value": "3"
+            },
+            {
+                "value": "4"
+            },
+            {
+                "value": "5"
+            },
+            {
+                "value": "6"
+            }
+        ]
+    },
+    {
+        "name": "Cardiopulmonary (Murmur quality)",
+        "examinationValueList": [
+            {
+                "value": "Low pitch"
+            },
+            {
+                "value": "Medium pitch"
+            },
+            {
+                "value": "High pitch"
+            }
+        ]
+    },
+    {
+        "name": "Stills (Murmur grade)",
+        "examinationValueList": [
+            {
+                "value": "1"
+            },
+            {
+                "value": "2"
+            },
+            {
+                "value": "3"
+            },
+            {
+                "value": "4"
+            },
+            {
+                "value": "5"
+            },
+            {
+                "value": "6"
+            }
+        ]
+    },
+    {
+        "name": "Stills (Murmur quality)",
+        "examinationValueList": [
+            {
+                "value": "Low pitch"
+            },
+            {
+                "value": "Medium pitch"
+            },
+            {
+                "value": "High pitch"
+            }
+        ]
+    },
+    {
+        "name": "Other Auscultation",
+        "examinationValueList": [
+            {
+                "value": "Other",
+                "hasValue": true
+            }
+        ]
+    },
+    {
+        "name": "JVP",
+        "examinationValueList": [
+            {
+                "value": "Elevated"
+            },
+            {
+                "value": "Not elevated"
+            }
+        ]
+    },
+    {
+        "name": "Other JVP",
+        "examinationValueList": [
+            {
+                "value": "Other",
+                "hasValue": true
+            }
+        ]
+    },
+    {
+        "name": "General Assessment and Inspection of Resipiratory",
+        "examinationValueList": [
+            {
+                "value": "Breathlessness"
+            },
+            {
+                "value": "Clubbing"
+            },
+            {
+                "value": "Cyanosis"
+            },
+            {
+                "value": "Intercostal recession"
+            },
+            {
+                "value": "Use of accessory respiratory muscles"
+            },
+            {
+                "value": "Venous Pulse"
+            }
+        ]
+    },
+    {
+        "name": "Swelling",
+        "examinationValueList": [
+            {
+                "value": "Swelling",
+                "hasValue": true
+            }
+        ]
+    },
+    {
+        "name": "Pain and tenderness",
+        "examinationValueList": [
+            {
+                "value": "Pain and tenderness",
+                "hasValue": true
+            }
+        ]
+    },
+    {
+        "name": "Tracheal position",
+        "examinationValueList": [
+            {
+                "value": "Midline"
+            },
+            {
+                "value": "Deviated to rt"
+            },
+            {
+                "value": "Deviated to lt"
+            }
+        ]
+    },
+    {
+        "name": "Cardiac impulse",
+        "examinationValueList": [
+            {
+                "value": "Cardiac impulse",
+                "hasValue": true
+            }
+        ]
+    },
+    {
+        "name": "Asymmetry",
+        "examinationValueList": [
+            {
+                "value": "Asymmetry",
+                "hasValue": true
+            }
+        ]
+    },
+    {
+        "name": "Tactile vocal fremitus",
+        "examinationValueList": [
+            {
+                "value": "Tactile vocal fremitus",
+                "hasValue": true
+            }
+        ]
+    },
+    {
+        "name": "Other Respiratory Palpation",
+        "examinationValueList": [
+            {
+                "value": "Other",
+                "hasValue": true
+            }
+        ]
+    },
+    {
+        "name": "Auscultation (Respiratory)",
+        "examinationValueList": [
+            {
+                "value": "Normal breaths sound"
+            },
+            {
+                "value": "Bilateral breaths sound"
+            },
+            {
+                "value": "Vesicular breaths sound"
+            },
+            {
+                "value": "Bronchial breaths sound"
+            },
+            {
+                "value": "Decresed breath sound rt"
+            },
+            {
+                "value": "Decresed breath sound lt"
+            },
+            {
+                "value": "Ronchi +"
+            },
+            {
+                "value": "Ronchi ++"
+            },
+            {
+                "value": "Ronchi +++"
+            },
+            {
+                "value": "Wheeze +"
+            },
+            {
+                "value": "Wheeze ++"
+            },
+            {
+                "value": "Wheeze +++"
+            },
+            {
+                "value": "Vocal fremitus and resonance: whispering pectoriloquy"
+            },
+            {
+                "value": "Vocal fremitus and resonance: whispering aegophony"
+            },
+            {
+                "value": "Pleural rub"
+            }
+        ]
+    },
+    {
+        "name": "Eye Opening (E)",
+        "examinationValueList": [
+            {
+                "value": "4 = spontaneous"
+            },
+            {
+                "value": "3 = to voice"
+            },
+            {
+                "value": "2 = to pain"
+            },
+            {
+                "value": "1 = none"
+            }
+        ]
+    },
+    {
+        "name": "Verbal Response (V)",
+        "examinationValueList": [
+            {
+                "value": "5 = normal conversation"
+            },
+            {
+                "value": "4 = disoriented conversation"
+            },
+            {
+                "value": "3 = words, but not coherent"
+            },
+            {
+                "value": "2 = no words, only sounds"
+            },
+            {
+                "value": "1 = none"
+            }
+        ]
+    },
+    {
+        "name": "Motor Response (M)",
+        "examinationValueList": [
+            {
+                "value": "6 = normal"
+            },
+            {
+                "value": "5 = localized to pain"
+            },
+            {
+                "value": "4 = withdraws to pain"
+            },
+            {
+                "value": "3 = decorticate posture"
+            },
+            {
+                "value": "2 = decerebrate"
+            },
+            {
+                "value": "1 = none"
+            }
+        ]
+    },
+    {
+        "name": "WFSN Grading",
+        "examinationValueList": [
+            {
+                "value": "Grade 1 (GCS15 , Focal Neurological Deficit - Absent)"
+            },
+            {
+                "value": "Grade 2 (GCS 13-14 , Focal Neurological Deficit - Absent)"
+            },
+            {
+                "value": "Grade 3 (GCS13 - 14 , Focal Neurological Deficit - Present)"
+            },
+            {
+                "value": "Grade 4 (GCS 7-12 , Focal Neurological Deficit - Absent or Present)"
+            },
+            {
+                "value": "Grade 5 (GCS <7 , Focal Neurological Deficit - Absent or Present)"
+            }
+        ]
+    },
+    {
+        "name": "Orientation",
+        "examinationValueList": [
+            {
+                "value": "What is the time"
+            },
+            {
+                "value": "What is the date"
+            },
+            {
+                "value": "What is the day"
+            },
+            {
+                "value": "What is the month"
+            },
+            {
+                "value": "What is the year"
+            },
+            {
+                "value": "What is the name of the ward"
+            },
+            {
+                "value": "What is the name of the hospital"
+            },
+            {
+                "value": "What is the name of the town"
+            },
+            {
+                "value": "What is the name of the town"
+            },
+            {
+                "value": "What is the name of the district"
+            },
+            {
+                "value": "What is the name of the country"
+            }
+        ]
+    },
+    {
+        "name": "Registration",
+        "examinationValueList": [
+            {
+                "value": "Can name 3 object"
+            },
+            {
+                "value": "Can name 2 object"
+            },
+            {
+                "value": "Can name 1 object"
+            }
+        ]
+    },
+    {
+        "name": "Attention and Calculation",
+        "examinationValueList": [
+            {
+                "value": "Can subtract 7 from 100"
+            },
+            {
+                "value": "Can subtract 7 from the previous result"
+            },
+            {
+                "value": "Can subtract 7 from the previous result"
+            },
+            {
+                "value": "Can subtract 7 from the previous result"
+            },
+            {
+                "value": "Can subtract 7 from the previous result"
+            }
+        ]
+    },
+    {
+        "name": "Language",
+        "examinationValueList": [
+            {
+                "value": "Can correctly name 2 object"
+            },
+            {
+                "value": "Can correctly name 1 object "
+            },
+            {
+                "value": "Can repeat ‘No ifs, and ands and buts” "
+            },
+            {
+                "value": "3 stage command correctly obeyed"
+            },
+            {
+                "value": "Correct response to a written command"
+            },
+            {
+                "value": "Write a meaningfull sentence"
+            },
+            {
+                "value": "Can copy a complex diagram"
+            }
+        ]
+    },
+    {
+        "name": "Alert",
+        "examinationValueList": [
+            {
+                "value": "Yes"
+            },
+            {
+                "value": "No"
+            }
+        ]
+    },
+    {
+        "name": "Oriented with",
+        "examinationValueList": [
+            {
+                "value": "Time"
+            },
+            {
+                "value": "Space"
+            },
+            {
+                "value": "Person"
+            }
+        ]
+    },
+    {
+        "name": "Level of consciousness",
+        "examinationValueList": [
+            {
+                "value": "Alert"
+            },
+            {
+                "value": "Drowsy"
+            },
+            {
+                "value": "Rousable"
+            },
+            {
+                "value": "Coma"
+            },
+            {
+                "value": "Stupor"
+            },
+            {
+                "value": "Torpor"
+            },
+            {
+                "value": "Delirium"
+            },
+            {
+                "value": "Dementia"
+            },
+            {
+                "value": "Confusion"
+            }
+        ]
+    },
+    {
+        "name": "Orientation of level of consciousness",
+        "examinationValueList": [
+            {
+                "value": "Time"
+            },
+            {
+                "value": "Space"
+            },
+            {
+                "value": "Person"
+            }
+        ]
+    },
+    {
+        "name": "Pupilary Exam",
+        "examinationValueList": [
+            {
+                "value": "PERRLA"
+            }
+        ]
+    },
+    {
+        "name": "Pupilary Exam Size",
+        "examinationValueList": [
+            {
+                "value": "Pinpoint"
+            },
+            {
+                "value": "Small"
+            },
+            {
+                "value": "Midposition"
+            },
+            {
+                "value": "Large"
+            },
+            {
+                "value": "Dilated"
+            }
+        ]
+    },
+    {
+        "name": "Pupilary Exam Shape",
+        "examinationValueList": [
+            {
+                "value": "Ovoid"
+            },
+            {
+                "value": "Keyhole"
+            },
+            {
+                "value": "Irregular"
+            }
+        ]
+    },
+    {
+        "name": "Pupilary Exam Reactivity",
+        "examinationValueList": [
+            {
+                "value": "Normal"
+            },
+            {
+                "value": "Sluggish"
+            },
+            {
+                "value": "Nonreactive"
+            },
+            {
+                "value": "Fixed"
+            },
+            {
+                "value": "Hippus phenomenon"
+            }
+        ]
+    },
+    {
+        "name": "Pupilary Exam Other",
+        "examinationValueList": [
+            {
+                "value": "Other",
+                "hasValue": true
+            }
+        ]
+    },
+    {
+        "name": "Muscle bulk",
+        "examinationValueList": [
+            {
+                "value": "Normal"
+            },
+            {
+                "value": "Abnormal"
+            },
+            {
+                "value": "Symmetrical"
+            },
+            {
+                "value": "Asymmetrical"
+            },
+            {
+                "value": "Wasted",
+                "hasValue": true
+            }
+        ]
+    },
+    {
+        "name": "Biceps (Tone Quality)",
+        "examinationValueList": [
+            {
+                "value": "Normal"
+            },
+            {
+                "value": "Increased"
+            },
+            {
+                "value": "Decreased"
+            },
+            {
+                "value": "Symmetrical"
+            },
+            {
+                "value": "Right>Left side"
+            },
+            {
+                "value": "Left> Right Side"
+            }
+        ]
+    },
+    {
+        "name": "Triceps (Tone Quality)",
+        "examinationValueList": [
+            {
+                "value": "Normal"
+            },
+            {
+                "value": "Increased"
+            },
+            {
+                "value": "Decreased"
+            },
+            {
+                "value": "Symmetrical"
+            },
+            {
+                "value": "Right>Left side"
+            },
+            {
+                "value": "Left> Right Side"
+            }
+        ]
+    },
+    {
+        "name": "Deltoid (Tone Quality)",
+        "examinationValueList": [
+            {
+                "value": "Normal"
+            },
+            {
+                "value": "Increased"
+            },
+            {
+                "value": "Decreased"
+            },
+            {
+                "value": "Symmetrical"
+            },
+            {
+                "value": "Right>Left side"
+            },
+            {
+                "value": "Left> Right Side"
+            }
+        ]
+    },
+    {
+        "name": "Radialis (Tone Quality)",
+        "examinationValueList": [
+            {
+                "value": "Normal"
+            },
+            {
+                "value": "Increased"
+            },
+            {
+                "value": "Decreased"
+            },
+            {
+                "value": "Symmetrical"
+            },
+            {
+                "value": "Right>Left side"
+            },
+            {
+                "value": "Left> Right Side"
+            }
+        ]
+    },
+    {
+        "name": "Brachioradialis (Tone Quality)",
+        "examinationValueList": [
+            {
+                "value": "Normal"
+            },
+            {
+                "value": "Increased"
+            },
+            {
+                "value": "Decreased"
+            },
+            {
+                "value": "Symmetrical"
+            },
+            {
+                "value": "Right>Left side"
+            },
+            {
+                "value": "Left> Right Side"
+            }
+        ]
+    },
+    {
+        "name": "Pronator Teres (Tone Quality)",
+        "examinationValueList": [
+            {
+                "value": "Normal"
+            },
+            {
+                "value": "Increased"
+            },
+            {
+                "value": "Decreased"
+            },
+            {
+                "value": "Symmetrical"
+            },
+            {
+                "value": "Right>Left side"
+            },
+            {
+                "value": "Left> Right Side"
+            }
+        ]
+    },
+    {
+        "name": "Quadriceps (Tone Quality)",
+        "examinationValueList": [
+            {
+                "value": "Normal"
+            },
+            {
+                "value": "Increased"
+            },
+            {
+                "value": "Decreased"
+            },
+            {
+                "value": "Symmetrical"
+            },
+            {
+                "value": "Right>Left side"
+            },
+            {
+                "value": "Left> Right Side"
+            }
+        ]
+    },
+    {
+        "name": "Hamstring (Tone Quality)",
+        "examinationValueList": [
+            {
+                "value": "Normal"
+            },
+            {
+                "value": "Increased"
+            },
+            {
+                "value": "Decreased"
+            },
+            {
+                "value": "Symmetrical"
+            },
+            {
+                "value": "Right>Left side"
+            },
+            {
+                "value": "Left> Right Side"
+            }
+        ]
+    },
+    {
+        "name": "Gastrocnemius (Tone Quality)",
+        "examinationValueList": [
+            {
+                "value": "Normal"
+            },
+            {
+                "value": "Increased"
+            },
+            {
+                "value": "Decreased"
+            },
+            {
+                "value": "Symmetrical"
+            },
+            {
+                "value": "Right>Left side"
+            },
+            {
+                "value": "Left> Right Side"
+            }
+        ]
+    },
+    {
+        "name": "Other Muscle (Tone Quality)",
+        "examinationValueList": [
+            {
+                "value": "Other Muscle Name",
+                "hasValue": true
+            },
+            {
+                "value": "Normal"
+            },
+            {
+                "value": "Increased"
+            },
+            {
+                "value": "Decreased"
+            },
+            {
+                "value": "Symmetrical"
+            },
+            {
+                "value": "Right>Left side"
+            },
+            {
+                "value": "Left> Right Side"
+            }
+        ]
+    },
+    {
+        "name": "Muscle Strength",
+        "examinationValueList": [
+            {
+                "value": "0/5"
+            },
+            {
+                "value": "1/5"
+            },
+            {
+                "value": "2/5"
+            },
+            {
+                "value": "3/5"
+            },
+            {
+                "value": "4/5"
+            },
+            {
+                "value": "5/5"
+            }
+        ]
+    },
+    {
+        "name": "Wrists (Movement Tested)",
+        "examinationValueList": [
+            {
+                "value": "Abduction"
+            },
+            {
+                "value": "Adduction"
+            },
+            {
+                "value": "Grip"
+            },
+            {
+                "value": "Strength"
+            },
+            {
+                "value": "Extension"
+            },
+            {
+                "value": "Flexion"
+            }
+        ]
+    },
+    {
+        "name": "Wrists (Response To Movement)",
+        "examinationValueList": [
+            {
+                "value": "Normal"
+            },
+            {
+                "value": "Restricted"
+            },
+            {
+                "value": "Stiff"
+            }
+        ]
+    },
+    {
+        "name": "Elbow (Movement Tested)",
+        "examinationValueList": [
+            {
+                "value": "Abduction"
+            },
+            {
+                "value": "Adduction"
+            },
+            {
+                "value": "Grip"
+            },
+            {
+                "value": "Strength"
+            },
+            {
+                "value": "Extension"
+            },
+            {
+                "value": "Flexion"
+            }
+        ]
+    },
+    {
+        "name": "Elbow (Response To Movement)",
+        "examinationValueList": [
+            {
+                "value": "Normal"
+            },
+            {
+                "value": "Restricted"
+            },
+            {
+                "value": "Stiff"
+            }
+        ]
+    },
+    {
+        "name": "Shoulders (Movement Tested)",
+        "examinationValueList": [
+            {
+                "value": "Abduction"
+            },
+            {
+                "value": "Adduction"
+            },
+            {
+                "value": "Grip"
+            },
+            {
+                "value": "Strength"
+            },
+            {
+                "value": "Extension"
+            },
+            {
+                "value": "Flexion"
+            }
+        ]
+    },
+    {
+        "name": "Shoulders (Response To Movement)",
+        "examinationValueList": [
+            {
+                "value": "Normal"
+            },
+            {
+                "value": "Restricted"
+            },
+            {
+                "value": "Stiff"
+            }
+        ]
+    },
+    {
+        "name": "Hips (Movement Tested)",
+        "examinationValueList": [
+            {
+                "value": "Abduction"
+            },
+            {
+                "value": "Adduction"
+            },
+            {
+                "value": "Grip"
+            },
+            {
+                "value": "Strength"
+            },
+            {
+                "value": "Extension"
+            },
+            {
+                "value": "Flexion"
+            }
+        ]
+    },
+    {
+        "name": "Hips (Response To Movement)",
+        "examinationValueList": [
+            {
+                "value": "Normal"
+            },
+            {
+                "value": "Restricted"
+            },
+            {
+                "value": "Stiff"
+            }
+        ]
+    },
+    {
+        "name": "Knee (Movement Tested)",
+        "examinationValueList": [
+            {
+                "value": "Abduction"
+            },
+            {
+                "value": "Adduction"
+            },
+            {
+                "value": "Grip"
+            },
+            {
+                "value": "Strength"
+            },
+            {
+                "value": "Extension"
+            },
+            {
+                "value": "Flexion"
+            }
+        ]
+    },
+    {
+        "name": "Knee (Response To Movement)",
+        "examinationValueList": [
+            {
+                "value": "Normal"
+            },
+            {
+                "value": "Restricted"
+            },
+            {
+                "value": "Stiff"
+            }
+        ]
+    },
+    {
+        "name": "Feet (Movement Tested)",
+        "examinationValueList": [
+            {
+                "value": "Abduction"
+            },
+            {
+                "value": "Adduction"
+            },
+            {
+                "value": "Grip"
+            },
+            {
+                "value": "Strength"
+            },
+            {
+                "value": "Extension"
+            },
+            {
+                "value": "Flexion"
+            }
+        ]
+    },
+    {
+        "name": "Feet (Response To Movement)",
+        "examinationValueList": [
+            {
+                "value": "Normal"
+            },
+            {
+                "value": "Restricted"
+            },
+            {
+                "value": "Stiff"
+            }
+        ]
+    },
+    {
+        "name": "Other Joint (Movement Tested)",
+        "examinationValueList": [
+            {
+                "value": "Other Joint Name",
+                "hasValue": true
+            },
+            {
+                "value": "Abduction"
+            },
+            {
+                "value": "Adduction"
+            },
+            {
+                "value": "Grip"
+            },
+            {
+                "value": "Strength"
+            },
+            {
+                "value": "Extension"
+            },
+            {
+                "value": "Flexion"
+            }
+        ]
+    },
+    {
+        "name": "Other Joint (Response To Movement)",
+        "examinationValueList": [
+            {
+                "value": "Other Joint Name",
+                "hasValue": true
+            },
+            {
+                "value": "Normal"
+            },
+            {
+                "value": "Restricted"
+            },
+            {
+                "value": "Stiff"
+            }
+        ]
+    },
+    {
+        "name": "Tremor",
+        "examinationValueList": [
+            {
+                "value": "Essential"
+            },
+            {
+                "value": "Parkisonian"
+            },
+            {
+                "value": "Dystonic"
+            },
+            {
+                "value": "Cerebellar"
+            },
+            {
+                "value": "Psychogenic"
+            },
+            {
+                "value": "Orthostatic"
+            },
+            {
+                "value": "Physiologic"
+            },
+            {
+                "value": "Alchoholic"
+            }
+        ]
+    },
+    {
+        "name": "Fasciculation",
+        "examinationValueList": [
+            {
+                "value": "Present"
+            },
+            {
+                "value": "Absent"
+            }
+        ]
+    },
+    {
+        "name": "Dermatome C1",
+        "examinationValueList": [
+            {
+                "value": "Feels cold, soft touch, pin prick: all sensation are normal"
+            },
+            {
+                "value": "Feels Cold"
+            },
+            {
+                "value": "Feels Soft Touch"
+            },
+            {
+                "value": "Feels Pain from needle"
+            },
+            {
+                "value": "Do not Feel Cold"
+            },
+            {
+                "value": "Do not Feel Soft Touch"
+            },
+            {
+                "value": "Do not Feel Pain from needle"
+            },
+            {
+                "value": "Right side more than left"
+            },
+            {
+                "value": "Left side more than Right"
+            }
+        ]
+    },
+    {
+        "name": "Dermatome C2",
+        "examinationValueList": [
+            {
+                "value": "Feels cold, soft touch, pin prick: all sensation are normal"
+            },
+            {
+                "value": "Feels Cold"
+            },
+            {
+                "value": "Feels Soft Touch"
+            },
+            {
+                "value": "Feels Pain from needle"
+            },
+            {
+                "value": "Do not Feel Cold"
+            },
+            {
+                "value": "Do not Feel Soft Touch"
+            },
+            {
+                "value": "Do not Feel Pain from needle"
+            },
+            {
+                "value": "Right side more than left"
+            },
+            {
+                "value": "Left side more than Right"
+            }
+        ]
+    },
+    {
+        "name": "Dermatome C3",
+        "examinationValueList": [
+            {
+                "value": "Feels cold, soft touch, pin prick: all sensation are normal"
+            },
+            {
+                "value": "Feels Cold"
+            },
+            {
+                "value": "Feels Soft Touch"
+            },
+            {
+                "value": "Feels Pain from needle"
+            },
+            {
+                "value": "Do not Feel Cold"
+            },
+            {
+                "value": "Do not Feel Soft Touch"
+            },
+            {
+                "value": "Do not Feel Pain from needle"
+            },
+            {
+                "value": "Right side more than left"
+            },
+            {
+                "value": "Left side more than Right"
+            }
+        ]
+    },
+    {
+        "name": "Dermatome T1",
+        "examinationValueList": [
+            {
+                "value": "Feels cold, soft touch, pin prick: all sensation are normal"
+            },
+            {
+                "value": "Feels Cold"
+            },
+            {
+                "value": "Feels Soft Touch"
+            },
+            {
+                "value": "Feels Pain from needle"
+            },
+            {
+                "value": "Do not Feel Cold"
+            },
+            {
+                "value": "Do not Feel Soft Touch"
+            },
+            {
+                "value": "Do not Feel Pain from needle"
+            },
+            {
+                "value": "Right side more than left"
+            },
+            {
+                "value": "Left side more than Right"
+            }
+        ]
+    },
+    {
+        "name": "Dermatome T2",
+        "examinationValueList": [
+            {
+                "value": "Feels cold, soft touch, pin prick: all sensation are normal"
+            },
+            {
+                "value": "Feels Cold"
+            },
+            {
+                "value": "Feels Soft Touch"
+            },
+            {
+                "value": "Feels Pain from needle"
+            },
+            {
+                "value": "Do not Feel Cold"
+            },
+            {
+                "value": "Do not Feel Soft Touch"
+            },
+            {
+                "value": "Do not Feel Pain from needle"
+            },
+            {
+                "value": "Right side more than left"
+            },
+            {
+                "value": "Left side more than Right"
+            }
+        ]
+    },
+    {
+        "name": "Dermatome T3",
+        "examinationValueList": [
+            {
+                "value": "Feels cold, soft touch, pin prick: all sensation are normal"
+            },
+            {
+                "value": "Feels Cold"
+            },
+            {
+                "value": "Feels Soft Touch"
+            },
+            {
+                "value": "Feels Pain from needle"
+            },
+            {
+                "value": "Do not Feel Cold"
+            },
+            {
+                "value": "Do not Feel Soft Touch"
+            },
+            {
+                "value": "Do not Feel Pain from needle"
+            },
+            {
+                "value": "Right side more than left"
+            },
+            {
+                "value": "Left side more than Right"
+            }
+        ]
+    },
+    {
+        "name": "Dermatome T4",
+        "examinationValueList": [
+            {
+                "value": "Feels cold, soft touch, pin prick: all sensation are normal"
+            },
+            {
+                "value": "Feels Cold"
+            },
+            {
+                "value": "Feels Soft Touch"
+            },
+            {
+                "value": "Feels Pain from needle"
+            },
+            {
+                "value": "Do not Feel Cold"
+            },
+            {
+                "value": "Do not Feel Soft Touch"
+            },
+            {
+                "value": "Do not Feel Pain from needle"
+            },
+            {
+                "value": "Right side more than left"
+            },
+            {
+                "value": "Left side more than Right"
+            }
+        ]
+    },
+    {
+        "name": "Dermatome T5",
+        "examinationValueList": [
+            {
+                "value": "Feels cold, soft touch, pin prick: all sensation are normal"
+            },
+            {
+                "value": "Feels Cold"
+            },
+            {
+                "value": "Feels Soft Touch"
+            },
+            {
+                "value": "Feels Pain from needle"
+            },
+            {
+                "value": "Do not Feel Cold"
+            },
+            {
+                "value": "Do not Feel Soft Touch"
+            },
+            {
+                "value": "Do not Feel Pain from needle"
+            },
+            {
+                "value": "Right side more than left"
+            },
+            {
+                "value": "Left side more than Right"
+            }
+        ]
+    },
+    {
+        "name": "Dermatome T6",
+        "examinationValueList": [
+            {
+                "value": "Feels cold, soft touch, pin prick: all sensation are normal"
+            },
+            {
+                "value": "Feels Cold"
+            },
+            {
+                "value": "Feels Soft Touch"
+            },
+            {
+                "value": "Feels Pain from needle"
+            },
+            {
+                "value": "Do not Feel Cold"
+            },
+            {
+                "value": "Do not Feel Soft Touch"
+            },
+            {
+                "value": "Do not Feel Pain from needle"
+            },
+            {
+                "value": "Right side more than left"
+            },
+            {
+                "value": "Left side more than Right"
+            }
+        ]
+    },
+    {
+        "name": "Dermatome T7",
+        "examinationValueList": [
+            {
+                "value": "Feels cold, soft touch, pin prick: all sensation are normal"
+            },
+            {
+                "value": "Feels Cold"
+            },
+            {
+                "value": "Feels Soft Touch"
+            },
+            {
+                "value": "Feels Pain from needle"
+            },
+            {
+                "value": "Do not Feel Cold"
+            },
+            {
+                "value": "Do not Feel Soft Touch"
+            },
+            {
+                "value": "Do not Feel Pain from needle"
+            },
+            {
+                "value": "Right side more than left"
+            },
+            {
+                "value": "Left side more than Right"
+            }
+        ]
+    },
+    {
+        "name": "Dermatome T8",
+        "examinationValueList": [
+            {
+                "value": "Feels cold, soft touch, pin prick: all sensation are normal"
+            },
+            {
+                "value": "Feels Cold"
+            },
+            {
+                "value": "Feels Soft Touch"
+            },
+            {
+                "value": "Feels Pain from needle"
+            },
+            {
+                "value": "Do not Feel Cold"
+            },
+            {
+                "value": "Do not Feel Soft Touch"
+            },
+            {
+                "value": "Do not Feel Pain from needle"
+            },
+            {
+                "value": "Right side more than left"
+            },
+            {
+                "value": "Left side more than Right"
+            }
+        ]
+    },
+    {
+        "name": "Dermatome T9",
+        "examinationValueList": [
+            {
+                "value": "Feels cold, soft touch, pin prick: all sensation are normal"
+            },
+            {
+                "value": "Feels Cold"
+            },
+            {
+                "value": "Feels Soft Touch"
+            },
+            {
+                "value": "Feels Pain from needle"
+            },
+            {
+                "value": "Do not Feel Cold"
+            },
+            {
+                "value": "Do not Feel Soft Touch"
+            },
+            {
+                "value": "Do not Feel Pain from needle"
+            },
+            {
+                "value": "Right side more than left"
+            },
+            {
+                "value": "Left side more than Right"
+            }
+        ]
+    },
+    {
+        "name": "Dermatome T10",
+        "examinationValueList": [
+            {
+                "value": "Feels cold, soft touch, pin prick: all sensation are normal"
+            },
+            {
+                "value": "Feels Cold"
+            },
+            {
+                "value": "Feels Soft Touch"
+            },
+            {
+                "value": "Feels Pain from needle"
+            },
+            {
+                "value": "Do not Feel Cold"
+            },
+            {
+                "value": "Do not Feel Soft Touch"
+            },
+            {
+                "value": "Do not Feel Pain from needle"
+            },
+            {
+                "value": "Right side more than left"
+            },
+            {
+                "value": "Left side more than Right"
+            }
+        ]
+    },
+    {
+        "name": "Dermatome T11",
+        "examinationValueList": [
+            {
+                "value": "Feels cold, soft touch, pin prick: all sensation are normal"
+            },
+            {
+                "value": "Feels Cold"
+            },
+            {
+                "value": "Feels Soft Touch"
+            },
+            {
+                "value": "Feels Pain from needle"
+            },
+            {
+                "value": "Do not Feel Cold"
+            },
+            {
+                "value": "Do not Feel Soft Touch"
+            },
+            {
+                "value": "Do not Feel Pain from needle"
+            },
+            {
+                "value": "Right side more than left"
+            },
+            {
+                "value": "Left side more than Right"
+            }
+        ]
+    },
+    {
+        "name": "Dermatome L1",
+        "examinationValueList": [
+            {
+                "value": "Feels cold, soft touch, pin prick: all sensation are normal"
+            },
+            {
+                "value": "Feels Cold"
+            },
+            {
+                "value": "Feels Soft Touch"
+            },
+            {
+                "value": "Feels Pain from needle"
+            },
+            {
+                "value": "Do not Feel Cold"
+            },
+            {
+                "value": "Do not Feel Soft Touch"
+            },
+            {
+                "value": "Do not Feel Pain from needle"
+            },
+            {
+                "value": "Right side more than left"
+            },
+            {
+                "value": "Left side more than Right"
+            }
+        ]
+    },
+    {
+        "name": "Dermatome L2",
+        "examinationValueList": [
+            {
+                "value": "Feels cold, soft touch, pin prick: all sensation are normal"
+            },
+            {
+                "value": "Feels Cold"
+            },
+            {
+                "value": "Feels Soft Touch"
+            },
+            {
+                "value": "Feels Pain from needle"
+            },
+            {
+                "value": "Do not Feel Cold"
+            },
+            {
+                "value": "Do not Feel Soft Touch"
+            },
+            {
+                "value": "Do not Feel Pain from needle"
+            },
+            {
+                "value": "Right side more than left"
+            },
+            {
+                "value": "Left side more than Right"
+            }
+        ]
+    },
+    {
+        "name": "Dermatome L3",
+        "examinationValueList": [
+            {
+                "value": "Feels cold, soft touch, pin prick: all sensation are normal"
+            },
+            {
+                "value": "Feels Cold"
+            },
+            {
+                "value": "Feels Soft Touch"
+            },
+            {
+                "value": "Feels Pain from needle"
+            },
+            {
+                "value": "Do not Feel Cold"
+            },
+            {
+                "value": "Do not Feel Soft Touch"
+            },
+            {
+                "value": "Do not Feel Pain from needle"
+            },
+            {
+                "value": "Right side more than left"
+            },
+            {
+                "value": "Left side more than Right"
+            }
+        ]
+    },
+    {
+        "name": "Dermatome L4",
+        "examinationValueList": [
+            {
+                "value": "Feels cold, soft touch, pin prick: all sensation are normal"
+            },
+            {
+                "value": "Feels Cold"
+            },
+            {
+                "value": "Feels Soft Touch"
+            },
+            {
+                "value": "Feels Pain from needle"
+            },
+            {
+                "value": "Do not Feel Cold"
+            },
+            {
+                "value": "Do not Feel Soft Touch"
+            },
+            {
+                "value": "Do not Feel Pain from needle"
+            },
+            {
+                "value": "Right side more than left"
+            },
+            {
+                "value": "Left side more than Right"
+            }
+        ]
+    },
+    {
+        "name": "Dermatome L5",
+        "examinationValueList": [
+            {
+                "value": "Feels cold, soft touch, pin prick: all sensation are normal"
+            },
+            {
+                "value": "Feels Cold"
+            },
+            {
+                "value": "Feels Soft Touch"
+            },
+            {
+                "value": "Feels Pain from needle"
+            },
+            {
+                "value": "Do not Feel Cold"
+            },
+            {
+                "value": "Do not Feel Soft Touch"
+            },
+            {
+                "value": "Do not Feel Pain from needle"
+            },
+            {
+                "value": "Right side more than left"
+            },
+            {
+                "value": "Left side more than Right"
+            }
+        ]
+    },
+    {
+        "name": "Dermatome S1",
+        "examinationValueList": [
+            {
+                "value": "Feels cold, soft touch, pin prick: all sensation are normal"
+            },
+            {
+                "value": "Feels Cold"
+            },
+            {
+                "value": "Feels Soft Touch"
+            },
+            {
+                "value": "Feels Pain from needle"
+            },
+            {
+                "value": "Do not Feel Cold"
+            },
+            {
+                "value": "Do not Feel Soft Touch"
+            },
+            {
+                "value": "Do not Feel Pain from needle"
+            },
+            {
+                "value": "Right side more than left"
+            },
+            {
+                "value": "Left side more than Right"
+            }
+        ]
+    },
+    {
+        "name": "Dermatome S2",
+        "examinationValueList": [
+            {
+                "value": "Feels cold, soft touch, pin prick: all sensation are normal"
+            },
+            {
+                "value": "Feels Cold"
+            },
+            {
+                "value": "Feels Soft Touch"
+            },
+            {
+                "value": "Feels Pain from needle"
+            },
+            {
+                "value": "Do not Feel Cold"
+            },
+            {
+                "value": "Do not Feel Soft Touch"
+            },
+            {
+                "value": "Do not Feel Pain from needle"
+            },
+            {
+                "value": "Right side more than left"
+            },
+            {
+                "value": "Left side more than Right"
+            }
+        ]
+    },
+    {
+        "name": "Dermatome S3",
+        "examinationValueList": [
+            {
+                "value": "Feels cold, soft touch, pin prick: all sensation are normal"
+            },
+            {
+                "value": "Feels Cold"
+            },
+            {
+                "value": "Feels Soft Touch"
+            },
+            {
+                "value": "Feels Pain from needle"
+            },
+            {
+                "value": "Do not Feel Cold"
+            },
+            {
+                "value": "Do not Feel Soft Touch"
+            },
+            {
+                "value": "Do not Feel Pain from needle"
+            },
+            {
+                "value": "Right side more than left"
+            },
+            {
+                "value": "Left side more than Right"
+            }
+        ]
+    },
+    {
+        "name": "Dermatome S4",
+        "examinationValueList": [
+            {
+                "value": "Feels cold, soft touch, pin prick: all sensation are normal"
+            },
+            {
+                "value": "Feels Cold"
+            },
+            {
+                "value": "Feels Soft Touch"
+            },
+            {
+                "value": "Feels Pain from needle"
+            },
+            {
+                "value": "Do not Feel Cold"
+            },
+            {
+                "value": "Do not Feel Soft Touch"
+            },
+            {
+                "value": "Do not Feel Pain from needle"
+            },
+            {
+                "value": "Right side more than left"
+            },
+            {
+                "value": "Left side more than Right"
+            }
+        ]
+    },
+    {
+        "name": "Dermatome S5",
+        "examinationValueList": [
+            {
+                "value": "Feels cold, soft touch, pin prick: all sensation are normal"
+            },
+            {
+                "value": "Feels Cold"
+            },
+            {
+                "value": "Feels Soft Touch"
+            },
+            {
+                "value": "Feels Pain from needle"
+            },
+            {
+                "value": "Do not Feel Cold"
+            },
+            {
+                "value": "Do not Feel Soft Touch"
+            },
+            {
+                "value": "Do not Feel Pain from needle"
+            },
+            {
+                "value": "Right side more than left"
+            },
+            {
+                "value": "Left side more than Right"
+            }
+        ]
+    },
+    {
+        "name": "Dermatome Other",
+        "examinationValueList": [
+            {
+                "value": "Feels cold, soft touch, pin prick: all sensation are normal"
+            },
+            {
+                "value": "Feels Cold"
+            },
+            {
+                "value": "Feels Soft Touch"
+            },
+            {
+                "value": "Feels Pain from needle"
+            },
+            {
+                "value": "Do not Feel Cold"
+            },
+            {
+                "value": "Do not Feel Soft Touch"
+            },
+            {
+                "value": "Do not Feel Pain from needle"
+            },
+            {
+                "value": "Right side more than left"
+            },
+            {
+                "value": "Left side more than Right"
+            }
+        ]
+    },
+    {
+        "name": "Position sense",
+        "examinationValueList": [
+            {
+                "value": "Great toe"
+            },
+            {
+                "value": "Lateral/Medial movement"
+            },
+            {
+                "value": "Up/down movement"
+            }
+        ]
+    },
+    {
+        "name": "Vibration",
+        "examinationValueList": [
+            {
+                "value": "Correlates"
+            },
+            {
+                "value": "Can not correlate"
+            }
+        ]
+    },
+    {
+        "name": "2 Point deiscrimination test",
+        "examinationValueList": [
+            {
+                "value": "Can discriminate"
+            },
+            {
+                "value": "Can not discrminate"
+            }
+        ]
+    },
+    {
+        "name": "Monofilament testing score",
+        "examinationValueList": [
+            {
+                "value": "0.5 / 8"
+            },
+            {
+                "value": "1 /8"
+            },
+            {
+                "value": "1.5 / 8"
+            },
+            {
+                "value": "2 / 8"
+            },
+            {
+                "value": "2.5 / 8"
+            },
+            {
+                "value": "3 / 8"
+            },
+            {
+                "value": "3.5 / 8"
+            },
+            {
+                "value": "4 / 8"
+            },
+            {
+                "value": "4.5 / 8"
+            },
+            {
+                "value": "5 / 8"
+            },
+            {
+                "value": "5.5 / 8"
+            },
+            {
+                "value": "6 / 8"
+            },
+            {
+                "value": "6.5 / 8"
+            },
+            {
+                "value": "7 / 8"
+            },
+            {
+                "value": "7.5 / 8"
+            },
+            {
+                "value": "8 / 8"
+            }
+        ]
+    },
+    {
+        "name": "Sensation Other",
+        "examinationValueList": [
+            {
+                "value": "Other",
+                "hasValue": true
+            }
+        ]
+    },
+    {
+        "name": "Biceps Grade",
+        "examinationValueList": [
+            {
+                "value": "0+ (No reflex)"
+            },
+            {
+                "value": "1+ (Hyporeflexia)"
+            },
+            {
+                "value": "2+ (Normal)"
+            },
+            {
+                "value": "3+ (Hyperreflexia)"
+            },
+            {
+                "value": "4+ (Clonus)"
+            }
+        ]
+    },
+    {
+        "name": "Triceps Grade",
+        "examinationValueList": [
+            {
+                "value": "0+ (No reflex)"
+            },
+            {
+                "value": "1+ (Hyporeflexia)"
+            },
+            {
+                "value": "2+ (Normal)"
+            },
+            {
+                "value": "3+ (Hyperreflexia)"
+            },
+            {
+                "value": "4+ (Clonus)"
+            }
+        ]
+    },
+    {
+        "name": "Brachioradialis Grade",
+        "examinationValueList": [
+            {
+                "value": "0+ (No reflex)"
+            },
+            {
+                "value": "1+ (Hyporeflexia)"
+            },
+            {
+                "value": "2+ (Normal)"
+            },
+            {
+                "value": "3+ (Hyperreflexia)"
+            },
+            {
+                "value": "4+ (Clonus)"
+            }
+        ]
+    },
+    {
+        "name": "Patellar Grade",
+        "examinationValueList": [
+            {
+                "value": "0+ (No reflex)"
+            },
+            {
+                "value": "1+ (Hyporeflexia)"
+            },
+            {
+                "value": "2+ (Normal)"
+            },
+            {
+                "value": "3+ (Hyperreflexia)"
+            },
+            {
+                "value": "4+ (Clonus)"
+            }
+        ]
+    },
+    {
+        "name": "Achilles Grade",
+        "examinationValueList": [
+            {
+                "value": "0+ (No reflex)"
+            },
+            {
+                "value": "1+ (Hyporeflexia)"
+            },
+            {
+                "value": "2+ (Normal)"
+            },
+            {
+                "value": "3+ (Hyperreflexia)"
+            },
+            {
+                "value": "4+ (Clonus)"
+            }
+        ]
+    },
+    {
+        "name": "Babinski Grade",
+        "examinationValueList": [
+            {
+                "value": "0+ (No reflex)"
+            },
+            {
+                "value": "1+ (Hyporeflexia)"
+            },
+            {
+                "value": "2+ (Normal)"
+            },
+            {
+                "value": "3+ (Hyperreflexia)"
+            },
+            {
+                "value": "4+ (Clonus)"
+            }
+        ]
+    },
+    {
+        "name": "Other Name of the reflex",
+        "examinationValueList": [
+            {
+                "value": "Other",
+                "hasValue": true
+            }
+        ]
+    },
+    {
+        "name": "Gait",
+        "examinationValueList": [
+            {
+                "value": "Frontal(apraxic)"
+            },
+            {
+                "value": "Parkinsonian"
+            },
+            {
+                "value": "Vestibular"
+            },
+            {
+                "value": "Cerebellar"
+            },
+            {
+                "value": "Spastic"
+            },
+            {
+                "value": "Hemiplegic"
+            },
+            {
+                "value": "Sensory ataxic"
+            },
+            {
+                "value": "High-Stepping"
+            },
+            {
+                "value": "Waddling"
+            }
+        ]
+    },
+    {
+        "name": "Romberg Testing",
+        "examinationValueList": [
+            {
+                "value": "Positive"
+            },
+            {
+                "value": "Negative"
+            }
+        ]
+    },
+    {
+        "name": "Toe walking",
+        "examinationValueList": [
+            {
+                "value": "Can Walk"
+            },
+            {
+                "value": "Can Not Walk"
+            }
+        ]
+    },
+    {
+        "name": "Heel walking",
+        "examinationValueList": [
+            {
+                "value": "Can Walk"
+            },
+            {
+                "value": "Can Not Walk"
+            }
+        ]
+    },
+    {
+        "name": "Cranial nerve All",
+        "examinationValueList": [
+            {
+                "value": "Normal"
+            },
+            {
+                "value": "Abnormal"
+            },
+            {
+                "value": "Damaged"
+            },
+            {
+                "value": "Decreased function"
+            },
+            {
+                "value": "Palsy"
+            }
+        ]
+    },
+    {
+        "name": "Cranial nerve I",
+        "examinationValueList": [
+            {
+                "value": "Normal"
+            },
+            {
+                "value": "Abnormal"
+            },
+            {
+                "value": "Damaged"
+            },
+            {
+                "value": "Decreased function"
+            },
+            {
+                "value": "Palsy"
+            }
+        ]
+    },
+    {
+        "name": "Cranial nerve II",
+        "examinationValueList": [
+            {
+                "value": "Normal"
+            },
+            {
+                "value": "Abnormal"
+            },
+            {
+                "value": "Damaged"
+            },
+            {
+                "value": "Decreased function"
+            },
+            {
+                "value": "Palsy"
+            }
+        ]
+    },
+    {
+        "name": "Cranial nerve III",
+        "examinationValueList": [
+            {
+                "value": "Normal"
+            },
+            {
+                "value": "Abnormal"
+            },
+            {
+                "value": "Damaged"
+            },
+            {
+                "value": "Decreased function"
+            },
+            {
+                "value": "Palsy"
+            }
+        ]
+    },
+    {
+        "name": "Cranial nerve IV",
+        "examinationValueList": [
+            {
+                "value": "Normal"
+            },
+            {
+                "value": "Abnormal"
+            },
+            {
+                "value": "Damaged"
+            },
+            {
+                "value": "Decreased function"
+            },
+            {
+                "value": "Palsy"
+            }
+        ]
+    },
+    {
+        "name": "Cranial nerve V",
+        "examinationValueList": [
+            {
+                "value": "Normal"
+            },
+            {
+                "value": "Abnormal"
+            },
+            {
+                "value": "Damaged"
+            },
+            {
+                "value": "Decreased function"
+            },
+            {
+                "value": "Palsy"
+            }
+        ]
+    },
+    {
+        "name": "Cranial nerve VI",
+        "examinationValueList": [
+            {
+                "value": "Normal"
+            },
+            {
+                "value": "Abnormal"
+            },
+            {
+                "value": "Damaged"
+            },
+            {
+                "value": "Decreased function"
+            },
+            {
+                "value": "Palsy"
+            }
+        ]
+    },
+    {
+        "name": "Cranial nerve VII",
+        "examinationValueList": [
+            {
+                "value": "Normal"
+            },
+            {
+                "value": "Abnormal"
+            },
+            {
+                "value": "Damaged"
+            },
+            {
+                "value": "Decreased function"
+            },
+            {
+                "value": "Palsy"
+            }
+        ]
+    },
+    {
+        "name": "Cranial nerve VIII",
+        "examinationValueList": [
+            {
+                "value": "Normal"
+            },
+            {
+                "value": "Abnormal"
+            },
+            {
+                "value": "Damaged"
+            },
+            {
+                "value": "Decreased function"
+            },
+            {
+                "value": "Palsy"
+            }
+        ]
+    },
+    {
+        "name": "Cranial nerve IX",
+        "examinationValueList": [
+            {
+                "value": "Normal"
+            },
+            {
+                "value": "Abnormal"
+            },
+            {
+                "value": "Damaged"
+            },
+            {
+                "value": "Decreased function"
+            },
+            {
+                "value": "Palsy"
+            }
+        ]
+    },
+    {
+        "name": "Cranial nerve X",
+        "examinationValueList": [
+            {
+                "value": "Normal"
+            },
+            {
+                "value": "Abnormal"
+            },
+            {
+                "value": "Damaged"
+            },
+            {
+                "value": "Decreased function"
+            },
+            {
+                "value": "Palsy"
+            }
+        ]
+    },
+    {
+        "name": "Cranial nerve XI",
+        "examinationValueList": [
+            {
+                "value": "Normal"
+            },
+            {
+                "value": "Abnormal"
+            },
+            {
+                "value": "Damaged"
+            },
+            {
+                "value": "Decreased function"
+            },
+            {
+                "value": "Palsy"
+            }
+        ]
+    },
+    {
+        "name": "Cranial nerve XII",
+        "examinationValueList": [
+            {
+                "value": "Normal"
+            },
+            {
+                "value": "Abnormal"
+            },
+            {
+                "value": "Damaged"
+            },
+            {
+                "value": "Decreased function"
+            },
+            {
+                "value": "Palsy"
+            }
+        ]
+    },
+    {
+        "name": "Cranial nerve Other",
+        "examinationValueList": [
+            {
+                "value": "Other",
+                "hasValue": true
+            }
+        ]
+    },
+    {
+        "name": "Chronic pain examination (Inspection)",
+        "examinationValueList": [
+            {
+                "value": "Café-au-lait spots"
+            },
+            {
+                "value": "Hairy patches"
+            },
+            {
+                "value": "Blotches from heat compression"
+            },
+            {
+                "value": "Localized redness"
+            }
+        ]
+    },
+    {
+        "name": "Forward bending (Range of motion)",
+        "examinationValueList": [
+            {
+                "value": "Degree",
+                "hasValue": true
+            },
+            {
+                "value": "Painfull"
+            },
+            {
+                "value": "Limited"
+            },
+            {
+                "value": "Normal"
+            },
+            {
+                "value": "Restricted"
+            },
+            {
+                "value": "Reproduces the complaining pain"
+            }
+        ]
+    },
+    {
+        "name": "Flexion (Range of motion)",
+        "examinationValueList": [
+            {
+                "value": "Degree",
+                "hasValue": true
+            },
+            {
+                "value": "Painfull"
+            },
+            {
+                "value": "Limited"
+            },
+            {
+                "value": "Normal"
+            },
+            {
+                "value": "Restricted"
+            },
+            {
+                "value": "Reproduces the complaining pain"
+            }
+        ]
+    },
+    {
+        "name": "Extension (Range of motion)",
+        "examinationValueList": [
+            {
+                "value": "Degree",
+                "hasValue": true
+            },
+            {
+                "value": "Painfull"
+            },
+            {
+                "value": "Limited"
+            },
+            {
+                "value": "Normal"
+            },
+            {
+                "value": "Restricted"
+            },
+            {
+                "value": "Reproduces the complaining pain"
+            }
+        ]
+    },
+    {
+        "name": "Side to side movement (Range of motion)",
+        "examinationValueList": [
+            {
+                "value": "Degree",
+                "hasValue": true
+            },
+            {
+                "value": "Painfull"
+            },
+            {
+                "value": "Limited"
+            },
+            {
+                "value": "Normal"
+            },
+            {
+                "value": "Restricted"
+            },
+            {
+                "value": "Reproduces the complaining pain"
+            }
+        ]
+    },
+    {
+        "name": "Lateral movement (Range of motion)",
+        "examinationValueList": [
+            {
+                "value": "Degree",
+                "hasValue": true
+            },
+            {
+                "value": "Painfull"
+            },
+            {
+                "value": "Limited"
+            },
+            {
+                "value": "Normal"
+            },
+            {
+                "value": "Restricted"
+            },
+            {
+                "value": "Reproduces the complaining pain"
+            }
+        ]
+    },
+    {
+        "name": "Rt lateral movement (Range of motion)",
+        "examinationValueList": [
+            {
+                "value": "Degree",
+                "hasValue": true
+            },
+            {
+                "value": "Painfull"
+            },
+            {
+                "value": "Limited"
+            },
+            {
+                "value": "Normal"
+            },
+            {
+                "value": "Restricted"
+            },
+            {
+                "value": "Reproduces the complaining pain"
+            }
+        ]
+    },
+    {
+        "name": "Lt lateral movement (Range of motion)",
+        "examinationValueList": [
+            {
+                "value": "Degree",
+                "hasValue": true
+            },
+            {
+                "value": "Painfull"
+            },
+            {
+                "value": "Limited"
+            },
+            {
+                "value": "Normal"
+            },
+            {
+                "value": "Restricted"
+            },
+            {
+                "value": "Reproduces the complaining pain"
+            }
+        ]
+    },
+    {
+        "name": "Surgical Examination List",
+        "examinationValueList": [
+            {
+                "value": "Comments",
+                "hasValue": true
+            }
+        ]
+    },
+    {
+        "name": "Schober’s test",
+        "examinationValueList": [
+            {
+                "value": "Positive"
+            },
+            {
+                "value": "Positive Rt"
+            },
+            {
+                "value": "Positive Lt"
+            },
+            {
+                "value": "Negative"
+            },
+            {
+                "value": "Negative Rt"
+            },
+            {
+                "value": "Negative Lt"
+            }
+        ]
+    },
+    {
+        "name": "Straight leg raise test",
+        "examinationValueList": [
+            {
+                "value": "Positive"
+            },
+            {
+                "value": "Positive Rt"
+            },
+            {
+                "value": "Positive Lt"
+            },
+            {
+                "value": "Negative"
+            },
+            {
+                "value": "Negative Rt"
+            },
+            {
+                "value": "Negative Lt"
+            }
+        ]
+    },
+    {
+        "name": "Lasegue’s test",
+        "examinationValueList": [
+            {
+                "value": "Positive"
+            },
+            {
+                "value": "Positive Rt"
+            },
+            {
+                "value": "Positive Lt"
+            },
+            {
+                "value": "Negative"
+            },
+            {
+                "value": "Negative Rt"
+            },
+            {
+                "value": "Negative Lt"
+            }
+        ]
+    },
+    {
+        "name": "Valsalva",
+        "examinationValueList": [
+            {
+                "value": "Positive"
+            },
+            {
+                "value": "Positive Rt"
+            },
+            {
+                "value": "Positive Lt"
+            },
+            {
+                "value": "Negative"
+            },
+            {
+                "value": "Negative Rt"
+            },
+            {
+                "value": "Negative Lt"
+            }
+        ]
+    },
+    {
+        "name": "Axial loading test",
+        "examinationValueList": [
+            {
+                "value": "Positive"
+            },
+            {
+                "value": "Positive Rt"
+            },
+            {
+                "value": "Positive Lt"
+            },
+            {
+                "value": "Negative"
+            },
+            {
+                "value": "Negative Rt"
+            },
+            {
+                "value": "Negative Lt"
+            }
+        ]
+    },
+    {
+        "name": "Other Name of the test performed",
+        "examinationValueList": [
+            {
+                "value": "Other",
+                "hasValue": true
+            }
+        ]
+    },
+    {
+        "name": "Examination Comments",
+        "examinationValueList": [
+            {
+                "value": "Comments",
+                "hasValue": true
+            }
+        ]
+    },
+    {
+        "name": "Pinna",
+        "examinationValueList": [
+            {
+                "value": "Lession",
+                "hasValue": true
+            },
+            {
+                "value": "Abnormal appearance",
+                "hasValue": true
+            },
+            {
+                "value": "Position",
+                "hasValue": true
+            }
+        ]
+    },
+    {
+        "name": "Canal",
+        "examinationValueList": [
+            {
+                "value": "Discharge",
+                "hasValue": true
+            },
+            {
+                "value": "Swelling",
+                "hasValue": true
+            },
+            {
+                "value": "Redness",
+                "hasValue": true
+            },
+            {
+                "value": "Wax",
+                "hasValue": true
+            },
+            {
+                "value": "Foreign bodies",
+                "hasValue": true
+            }
+        ]
+    },
+    {
+        "name": "Tympanic membrane",
+        "examinationValueList": [
+            {
+                "value": "Colour",
+                "hasValue": true
+            },
+            {
+                "value": "Light reflex",
+                "hasValue": true
+            },
+            {
+                "value": "Landmarks",
+                "hasValue": true
+            },
+            {
+                "value": "Bulging",
+                "hasValue": true
+            },
+            {
+                "value": "Retraction",
+                "hasValue": true
+            },
+            {
+                "value": "Perforation",
+                "hasValue": true
+            },
+            {
+                "value": "Scarring",
+                "hasValue": true
+            },
+            {
+                "value": "Air bubbles",
+                "hasValue": true
+            },
+            {
+                "value": "Fluid level",
+                "hasValue": true
+            }
+        ]
+    },
+    {
+        "name": "Palpation (Ear)",
+        "examinationValueList": [
+            {
+                "value": "Tenderness over tragus"
+            },
+            {
+                "value": "Tenderness on manipulation of the pinna"
+            },
+            {
+                "value": "Tenderness on tapping of mastoid process"
+            }
+        ]
+    },
+    {
+        "name": "Occipital nodes",
+        "examinationValueList": [
+            {
+                "value": "Size",
+                "hasValue": true
+            },
+            {
+                "value": "Tenderness",
+                "hasValue": true
+            }
+        ]
+    },
+    {
+        "name": "Post Auricular Nodes",
+        "examinationValueList": [
+            {
+                "value": "Size",
+                "hasValue": true
+            },
+            {
+                "value": "Tenderness",
+                "hasValue": true
+            }
+        ]
+    },
+    {
+        "name": "Pre Auricular Nodes",
+        "examinationValueList": [
+            {
+                "value": "Size",
+                "hasValue": true
+            },
+            {
+                "value": "Tenderness",
+                "hasValue": true
+            }
+        ]
+    },
+    {
+        "name": "Estimate hearing",
+        "examinationValueList": [
+            {
+                "value": "Watch test",
+                "hasValue": true
+            },
+            {
+                "value": "Whisper test",
+                "hasValue": true
+            },
+            {
+                "value": "Weber test",
+                "hasValue": true
+            },
+            {
+                "value": "Rinne tests with a 512 hertz tuning fork",
+                "hasValue": true
+            }
+        ]
+    },
+    {
+        "name": "External (Nose)",
+        "examinationValueList": [
+            {
+                "value": "Inflammation",
+                "hasValue": true
+            },
+            {
+                "value": "Deformity",
+                "hasValue": true
+            },
+            {
+                "value": "Discharge",
+                "hasValue": true
+            },
+            {
+                "value": "Bleeding",
+                "hasValue": true
+            },
+            {
+                "value": "Nasal breathing",
+                "hasValue": true
+            },
+            {
+                "value": "Mouth breathing",
+                "hasValue": true
+            }
+        ]
+    },
+    {
+        "name": "Internal",
+        "examinationValueList": [
+            {
+                "value": "Colour of mucosa",
+                "hasValue": true
+            },
+            {
+                "value": "Edema",
+                "hasValue": true
+            },
+            {
+                "value": "Deviated Septum",
+                "hasValue": true
+            },
+            {
+                "value": "Perforated Septum",
+                "hasValue": true
+            },
+            {
+                "value": "Polyp/s",
+                "hasValue": true
+            },
+            {
+                "value": "Bleeding",
+                "hasValue": true
+            }
+        ]
+    },
+    {
+        "name": "Palpation",
+        "examinationValueList": [
+            {
+                "value": "Sinus tenderness",
+                "hasValue": true
+            },
+            {
+                "value": "Nasal tenderness",
+                "hasValue": true
+            }
+        ]
+    },
+    {
+        "name": "Percussion",
+        "examinationValueList": [
+            {
+                "value": "Sinus tenderness",
+                "hasValue": true
+            },
+            {
+                "value": "Nasal tenderness",
+                "hasValue": true
+            }
+        ]
+    },
+    {
+        "name": "Lips",
+        "examinationValueList": [
+            {
+                "value": "Color",
+                "hasValue": true
+            },
+            {
+                "value": "Lesions",
+                "hasValue": true
+            },
+            {
+                "value": "Symmetry",
+                "hasValue": true
+            }
+        ]
+    },
+    {
+        "name": "Oral cavity",
+        "examinationValueList": [
+            {
+                "value": "Breath odour",
+                "hasValue": true
+            },
+            {
+                "value": "Color",
+                "hasValue": true
+            },
+            {
+                "value": "Lesions of Buccal mucosa",
+                "hasValue": true
+            }
+        ]
+    },
+    {
+        "name": "Teeth and gums",
+        "examinationValueList": [
+            {
+                "value": "Redness",
+                "hasValue": true
+            },
+            {
+                "value": "Swelling",
+                "hasValue": true
+            },
+            {
+                "value": "Caries",
+                "hasValue": true
+            },
+            {
+                "value": "Bleeding",
+                "hasValue": true
+            }
+        ]
+    },
+    {
+        "name": "Tongue",
+        "examinationValueList": [
+            {
+                "value": "Colour",
+                "hasValue": true
+            },
+            {
+                "value": "Texture",
+                "hasValue": true
+            },
+            {
+                "value": "Lesions",
+                "hasValue": true
+            },
+            {
+                "value": "Tenderness of floor of mouth",
+                "hasValue": true
+            }
+        ]
+    },
+    {
+        "name": "Throat and pharynx",
+        "examinationValueList": [
+            {
+                "value": "Colour",
+                "hasValue": true
+            },
+            {
+                "value": "Exudates",
+                "hasValue": true
+            },
+            {
+                "value": "Uvula",
+                "hasValue": true
+            },
+            {
+                "value": "Tonsillar symmetry",
+                "hasValue": true
+            },
+            {
+                "value": "Enlargement",
+                "hasValue": true
+            }
+        ]
+    },
+    {
+        "name": "Inspection (Neck)",
+        "examinationValueList": [
+            {
+                "value": "Symmetry",
+                "hasValue": true
+            },
+            {
+                "value": "Swelling",
+                "hasValue": true
+            },
+            {
+                "value": "Masses",
+                "hasValue": true
+            },
+            {
+                "value": "Active range of motion",
+                "hasValue": true
+            },
+            {
+                "value": "Thyroid enlargement",
+                "hasValue": true
+            },
+            {
+                "value": "Palpation",
+                "hasValue": true
+            }
+        ]
+    },
+    {
+        "name": "Preauricular",
+        "examinationValueList": [
+            {
+                "value": "Non-Tender"
+            },
+            {
+                "value": "Tender"
+            },
+            {
+                "value": "Enlargement",
+                "hasValue": true
+            },
+            {
+                "value": "Mobility",
+                "hasValue": true
+            },
+            {
+                "value": "Contour",
+                "hasValue": true
+            },
+            {
+                "value": "Consistency of masses",
+                "hasValue": true
+            }
+        ]
+    },
+    {
+        "name": "Postauricular",
+        "examinationValueList": [
+            {
+                "value": "Non-Tender"
+            },
+            {
+                "value": "Tender"
+            },
+            {
+                "value": "Enlargement",
+                "hasValue": true
+            },
+            {
+                "value": "Mobility",
+                "hasValue": true
+            },
+            {
+                "value": "Contour",
+                "hasValue": true
+            },
+            {
+                "value": "Consistency of masses",
+                "hasValue": true
+            }
+        ]
+    },
+    {
+        "name": "Occipital",
+        "examinationValueList": [
+            {
+                "value": "Non-Tender"
+            },
+            {
+                "value": "Tender"
+            },
+            {
+                "value": "Enlargement",
+                "hasValue": true
+            },
+            {
+                "value": "Mobility",
+                "hasValue": true
+            },
+            {
+                "value": "Contour",
+                "hasValue": true
+            },
+            {
+                "value": "Consistency of masses",
+                "hasValue": true
+            }
+        ]
+    },
+    {
+        "name": "Tonsillar",
+        "examinationValueList": [
+            {
+                "value": "Non-Tender"
+            },
+            {
+                "value": "Tender"
+            },
+            {
+                "value": "Enlargement",
+                "hasValue": true
+            },
+            {
+                "value": "Mobility",
+                "hasValue": true
+            },
+            {
+                "value": "Contour",
+                "hasValue": true
+            },
+            {
+                "value": "Consistency of masses",
+                "hasValue": true
+            }
+        ]
+    },
+    {
+        "name": "Submandibular",
+        "examinationValueList": [
+            {
+                "value": "Non-Tender"
+            },
+            {
+                "value": "Tender"
+            },
+            {
+                "value": "Enlargement",
+                "hasValue": true
+            },
+            {
+                "value": "Mobility",
+                "hasValue": true
+            },
+            {
+                "value": "Contour",
+                "hasValue": true
+            },
+            {
+                "value": "Consistency of masses",
+                "hasValue": true
+            }
+        ]
+    },
+    {
+        "name": "Submental",
+        "examinationValueList": [
+            {
+                "value": "Non-Tender"
+            },
+            {
+                "value": "Tender"
+            },
+            {
+                "value": "Enlargement",
+                "hasValue": true
+            },
+            {
+                "value": "Mobility",
+                "hasValue": true
+            },
+            {
+                "value": "Contour",
+                "hasValue": true
+            },
+            {
+                "value": "Consistency of masses",
+                "hasValue": true
+            }
+        ]
+    },
+    {
+        "name": "Anterior cervical",
+        "examinationValueList": [
+            {
+                "value": "Non-Tender"
+            },
+            {
+                "value": "Tender"
+            },
+            {
+                "value": "Enlargement",
+                "hasValue": true
+            },
+            {
+                "value": "Mobility",
+                "hasValue": true
+            },
+            {
+                "value": "Contour",
+                "hasValue": true
+            },
+            {
+                "value": "Consistency of masses",
+                "hasValue": true
+            }
+        ]
+    },
+    {
+        "name": "Posterior cervical",
+        "examinationValueList": [
+            {
+                "value": "Non-Tender"
+            },
+            {
+                "value": "Tender"
+            },
+            {
+                "value": "Enlargement",
+                "hasValue": true
+            },
+            {
+                "value": "Mobility",
+                "hasValue": true
+            },
+            {
+                "value": "Contour",
+                "hasValue": true
+            },
+            {
+                "value": "Consistency of masses",
+                "hasValue": true
+            }
+        ]
+    },
+    {
+        "name": "Supraclavicular",
+        "examinationValueList": [
+            {
+                "value": "Non-Tender"
+            },
+            {
+                "value": "Tender"
+            },
+            {
+                "value": "Enlargement",
+                "hasValue": true
+            },
+            {
+                "value": "Mobility",
+                "hasValue": true
+            },
+            {
+                "value": "Contour",
+                "hasValue": true
+            },
+            {
+                "value": "Consistency of masses",
+                "hasValue": true
+            }
+        ]
+    },
+    {
+        "name": "Thyroid",
+        "examinationValueList": [
+            {
+                "value": "Size",
+                "hasValue": true
+            },
+            {
+                "value": "Consistency",
+                "hasValue": true
+            },
+            {
+                "value": "Contour",
+                "hasValue": true
+            },
+            {
+                "value": "Position",
+                "hasValue": true
+            },
+            {
+                "value": "Tenderness",
+                "hasValue": true
+            }
+        ]
+    },
+    {
+        "name": "General",
+        "examinationValueList": [
+            {
+                "value": "Patient in NAD"
+            },
+            {
+                "value": "Vital Signs"
+            }
+        ]
+    },
+    {
+        "name": "HEENT",
+        "examinationValueList": [
+            {
+                "value": "NC/AT"
+            },
+            {
+                "value": "PERRLA"
+            },
+            {
+                "value": "EOMI"
+            },
+            {
+                "value": "No cervical LAD"
+            },
+            {
+                "value": "Cervical LAD"
+            },
+            {
+                "value": "No thyromegaly"
+            },
+            {
+                "value": "Thyromegaly"
+            },
+            {
+                "value": "No bruit"
+            },
+            {
+                "value": "Bruit"
+            },
+            {
+                "value": "No pallor"
+            },
+            {
+                "value": "Pallor"
+            },
+            {
+                "value": "Fundus"
+            },
+            {
+                "value": "Oropharynx "
+            },
+            {
+                "value": "Tympanic membrane"
+            },
+            {
+                "value": "Neck supple"
+            }
+        ]
+    },
+    {
+        "name": "Resp",
+        "examinationValueList": [
+            {
+                "value": "Non tender"
+            },
+            {
+                "value": "tender"
+            },
+            {
+                "value": "CTA bilat chest expansion test"
+            },
+            {
+                "value": "Normal breathing with little effort"
+            },
+            {
+                "value": "Wheezing"
+            },
+            {
+                "value": "Resp rhonchi and crackles"
+            }
+        ]
+    },
+    {
+        "name": "CV",
+        "examinationValueList": [
+            {
+                "value": "+S1"
+            },
+            {
+                "value": "+S2"
+            },
+            {
+                "value": "RRR"
+            },
+            {
+                "value": "m/r/g"
+            }
+        ]
+    },
+    {
+        "name": "Abdomen",
+        "examinationValueList": [
+            {
+                "value": "Soft"
+            },
+            {
+                "value": "Firm"
+            },
+            {
+                "value": "Nontender"
+            },
+            {
+                "value": "Tender"
+            },
+            {
+                "value": "Distended"
+            },
+            {
+                "value": "Nondistended"
+            },
+            {
+                "value": "No hepatosplenomegaly"
+            },
+            {
+                "value": "Hepatosplenomegaly"
+            },
+            {
+                "value": "NBS"
+            },
+            {
+                "value": "Rebounding tenderness"
+            },
+            {
+                "value": "Pain abdomen"
+            },
+            {
+                "value": "Hepatosplenomegaly"
+            },
+            {
+                "value": "Bowel sound present"
+            },
+            {
+                "value": "Bowel sound Sluggish"
+            }
+        ]
+    },
+    {
+        "name": "External",
+        "examinationValueList": [
+            {
+                "value": "No clubbing"
+            },
+            {
+                "value": "Clubbing"
+            },
+            {
+                "value": "Cyanosis"
+            },
+            {
+                "value": "Edema"
+            }
+        ]
+    },
+    {
+        "name": "Neuro",
+        "examinationValueList": [
+            {
+                "value": "A&Ox3"
+            },
+            {
+                "value": "CN II-XII grossly intact"
+            },
+            {
+                "value": "Sensation intact in all four extremities"
+            },
+            {
+                "value": "Romberg negative"
+            },
+            {
+                "value": "Romberg positive"
+            },
+            {
+                "value": "Cerebellar reflexes"
+            },
+            {
+                "value": "Cerbellar reflexes abscent"
+            },
+            {
+                "value": "DTR 1+ left"
+            },
+            {
+                "value": "DTR 1+ right"
+            },
+            {
+                "value": "DTR 2+ left"
+            },
+            {
+                "value": "DTR 2+ right"
+            },
+            {
+                "value": "Gait normal"
+            },
+            {
+                "value": "Gait abnormal"
+            }
+        ]
+    },
+    {
+        "name": "Abdominal exam",
+        "examinationValueList": []
+    }
+]

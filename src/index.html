@@ -1,0 +1,137 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>Doctor App 1.0.0</title>
+  <link rel="stylesheet" type="text/css" href="assets/global.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="favicon.png">
+
+  <!-- Fixing vaadin overlay small height issue -->
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+    }
+  </style>
+
+  <!-- 
+      other known exposed globals - 
+        window.
+          'Polymer'
+
+      vendor exposed globals - 
+        window.
+          'evolvenode-stdlib'
+          'date-format-library'
+          'database-engine'
+
+      our exposed globals - 
+        window.
+          'lib'
+          'app'
+     -->
+
+  <!-- build:bugsnag -->
+  <!-- endBuild -->
+
+  <!-- build:concat -->
+
+  <!-- needed for ckeditor -->
+  <script type="text/javascript" src="vendor-assets/jquery-3.2.1.min.js"></script>
+
+  <!-- evolvenode-stdlib -->
+  <script type="text/javascript" src="vendor-assets/evolvenode-stdlib-0.0.3.js"></script>
+
+  <!-- date-format-library -->
+  <script type="text/javascript" src="vendor-assets/date-format-library.coffee-compiled.js"></script>
+
+  <!-- database-engine -->
+  <script type="text/javascript" src="vendor-assets/database-engine.coffee-compiled.js"></script>
+
+  <!-- The webcomponents polyfill -->
+  <script type="text/javascript" src="bower-assets/webcomponentsjs/webcomponents-lite.min.js"></script>
+
+  <!-- Config -->
+  <script type="text/javascript" src="assets/config.coffee-compiled.js"></script>
+
+  <!-- Pages -->
+  <script type="text/javascript" src="assets/pages.coffee-compiled.js"></script>
+
+  <!-- Library (Connected to Config) -->
+  <script type="text/javascript" src="assets/lib.coffee-compiled.js"></script>
+
+  <!-- Database -->
+  <script type="text/javascript" src="assets/db.coffee-compiled.js"></script>
+
+  <!-- Languages -->
+  <script type="text/javascript" src="assets/lang.coffee-compiled.js"></script>
+
+  <script type="text/javascript" src="assets/editor.coffee-compiled.js"></script>
+
+  <!-- Initiation script (Needs library and config)-->
+  <script type="text/javascript" src="assets/app.coffee-compiled.js"></script>
+
+  <!-- endbuild -->
+
+  <!-- html editor -->
+  <script type="text/javascript" src="vendor-assets/editor/editorlib/ckeditor.js"></script>
+  <script type="text/javascript" src="vendor-assets/editor/editorlib/polymer-compatibility-enhancements.js"></script>
+
+  <!-- Set polymer's global settings -->
+  <script type="text/javascript">
+    window.Polymer = {
+      lazyRegister: false,
+      dom: 'Shadow',
+      passiveTouchGestures: true
+    };
+    // Load webcomponentsjs polyfill if browser does not support native Web Components
+    (function () {
+      'use strict';
+
+      var onload = function () {
+        // For native Imports, manually fire WebComponentsReady so user code
+        // can use the same code path for native and polyfill'd imports.
+        if (!window.HTMLImports) {
+          document.dispatchEvent(
+            new CustomEvent('WebComponentsReady', { bubbles: true })
+          );
+        }
+      };
+
+      var webComponentsSupported = (
+        'registerElement' in document
+        && 'import' in document.createElement('link')
+        && 'content' in document.createElement('template')
+      );
+
+      if (!webComponentsSupported) {
+        var script = document.createElement('script');
+        script.async = true;
+        script.src = 'bower-assets/webcomponentsjs/webcomponents-lite.min.js';
+        script.onload = onload;
+        document.head.appendChild(script);
+      } else {
+        onload();
+      }
+    })();
+  </script>
+
+  <!-- build:sw -->
+  <!-- endbuild -->
+
+  <!-- Import root element -->
+  <link rel="import" href="elements/root-element/root-element.html">
+
+</head>
+
+<body>
+  <root-element></root-element>
+
+  <div id="unsupported-screen-size-overlay">
+    Sorry! Your screen resolution is too low for this application to function properly.
+  </div>
+</body>
+
+</html>

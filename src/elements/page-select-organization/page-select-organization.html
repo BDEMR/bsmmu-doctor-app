@@ -1,0 +1,71 @@
+<link rel="import" href="../../bower-assets/polymer/polymer.html">
+
+<!-- iron-* -->
+
+<!-- paper-* -->
+<link rel="import" href="../../bower-assets/paper-button/paper-button.html">
+<link rel="import" href="../../bower-assets/paper-card/paper-card.html">
+<link rel="import" href="../../bower-assets/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower-assets/paper-listbox/paper-listbox.html">
+<link rel="import" href="../../bower-assets/paper-item/paper-item.html">
+
+<!-- style -->
+<link rel="import" href="../../styles/common-style.html">
+
+<!-- behavior -->
+<link rel="import" href="../../behaviors/translating.html">
+<link rel="import" href="../../behaviors/page-like.html">
+<link rel="import" href="../../behaviors/db-using.html">
+<link rel="import" href="../../behaviors/api-calling.html">
+
+<dom-module id="page-select-organization">
+  <template>
+    <style is="custom-style" include="common-style">
+
+    </style>
+
+    <div class="master-container">
+
+      <div class="limiting-container">
+        <paper-card>
+          <div class="card-content layout horizontal center center-justified">
+            
+            <!--If User has Organization-->
+            <template is="dom-if" if="[[organizationsIBelongToList.length]]">
+              <paper-dropdown-menu label="Organization">
+                <paper-listbox class="dropdown-content" selected="{{selectedOrganizationIndex}}" on-iron-select="organizationSelected">
+                  <template is="dom-repeat" items="[[organizationsIBelongToList]]">
+                    <paper-item>[[item.name]]</paper-item>
+                  </template>
+                </paper-listbox>
+              </paper-dropdown-menu>
+
+              <template is="dom-if" if="[[!_isEmpty(userRoleList.length)]]">
+                <paper-dropdown-menu label="Select Your Role">
+                  <paper-listbox class="dropdown-content" selected="{{selectedUserRoleIndex}}">
+                    <template is="dom-repeat" items="[[userRoleList]]">
+                      <paper-item>[[item.title]]</paper-item>
+                    </template>
+                  </paper-listbox>
+                </paper-dropdown-menu>
+              </template>
+
+              <paper-button raised class="btn btn-success" on-tap="navigateWithOrganizationSelected">Select</paper-button>
+              
+            </template>
+
+            <!--If User doesn't have Organization-->
+            <template is="dom-if" if="[[!organizationsIBelongToList.length]]">
+              <paper-button raised class="btn btn-success" on-tap="createOrganizationButtonPressed">Create/Join Organization</paper-button>
+            </template>
+
+          </div>
+        </paper-card>
+
+      </div>
+
+    </div>
+  </template>
+  <script src="page-select-organization.coffee-compiled.js"></script>
+</dom-module>
+

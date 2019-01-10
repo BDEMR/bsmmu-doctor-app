@@ -1,0 +1,87 @@
+
+<link rel="import" href="../../bower-assets/paper-card/paper-card.html">
+
+<link rel="import" href="../../bower-assets/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower-assets/paper-menu/paper-menu.html">
+<link rel="import" href="../../bower-assets/paper-item/paper-item.html">
+<link rel="import" href="../../bower-assets/paper-input/paper-input.html">
+<link rel="import" href="../../bower-assets/paper-button/paper-button.html">
+<link rel="import" href="../../bower-assets/vaadin-date-picker/vaadin-date-picker.html">
+
+<!-- style -->
+<link rel="import" href="../../styles/common-style.html">
+
+<!-- behavior -->
+<link rel="import" href="../../behaviors/common-computes.html">
+<link rel="import" href="../../behaviors/db-using.html">
+<link rel="import" href="../../behaviors/translating.html">
+<link rel="import" href="../../behaviors/page-like.html">
+
+
+<dom-module id='page-test-blood-sugar-editor'>
+  <template>
+    <style is='custom-style' include="common-style">
+      paper-dropdown-menu {
+        width: 100%;
+      }
+      .limiting-container {
+        margin-top: 10px;
+      }
+    </style>
+
+    <div class="master-container">
+
+      <div class="limiting-container">
+
+        <paper-card>
+
+          <div class="card-content">
+            <div class="form-group">
+
+              <div><vaadin-date-picker label="Date" value="{{bloodSugar.createdDatetimeStamp}}" max="{{currentDate}}"></vaadin-date-picker></div>
+
+              <div>
+                <paper-dropdown-menu label="[[$TRANSLATE('Time',LANG)]]">
+                  <paper-menu class="dropdown-content" selected="{{bloodSugarTimeSelectedIndex}}">
+                    <paper-item>[[$TRANSLATE('Before Meal (Fasting)',LANG)]]</paper-item>
+                    <paper-item>[[$TRANSLATE('After Meal (2 hour)',LANG)]]</paper-item>
+                    <paper-item>[[$TRANSLATE('Random',LANG)]]</paper-item>
+                  </paper-menu>
+                </paper-dropdown-menu>
+              </div>
+
+              <div>
+                <paper-input label="Value" min="0" auto-validate type="number" value="{{bloodSugar.data.value}}" error-message="Valid Input Required"></paper-input>
+              </div>
+
+              <div>
+                <paper-dropdown-menu label="[[$TRANSLATE('Unit',LANG)]]" >
+                  <paper-menu class="dropdown-content" selected="{{bloodSugarUnitSelectedIndex}}">
+                    <paper-item>[[$TRANSLATE('mmol/L',LANG)]]</paper-item>
+                    <paper-item>[[$TRANSLATE('mg/dl',LANG)]]</paper-item>
+                  </paper-menu>
+                </paper-dropdown-menu>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="card-actions">
+            <template is="dom-if" if="[[isThatNewTest]]">
+              <paper-button class="" on-tap="cancelButtonClicked">Cancel</paper-button>
+              <paper-button class="colored" raised on-tap="addBloodSugarButtonClicked">Add</paper-button>
+            </template>
+            <template is="dom-if" if="[[!isThatNewTest]]">
+              <paper-button class="btn btn-success" on-click="updateBloodSugarPressed" raised>Update</paper-button>
+            </template>
+
+          </div>
+        </paper-card>
+
+      </div>
+    </div>
+
+  </template>
+  <script src='page-test-blood-sugar-editor.coffee-compiled.js'></script>
+</dom-module>
+

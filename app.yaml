@@ -1,0 +1,95 @@
+service: 'bsmmu'
+runtime: python27
+api_version: 1
+threadsafe: yes
+default_expiration: "1m"
+skip_files:
+- node_modules/
+- build-debug/
+- polymer-build-onsite/
+- .git/
+
+handlers:
+- url: /assets
+  static_dir: polymer-build/build-debug/assets
+  secure: always
+  expiration: "1m"
+  http_headers:
+    Cache-Control: private
+
+- url: /behaviors
+  static_dir: polymer-build/build-debug/behaviors
+  secure: always
+  expiration: "1m"
+  http_headers:
+    Cache-Control: private
+
+- url: /bower-assets
+  static_dir: polymer-build/build-debug/bower-assets
+  secure: always
+  expiration: "1m"
+  http_headers:
+    Cache-Control: private
+
+- url: /elements
+  static_dir: polymer-build/build-debug/elements
+  secure: always
+  expiration: "1m"
+  http_headers:
+    Cache-Control: private
+
+- url: /images
+  static_dir: polymer-build/build-debug/images
+  secure: always
+  expiration: "1d"
+  http_headers:
+    Cache-Control: private
+
+- url: /vendor-assets
+  static_dir: polymer-build/build-debug/vendor-assets
+  secure: always
+  expiration: "1d"
+  http_headers:
+    Cache-Control: private
+
+- url: /all.js
+  static_files: polymer-build/build-debug/all.js
+  upload: polymer-build/build-debug/all.js
+  secure: always
+  expiration: "1m"
+  http_headers:
+    Cache-Control: private
+    Content-Type: text/javascript
+
+# - url: /manifest.json
+#   static_files: polymer-build/build-debug/manifest.json
+#   upload: polymer-build/build-debug/manifest.json
+#   secure: always
+#   expiration: "1d"
+#   http_headers:
+#     Cache-Control: private
+
+- url: /service-worker.js
+  static_files: polymer-build/build-debug/service-worker.js
+  upload: polymer-build/build-debug/service-worker.js
+  secure: always
+  expiration: "1m"
+  http_headers:
+    Cache-Control: private 
+    Content-Type: text/javascript 
+
+- url: /favicon.png
+  static_files: polymer-build/build-debug/favicon.png
+  upload: polymer-build/build-debug/favicon.png
+  secure: always
+  expiration: "1d"
+  http_headers:
+    Cache-Control: private
+
+- url: /.*
+  static_files: polymer-build/build-debug/index.html
+  upload: polymer-build/build-debug/index.html
+  secure: always
+  expiration: "1m"
+  http_headers:
+    Cache-Control: private

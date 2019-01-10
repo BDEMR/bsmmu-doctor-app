@@ -1,0 +1,75 @@
+<link rel="import" href="../../bower-assets/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../../bower-assets/paper-card/paper-card.html">
+<link rel="import" href="../../bower-assets/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower-assets/iron-pages/iron-pages.html">
+
+
+<!-- Commong Styles -->
+<link rel="import" href="../../styles/common-style.html">
+
+<dom-module id='page-welcome-internal'>
+  <template>
+    <style is='custom-style' include='iron-flex iron-flex-alignment common-style'>
+      .text-center {text-align: center;}
+    </style>
+
+    <!--local dom-->
+    <div class="master-container">
+
+      <div class="limiting-container">
+
+        <paper-card>
+          <div class="card-content">
+            <h2 class="text-center">স্বাগতম</h2>
+            <h3 class="text-center">আপনাকে BDEMR এর Doctor App এ স্বাগতম।</h3>
+            <h4 class="text-center">এটি BMDC  রেজিস্টার্ড চিকিৎসকদের ব্যবহারের জন্য </h4>
+            <iron-pages selected="[[welcomeSection]]">
+              <section>
+                <p>এই অ্যাপটি চালু করার আগে bdemr.com ওয়েবসাইটে এ যেয়ে সাইন আপ করুন। লগ ইন করুন। ডাক্তার আইকনে ক্লিক করুন। আপনার পূর্ণাঙ্গ তথ্য দিয়ে শেষ করুন। এবার ab@bdemr.com ঠিকানায় ইমেইল করুন activation code চেয়ে। এখানে যেন অচিকিৎসক কেউ প্রবেশ না করতে পারে , অথবা কেউ থাকলে আমরা যেন নিয়ন্ত্রণ করতে পারি তাই এই ব্যবস্থা। আমরা আশা করি রোগীর তথ্য নিরাপত্তার খাতিরে চিকিৎসক গন এই লম্বা প্রক্রিয়া টি মেনে নেবেন। </p>
+                
+              </section>
+
+              <section>
+                <h3 class="text-center">Features</h3>
+                <ul>
+                  <li>এখানে আপনি আপনার যে কোনো (আমাদের সিস্টেমে রেজিস্টার্ড) রোগীর মেডিকেল তথ্য দেখতে পাবেন, (detailed history, previous investigation, vitals, previous visits ইত্যাদি ।</li>
+                  <li>মন্তব্য (comments) বা বর্ণনা (Notes) পাঠাতে পারবেন রোগী বা হাসপাতালের কাছে। </li>
+                  <li>রোগীর লিখিত প্রশ্ন বা সমস্যা দেখতে পাবেন আপনার ফোনেই। উত্তর করতে পারবেন এখান থেকেই।</li>
+                  <li>আমাদের ওয়েবসাইট থেকে চিকিৎসকের মতামত দিতে পারবেন।, কোনো রোগী অন্য চিকিৎসকের চিকিৎসায় সন্তুষ্ট না হয়ে দ্বিতীয় চিকিৎসকের মতামত (Second Opinion) চাইলে আপনি এই অ্যাপ দিয়ে তা দিতে পারবেন।</li>
+                  <li>একজন রোগীর ফাইল অনলাইনে দেখে, ফোনে বা অন্য মাধ্যমে তার সাথে কথা বলে অনলাইন কন্সাল্টেশন দিতে পারবেন। </li>
+                  <li>দ্বিতীয় বার রোগীকে সামনা সামনি দেখার প্রয়োজন না হলে তার ফাইল দেখে চিকিৎসাপত্র দিতে পারবেন, ফি নিতে পারবেন। রোগী বাঁচবে যাতায়াতের ও অপেক্ষার হাত থেকে, চিকিৎসক রেহাই পাবেন ভিড় থেকে।</li>
+                </ul>
+              </section>
+
+              <section>
+                <p>আপনার একাউন্ট ও প্রোফাইল দেখতে পাবেন আমাদের ওয়েবসাইট bdemr.com এ যেয়ে। আপনার প্রোফাইল যে কেউ সার্চ করে দেখতে পাবেন। ফোলে অডাক্তার কেউ থাকলে সহজেই ধরা পরবে।</p>
+
+                <p>bdemr.com আমাদের মূল সাইট। এখানে সাইন আপ এর সময়ে আপনার দেওয়া ইমেইল/ফোন ও পাসওয়ার্ড দিয়ে আপনি লগ ইন করতে পারবেন। এই সাইটে আপনার প্রোফাইল সংযোজন, পরিবর্তন ও রোল (Role) পরিবর্তন করতে পারবেন। বিস্তারিত জানতে আমাদের ওয়েবসাইটে FAQ সেকশনে দেখুন।</p>
+              
+                <p>এই অ্যাপসটি ওয়েবেও দেখা যাবে। আমাদের সব ওয়েবসাইট এড্রেসের শেষের অংশ bdemr.com। তার আগে আপনি যে অ্যাপ খুলতে চান সেটা লিখে (.)  দিলেই ওয়েবের ঠিকানা হয়ে যাবে। যেমন পেশেন্টের জন্য ওয়েবসাইটে ঠিকানা patient.bdemr.com । এছাড়া চিকিৎসক এর ব্যবহারের জন্য doctor.bdemr.com ,  ক্লিনিক / হাসপাতালের ব্যবহারের জন্য clinic.bdemr.com , সার্জারি, এনেস্থেসিয়া , আইসিইউ ও ক্রনিক পেইনের জন্য anaesmon.bdmer.com</p>
+              </section>
+              
+              <section>
+                <ul>
+                  <li>সাইন আপ করার সময় ফোন নম্বর দিয়ে থাকলে, আপনার একাউন্টে ইমেইল যুক্ত করুন।  কারণ আমাদের সমস্ত যোগাযোগের মাধ্যম ইমেইল।</li>
+                  <li>আমাদের যে কোন অ্যাপ খোলা যাবে একই ইমেইল ও পাসওয়ার্ড দিয়ে।</li>
+                  <li>আমাদের সব ওয়েবসাইট খুলুন গুগল ক্রোম দিয়ে।</li>
+                  <li>আপনার যে কোন সমস্যায় ইমেইল করুন <a href="mailto:contact@bdemr.com">contact@bdemr.com</a></li>
+                </ul>
+              </section>
+            </iron-pages>
+          </div>
+          <div class="layout horizontal justified card-actions">
+            <paper-icon-button icon="arrow-back" on-tap="previousSectionButtonClicked" disabled$="[[previousButtonDisabled]]"></paper-icon-button>
+            <paper-icon-button icon="arrow-forward" on-tap="nextSectionButtonClicked" disabled$="[[nextButtonDisabled]]"></paper-icon-button>
+          </div>
+        </paper-card>   
+
+      </div>
+
+    </div>
+
+    
+  </template>
+  <script src="page-welcome-internal.coffee-compiled.js"></script>
+</dom-module>

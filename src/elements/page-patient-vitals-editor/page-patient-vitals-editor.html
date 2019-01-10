@@ -1,0 +1,360 @@
+<link rel="import" href="../../bower-assets/iron-pages/iron-pages.html">
+
+<link rel="import" href="../../bower-assets/paper-card/paper-card.html">
+<link rel="import" href="../../bower-assets/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower-assets/paper-menu/paper-menu.html">
+<link rel="import" href="../../bower-assets/paper-item/paper-item.html">
+<link rel="import" href="../../bower-assets/paper-input/paper-input.html">
+<link rel="import" href="../../bower-assets/paper-button/paper-button.html">
+<link rel="import" href="../../bower-assets/paper-tabs/paper-tabs.html">
+
+<link rel="import" href="../../elements/custom-vital-search/custom-vital-search.html">
+
+<link rel="import" href="../../behaviors/page-like.html">
+<link rel="import" href="../../behaviors/translating.html">
+
+
+<!--Theme-->
+<link rel="import" href="../../styles/common-style.html">
+
+
+<dom-module id="page-patient-vitals-editor">
+  <template>
+    <style is="custom-style" include="iron-flex iron-flex-alignment common-style">
+
+      .tabs-container {
+        background-color: var(--brand-primary-color);
+      }
+
+
+      .card-custom-header {
+        padding: 15px;
+        border-bottom: 1px solid var(--paper-grey-200);
+        background-color: var(--paper-grey-50);
+      }
+
+      .card-custom-header .title {
+        font-size: 20px;
+        font-weight: 500;
+        color: var(--brand-primary-color);
+      }
+
+
+      paper-dropdown-menu {
+        width: 100%;
+      }
+
+      .table{
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      .table td{
+        vertical-align: middle;
+        padding: 10px;
+        border-top: 1px solid var(--paper-grey-300);
+      }
+
+      .table tr:last-child td {
+        border-bottom: 0;
+      }
+
+      .table tr td:nth-child(2){
+        color: var(--paper-grey-600);
+        font-size: 14px;
+      }
+
+      .block{display: block}
+
+
+      .pagination li{
+        display: inline-block;
+        list-style: none;
+      }
+
+      .pagination paper-button {
+        min-width: 2em;
+        font-size: 14px;
+        background-color: var(--google-grey-100);
+      }
+
+      .filter paper-input {
+        --paper-input-container: {
+          width: 200px;
+          padding: 0;
+        }
+        --paper-input-container-label: {
+          font-size: 13px;
+          text-align: right;
+        }
+        --paper-input-container-input: {
+          font-size: 13px;
+          text-align: right;
+        }
+        --paper-input-container-underline: {
+          display: none;
+        }
+        --paper-input-container-underline-focus: {
+          display: none;
+        }
+      }
+
+      .filter paper-icon-button {
+        width: 36px;
+        height: 36px
+      }
+
+      .filter .name {
+        --paper-input-container: {
+          width: 100px;
+        }
+      }
+
+      @media only screen and (min-width : 320px) and (max-width : 480px){
+        .table td, .table th{
+          vertical-align: top;
+        }
+      }
+
+      #tabBp {
+        background-color: var(--paper-cyan-400);
+      }
+      #tabHr {
+        background-color: var(--paper-cyan-400);
+
+      }
+      #tabBmi {
+        background-color: var(--paper-cyan-400);
+      }
+      #tabRr {
+        background-color: var(--paper-cyan-400);
+      }
+      #tabSpo2 {
+        background-color: var(--paper-cyan-400);
+      }
+      #tabTemp {
+        background-color: var(--paper-cyan-400);
+      }
+    </style>
+
+
+
+    <div class="tabs-container">
+      <paper-tabs class="main-tabs" id="tabs" selected="{{selectedSubViewIndex}}" scrollable fit-container>
+        <paper-tab>[[$TRANSLATE('BP',LANG)]]</paper-tab>
+        <paper-tab>[[$TRANSLATE('HR',LANG)]]</paper-tab>
+        <paper-tab>[[$TRANSLATE('BMI',LANG)]]</paper-tab>
+        <paper-tab>[[$TRANSLATE('RR',LANG)]]</paper-tab>
+        <paper-tab>[[$TRANSLATE('SpO2',LANG)]]</paper-tab>
+        <paper-tab>[[$TRANSLATE('Temp',LANG)]]</paper-tab>
+      </paper-tabs>
+    </div>
+
+    
+    <div class="master-container">
+
+      <div class="limiting-container">
+        <iron-pages selected="{{selectedSubViewIndex}}">
+
+          <!-- Add Blood Pressure -->
+          <div>
+            <paper-card heading="[[$TRANSLATE('Add Blood Pressure',LANG)]]">
+              <div class="card-content">
+                <div class="form-group">
+                  <div><paper-input id="systolic" label="[[$TRANSLATE('Systolic',LANG)]]" type="number" min="0" max="300" value="{{bloodPressure.data.systolic}}" auto-validate error-message="Value must be within 1-300"></paper-input></div>
+                  <div><paper-input id="diastolic" label="[[$TRANSLATE('Diastolic',LANG)]]" type="number" min="0" max="200" value="{{bloodPressure.data.diastolic}}" disabled$="[[!bloodPressure.data.systolic]]" auto-validate error-message="Value must not be greater than 200 and Systolic Value"></paper-input></div>
+                  <div><paper-input label="[[$TRANSLATE('Unit',LANG)]]" readonly value="[[$TRANSLATE('mm Hg',LANG)]]"></paper-input></div>
+                </div>
+              </div>
+              <div class="card-actions">
+                <paper-button class="btn btn-default" on-tap="_makeBloodPressure">[[$TRANSLATE('Clear',LANG)]]</paper-button>
+                <paper-button class="btn btn-success" on-tap="addBloodPressureButtonClicked">[[$TRANSLATE('Add',LANG)]]</paper-button>
+              </div>
+            </paper-card>
+          </div>
+          <!-- /Add Blood Pressure -->
+
+          <!-- Add Heart Rate -->
+          <div>
+            <paper-card class="" heading="[[$TRANSLATE('Add Heart Rate',LANG)]]">
+              <div class="card-content">
+                <div class="form-group">
+                  <div><paper-input label="[[$TRANSLATE('Heart Rate',LANG)]]" type="number" min="20" max="225" auto-validate value="{{pulseRate.data.bpm}}" error-message="Value must be within 20-225"><div class="text-muted" suffix>[[$TRANSLATE('bpm',LANG)]]</div></paper-input></div>
+                </div>
+              </div>
+              <div class="card-actions">
+                <paper-button class="btn btn-default" on-tap="_makePulseRate">[[$TRANSLATE('Clear',LANG)]]</paper-button>
+                <paper-button class="btn btn-success" on-tap="addPulseRateButtonClicked">[[$TRANSLATE('Add',LANG)]]</paper-button>
+              </div>
+            </paper-card>
+          </div>
+          <!-- /Add Heart Rate -->
+
+          <!-- Add BMI -->
+          <div>
+            <paper-card class="" heading="[[$TRANSLATE('BMI',LANG)]]">
+              <div class="card-content">
+                
+                <div class="form-group">
+                  <div>
+                    <paper-dropdown-menu label="[[$TRANSLATE('Unit',LANG)]]">
+                      <paper-menu class="dropdown-content" selected="{{heightUnitSelectedIndex}}" on-iron-select="heightUnitSelectedIndexChanged">
+                        <paper-item>[[$TRANSLATE('cm',LANG)]]</paper-item>
+                        <paper-item>[[$TRANSLATE('metre',LANG)]]</paper-item>
+                        <paper-item>[[$TRANSLATE('ft/inch',LANG)]]</paper-item>
+                      </paper-menu>
+                    </paper-dropdown-menu>
+                  </div>
+                  <template is="dom-if" if="[[ifChosenCmMtAsHeight(heightUnitSelectedIndex)]]">
+                    <div><paper-input label="[[$TRANSLATE('Height',LANG)]]" type="number" value="{{bmi.data.height}}" error-message="Value must be within 250"></paper-input></div>
+                  </template>
+                  <!--If Chosen Ft/inch as Unit-->
+                  <template is="dom-if" if="[[ifChosenFtInchAsHeight(heightUnitSelectedIndex)]]">
+                    <div><paper-input label="[[$TRANSLATE('Ft',LANG)]]" type="number" max="8"  min="0" auto-validate value="{{bmi.data.heightInFt}}" error-message="Value must be within 8"></paper-input></div>
+                    <div><paper-input label="[[$TRANSLATE('Inch',LANG)]]" type="number" max="12"  min="0" auto-validate value="{{bmi.data.heightInInch}}" error-message="Value must be within 12"></paper-input></div>
+                  </template>
+                </div>
+
+                <div class="form-group">
+                  <div><paper-dropdown-menu label="[[$TRANSLATE('Unit',LANG)]]">
+                    <paper-menu class="dropdown-content" selected="{{weightUnitSelectedIndex}}" on-iron-select="weightUnitSelectedIndexChanged">
+                      <paper-item>[[$TRANSLATE('kgs',LANG)]]</paper-item>
+                      <paper-item>[[$TRANSLATE('lbs',LANG)]]</paper-item>
+                      <paper-item>stone-lbs</paper-item>
+                    </paper-menu>
+                  </paper-dropdown-menu>
+                  </div>
+                  <div><paper-input label="[[$TRANSLATE('Weight',LANG)]]" type="number" value="{{bmi.data.weight}}" min="0"></paper-input></div>
+                </div>
+              </div>
+              <div class="card-actions">
+                <paper-button class="btn btn-default" on-tap="_makeBmi">[[$TRANSLATE('Clear',LANG)]]</paper-button>
+                <paper-button class="btn btn-success" on-tap="calculateBMIButtonClicked">[[$TRANSLATE('Calculate',LANG)]]</paper-button>
+              </div>
+            </paper-card>
+          </div>
+          <!-- /Add BMI -->
+
+          <!-- Add Respiratory Rate -->
+          <div>
+            <paper-card class="" heading="[[$TRANSLATE('Add Respiratory Rate',LANG)]]">
+              <div class="card-content">
+                <div class="form-group">
+                  <div>
+                    <paper-input id="rr" label="[[$TRANSLATE('Respiratory Rate',LANG)]]" type="number" min="1" max="65" auto-validate value="{{respiratoryRate.data.respiratoryRate}}" error-message="Value Must be within 1-65">
+                      <div class="text-muted" suffix>[[$TRANSLATE('rpm',LANG)]]</div>
+                    </paper-input>
+                  </div>
+                </div>
+              </div>
+              <div class="card-actions">
+                <paper-button class="btn btn-default" on-tap="_makeRespiratoryRate">[[$TRANSLATE('Clear',LANG)]]</paper-button>
+                <paper-button class="btn btn-success" on-tap="addRespiratoryRateButtonClicked">[[$TRANSLATE('Add',LANG)]]</paper-button>
+              </div>
+            </paper-card>
+          </div>
+          <!-- /Add Respiratory Rate -->
+
+          <!-- Add Oxygen Saturation -->
+          <div>
+            <paper-card class="" heading="[[$TRANSLATE('Add Oxygen Saturation',LANG)]]">
+              <div class="card-content">
+                <div class="form-group">
+                  <div>
+                    <paper-input label="[[$TRANSLATE('Oxygen Saturation',LANG)]]" type="number" min="0" max="100" auto-validate value="{{oxygenSaturation.data.spO2Percentage}}" error-message="Value must be within 100"><div class="text-muted" suffix>%</div>
+                    </paper-input>
+                  </div>
+                </div>
+              </div>
+              <div class="card-actions">
+                <paper-button class="btn btn-default" on-tap="_makeOxygenSaturation">[[$TRANSLATE('Clear',LANG)]]</paper-button>
+                <paper-button class="btn btn-success" on-tap="addOxygenSaturationButtonClicked">[[$TRANSLATE('Add',LANG)]]</paper-button>
+              </div>
+            </paper-card>
+          </div>
+          <!-- /Add Oxygen Saturation -->
+
+          <!-- Add Temperature -->
+          <div>
+            <paper-card class="" heading="Add [[$TRANSLATE('Temperature',LANG)]]">
+              <div class="card-content">
+                <div class="form-group">
+                  <div>
+                    <template is="dom-if" if="[[isTempCelsius(tempUnitSelectedIndex)]]">
+                      <paper-input label="[[$TRANSLATE('Temperature in Celsius',LANG)]]" type="number" max="48" auto-validate value="{{temperature.data.temperature}}" error-message="Value must be within 48"></paper-input>
+                    </template>
+                    <template is="dom-if" if="[[!isTempCelsius(tempUnitSelectedIndex)]]">
+                      <paper-input label="[[$TRANSLATE('Temperature in Fahrenheit',LANG)]]" type="number" max="115" auto-validate value="{{temperature.data.temperature}}" error-message="Value must be within 115"></paper-input>
+                    </template>
+                  </div>
+                  <div>
+                    <paper-dropdown-menu label="[[$TRANSLATE('Unit',LANG)]]">
+                      <paper-menu class="dropdown-content" selected="{{tempUnitSelectedIndex}}" on-iron-select="tempUnitSelected">
+                        <paper-item>[[$TRANSLATE('°C',LANG)]]</paper-item>
+                        <paper-item>[[$TRANSLATE('°F',LANG)]]</paper-item>
+                      </paper-menu>
+                    </paper-dropdown-menu>
+                  </div>
+                </div>
+              </div>
+          
+              <div class="card-actions">
+                <paper-button class="btn btn-default" on-tap="_makeTemperature">Clear</paper-button>
+                <paper-button class="btn btn-success" on-tap="addTemperatureButtonClicked">Add</paper-button>
+              </div>
+            </paper-card>
+          </div>
+          <!-- /Add Temperature -->
+
+        </iron-pages>
+
+        <paper-card class="m-top-16" heading="Added Vitals">
+          <template is="dom-if" if="[[_isEmpty(addedVitalList.length)]]">
+            <div class="card-content layout horizontal center center-justified">
+              <div class="type body secondary">-- no data available --</div>
+            </div>
+          </template>
+          <template is="dom-if" if="[[!_isEmpty(addedVitalList.length)]]">
+            <div class="p-0">
+              <paper-listbox>
+
+                <template id="added-vital-list-repeater" is="dom-repeat" items="{{addedVitalList}}">
+
+
+                  <paper-item class="custom layout horizontal center">
+
+                    <div class="flex layout horizontal center">
+                      <div class="type caption secondary">[[_returnSerial(index)]]</div>
+                      <div class="m-left-16 flex">
+                        <div class="type body">{{item.vitalType}}: [[_pritifyVitalData(item)]]</div>
+                        <div class="type caption secondary">{{_formatDateTime(item.vitalObject.createdDatetimeStamp)}}</div>
+                      </div>
+                    </div>
+                    
+                    <paper-icon-button icon="delete" on-tap="_deleteAddedVitalItemClicked"></paper-icon-button>
+
+                  </paper-item>
+                </template>
+
+              </paper-listbox>
+            </div>
+          </template>
+
+          <div class="card-actions">
+            <paper-button raised class="dropdown-trigger colored" alt="options" on-tap="_addedVitalsSaveButtonPressed" raised>Save<iron-icon class="icon medium-small m-left-8" icon="add"></iron-icon></paper-button>
+          </div>
+      
+
+        </paper-card>
+
+        
+
+      </div>
+
+    </div>
+
+    
+
+  </template>
+  <script src='page-patient-vitals-editor.coffee-compiled.js'></script>
+</dom-module>

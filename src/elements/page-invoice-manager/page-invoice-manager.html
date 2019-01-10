@@ -1,0 +1,143 @@
+<link rel="import" href="../../bower-assets/polymer/polymer.html">
+
+<!-- paper-* -->
+<link rel="import" href="../../bower-assets/paper-button/paper-button.html">
+<link rel="import" href="../../bower-assets/paper-card/paper-card.html">
+<link rel="import" href="../../bower-assets/paper-input/paper-input.html">
+<link rel="import" href="../../bower-assets/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower-assets/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="../../bower-assets/paper-listbox/paper-listbox.html">
+<link rel="import" href="../../bower-assets/paper-item/paper-item.html">
+
+<link rel="import" href="../custom-vital-search/custom-vital-search.html">
+
+<!-- style -->
+<link rel="import" href="../../styles/common-style.html">
+
+<!-- behavior -->
+<link rel="import" href="../../behaviors/db-using.html">
+<link rel="import" href="../../behaviors/translating.html">
+<link rel="import" href="../../behaviors/page-like.html">
+<link rel="import" href="../../behaviors/api-calling.html">
+
+<!-- element -->
+<dom-module id="page-invoice-manager">
+  <template>
+
+    <!-- style -->
+
+    <style is="custom-style" include="common-style">
+      .limiting-container {
+        width: 90%;
+        margin: 0 auto;
+        margin-top: 10px;
+      }
+
+      paper-button {
+        background: white;
+      }
+
+      .invoice-card {
+        background: white;
+        /*
+        margin: 4px;
+        padding: 4px;
+        */
+      }
+
+      paper-card {
+        margin: 4px;
+      }
+
+      .row {
+        margin-bottom: 10px;
+      }
+
+      .key {
+        padding-right: 10px;
+      }
+
+      .val {
+        font-weight: bold;
+      }
+
+      .table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      .table thead {
+        background-color: #fafafa;
+        border-bottom: 1px solid #eee;
+      }
+
+      .table thead th {
+        text-align: left;
+        padding: 15px 0;
+      }
+
+      .table tbody tr {
+        border-bottom: 1px solid #eee;
+      }
+
+      .table tbody td {
+        padding: 15px 0;
+
+      }
+    </style>
+
+    <!-- local DOM -->
+
+    <div class="master-container">
+
+      <div class="limiting-container vertical layout">
+
+        <paper-card>
+          <div class="card-content">
+            <div class="search layout horizontal end">
+              <paper-input class="flex" label="Search By Patient or Institution" value="{{searchString}}"></paper-input>
+              <custom-vital-search class="flex" on-date-select="filterByDateClicked" on-clear="filterByDateClearButtonClicked"></custom-vital-search>
+            </div>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>PERFORMED ON</th>
+                  <th>SERVICE RENDERED</th>
+                  <th>INSTITUTION</th>
+                  <th>PATIENT</th>
+                  <th>FEE BILLED</th>
+                  <th>FEE PAID</th>
+                  <th>FEE BALANCE</th>
+                  <th>CLEARED</th>
+                </tr>
+              </thead>
+              <tbody>
+                <template is="dom-repeat" items="[[invoiceList]]" filter="{{filterFn(searchString)}}">
+                  <tr>
+                    <td>[[item.data.datePerformed]]</td>
+                    <td>[[showServiceName(item.data.serviceRenderedSelectedIndex)]]</td>
+                    <td>[[item.data.nameOfInstitution]]</td>
+                    <td>[[item.data.nameOfPatient]]</td>
+                    <td>[[item.data.feeBilledAmount]]</td>
+                    <td>[[item.data.feePaidAmount]]</td>
+                    <td>[[$calculateRemaining(item.data.feePaidAmount, item.data.feeBilledAmount)]]</td>
+                    <td>
+                      <span hidden$="[[item.data.isCleared]]">No</span>
+                      <span hidden$="[[!item.data.isCleared]]">Yes</span>
+                    </td>
+                  </tr>
+                </template>
+              </tbody>
+            </table>
+          </div>
+        </paper-card>
+
+      </div>
+      <!--Limiting Container Ends-->
+
+    </div>
+    <!--Master Container Ends-->
+
+  </template>
+  <script src="page-invoice-manager.coffee-compiled.js"></script>
+</dom-module>

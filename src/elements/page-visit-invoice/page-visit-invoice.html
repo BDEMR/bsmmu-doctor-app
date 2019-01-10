@@ -1,0 +1,202 @@
+<link rel="import" href="../../bower-assets/polymer/polymer.html">
+
+<!-- paper-* -->
+<link rel="import" href="../../bower-assets/paper-button/paper-button.html">
+<link rel="import" href="../../bower-assets/paper-card/paper-card.html">
+<link rel="import" href="../../bower-assets/paper-input/paper-input.html">
+<link rel="import" href="../../bower-assets/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower-assets/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="../../bower-assets/paper-listbox/paper-listbox.html">
+<link rel="import" href="../../bower-assets/paper-item/paper-item.html">
+
+
+<!-- style -->
+<link rel="import" href="../../styles/common-style.html">
+
+<!-- behavior -->
+<link rel="import" href="../../behaviors/db-using.html">
+<link rel="import" href="../../behaviors/translating.html">
+<link rel="import" href="../../behaviors/page-like.html">
+<link rel="import" href="../../behaviors/api-calling.html">
+<link rel="import" href="../../behaviors/common-computes.html">
+
+<!-- element -->
+<dom-module id="page-visit-invoice">
+  <template>
+
+    <!-- style -->
+
+    <style is="custom-style" include="common-style">
+      .limiting-container {
+        margin-top: 10px;
+      }
+
+      paper-button {
+        background: white;
+      }
+
+      .invoice-card {
+        background: white;
+        /*
+        margin: 4px;
+        padding: 4px;
+        */
+      }
+
+      paper-card {
+        margin: 4px;
+      }
+
+      .row {
+        margin-bottom: 10px;
+      }
+
+      .key {
+        padding-right: 10px;
+      }
+
+      .val {
+        font-weight: bold;
+      }
+    </style>
+
+    <!-- local DOM -->
+
+    <div class="master-container">
+
+      <div class="limiting-container vertical layout">
+
+        <paper-card>
+          <div class="card-content">
+            <div class="invoice-card vertical layout">
+
+              <div class="horizontal layout row">
+                <paper-input readonly value="{{invoice.data.nameOfInstitution}}" label="Name of Institution" class="flex"></paper-input>
+              </div>
+
+              <div class="horizontal layout row">
+                <paper-input value="{{invoice.data.nameOfPatient}}" label="Name of Patient" class="flex"></paper-input>
+              </div>
+
+              <div class="horizontal layout row">
+                <paper-input value="{{invoice.data.billingPersonsName}}" label="Name of Billing Person" class="flex"></paper-input>
+              </div>
+
+              <div class="horizontal layout row">
+                <paper-dropdown-menu label="Service Rendered" class="flex">
+                  <paper-listbox class="dropdown-content" selected="{{invoice.data.serviceRenderedSelectedIndex}}" on-iron-select="_getService">
+                    <template is="dom-repeat" items="[[serviceRenderedOptionList]]" as="item">
+                      <paper-item>[[item]]</paper-item>
+                    </template>
+                  </paper-listbox>
+                </paper-dropdown-menu>
+                <template is="dom-if" if="[[$isLast(serviceRenderedOptionList, invoice.data.serviceRenderedSelectedIndex)]]">
+                  <paper-input value="{{invoice.data.customServiceRendered}}" label="Service Name" class="flex"></paper-input>
+                </template>
+              </div>
+
+              <div class="horizontal layout row">
+                <paper-dropdown-menu label="Source of the Patient" class="flex">
+                  <paper-listbox class="dropdown-content" selected="{{invoice.data.sourceOfPatientSelectedIndex}}">
+                    <template is="dom-repeat" items="[[sourceOfPatientOptionList]]" as="item">
+                      <paper-item>[[item]]</paper-item>
+                    </template>
+                  </paper-listbox>
+                </paper-dropdown-menu>
+                <template is="dom-if" if="[[$isLast(sourceOfPatientOptionList, invoice.data.sourceOfPatientSelectedIndex)]]">
+                  <paper-input value="{{invoice.data.customSourceOfPatient}}" label="Source of the patient" class="flex"></paper-input>
+                </template>
+              </div>
+
+              <div class="horizontal layout row">
+                <paper-input type="date" value="{{invoice.data.datePerformed}}" label="Date Performed" class="flex"></paper-input>
+                <paper-input type="date" value="{{invoice.data.dateDue}}" label="Date Due" class="flex"></paper-input>
+              </div>
+
+              <div class="horizontal layout row">
+                <paper-input type="time" value="{{invoice.data.timeFrom}}" label="Time From" class="flex"></paper-input>
+                <paper-input type="time" value="{{invoice.data.timeTo}}" label="Time To" class="flex"></paper-input>
+              </div>
+
+              <div class="horizontal layout row">
+                <paper-input value="{{invoice.data.comments}}" label="Comments" class="flex"></paper-input>
+              </div>
+
+            </div>
+          </div>
+        </paper-card>
+
+        <paper-card>
+          <div class="card-content">
+            <div class="invoice-card vertical layout">
+
+              <div class="horizontal layout row">
+                <paper-input type="number" value="{{invoice.data.feeBilledAmount}}" label="Fee Billed Amount (in BDT)" class="flex"></paper-input>
+              </div>
+
+              <div class="horizontal layout row center">
+                <paper-input readonly value="[[$toReadbleStatus(invoice.data.paymentStatus)]]" label="Payment Status" class="flex"></paper-input>
+                <paper-checkbox checked="{{invoice.data.isCleared}}">Cleared</paper-checkbox>
+              </div>
+
+            </div>
+          </div>
+        </paper-card>
+
+        <paper-card>
+          <div class="card-content">
+            <div class="invoice-card vertical layout">
+
+              <div class="horizontal layout row center">
+                <paper-checkbox checked="{{invoice.data.isThereAnyPaymentMade}}">Payments Made</paper-checkbox>
+              </div>
+
+              <template is="dom-if" if="[[invoice.data.isThereAnyPaymentMade]]">
+
+                <div class="horizontal layout row">
+                  <paper-dropdown-menu label="Fee Paid By" class="flex">
+                    <paper-listbox class="dropdown-content" selected="{{invoice.data.feePaidBySelectedIndex}}">
+                      <template is="dom-repeat" items="[[feePaidByOptionList]]" as="item">
+                        <paper-item>[[item]]</paper-item>
+                      </template>
+                    </paper-listbox>
+                  </paper-dropdown-menu>
+                  <template is="dom-if" if="[[$isLast(feePaidByOptionList, invoice.data.feePaidBySelectedIndex)]]">
+                    <paper-input value="{{invoice.data.customSourceOfPatient}}" label="Fee Paid By" class="flex"></paper-input>
+                  </template>
+                </div>
+
+                <div class="horizontal layout row">
+                  <paper-input type="date" value="{{invoice.data.feePaidOn}}" label="Fee Paid On" class="flex"></paper-input>
+                </div>
+
+                <div class="horizontal layout row">
+                  <paper-input type="number" value="{{invoice.data.feePaidAmount}}" label="Fee Paid Amount" class="flex"></paper-input>
+                </div>
+
+                <div class="horizontal layout row">
+                  <paper-input type="number" value="[[$calculateRemaining(invoice.data.feePaidAmount, invoice.data.feeBilledAmount)]]" label="Remaining" class="flex"></paper-input>
+                </div>
+
+              </template>
+
+            </div>
+          </div>
+          
+        </paper-card>
+
+        <div class="m-top-8">
+          <paper-button raised on-tap="savePressed">Save</paper-button>
+          <paper-button raised on-tap="printPressed">Save and Print</paper-button>
+          <paper-button raised on-tap="sendtoPatientPressed">Save and Send To Patient</paper-button>
+        </div>
+
+      </div>
+      <!--Limiting Container Ends-->
+
+    </div>
+    <!--Master Container Ends-->
+
+  </template>
+  <script src="page-visit-invoice.coffee-compiled.js"></script>
+</dom-module>

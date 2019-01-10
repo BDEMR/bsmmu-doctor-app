@@ -1,0 +1,27 @@
+<!-- element -->
+<dom-module id="de-category">
+  <template>
+
+    <!-- style -->
+
+    <style is="custom-style" include="common-style">
+    .category-container {
+      background: #FFFFFF;
+      padding-bottom: 300px;
+      margin-top: 2px;
+      margin-left: 2px;
+    }
+    </style>
+
+    <!-- local DOM - start -->
+
+    <div class="category-container horizontal layout wrap">
+      <template is="dom-repeat" items="[[def.childList]]" as="collection" index-as="collectionIndex">
+        <de-collection data="[[$makeData(collection)]]" def="[[collection]]"></de-collection>
+      </template>
+    </div>
+
+    <!-- local DOM - end -->
+  </template>
+  <script src="de-category.coffee-compiled.js"></script>
+</dom-module>

@@ -1,0 +1,368 @@
+<link rel="import" href="../../bower-assets/polymer/polymer.html">
+
+<!-- iron-* -->
+<link rel="import" href="../../bower-assets/iron-icons/iron-icons.html">
+
+<!-- paper-* -->
+<link rel="import" href="../../bower-assets/paper-button/paper-button.html">
+<link rel="import" href="../../bower-assets/paper-card/paper-card.html">
+<link rel="import" href="../../bower-assets/paper-input/paper-input.html">
+<link rel="import" href="../../bower-assets/paper-input/paper-input-container.html">
+<link rel="import" href="../../bower-assets/paper-input/paper-textarea.html">
+<link rel="import" href="../../bower-assets/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower-assets/paper-menu/paper-menu.html">
+<link rel="import" href="../../bower-assets/paper-listbox/paper-listbox.html">
+<link rel="import" href="../../bower-assets/paper-item/paper-item.html">
+<link rel="import" href="../../bower-assets/paper-fab/paper-fab.html">
+<link rel="import" href="../../bower-assets/paper-toggle-button/paper-toggle-button.html">
+<link rel="import" href="../../bower-assets/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="../../bower-assets/paper-menu-button/paper-menu-button.html">
+<link rel="import" href="../../bower-assets/vaadin-date-picker/vaadin-date-picker.html">
+<link rel="import" href="../../bower-assets/paper-autocomplete/paper-autocomplete.html">
+<!-- style -->
+<link rel="import" href="../../styles/common-style.html">
+
+<!-- behavior -->
+<link rel="import" href="../../behaviors/common-computes.html">
+<link rel="import" href="../../behaviors/db-using.html">
+<link rel="import" href="../../behaviors/translating.html">
+<link rel="import" href="../../behaviors/page-like.html">
+<link rel="import" href="../../behaviors/api-calling.html">
+<!-- custom-elements -->
+
+<!-- element -->
+<dom-module id="page-organization-manage-waitlist">
+  <template>
+
+    <!-- style -->
+
+    <style is="custom-style" include="common-style">
+      .limiting-container {
+        margin-top: 10px;
+      }
+
+      .organization-info-card-counter {
+        margin-top: 20px;
+        color: #777777;
+      }
+
+      .organization-info-cards {
+        @apply(--layout-vertical);
+        /*@apply(--layout-center);*/
+        margin-top: 10px;
+      }
+
+      .organization-info-cards .row {
+        margin-left: 10px;
+        /*margin-right: 10px;*/
+        margin-top: 10px;
+      }
+
+      .organization-info-cards .hr {
+        margin-left: 20px;
+        margin-right: 20px;
+        height: 1px;
+        /*width: 100px;*/
+        background: #dddddd;
+      }
+
+      .organization-info-cards .row .modifier {
+        font-size: 14px;
+        background: #000000;
+        color: #ffffff;
+        margin-left: 5px;
+        padding-top: 2px;
+        padding-bottom: 2px;
+        padding-left: 4px;
+        padding-right: 4px;
+        border-radius: 4px;
+        text-transform: uppercase;
+      }
+
+      .organization-info-cards .row .modifier.online {
+        background: #757575;
+      }
+
+      .organization-info-cards .row .modifier.local-only {
+        background: #039BE5;
+      }
+
+      .organization-info-cards .row .modifier.locally-updated {
+        background: #009688;
+      }
+
+      .organization-info-cards .row .modifier.imported {
+        background: #4CAF50;
+      }
+
+      .info-row {
+        margin-top: 10px;
+      }
+
+      .top-info-row {
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+
+      .serial-number {
+        background: #37474F;
+        color: #ffffff;
+        margin-left: 5px;
+        padding-top: 2px;
+        padding-bottom: 2px;
+        padding-left: 4px;
+        padding-right: 4px;
+        border-radius: 4px;
+        text-transform: uppercase;
+        font-weight: bold;
+      }
+
+      .address1 {
+        margin-right: 10px;
+      }
+
+      .break-on-tablet {
+        @apply(--layout-horizontal);
+      }
+
+      @media screen and (max-width: 740px) {
+        .break-on-tablet {
+          display: block;
+        }
+      }
+
+      .val {
+        text-decoration: underline;
+      }
+
+      .card-custom-header {
+        padding: 15px;
+        border-bottom: 1px solid var(--paper-grey-200);
+        background-color: var(--paper-grey-50);
+      }
+
+      .card-custom-header .title {
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 28px;
+        color: var(--brand-primary-color);
+      }
+
+      .list-item {
+        border-bottom: 1px solid var(--paper-grey-100);
+      }
+
+      .list-item:hover {
+        background-color: var(--paper-grey-50);
+      }
+
+      .waitlist-item {
+        padding: 20px 40px;
+      }
+      .waitlist-item:nth-child(odd){
+        background-color: var(--paper-grey-100);
+      }
+    </style>
+
+    <!-- local DOM -->
+
+    <div class="master-container">
+
+      <div class="limiting-container">
+
+        <template is="dom-if" if="[[isLoading]]">Loading...</template>
+
+        <!-- editing organization - start -->
+        <template is="dom-if" if="{{isOrganizationValid}}">
+
+          <div class="organization-info-card-counter">
+            <div>Basic Information</div>
+          </div>
+
+          <paper-card class="organization-info-cards">
+            <div class="card-content">
+              <div class="horizontal layout center top-info-row">
+                <div>ID: </div>
+                <div class="serial-number">[[organization.idOnServer]]</div>
+                <div class="flex"></div>
+              </div>
+              <div class="info-row">
+                <div>Name: [[organization.name]]</div>
+              </div>
+              <div class="info-row">
+                <div>Region: [[organization.effectiveRegion]]</div>
+              </div>
+              <div class="info-row">
+                <div>Address: [[organization.address]]</div>
+              </div>
+            </div>
+          </paper-card>
+
+          <div class="organization-info-card-counter horizontal layout center">
+            <div>Waitlist Manager</div>
+            <div class="flex"></div>
+            <paper-button class="btn btn-success" raised on-tap="saveTapped">
+              <iron-icon icon="save"></iron-icon>&nbsp; SAVE WAITLIST
+            </paper-button>
+          </div>
+
+          <iron-pages selected="[[selectedView]]">
+            <section>
+              <template is="dom-if" if="[[patient]]">
+                <paper-card class="organization-info-cards">
+
+                  <div class="card-custom-header">
+                    <div class="layout horizontal center">
+                      <div class="title flex">Adding Patient: [[$getFullName(patient.name)]]</div>
+                    </div>
+                  </div>
+                  <div class="card-content">
+
+                    <paper-autocomplete label="Search Waitlist To Add Patient" source="[[waitlistSourceMap]]" on-autocomplete-selected="moveToThisWaitlistAutocompleteSelected"></paper-autocomplete>
+
+                    <template is="dom-repeat" items="[[flatWaitListObjectMap]]">
+                      <paper-item class="list-item">
+                        <div>[[item.path]]</div>
+                        <div class="flex"></div>
+                        <paper-button class="btn btn-sm btn-primary" on-tap="movePatientToThisWaitListButtonClicked">Add Patient Here</paper-button>
+                      </paper-item>
+                    </template>
+
+                  </div>
+                </paper-card>
+              </template>
+            </section>
+
+            <section>
+              <template is="dom-if" if="[[organization]]">
+                <paper-card class="organization-info-cards">
+                  <div class="card-custom-header">
+                    <div class="horizontal layout center" style="font-weight: bold;">
+                      [[organization.name]]
+                      <template is="dom-repeat" items="[[currentItemStack]]">
+                        >> [[item.name]]
+                      </template>
+                      <div class="flex"></div>
+                      <template is="dom-if" if="[[level]]">
+                        <paper-button class="btn btn-default btn-sm" raised on-tap="upCurrentItemTapped">Go Back To Previous Level</paper-button>
+                      </template>
+                      <template is="dom-if" if="[[!shouldShowPatients]]">
+                        <paper-button class="btn btn-default btn-sm" raised on-tap="showPatientsTapped">Show Patients</paper-button>
+                      </template>
+                    </div>
+                  </div>
+
+                  <div class="card-content">
+
+                    <div class="horizontal layout center">
+                      <paper-input class="flex" id="genericEntry" value="{{newGenericItemName}}" label="Waitlist Name" error-message="Enter Name of this Waitlist"
+                        required type="text" auto-validate on-keyup="addNewGenericItemEnterKeyPressed">
+                        <div suffix>
+                          <paper-button class="btn btn-primary" raised on-tap="addNewGenericItemTapped">Add New Waitlist Here</paper-button>
+                        </div>
+                      </paper-input>
+                    </div>
+
+                    <div class="p-vertical-8">
+                      <template is="dom-if" if="[[!genericItemList.length]]">
+                        <p class="type danger layout vertical center">Add Some Waitlist...</p>
+                      </template>
+                      <template id="assistant-list-repeater" is="dom-repeat" items="[[genericItemList]]" as="genericItem">
+                        <paper-item class="custom layout horizontal center">
+                          <paper-input value="{{genericItem.name}}">
+                            <div prefix class="type secondary m-right-8">Name: </div>
+                          </paper-input>
+                          <div class="flex"></div>
+                          <paper-button class="btn btn-default btn-sm" raised on-tap="genericItemViewSubitemsTapped">Open</paper-button>
+                          <paper-button class="btn btn-danger btn-sm" on-tap="genericItemDeleteTapped">Delete</paper-button>
+                        </paper-item>
+                      </template>
+                    </div>
+                  </div>
+                </paper-card>
+
+                <paper-card class="m-top-16" heading="Waitlist">
+                  <div class="card-content">
+                    <paper-autocomplete label="Search Waitlist" source="[[waitlistSourceMap]]" on-autocomplete-selected="_getWaitlistRef"></paper-autocomplete>
+
+
+                    <template is="dom-repeat" items="[[flatWaitListObjectMap]]">
+                      <paper-item class="list-item">
+                        <div>[[item.path]]</div>
+                        <div class="flex"></div>
+                        <div class="type secondary">[[item.aggregatedSeatCount]]</div>
+                        <paper-button class="btn btn-sm btn-default" on-tap="viewPatientsForThisWaitList">View Patients</paper-button>
+                      </paper-item>
+                    </template>
+                  </div>
+                </paper-card>
+
+                <template is="dom-if" if="[[shouldShowPatients]]">
+                  <paper-card class="organization-info-cards">
+
+                    <div class="card-custom-header">
+                      <div class="layout horizontal center">
+                        <div class="title flex">Total [[seatList.length]] patients.</div>
+                      </div>
+                    </div>
+
+                    <template is="dom-if" if="[[seatList.length]]">
+                      <div class="p-0">
+                        <template id="assistant-list-repeater" is="dom-repeat" items="[[seatList]]" as="seat">
+                          <paper-item class="layout horizontal center waitlist-item">
+                            <div class="flex layout vertical">
+
+                              <div class="layout horizontal">
+                                <paper-input class="m-right-8 flex" label="Name of Patient" value="{{seat.patientNameCopy}}"></paper-input>
+                                <paper-input class="m-right-8 flex" label="Email of Patient" value="{{seat.patientEmailCopy}}"></paper-input>
+                                <paper-input class="m-right-8 flex" label="Phone of Patient" value="{{seat.patientPhoneCopy}}"></paper-input>
+                              </div>
+                              <div class="layout horizontal center">
+                                <paper-input class="flex" label="#[[seat.uid]]" value="[[seat.seatDetail]]" disabled></paper-input>
+                                <template is="dom-if" if="[[isBookedForProcedure]]">
+                                  <paper-input class="m-right-8" type="date" label="Procedure Date" value="{{seat.procedureDate}}"></paper-input>
+                                  <paper-input label="Procedure Time" type="time" value="{{seat.procedureTime}}"></paper-input>
+                                  <paper-button class="btn btn-primary btn-sm" on-tap="bookProecedureConfirmedClick">Confirm Booking</paper-button>
+                                </template>
+                                <template is="dom-if" if="[[seat.isConfirmedForProcedure]]">
+                                  <div class="type caption2 primary">Precdure Confirmed [[$mkDateTime(seat.confirmedForProcedureDatetimeStamp)]]</div>
+                                </template>
+                              </div>
+
+                            </div>
+                            <paper-menu-button horizontal-align="right" no-animations>
+                              <paper-icon-button icon="more-vert" class="dropdown-trigger"></paper-icon-button>
+                              <paper-menu class="dropdown-content">
+                                <div hidden>[[seat]]</div>
+                                <paper-item on-tap="seatBookForProcedureTapped">Book for Procedure</paper-item>
+                                <paper-item on-tap="seatMoveTapped">Move Patient</paper-item>
+                                <paper-item on-tap="seatDeleteTapped">Delete From List</paper-item>
+                              </paper-menu>
+                            </paper-menu-button>
+                          </paper-item>
+                        </template>
+                      </div>
+                    </template>
+                    <div class="card-actions">
+                      <p class="type caption info bold">NOTE: Add patients from Patient Manager</p>
+                    </div>
+                  </paper-card>
+                </template>
+
+              </template>
+
+
+            </section>
+
+          </iron-pages>
+
+        </template>
+        <!-- editing organization - end -->
+
+      </div>
+
+    </div>
+
+  </template>
+  <script src="page-organization-manage-waitlist.coffee-compiled.js"></script>
+</dom-module>

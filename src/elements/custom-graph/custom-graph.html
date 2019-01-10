@@ -1,0 +1,143 @@
+<link rel="import" href="../../bower-assets/polymer/polymer.html">
+
+<!-- iron-* -->
+<link rel="import" href="../../bower-assets/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower-assets/iron-icon/iron-icon.html">
+
+<!-- paper-* -->
+<link rel="import" href="../../bower-assets/paper-button/paper-button.html">
+<link rel="import" href="../../bower-assets/paper-card/paper-card.html">
+<link rel="import" href="../../bower-assets/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower-assets/paper-input/paper-input.html">
+<link rel="import" href="../../bower-assets/paper-input/paper-input-container.html">
+<link rel="import" href="../../bower-assets/paper-input/paper-textarea.html">
+<link rel="import" href="../../bower-assets/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower-assets/paper-dropdown-menu/paper-dropdown-menu-light.html">
+<link rel="import" href="../../bower-assets/paper-listbox/paper-listbox.html">
+<link rel="import" href="../../bower-assets/paper-item/paper-item.html">
+<link rel="import" href="../../bower-assets/paper-fab/paper-fab.html">
+<link rel="import" href="../../bower-assets/paper-toggle-button/paper-toggle-button.html">
+<link rel="import" href="../../bower-assets/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="../../bower-assets/paper-menu-button/paper-menu-button.html">
+<link rel="import" href="../../bower-assets/paper-tabs/paper-tab.html">
+<link rel="import" href="../../bower-assets/paper-tabs/paper-tabs.html">
+<link rel="import" href="../../bower-assets/paper-radio-button/paper-radio-button.html">
+
+<!-- style -->
+<link rel="import" href="../../styles/common-style.html">
+
+<!-- element -->
+<dom-module id="custom-graph">
+  <template>
+
+    <!-- style -->
+
+    <style is="custom-style" include="common-style">
+      #canvas {
+        width: 100%;
+        cursor: crosshair;
+        width: 850px;
+        height: 576px;
+      }
+
+      .top-container {
+        margin: 10px;
+        overflow-x: auto;
+      }
+
+      paper-button {
+        background: white;
+        min-width: 0px;
+        /*padding: 0px;*/
+        /*margin: 0px;*/
+      }
+
+      paper-button[disabled] {
+        background: #dddddd;
+      }
+
+      .card-custom-header {
+        padding: 15px;
+        border-bottom: 1px solid var(--paper-grey-200);
+        background-color: var(--paper-grey-50);
+      }
+
+      .card-custom-header .title {
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 28px;
+        text-align: left;
+        color: var(--brand-primary-color);
+      }
+
+      paper-icon-button {
+        color: var(--brand-primary-color);
+      }
+
+      iron-icon {
+        margin-right: 8px; color: var(--brand-primary-color);
+      }
+    </style>
+    <!-- local DOM - start -->
+
+    <div class="card-custom-header layout horizontal  center end-justified">
+      <iron-icon icon="icons:assessment"></iron-icon>
+      <div class="title flex">Graph</div>
+      <paper-icon-button icon="chevron-left" on-tap="leftChevronPressed"></paper-icon-button>
+      <div hidden>
+
+        <!-- upper row - start -->
+        <div class="horizontal layout wrap">
+          <template is="dom-repeat" items="[[pointDefinitionKeyList]]" as="pointDefinitionKey">
+            <template is="dom-if" if="[[$shouldShowButtonOnUI(pointDefinition, pointDefinitionKey)]]">
+              <paper-button disabled="[[$isDefinitionSelected(pointDefinitionKey, selectedPointDefinitionKey)]]" on-tap="pointDefinitionSwitchPressed">
+                <template is="dom-if" if="[[$isMoveButton(pointDefinition, pointDefinitionKey)]]">
+                  <iron-icon icon="open-with"></iron-icon>
+                </template>
+                <template is="dom-if" if="[[$isDeleteButton(pointDefinition, pointDefinitionKey)]]">
+                  <iron-icon icon="delete"></iron-icon>
+                </template>
+                <template is="dom-if" if="[[$isNormalButton(pointDefinition, pointDefinitionKey)]]">
+                  [[$getLabel(pointDefinition, pointDefinitionKey)]]
+                </template>
+              </paper-button>
+            </template>
+          </template>
+        </div>
+        <!-- upper row - end -->
+
+        <!-- lower row - start -->
+        <div class="horizontal layout center wrap">
+          <paper-dropdown-menu-light label="Set Patient Position">
+            <paper-listbox class="dropdown-content" selected="{{patientPositionSelectedIndex}}" on-iron-select="patientPositionSelected">
+              <template is="dom-repeat" items="[[patientPositionList]]" as="possiblePosition">
+                <paper-item data-value="[[possiblePosition]]">[[possiblePosition]]</paper-item>
+              </template>
+            </paper-listbox>
+          </paper-dropdown-menu-light>
+          <div class="flex"></div>
+          <paper-checkbox checked="{{isExpressDeleteEnabled}}">Express Delete</paper-checkbox>
+          &nbsp;
+          <paper-checkbox checked="{{isAutoInsertEnabled}}">Auto Insert</paper-checkbox>
+        </div>
+        <!-- lower row - end -->
+
+      </div>
+      <paper-icon-button icon="chevron-right" on-tap="rightChevronPressed"></paper-icon-button>
+
+    </div>
+
+    <div class="top-container">
+      <div style="text-align: center;">
+        <canvas style="text-align: center;" id="canvas" width="1024" height="576" on-mousemove="canvasMouseMoved" on-click="canvasClicked"></canvas>
+      </div>
+
+      <br />
+      <br />
+
+      <paper-textarea hidden label="Insert comments here" value="[[additionalData.comments]]" on-change="commentChanged"></paper-textarea>
+
+      <!-- local DOM - end -->
+  </template>
+  <script src="custom-graph.coffee-compiled.js"></script>
+</dom-module>

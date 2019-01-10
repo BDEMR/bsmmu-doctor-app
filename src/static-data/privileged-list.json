@@ -1,0 +1,87 @@
+[
+  {
+    "serial": "D001",
+    "type": "manage-patient",
+    "name": "Patient Manager",
+    "isSelected": false
+  },
+  {
+    "serial": "D002",
+    "type": "manage-reports",
+    "name": "Report Manger",
+    "isSelected": false
+  },
+  {
+    "serial": "D003",
+    "type": "manage-chamber",
+    "name": "Chamber Manager",
+    "isSelected": false
+  },
+  {
+    "serial": "D004",
+    "type": "medicine-dispension",
+    "name": "Medicine Dispension",
+    "isSelected": false
+  },
+  {
+    "serial": "D005",
+    "type": "assistant-manager",
+    "name": "Assistant Manager",
+    "isSelected": false
+  },
+  {
+    "serial": "D006",
+    "type" : "search-records",
+    "name": "Records Manager",
+    "isSelected": false
+  },
+  {
+    "serial": "D007",
+    "type": "manage-invoice",
+    "name": "Invoice Manager",
+    "isSelected": false
+  },
+  {
+    "serial": "D009",
+    "type": "booking-and-services",
+    "name": "Booking And Services",
+    "isSelected": false
+  },
+  {
+    "serial": "D010",
+    "type": "mange-organization",
+    "name": "Organization Manger",
+    "isSelected": false
+  },
+  {
+    "serial": "D011",
+    "type": "send-notification",
+    "name": "Send Notification",
+    "isSelected": false
+  },
+  {
+    "serial": "D012",
+    "type": "send-feedback",
+    "name": "Send Feedback",
+    "isSelected": false
+  },
+  {
+    "serial": "D013",
+    "name": "Create Patient Visit Record",
+    "type": "create-visit-record",
+    "isSelected": false
+  },
+  {
+    "serial": "C001",
+    "name": "Invoice",
+    "type": "invoice",
+    "isSelected": false
+  },
+  {
+    "serial": "C002",
+    "name": "Create Test Result",
+    "type": "create-test-result",
+    "isSelected": false
+  }
+    
+]

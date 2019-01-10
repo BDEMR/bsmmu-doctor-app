@@ -1,0 +1,31 @@
+body {
+  margin: 0;
+  font-family: 'Roboto', 'Noto', sans-serif;
+  background-color: #5c457526;
+  word-wrap: break-word;
+}
+
+#unsupported-screen-size-overlay {
+  display: none;
+  background: white;
+  color: red;
+  font-size: 28px;
+  font-family: monospace;
+}
+
+@media screen and (max-width: 239px) {
+  #unsupported-screen-size-overlay {
+    display: block;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+}
+
+@media print {
+  app-header-layout #contentContainer {
+    overflow-y: unset !important;
+  }
+}

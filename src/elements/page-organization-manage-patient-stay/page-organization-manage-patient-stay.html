@@ -1,0 +1,538 @@
+<link rel="import" href="../../bower-assets/polymer/polymer.html">
+
+<!-- iron-* -->
+<link rel="import" href="../../bower-assets/iron-icons/iron-icons.html">
+
+<!-- paper-* -->
+<link rel="import" href="../../bower-assets/paper-button/paper-button.html">
+<link rel="import" href="../../bower-assets/paper-card/paper-card.html">
+<link rel="import" href="../../bower-assets/paper-input/paper-input.html">
+<link rel="import" href="../../bower-assets/paper-input/paper-input-container.html">
+<link rel="import" href="../../bower-assets/paper-input/paper-textarea.html">
+<link rel="import" href="../../bower-assets/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower-assets/paper-listbox/paper-listbox.html">
+<link rel="import" href="../../bower-assets/iron-list/iron-list.html">
+<link rel="import" href="../../bower-assets/paper-item/paper-item.html">
+<link rel="import" href="../../bower-assets/paper-fab/paper-fab.html">
+<link rel="import" href="../../bower-assets/paper-toggle-button/paper-toggle-button.html">
+<link rel="import" href="../../bower-assets/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="../../bower-assets/paper-menu-button/paper-menu-button.html">
+
+<!-- style -->
+<link rel="import" href="../../styles/common-style.html">
+
+<!-- behavior -->
+<link rel="import" href="../../behaviors/common-computes.html">
+<link rel="import" href="../../behaviors/db-using.html">
+<link rel="import" href="../../behaviors/translating.html">
+<link rel="import" href="../../behaviors/page-like.html">
+<link rel="import" href="../../behaviors/api-calling.html">
+<!-- custom-elements -->
+
+<!-- element -->
+<dom-module id="page-organization-manage-patient-stay">
+  <template>
+
+    <!-- style -->
+
+    <style is="custom-style" include="common-style">
+      .limiting-container {
+        margin-top: 10px;
+      }
+
+      .organization-info-card-counter {
+        margin-top: 20px;
+        margin-left: 20px;
+        color: #777777;
+      }
+
+      .organization-info-cards {
+        @apply(--layout-vertical);
+        /*@apply(--layout-center);*/
+        margin-top: 10px;
+        margin-left: 10px;
+        margin-right: 10px;
+        padding-bottom: 20px;
+      }
+
+      .organization-info-cards .row {
+        margin-left: 10px;
+        /*margin-right: 10px;*/
+        margin-top: 10px;
+      }
+
+      .organization-info-cards .hr {
+        margin-left: 20px;
+        margin-right: 20px;
+        height: 1px;
+        /*width: 100px;*/
+        background: #dddddd;
+      }
+
+      .organization-info-cards .row .modifier {
+        font-size: 14px;
+        background: #000000;
+        color: #ffffff;
+        margin-left: 5px;
+        padding-top: 2px;
+        padding-bottom: 2px;
+        padding-left: 4px;
+        padding-right: 4px;
+        border-radius: 4px;
+        text-transform: uppercase;
+      }
+
+      .organization-info-cards .row .modifier.online {
+        background: #757575;
+      }
+
+      .organization-info-cards .row .modifier.local-only {
+        background: #039BE5;
+      }
+
+      .organization-info-cards .row .modifier.locally-updated {
+        background: #009688;
+      }
+
+      .organization-info-cards .row .modifier.imported {
+        background: #4CAF50;
+      }
+
+      .info-row {
+        margin-top: 10px;
+      }
+
+      .top-info-row {
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+
+      .serial-number {
+        background: #37474F;
+        color: #ffffff;
+        margin-left: 5px;
+        padding-top: 2px;
+        padding-bottom: 2px;
+        padding-left: 4px;
+        padding-right: 4px;
+        border-radius: 4px;
+        text-transform: uppercase;
+        font-weight: bold;
+      }
+
+      .address1 {
+        margin-right: 10px;
+      }
+
+      .break-on-tablet {
+        @apply(--layout-horizontal);
+      }
+
+      @media screen and (max-width: 740px) {
+        .break-on-tablet {
+          display: block;
+        }
+      }
+
+      .val {
+        text-decoration: underline;
+      }
+
+      .card-custom-header {
+        padding: 15px;
+        border-bottom: 1px solid var(--paper-grey-200);
+        background-color: var(--paper-grey-50);
+      }
+
+      .card-custom-header .title {
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 28px;
+        color: var(--brand-primary-color);
+      }
+
+      [raised] {
+        background: white;
+      }
+
+      .checkbox-padding {
+        padding: 5px;
+      }
+
+      .list-heading {
+        text-transform: capitalize;
+        border-bottom: 1px solid #eee;
+        padding: 5px 10px;
+      }
+
+      #assistant-list-repeater {
+        height: 400px;
+      }
+
+      .location-item {
+        margin-right: 50px;
+        padding: 10px 0;
+      }
+
+      .seat-list {
+        max-height: 400px;
+      }
+    </style>
+
+    <!-- local DOM -->
+
+    <div class="master-container">
+
+      <div class="limiting-container">
+
+        <template is="dom-if" if="{{!isOrganizationValid}}">
+          Organization invalid
+        </template>
+
+        <!-- editing organization - start -->
+        <template is="dom-if" if="{{isOrganizationValid}}">
+
+          <paper-card class="">
+            <div class="card-content">
+              <div class="horizontal layout center top-info-row">
+                <div>ID: </div>
+                <div class="serial-number">[[organization.idOnServer]]</div>
+                <div class="flex"></div>
+              </div>
+              <div class="info-row">
+                <div>Name: [[organization.name]]</div>
+              </div>
+              <div class="info-row">
+                <div>Region: [[organization.effectiveRegion]]</div>
+              </div>
+              <div class="info-row">
+                <div>Address: [[organization.address]]</div>
+              </div>
+            </div>
+          </paper-card>
+
+          <div class="layout horizontal center m-top-8">
+            <template is="dom-if" if="[[$equals(selectedPageIndex, 0)]]">
+              <paper-button class="btn btn-primary" on-tap="gotoAddSeatsPage">Add Seats &nbsp;
+                <iron-icon icon="add-box"></iron-icon>
+              </paper-button>
+            </template>
+
+            <template is="dom-if" if="[[$equals(selectedPageIndex, 0)]]">
+              <paper-button class="btn btn-primary" on-tap="gotoAddLocationsPage">Add Locations &nbsp;
+                <iron-icon icon="add-box"></iron-icon>
+              </paper-button>
+            </template>
+
+            <template is="dom-if" if="[[!$equals(selectedPageIndex, 0)]]">
+              <paper-button class="btn btn-default" raised on-tap="gotoViewSeatsPage">
+                <iron-icon icon="arrow-back"></iron-icon>
+                &nbsp;Previous Page
+              </paper-button>
+            </template>
+          </div>
+
+          <iron-pages selected="{{selectedPageIndex}}">
+            <!-- Manage Stay start -->
+            <section>
+              <paper-card class="m-top-8" heading="View Seats">
+                <div class="card-content">
+                  <div class="layout horizontal">
+                    <paper-dropdown-menu label="Department">
+                      <paper-listbox class="dropdown-content" selected="{{selectedDepartmentDropdownIndex}}" on-iron-select="departmentDropdownValueChanged">
+                        <paper-item>All</paper-item>
+                        <template is="dom-repeat" items="[[patientStayObject.departmentList]]">
+                          <paper-item>[[item.name]]</paper-item>
+                        </template>
+                      </paper-listbox>
+                    </paper-dropdown-menu>
+
+                    <paper-dropdown-menu label="Unit">
+                      <paper-listbox class="dropdown-content" selected="{{selectedUnitDropdownIndex}}" on-iron-select="unitDropdownValueChanged">
+                        <paper-item>All</paper-item>
+                        <template is="dom-repeat" items="[[unitList]]">
+                          <paper-item>[[item.name]]</paper-item>
+                        </template>
+                      </paper-listbox>
+                    </paper-dropdown-menu>
+
+                    <paper-dropdown-menu label="Ward">
+                      <paper-listbox class="dropdown-content" selected="{{selectedWardDropdownIndex}}" on-iron-select="wardDropdownValueChanged">
+                        <paper-item>All</paper-item>
+                        <template is="dom-repeat" items="[[wardList]]">
+                          <paper-item>[[item.name]]</paper-item>
+                        </template>
+                      </paper-listbox>
+                    </paper-dropdown-menu>
+                  </div>
+                  <br>
+                  <paper-toggle-button class="" checked="{{shouldShowFilters}}">Show Filters</paper-toggle-button>
+                  <br>
+
+                  <template is="dom-if" if="[[shouldShowFilters]]">
+                    <div>
+                      <paper-checkbox class="m-left-8" checked="{{shouldShowVacant}}">Show Vacant</paper-checkbox>
+                      <paper-checkbox class="m-left-8" checked="{{shouldShowOccupied}}">Show Occupied</paper-checkbox>
+                      <paper-checkbox class="m-left-8" checked="{{shouldShowOverflow}}">Show Overflow</paper-checkbox>
+                    </div>
+                    <br>
+                    <template is="dom-repeat" items="[[patientStayObject.locations]]">
+                      <paper-checkbox class="checkbox-padding" on-tap="locationCheckboxTapped"
+                      data-loc="[[item]]">[[item]]</paper-checkbox>
+                    </template>
+                    
+                  </template>
+                </div>
+              </paper-card>
+
+              <paper-card class="m-top-8">
+                <div class="card-custom-header">
+                  <div class="layout horizontal center">
+                    <div class="title flex">Total [[seatList.length]] seats. Vacant: [[$countSeatList(seatList, 'vacant', seatList.length, shownLocationList,
+                      shownLocationList.length)]] Occupied: [[$countSeatList(seatList, 'occupied', seatList.length, shownLocationList,
+                      shownLocationList.length)]] Overflow: [[$countSeatList(seatList, 'overflow', seatList.length, shownLocationList,
+                      shownLocationList.length)]]
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card-content">
+                  <template is="dom-if" if="[[seatList.length]]">
+                    <div class="p-0">
+                      <iron-list class="seat-list" items="[[seatList]]" as="seat">
+                        <template>
+
+                          <paper-item class="custom layout horizontal center" hidden="[[$shouldHide(seat.patientSerial, shouldShowVacant, shouldShowOccupied, shouldShowOverflow, seat.isOverflow, shownLocationList, shownLocationList.length, seat.location)]]">
+
+                            <div class="flex m-left-8">
+
+                              <div class="layout horizontal center">
+                                <paper-input value="[[seat.department]]" disabled></paper-input>
+                                <paper-input value="[[seat.unit]]" disabled></paper-input>
+                                <paper-input value="[[seat.ward]]" disabled></paper-input>
+                                <paper-input value="{{seat.name}}"></paper-input>
+                                <template is="dom-if" if="[[seat.isOverflow]]">
+                                  <div style="color: red">OVERFLOW</div>
+                                </template>
+                              </div>
+
+                            </div>
+
+                            <div class="layout horizontal m-horizontal-4 wrap">
+                              <div class="type secondary bg-gray">[[_seatStatus(seat.patientSerial)]]</div>
+                            </div>
+
+                            <template is="dom-if" if="[[seat.patientSerial]]">
+                              <div class="layout horizontal center">
+                                <div class="m-left-8 type bg-warning">[[seat.location]]</div>
+                                <!-- <div class="m-left-8"><span class="type secondary">Admission:</span></div>
+                                  <div class="m-left-8"><span class="type secondary">Discharge:</span></div>
+                                  <div class="m-left-8"><span class="type secondary">Total Stay:</span></div> -->
+                              </div>
+                            </template>
+
+                            <paper-menu-button horizontal-align="right" no-animations>
+                              <paper-icon-button icon="more-vert" class="dropdown-trigger"></paper-icon-button>
+                              <paper-listbox class="dropdown-content">
+
+                                <template is="dom-if" if="[[seat.patientSerial]]">
+                                  <div hidden>[[seat]]</div>
+                                  <paper-item on-tap="seatVacantTapped">Force Vacant</paper-item>
+                                </template>
+                                <template is="dom-if" if="[[!seat.patientSerial]]">
+                                  <div hidden>[[seat]]</div>
+                                  <paper-item on-tap="seatAssignTapped">Assign Patient</paper-item>
+                                </template>
+                                <div hidden>[[seat]]</div>
+
+                                <paper-item on-tap="seatDeleteTapped">Delete</paper-item>
+                              </paper-listbox>
+                            </paper-menu-button>
+
+                          </paper-item>
+
+                        </template>
+                      </iron-list>
+                    </div>
+                  </template>
+                </div>
+              </paper-card>
+
+            </section>
+            <!-- Manage Stay end -->
+
+            <!-- Add Seats -->
+            <section>
+              <paper-card class="">
+                <div class="card-custom-header">
+                  <div class="layout horizontal center justified">
+                    <div class="flex layout horizontal">
+                      <div class="layout horizontal center">[[organization.name]]</div>
+                      <template is="dom-if" if="[[$in(level, 'department', 'unit', 'ward')]]">
+                        <div class="">
+                          <iron-icon icon="chevron-right"></iron-icon>
+                          <span>[[selectedDepartmentName]]</span>
+                        </div>
+                      </template>
+                      <template is="dom-if" if="[[$in(level, 'unit', 'ward')]]">
+                        <div class="">
+                          <iron-icon icon="chevron-right"></iron-icon>
+                          <span>[[selectedUnitName]]</span>
+                        </div>
+                      </template>
+                      <template is="dom-if" if="[[$in(level,'ward')]]">
+                        <div class="">
+                          <iron-icon icon="chevron-right"></iron-icon>
+                          <span>[[selectedWardName]]</span>
+                        </div>
+                      </template>
+                    </div>
+                    <div>
+                      <template is="dom-if" if="[[$in(level, 'department', 'unit', 'ward')]]">
+                        <paper-button class="btn btn-sm btn-default" raised on-tap="upTapped">
+                          <iron-icon icon="arrow-back"></iron-icon>
+                          Go Back</paper-button>
+                      </template>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card-content">
+                  <paper-input class="flex" value="{{newItemName}}" label="Add New [[showingLevel]]" on-keyup="addNewItemOnEnter">
+                    <paper-button suffix class="btn btn-primary" on-tap="addNewItemTapped">Add</paper-button>
+                  </paper-input>
+                  <br>
+                  <template is="dom-if" if="[[!itemList.length]]">
+                    <div class="layout vertical center m-16">No Data Added...</div>
+                  </template>
+                  <template is="dom-if" if="[[itemList.length]]">
+                    <h3 class="list-heading">[[showingLevel]]s</h3>
+                    <paper-listbox>
+                      <template id="assistant-list-repeater" is="dom-repeat" items="[[itemList]]" as="item">
+                        <paper-item class="custom layout horizontal center">
+                          <div class="flex">
+                            <div class="type body capitalize">[[item.name]]</div>
+                            <!-- <div class="type caption secondary">Info</div>                           -->
+                          </div>
+                          <template is="dom-if" if="[[$in(showingLevel,'ward')]]">
+                            <div hidden>[[item]]</div>
+                            <paper-button class="btn btn-primary btn-sm" raised on-tap="addTapped">
+                              <iron-icon icon="add-box"></iron-icon>&nbsp; Add Seats</paper-button>
+                          </template>
+                          <template is="dom-if" if="[[$in(level, 'department', 'hospital')]]">
+                            <div hidden>[[item]]</div>
+                            <paper-button class="btn btn-primary btn-sm" on-tap="itemOpenTapped">
+                              <iron-icon icon="launch"></iron-icon>&nbsp; Open
+                            </paper-button>
+                          </template>
+                          <div hidden>[[item]]</div>
+                          <paper-button class="btn btn-primary btn-sm" on-tap="itemViewSeatsTapped">
+                            <iron-icon icon="folder"></iron-icon>&nbsp; View Seats</paper-button>
+                          <paper-button class="btn btn-danger btn-sm" on-tap="itemDeleteTapped">
+                            <iron-icon icon="delete"></iron-icon>&nbsp; Delete
+                          </paper-button>
+                          <!-- <div class="layout horizontal m-horizontal-4 wrap">
+                            <div class="type caption">[[item.email]]&nbsp;</div>
+                            <div class="type caption">([[item.phone]])</div>
+                          </div> -->
+                        </paper-item>
+                      </template>
+                    </paper-listbox>
+                  </template>
+
+                </div>
+
+                <div class="card-actions layout horizontal center">
+                  <paper-checkbox class="m-left-8" checked="{{shouldKeepRefreshingUi}}"> Keep Refreshing</paper-checkbox>
+                  <paper-checkbox class="m-left-8" checked="{{patientStayObject.isPublic}}"> Make Publicly Available</paper-checkbox>
+                  <div class="flex"></div>
+                  <paper-button raised on-tap="saveTapped" class="btn btn-success">
+                    <iron-icon icon="save"></iron-icon>
+                    &nbsp;SAVE HOSPITAL DATA</paper-button>
+                </div>
+
+              </paper-card>
+
+
+              <paper-card class="m-top-8">
+                <div class="card-custom-header">
+                  <div class="layout horizontal justified">
+                    <div class="type bold"></div>
+                  </div>
+                </div>
+                <div class="card-content">
+                  <template is="dom-if" if="[[viewSeatItemsClicked]]">
+                    <template id="assistant-list-repeater" is="dom-repeat" items="[[seatList]]" as="seat" sort="sortBySeatIndex">
+                      <div class="layout horizontal center">
+                        <paper-input value="[[seat.department]]" disabled></paper-input>
+                        <paper-input value="[[seat.unit]]" disabled></paper-input>
+                        <paper-input value="[[seat.ward]]" disabled></paper-input>
+                        <paper-input value="{{seat.name}}"></paper-input>
+                        <template is="dom-if" if="[[seat.patientSerial]]">
+                          <div>[[seat.location]]</div>
+                          <div>Admission Date</div>
+                          <div>Discharge Date</div>
+                          <div>Total Stay</div>
+                        </template>
+                        <template is="dom-if" if="[[seat.isOverflow]]">
+                          <div style="color: red">OVERFLOW</div>
+                        </template>
+                      </div>
+                    </template>
+                  </template>
+                </div>
+              </paper-card>
+
+            </section>
+            <!-- Add Seats end -->
+
+            <!-- Add Locations -->
+            <section>
+              <paper-card>
+                <div class="card-custom-header">
+                  <div class="layout horizontal justified">
+                    <div class="type bold">Add Locations</div>
+                    <div class="type caption secondary">[[organization.name]]</div>
+                  </div>
+                </div>
+                <div class="card-content">
+                  <ul class="layout horizontal wrap">
+                    <template is="dom-repeat" items="[[patientStayObject.locations]]">
+                      <li class="location-item">[[item]]</li>
+                    </template>
+                  </ul>
+                  <paper-input class="p-16" label="Add Location" value="{{location}}" on-keyup="addLocation" placeholder="Press enter to Add Location"></paper-input>
+                </div>
+                
+              </paper-card>
+            </section>
+            <!-- Add Locatios end -->
+          </iron-pages>
+
+          <paper-card class="m-top-8">
+            <div class="card-custom-header">
+              <div class="layout horizontal justified">
+                <div class="type bold">Assigning ward</div>
+              </div>
+            </div>
+
+            <iron-pages selected="{{assigningWardPage}}">
+              <section>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem corporis, consectetur minima. Ex quo, nobis temporibus consequatur, dicta earum mollitia ad quam, voluptatem deleniti in culpa! Perferendis cum quis laborum.
+              </section>
+              <section>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem corporis, consectetur minima. Ex quo, nobis temporibus consequatur, dicta earum mollitia ad quam, voluptatem deleniti in culpa! Perferendis cum quis laborum.
+              </section>
+            </iron-pages>
+      
+
+        </template>
+        <!-- editing organization - end -->
+
+      </div>
+
+    </div>
+
+  </template>
+  <script src="page-organization-manage-patient-stay.coffee-compiled.js"></script>
+</dom-module>

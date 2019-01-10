@@ -1,0 +1,816 @@
+<link rel="import" href="../../bower-assets/polymer/polymer.html">
+
+<!-- app-* -->
+<link rel="import" href="../../bower-assets/app-layout/app-drawer-layout/app-drawer-layout.html">
+<link rel="import" href="../../bower-assets/app-layout/app-drawer/app-drawer.html">
+<link rel="import" href="../../bower-assets/app-layout/app-scroll-effects/app-scroll-effects.html">
+<link rel="import" href="../../bower-assets/app-layout/app-header/app-header.html">
+<link rel="import" href="../../bower-assets/app-layout/app-header-layout/app-header-layout.html">
+<link rel="import" href="../../bower-assets/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../../bower-assets/app-route/app-route.html">
+<link rel="import" href="../../bower-assets/app-route/app-location.html">
+
+<!-- iron-* -->
+<link rel="import" href="../../bower-assets/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower-assets/iron-pages/iron-pages.html">
+<link rel="import" href="../../bower-assets/iron-selector/iron-selector.html">
+<link rel="import" href="../../bower-assets/iron-collapse/iron-collapse.html">
+<link rel="import" href="../../bower-assets/iron-image/iron-image.html">
+<link rel="import" href="../../bower-assets/iron-media-query/iron-media-query.html">
+
+<!-- paper-* -->
+<link rel="import" href="../../bower-assets/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower-assets/paper-tabs/paper-tabs.html">
+<link rel="import" href="../../bower-assets/paper-tabs/paper-tab.html">
+<link rel="import" href="../../bower-assets/paper-badge/paper-badge.html">
+<link rel="import" href="../../bower-assets/paper-dialog/paper-dialog.html">
+<link rel="import" href="../../bower-assets/paper-toast/paper-toast.html">
+<link rel="import" href="../../bower-assets/paper-button/paper-button.html">
+<link rel="import" href="../../bower-assets/paper-input/paper-input.html">
+<link rel="import" href="../../bower-assets/paper-toolbar/paper-toolbar.html">
+<link rel="import" href="../../bower-assets/paper-spinner/paper-spinner.html">
+<link rel="import" href="../../bower-assets/paper-menu/paper-menu.html">
+<link rel="import" href="../../bower-assets/paper-menu-button/paper-menu-button.html">
+<link rel="import" href="../../bower-assets/paper-item/paper-item.html">
+<link rel="import" href="../../bower-assets/paper-toggle-button/paper-toggle-button.html">
+
+<!-- behavior -->
+<link rel="import" href="../../behaviors/api-calling.html">
+<link rel="import" href="../../behaviors/common-computes.html">
+<link rel="import" href="../../behaviors/db-using.html">
+<link rel="import" href="../../behaviors/debug.html">
+<link rel="import" href="../../behaviors/translating.html">
+
+<!-- custom -->
+<link rel="import" href="../../styles/common-style.html">
+
+<!-- element -->
+<dom-module id="root-element">
+  <template>
+
+    <!-- style -->
+
+    <style is="custom-style" include="common-style">
+      /* host start */
+
+      :host {
+        display: block;
+        --app-primary-color: #5c4575;
+        --app-secondary-color: #666666;
+      }
+
+      /* left menu bar */
+
+      /* Text Variations*/
+
+      .text-muted {
+        color: var(--secondary-text-color);
+      }
+
+      .text-primary {
+        color: var(--paper-indigo-500);
+      }
+
+
+      /* Text Sizes */
+
+      .text-sm {
+        font-size: 12px;
+      }
+
+      /* Text Align */
+
+      .text-left {
+        text-align: left;
+      }
+
+      .text-center {
+        text-align: center;
+      }
+
+      .text-right {
+        text-align: right;
+      }
+
+      app-drawer {
+        --app-drawer-scrim-background: rgba(255, 255, 255, 0.4);
+        --app-drawer-content-container: {
+          background-color: white;
+        }
+         --app-drawer-width: 320px;
+      }
+
+      .drawer-list a {
+        display: block;
+        padding: 0 16px;
+        line-height: 40px;
+        text-decoration: none;
+        color: var(--app-secondary-color);
+        border-bottom: 1px solid #f5f5f5;
+      }
+
+      .drawer-list a>iron-icon {
+        color: var(--app-primary-color);
+        height: 18px;
+        width: 18px;
+        margin-right: 10px;
+      }
+
+      .drawer-list a.iron-selected {
+        color: black;
+        font-weight: bold;
+      }
+
+      .drawer-list a.subroute {
+        padding-left: 32px;
+      }
+
+      /* app-header start */
+
+      app-header {
+        background-color: var(--app-primary-color);
+        color: #fff;
+      }
+
+      /* Simple app-header */
+
+      app-header.simple {
+        background-color: #5c4575;
+        color: #fff;
+      }
+
+      app-header.simple paper-icon-button {
+        --paper-icon-button-ink-color: white;
+      }
+
+      app-header.simple app-toolbar.middle {
+        height: 20px;
+      }
+
+      app-header-layout.show-ad {
+        height: calc(100vh - 100px);
+      }
+
+      paper-toolbar {
+        --paper-toolbar-background: var(--app-primary-color);
+        --paper-toolbar-height: 56px;
+        --paper-toolbar-title: {
+          margin-left: 0;
+          height: 22px;
+        }
+      }
+
+
+      /*Ad Area Related Styles*/
+
+      .ad-area {
+        width: 100%;
+        height: 100px;
+        margin: 0 auto;
+        background-color: #eee;
+        position: fixed;
+        bottom: 0;
+        z-index: 1;
+        box-shadow: 1px -4px 2px rgba(0, 0, 0, 0.16);
+      }
+
+      .ad {
+        width: 960px;
+        margin: 0 auto;
+        background-color: #fafafa;
+        cursor: pointer;
+      }
+
+      .ad img {
+        height: 100px;
+        width: auto;
+        background-size: contain;
+      }
+
+      .ad .text {
+        padding: 10px;
+      }
+
+      .ad h3,
+      .ad p {
+        margin: 0;
+      }
+
+
+      /* Notifiation drawer related styles */
+
+      #notificationDrawer app-toolbar {
+        text-align: left;
+      }
+
+      .notification-group-area {
+        margin-bottom: 5px;
+        background-color: var(--paper-grey-200);
+        padding: 5px 0;
+      }
+
+      .notification-group-area paper-material {
+        padding: 10px;
+        margin-bottom: 5px;
+      }
+
+      .notification-group-area paper-listbox {
+        border: 1px solid var(--paper-blue-grey-50);
+        padding: 0;
+        border-top: 0;
+      }
+
+      .notification-group-area p {
+        margin: 0;
+        font-size: 14px;
+        line-height: 1.4;
+      }
+
+      .notification-group-area .sender {
+        color: var(--paper-orange-800);
+      }
+
+      .notification-header-button {
+        --paper-button: {
+          @apply(--layout-block);
+          text-align: left;
+          border-bottom-left-radius: 0;
+          border-bottom-right-radius: 0;
+          color: var(--paper-blue-500);
+          font-weight: bold;
+        }
+      }
+
+      .user-info {
+        padding: 10px 20px;
+        background-color: var(--paper-blue-grey-50);
+        margin-bottom: 20px;
+      }
+
+      .user-info .label {
+        background-color: #ccc;
+        display: inline-block;
+        padding: 3px;
+      }
+
+      .nav-footer {
+        padding: 10px 20px;
+        background-color: var(--paper-grey-300);
+      }
+
+      .nav-footer a[href] {
+        text-decoration: none;
+      }
+
+
+      @media print {
+        paper-toolbar {
+          display: none;
+        }
+        #adArea {
+          display: none;
+        }
+
+        app-header-layout.show-ad {
+          height: 100%;
+        }
+
+        app-header-layout ::content #contentContainer {
+          padding: 0 !important;
+          margin: 0 !important;
+          overflow-x: hidden !important;
+        }
+
+        app-drawer-layout ::content #contentContainer {
+          overflow-x: hidden !important;
+          height: unset !important;
+          position: unset !important;
+        }
+
+        body {
+          overflow-x: hidden !important;
+        }
+
+      }
+
+      .limiting-container {
+        width: 100% !important;
+        min-width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+
+      @media screen and (max-width: 768px) {
+        .ad {
+          width: 100%;
+        }
+      }
+
+      @media screen and (max-width: 360px) {
+        .ad {
+          font-size: 80%;
+        }
+      }
+
+
+      paper-toolbar ::content #bottomBar {
+        padding: 0;
+      }
+
+
+      .m-horizontal-4 {
+        margin: 0 4px;
+      }
+
+      .patient-details {
+        @apply(--layout-horizontal);
+        @apply(--layout-wrap);
+        padding: 8px 16px 8px 52px;
+        font-size: 16px;
+        font-weight: 300;
+      }
+
+      paper-toolbar {
+        --paper-toolbar-height: 56px;
+        --paper-toolbar-medium: {
+          height: 104px;
+        }
+      }
+
+
+      paper-toolbar ::content #bottomBar {
+        height: 48px;
+      }
+
+      paper-toolbar ::content .bottom {
+        width: 100%;
+      }
+
+      .tab-label {
+        text-transform: uppercase;
+        font-size: 14px;
+        border-radius: 6px;
+        font-weight: bold;
+        margin-left: 8px;
+        padding: 3px 6px;
+        background-color: #43A047;
+      }
+
+      /*paper-tab {
+        text-transform: uppercase;
+      }*/
+
+      .custom-img {
+        height: 70px !important;
+        width: 70px !important;
+      }
+
+      #langSwitch {
+        display: block;
+      }
+
+      #orgSwitch {
+        display: block;
+      }
+
+      @media screen and (max-width: 640px) {
+        #langSwitch {
+          display: none;
+        }
+        #orgSwitch {
+          display: none;
+        }
+      }
+
+      paper-toggle-button.charge-switch {
+        --paper-toggle-button-checked-bar-color: white;
+        --paper-toggle-button-checked-button-color: white;
+        --paper-toggle-button-checked-ink-color: white;
+        --paper-toggle-button-unchecked-bar-color: white;
+        --paper-toggle-button-unchecked-button-color: white;
+        --paper-toggle-button-unchecked-ink-color: white;
+      }
+    </style>
+
+    <!--Use to detect viewport and show/hide ad on small screen-->
+    <iron-media-query query="(max-width: 425px)" query-matches="{{isMobileView}}"></iron-media-query>
+
+    <app-location route="{{route}}" use-hash-as-path></app-location>
+    <app-route route="{{route}}" pattern="/:page" data="{{routeData}}" tail="{{routeLevel2}}"></app-route>
+    <app-route route="{{routeLevel2}}" pattern="/:pageLevel2" data="{{routeLevel2Data}}" tail="{{routeLevel3}}"></app-route>
+    <app-route route="{{routeLevel3}}" pattern="/:pageLevel3" data="{{routeLevel3Data}}" tail="{{routeLevel4}}"></app-route>
+
+    <app-drawer-layout fullbleed force-narrow>
+      <app-drawer>
+        <div class="layout vertical relative" style="height: 100%; overflow: auto;">
+          <!-- Left drawer content - Start -->
+          <paper-toolbar>
+            <span class="title">Doctor App</span>
+          </paper-toolbar>
+          <div class="user-info">
+            <span class="text-muted">[[user.name]]</span>
+            <br>
+            <template is="dom-if" if="{{currentOrganization.isCurrentUserAnAdmin}}">
+              <span class="text-sm text-muted">Admin, </span>
+            </template>
+            <span class="text-sm text-muted">[[currentOrganization.userActiveRole.title]]</span>
+            <br>
+            <span class="text-sm text-muted">[[user.email]]</span>
+            <br>
+          </div>
+          <iron-selector selected="[[page.name]]" attr-for-selected="name" class="drawer-list flex" role="navigation">
+            <a name="dashboard" href="#/dashboard" drawer-toggle><iron-icon icon="dashboard"></iron-icon>Dashboard</a>
+            <a name="patient-manager" href="#/patient-manager" drawer-toggle hidden$="[[!_checkUserAccess('D001')]]"><iron-icon icon="account-circle"></iron-icon>Patient Manager</a>
+            <a name="patient-manager" href="#/reports-manager" drawer-toggle hidden$="[[!_checkUserAccess('D002')]]"><iron-icon icon="assignment"></iron-icon>Reports Manager</a>
+            <a name="patient-manager" href="#/chamber-manager" drawer-toggle hidden$="[[!_checkUserAccess('D003')]]"><iron-icon icon="donut-small"></iron-icon>Chamber Manager</a>
+            <a name="my-ot-schedule" href="#/my-ot-schedule" drawer-toggle><iron-icon icon="date-range"></iron-icon>My Operation Schedules</a>
+            <a name="medicine-dispension" href="#/medicine-dispension" drawer-toggle hidden$="[[!_checkUserAccess('D004')]]"><iron-icon icon="assignment"></iron-icon>Medicine Dispension</a>
+            <template is="dom-if" if="[[!user.isUsingAsAssistant]]">
+              <a name="assistant-manager" href="#/assistant-manager" drawer-toggle hidden$="[[!_checkUserAccess('D005')]]"><iron-icon icon="face"></iron-icon>Assistant Manager</a>
+            </template>
+            <a name="search-record" href="#/search-record" drawer-toggle hidden$="[[!_checkUserAccess('D006')]]"><iron-icon icon="pageview"></iron-icon>Search Records</a>
+            <a name="invoice-manager" href="#/invoice-manager" drawer-toggle hidden$="[[!_checkUserAccess('D007')]]"><iron-icon icon="chrome-reader-mode"></iron-icon>Invoice Manager</a>
+            <a name="pcc-report" href="#/pcc-reports" drawer-toggle><iron-icon icon="assignment"></iron-icon>PCC Report</a>
+            <a name="nwdr-report" href="#/nwdr-reports" drawer-toggle><iron-icon icon="assignment"></iron-icon>NWDR Report</a>
+            <a name="booking" href="#/booking" drawer-toggle hidden$="[[!_checkUserAccess('D009')]]"><iron-icon icon="record-voice-over"></iron-icon>Booking and Services</a>
+            <a name="organization-manager" href="#/organization-manager" drawer-toggle hidden$="[[!_checkUserAccess('D010')]]"><iron-icon icon="account-balance"></iron-icon>Organization Manager</a>
+            <a name="notification-panel" href="#/notification-panel" drawer-toggle hidden$="[[!_checkUserAccess('D011')]]"><iron-icon icon="announcement"></iron-icon>Send Notification</a>
+            <a name="my-wallet" href="#/wallet" drawer-toggle><iron-icon icon="account-balance-wallet"></iron-icon>[[$TRANSLATE('My Wallet',LANG)]]</a>
+            <a name="send-feedback" href="#/send-feedback" drawer-toggle hidden$="[[!_checkUserAccess('D012')]]"><iron-icon icon="thumbs-up-down"></iron-icon>Send Feedback</a>
+            <a name="editor" href="#/editor" drawer-toggle><iron-icon icon="create"></iron-icon>Editor</a>
+            <a name="welcome-internal" href="#/welcome-internal" drawer-toggle><iron-icon icon="pan-tool"></iron-icon>Welcome</a>
+            <a name="help" href="https://docs.google.com/document/d/1MPD5aMYEAv0sm42vwff3pXljc0WwwUU_mbJq0jG_f14/edit?usp=sharing" drawer-toggle><iron-icon icon="book"></iron-icon>Help</a>
+            <a name="settings" href="#/settings" drawer-toggle><iron-icon icon="settings"></iron-icon>Settings</a>
+            <hr>
+            <a on-tap="logoutPressed"><iron-icon icon="input"></iron-icon>Logout</a>
+            <a on-tap="remoteSyncPressed"><iron-icon icon="cloud-circle"></iron-icon>Onsite to Remote Sync</a>
+            <!-- <hr> -->
+            <!-- <a name="dev-tools" href="#/dev-tools">Dev Tools</a> -->
+          </iron-selector>
+          <!-- Left drawer content - End -->
+          <div class="nav-footer">
+            <div class="text-muted text-sm">Copyright © [[getYear()]] BDEMR</div>
+            <div class="text-muted text-sm">Feedback at
+              <a class="text-sm" href="mailto:ab@bdemr.com">ab@bdemr.com</a>
+            </div>
+          </div>
+        </div>
+      </app-drawer>
+
+      <!--Notification Drawer Start-->
+      <app-drawer id="notificationDrawer" align="right">
+        <div style="height: 100%; overflow: auto; background-color: #f5f5f5;">
+          <app-toolbar>
+            <div main-title>Notifications</div>
+            <paper-icon-button icon="chevron-right" on-tap="notificationToggleButtonPressed"></paper-icon-button>
+          </app-toolbar>
+          <div>
+            <div class="notification-group-area">
+              <paper-button class="notification-header-button btn btn-sm btn-default block" on-tap="toggleReportNotification">Report</paper-button>
+              <iron-collapse id="reportNotification" opened>
+                <template is="dom-if" if="[[!reportNotification.length]]">
+                  <paper-item class="text-sm">No New Notifications!</paper-item>
+                </template>
+                <paper-listbox>
+                  <template is="dom-repeat" items="[[reportNotification]]">
+                    <paper-material class="layout horizontal">
+                      <div class="layout vertical start flex">
+                        <span class="text-sm text-muted block">[[_formatDateTime(item.createdDateTimeStamp)]]</span>
+                        <span class="text-sm sender">[[item.sender]]</span>
+                        <p class="text-left">[[item.message]]</p>
+                      </div>
+                      <div class="layout horizontal center">
+                        <paper-icon-button icon="clear" mini on-tap="markAsRead"></paper-icon-button>
+                      </div>
+                    </paper-material>
+                  </template>
+                </paper-listbox>
+              </iron-collapse>
+            </div>
+            <div class="notification-group-area">
+              <paper-button class="notification-header-button btn btn-sm btn-default block" on-tap="togglePatientNoteNotification">Patient Note</paper-button>
+              <iron-collapse id="patientNoteNotification" opened>
+                <template is="dom-if" if="[[!patientNoteNotification.length]]">
+                  <paper-item class="text-sm">No New Notifications!</paper-item>
+                </template>
+                <paper-listbox>
+                  <template is="dom-repeat" items="[[patientNoteNotification]]">
+                    <paper-material class="layout horizontal">
+                      <div class="layout vertical start flex">
+                        <span class="text-sm text-muted block">[[_formatDateTime(item.createdDateTimeStamp)]]</span>
+                        <span class="text-sm sender">[[item.sender]]</span>
+                        <p class="text-left">[[item.message]]</p>
+                      </div>
+                      <div class="layout horizontal center">
+                        <paper-icon-button icon="clear" mini on-tap="markAsRead"></paper-icon-button>
+                      </div>
+                    </paper-material>
+                  </template>
+                </paper-listbox>
+              </iron-collapse>
+            </div>
+            <div class="notification-group-area">
+              <paper-button class="notification-header-button btn btn-sm btn-default block" on-tap="toggleOnlineConsultationNotification">Consultation</paper-button>
+              <iron-collapse id="onlineConsultationNotification" opened>
+                <template is="dom-if" if="[[!onlineConsultationNotification.length]]">
+                  <paper-item class="text-sm">No New Notifications!</paper-item>
+                </template>
+                <paper-listbox>
+                  <template is="dom-repeat" items="[[onlineConsultationNotification]]">
+                    <paper-material class="layout horizontal">
+                      <div class="layout vertical start flex">
+                        <span class="text-sm text-muted block">[[_formatDateTime(item.createdDateTimeStamp)]]</span>
+                        <span class="text-sm sender">[[item.sender]]</span>
+                        <p class="text-left">[[item.message]]</p>
+                      </div>
+                      <div class="layout horizontal center">
+                        <paper-icon-button icon="clear" mini on-tap="markAsRead"></paper-icon-button>
+                      </div>
+                    </paper-material>
+                  </template>
+                </paper-listbox>
+              </iron-collapse>
+            </div>
+            <div class="notification-group-area">
+              <paper-button class="notification-header-button btn btn-sm btn-default block" on-tap="toggleGeneralNotification">General</paper-button>
+              <iron-collapse id="generalNotification" opened>
+                <template is="dom-if" if="[[!generalNotification.length]]">
+                  <paper-item class="text-sm">No New Notifications!</paper-item>
+                </template>
+                <paper-listbox>
+                  <template is="dom-repeat" items="[[generalNotification]]">
+                    <paper-material class="layout horizontal">
+                      <div class="layout vertical start flex">
+                        <span class="text-sm text-muted block">[[_formatDateTime(item.createdDateTimeStamp)]]</span>
+                        <span class="text-sm sender">[[item.sender]]</span>
+                        <p class="text-left">[[item.message]]</p>
+                      </div>
+                      <div class="layout horizontal center">
+                        <paper-icon-button icon="clear" mini on-tap="markAsRead"></paper-icon-button>
+                      </div>
+                    </paper-material>
+                  </template>
+                </paper-listbox>
+              </iron-collapse>
+            </div>
+          </div>
+        </div>
+      </app-drawer>
+      <!--Notification Drawer Start-->
+
+      <app-header-layout id="mainHeader" class="show-ad" has-scrolling-region>
+
+        <!-- App header - Start -->
+        <app-header reveals>
+          <paper-toolbar class$="{{_changeToolbarClass(page.showToolbar)}}">
+
+            <!--  header - start -->
+            <template is="dom-if" if="[[$equals(page.headerType, 'normal')]]">
+              <template is="dom-if" if="[[page.leftMenuEnabled]]">
+                <paper-icon-button icon="menu" drawer-toggle></paper-icon-button>
+              </template>
+            </template>
+
+            <template is="dom-if" if="[[$equals(page.headerType, 'modal')]]">
+              <paper-icon-button icon="arrow-back" on-tap="arrowBackButtonPressed"></paper-icon-button>
+            </template>
+
+            <div class="title">
+              <template is="dom-if" if="[[!page.hideHeaderTitle]]">
+                [[page.headerTitle]]
+              </template>
+
+              <template is="dom-if" if="[[page.showPatientsDetails]]">
+                [[$getFullName(currentPatientsDetails.name)]]
+              </template>
+            </div>
+
+            <div>
+              <template is="dom-if" if="[[remainingOrganizationFocCount]]">
+                FREE PATIENTS REMAINING: [[remainingOrganizationFocCount]]
+              </template>
+            </div>
+            <div class="m-right-8">
+              <a href="https://clinic.bdemr.com/app/#/login" target="_blank"><strong style="color: white">Switch To Clinic App</strong></a>
+            </div>
+
+            <!-- <div class="horizontal layout">
+              <span>Charge Patient&nbsp;&nbsp;</span>
+              <paper-toggle-button checked="{{shouldChargePatientInsteadOfOrganization}}" class="charge-switch"></paper-toggle-button>
+              <span>Charge Organization</span>
+            </div> -->
+
+            <paper-menu-button class="p-0 b-radius" vertical-align="top" horizontal-align="right">
+              <paper-icon-button icon="{{changeWalletUserTypeIcon}}" class="dropdown-trigger" alt="options"></paper-icon-button>
+              <paper-menu class="dropdown-content">
+                <paper-item on-tap="onChargePatientTapped" hidden$="[[shouldChargePatientInsteadOfOrganization]]">Charge Patient</paper-item>
+                <paper-item on-tap="onChargeOrganizationTapped" hidden$="[[!shouldChargePatientInsteadOfOrganization]]">Charge Organization</paper-item>
+              </paper-menu>
+            </paper-menu-button>
+
+            <template is="dom-if" if="[[!$equals(page.name, 'login')]]">
+
+              <paper-button id="orgSwitch" on-tap="changeOrganizationClicked">
+                <div>
+                  <strong>[[currentOrganization.name]]</strong>
+                </div>
+                <template is="dom-if" if="[[currentOrganization]]">
+                  <strong class="type caption-2" style="text-transform: capitalize;">ID: [[currentOrganization.serial]]</strong>
+                  <strong class="type caption-2" style="text-transform: capitalize;">SMS: {{orgSmsBalance}}</strong>
+                </template>
+
+              </paper-button>
+
+              <paper-menu-button no-overlap id="langSwitch">
+                <paper-button class="dropdown-trigger lang-button">
+                  <iron-icon icon="language"></iron-icon>
+                  [[languageName]]
+                </paper-button>
+                <paper-menu class="dropdown-content" selected="{{languageSelectedIndex}}">
+                  <paper-item>English (US)</paper-item>
+                  <paper-item>Bengali / বাংলা</paper-item>
+                </paper-menu>
+              </paper-menu-button>
+
+              <template is="dom-if" if="[[downloadActions.count]]">
+                <paper-icon-button id="fileDownloadIcon" icon="file-download"></paper-icon-button>
+                <paper-badge for="fileDownloadIcon" label="[[downloadActions.count]]"></paper-badge>
+              </template>
+
+              <template is="dom-if" if="[[apiActions.count]]">
+                <paper-icon-button id="apiActionsIcon" icon="swap-vertical-circle"></paper-icon-button>
+                <paper-badge for="apiActionsIcon" label="[[apiActions.count]]"></paper-badge>
+              </template>
+
+              <template is="dom-if" if="[[page.showPrintButton]]">
+                <paper-icon-button icon="print" on-tap="printButtonPressed"></paper-icon-button>
+              </template>
+
+              <template is="dom-if" if="[[page.showSaveButton]]">
+                <paper-icon-button icon="save" on-tap="saveButtonPressed"></paper-icon-button>
+              </template>
+
+              <template is="dom-if" if="[[currentOrganization]]">
+                <template is="dom-if" if="[[_showSyncButton(syncActions.count,downloadActions.count)]]">
+                  <paper-icon-button icon="cloud-upload" on-tap="syncButtonPressed"></paper-icon-button>
+                </template>
+              </template>
+              <template is="dom-if" if="[[syncActions.count]]">
+                <paper-spinner alt="Syncing to Cloud" active></paper-spinner>
+              </template>
+              <!-- <paper-icon-button icon="refresh" on-tap="refreshButtonPressed"></paper-icon-button> -->
+              <paper-icon-button icon="add-alert" on-tap="notificationToggleButtonPressed"></paper-icon-button>
+              <!--  header - end -->
+
+            </template>
+
+
+            <template is="dom-if" if="[[page.showToolbar]]">
+              <div class="bottom">
+
+                <div class="flex custom-toolbar">
+                  <paper-tabs id="patientPageTabs" selected="{{selectedPatientPageIndex}}" scrollable>
+                    <paper-tab>
+                      <div class="layout horizontal layout">
+                        <div>[[$TRANSLATE('Visit',LANG)]]</div>
+                        <div class="tab-label">[[selectedVisitSerial]]</div>
+                      </div>
+                    </paper-tab>
+                    <paper-tab>[[$TRANSLATE('Details',LANG)]]</paper-tab>
+                    <!-- 
+                    <paper-tab><img class="m-right-8" width="24" height="24" src="../../assets/img/partners/badas_logo.png" alt="">[[$TRANSLATE('PCC Records',LANG)]]</paper-tab> -->
+                    <paper-tab>[[$TRANSLATE('Confirm Diagnosis (Previous)',LANG)]]</paper-tab>
+                    <paper-tab>[[$TRANSLATE('Current operation performed',LANG)]]</paper-tab>
+                    <paper-tab>[[$TRANSLATE('Medicine',LANG)]]</paper-tab>
+                    <paper-tab>[[$TRANSLATE('Vitals',LANG)]]</paper-tab>
+                    <paper-tab>[[$TRANSLATE('Visits &amp; Report',LANG)]]</paper-tab>
+                    <paper-tab>[[$TRANSLATE('Current diagnosis &amp; precedures',LANG)]]</paper-tab>
+                    <paper-tab>[[$TRANSLATE('Previous operation performed',LANG)]]</paper-tab>
+                    <paper-tab>[[$TRANSLATE('Discharge Note',LANG)]]</paper-tab>
+                    <paper-tab>[[$TRANSLATE('Test Results',LANG)]]</paper-tab>
+                    <paper-tab>[[$TRANSLATE('Doctor Patient Notes',LANG)]]</paper-tab>
+                    <paper-tab>[[$TRANSLATE('Patient Gallery',LANG)]]</paper-tab>
+                    <paper-tab>[[$TRANSLATE('Activity Log',LANG)]]</paper-tab>
+                  </paper-tabs>
+                </div>
+              </div>
+            </template>
+
+
+          </paper-toolbar>
+        </app-header>
+        <!-- App header - End -->
+
+        <!-- Page switcher - Start -->
+
+        <iron-pages id="rootPageSwitcher" role="main" selected="[[page.name]]" attr-for-selected="name" fallback-selection="error404"
+          on-iron-select="ironPagesSelectedEvent" on-iron-deselect="ironPagesDeselectedEvent">
+          <!-- see assets/pages.coffee -->
+        </iron-pages>
+        <!-- Page switcher - End -->
+
+        <!-- Advertisement Area -->
+        <div id="adArea" class="ad-area layout vertical" hidden$="[[hideAd]]">
+
+          <template is="dom-if" if="[[$equals(page.name, 'preconception-record')]]">
+            <div class="ad layout p-16">
+              <div class="horizontal layout center">
+                <img src="../../assets/img/preconception/gov-logo.png" alt="" class="p-horizontal-8 custom-img">
+                <img src="../../assets/img/preconception/badas-logo-tab.png" alt="" class="p-horizontal-8 custom-img">
+                <img src="../../assets/img/preconception/endocrine_socity_tab_logo.png" alt="" class="p-horizontal-8 custom-img">
+                <img src="../../assets/img/preconception/safe-pregnancy.png" alt="" class="p-horizontal-8 custom-img">
+                <div class="type caption-2 secondary p-horizontal-8">A joint community awareness program of Diabetic Association of safe-pregnancyBangladesh and Law and Justice
+                  Division, Ministry of Law, Justice and Parliamentary Affairs, Government of People's Republic of Bangladesh,
+                  funded by World Diabetes Foundation for strengthening preconception care.</div>
+              </div>
+            </div>
+          </template>
+
+          <template is="dom-if" if="[[!$equals(page.name, 'preconception-record')]]">
+            <div class="ad layout horizontal">
+              <img src$="[[currentAd.image]]" alt="">
+              <div class="text">
+                <template is="dom-if" if="[[currentAd.hasAudio]]">
+                  <audio src$="[[currentAd.audio]]" controls id="audioPlayer">
+                    <p>Your browser does not support the
+                      <code>audio</code> element </p>
+                  </audio>
+                </template>
+                <h3>[[currentAd.title]]</h3>
+                <p>[[currentAd.text]]</p>
+              </div>
+            </div>
+          </template>
+
+
+        </div>
+        <!-- Advertisement Area End-->
+
+      </app-header-layout>
+
+    </app-drawer-layout>
+
+    <!-- generic-modal-prompt - start -->
+    <paper-dialog id="generic-modal-prompt" modal on-iron-overlay-closed="genericModalPromptClosed">
+      <h2>[[genericModalPromptContents]]</h2>
+      <div class="buttons">
+        <paper-button dialog-dismiss>Cancel</paper-button>
+        <paper-button dialog-confirm autofocus>Confirm</paper-button>
+      </div>
+    </paper-dialog>
+    <!-- generic-modal-prompt - end -->
+
+    <!-- generic-modal-input - start -->
+    <paper-dialog id="generic-modal-input" modal on-iron-overlay-closed="genericModalInputClosed">
+      <h2>[[genericModalInputContents]]</h2>
+      <paper-input type="text" autofocus value="{{genericModalInputFieldValue}}"></paper-input>
+      <div class="buttons">
+        <paper-button dialog-dismiss>Cancel</paper-button>
+        <paper-button dialog-confirm autofocus>Confirm</paper-button>
+      </div>
+    </paper-dialog>
+    <!-- generic-modal-input - end -->
+
+    <!-- generic-modal-dialog - start -->
+    <paper-dialog id="generic-modal-dialog" modal>
+      <p>[[genericModalDialogContents]]</p>
+      <p>
+        <template is="dom-repeat" items="[[genericModalDialogContentArray]]" as="line">
+          <span>[[line]]</span>
+          <br>
+        </template>
+      </p>
+      <div class="buttons">
+        <paper-button dialog-confirm autofocus>Got It</paper-button>
+      </div>
+    </paper-dialog>
+    <!-- generic-modal-dialog - end -->
+
+    <!-- generic-modal-dialog - start -->
+    <paper-dialog id="sync-dialog" modal>
+      <p>SYNC is in progress, please wait...</p>
+      <div class="layout vertical center">
+        <paper-spinner alt="Syncing to Cloud" active></paper-spinner>
+      </div>
+    </paper-dialog>
+    <!-- generic-modal-dialog - end -->
+
+    <paper-dialog id="generic-loader-dialog" modal>
+      <div class="layout horizontal center">
+        <paper-spinner active></paper-spinner>
+        <span class="m-left-16">[[loaderMessage]]</span>
+      </div>
+    </paper-dialog>
+
+    <paper-toast id="toast1" duration="2000" text="[[genericToastContents]]" on-tap="genericToastTapped"></paper-toast>
+
+  </template>
+  <script src="behavior-data-loader.coffee-compiled.js"></script>
+  <script src="behavior-sync.js"></script>
+  <!-- <script src="behavior-user-data-sync.coffee-compiled.js"></script>
+  <script src="behavior-user-data-sync-config.coffee-compiled.js"></script>
+  <script src="behavior-patients-data-sync.coffee-compiled.js"></script>
+  <script src="behavior-patients-data-sync-config.coffee-compiled.js"></script> -->
+  <script src="root-element.coffee-compiled.js"></script>
+</dom-module>

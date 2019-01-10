@@ -1,0 +1,450 @@
+<!-- element -->
+<dom-module id="de-card">
+  <template>
+
+    <!-- style -->
+
+    <style is="custom-style" include="dynamic-element-styles">
+    :host {
+      @apply(--layout-horizontal);
+      width: 100%;
+    }
+    </style>
+
+    <!-- local DOM - start -->
+
+    <template is="dom-if" if="[[shouldRender]]">
+
+      <div class$="generic-container vertical layout styleSet[[depth]]">
+        <div class="title">
+          [[def.label]]
+        </div>
+        <div class="content">
+          <de-array data="[[data]]" def="[[def]]" depth="[[depth]]"></de-array>
+        </div>
+      </div>
+
+    </template>
+
+    <!-- local DOM - end -->
+  </template>
+</dom-module>
+
+<!-- element -->
+<dom-module id="de-toggleable-container">
+  <template>
+
+    <!-- style -->
+
+    <style is="custom-style" include="dynamic-element-styles">
+    :host {
+      @apply(--layout-horizontal);
+      width: 100%;
+    }
+    </style>
+
+    <!-- local DOM - start -->
+
+    <template is="dom-if" if="[[shouldRender]]">
+
+      <div class$="generic-container vertical layout styleSet[[depth]]">
+        <div class="title">
+          <paper-checkbox checked="{{data.isChecked}}">[[def.label]]</paper-checkbox>
+        </div>
+        <div class="content">
+          <template is="dom-if" if="[[data.isChecked]]">
+            <de-array data="[[data]]" def="[[def]]" depth="[[depth]]"></de-array>
+          </template>
+        </div>
+      </div>
+
+    </template>
+
+    <!-- local DOM - end -->
+  </template>
+</dom-module>
+
+<!-- element -->
+<dom-module id="de-container">
+  <template>
+
+    <!-- style -->
+
+    <style is="custom-style" include="dynamic-element-styles">
+    :host {
+      @apply(--layout-horizontal);
+      width: 100%;
+    }
+    </style>
+
+    <!-- local DOM - start -->
+
+    <template is="dom-if" if="[[shouldRender]]">
+
+      <div class$="generic-container vertical layout styleSet[[depth]]">
+        <div class="title">
+          [[data.label]]
+        </div>
+        <div class="content">
+          <de-array data="[[data]]" def="[[def]]" depth="[[depth]]"></de-array>
+        </div>
+      </div>
+
+    </template>
+
+    <!-- local DOM - end -->
+  </template>
+</dom-module>
+
+<!-- element -->
+<dom-module id="de-check-list">
+  <template>
+
+    <!-- style -->
+
+    <style is="custom-style" include="dynamic-element-styles">
+    :host {
+      @apply(--layout-horizontal);
+      width: 100%;
+    }
+    </style>
+
+    <!-- local DOM - start -->
+
+    <template is="dom-if" if="[[shouldRender]]">
+
+      <div class$="generic-container vertical layout styleSet[[depth]]">
+
+        <template is="dom-repeat" items="[[def.possibleValueList]]" as="possibleValue">
+          <paper-checkbox on-change="possibleValueCheckedStatusChanged" checked="[[$isPossibleValueChecked(possibleValue, data.checkedValueList)]]">[[possibleValue]]</paper-checkbox>
+        </template>
+
+        <template is="dom-if" if="[[def.allowCustomValue]]">
+          <template is="dom-repeat" items="[[data.customValueList]]" as="customPossibleValue">
+            <div class="horizontal layout center">
+              <paper-checkbox on-change="customPossibleValueCheckedStatusChanged" checked="[[$isPossibleCustomValueChecked(customPossibleValue, data.checkedValueList)]]">[[customPossibleValue]]</paper-checkbox>
+              <paper-icon-button on-tap="deleteCustomValue" icon="delete"></paper-icon-button>
+            </div>
+          </template>
+          <div class="horizontal layout center">
+            <paper-input value="{{typedCustomValue}}" label="Enter Custom Text" class="flex"></paper-input>
+            <paper-icon-button on-tap="addCustomValue" icon="send"></paper-icon-button>
+          </div>
+        </template>
+
+      </div>
+
+    </template>
+
+    <!-- local DOM - end -->
+  </template>
+</dom-module>
+
+<!-- element -->
+<dom-module id="de-input">
+  <template>
+
+    <!-- style -->
+
+    <style is="custom-style" include="dynamic-element-styles">
+    :host {
+      @apply(--layout-horizontal);
+      width: 100%;
+    }
+    </style>
+
+    <!-- local DOM - start -->
+
+    <template is="dom-if" if="[[shouldRender]]">
+
+      <div class$="generic-container vertical layout styleSet[[depth]]">
+
+        <template is="dom-if" if="[[$equals(def.valueType, 'text')]]">
+          <paper-input class="main-input" value="{{data.value}}" label="[[def.label]]"></paper-input>
+        </template>
+
+        <template is="dom-if" if="[[$equals(def.valueType, 'multilineText')]]">
+          <paper-textarea class="main-input" value="{{data.value}}" label="[[def.label]]"></paper-textarea>
+        </template>
+
+        <template is="dom-if" if="[[$equals(def.valueType, 'date')]]">
+          <paper-input type="date" class="main-input" value="{{data.value}}" label="[[def.label]]"></paper-input>
+        </template>
+
+        <template is="dom-if" if="[[$equals(def.valueType, 'number')]]">
+          <template is="dom-if" if="[[def.rangeDetails]]">
+            <paper-input min="[[data.rangeDetails.minValue]]" max="[[data.rangeDetails.maxValue]]" step="[[data.rangeDetails.steps]]" auto-validate type="number" class="main-input" value="{{data.value}}" label="[[def.label]]"></paper-input>
+          </template>
+          <template is="dom-if" if="[[!def.rangeDetails]]">
+            <paper-input type="number" class="main-input" value="{{data.value}}" label="[[def.label]]"></paper-input>
+          </template>
+
+        </template>
+
+      </div>
+
+      <template is="dom-if" if="[[def.unitDetails]]">
+
+        <paper-dropdown-menu-light label="Unit">
+          <paper-listbox class="dropdown-content" selected="{{localSelectedUnitIndex}}">
+
+            <template is="dom-repeat" items="[[def.unitDetails.unitList]]" as="possibleUnit">
+              <paper-item data-name$="[[possibleUnit.name]]">[[possibleUnit.name]]</paper-item>
+            </template>
+
+          </paper-listbox>
+        </paper-dropdown-menu-light>
+
+      </template>
+
+    </template>
+
+    <!-- local DOM - end -->
+  </template>
+</dom-module>
+
+<!-- element -->
+<dom-module id="de-label">
+  <template>
+
+    <!-- style -->
+
+    <style is="custom-style" include="dynamic-element-styles">
+    :host {
+      @apply(--layout-horizontal);
+      width: 100%;
+    }
+    </style>
+
+    <!-- local DOM - start -->
+
+    <template is="dom-if" if="[[shouldRender]]">
+
+      [[$_getLabel(data.label, updateHackInteger)]]
+      <template is="dom-if" if="[[def.isRefreshable]]">
+        <paper-icon-button icon="refresh" on-tap="refreshButtonTapped"></paper-icon-button>
+      </template>
+
+    </template>
+
+    <!-- local DOM - end -->
+  </template>
+</dom-module>
+
+<!-- element -->
+<dom-module id="de-single-select-dropdown">
+  <template>
+
+    <!-- style -->
+
+    <style is="custom-style" include="dynamic-element-styles">
+    :host {
+      @apply(--layout-horizontal);
+      width: 100%;
+    }
+    </style>
+
+    <!-- local DOM - start -->
+
+    <template is="dom-if" if="[[shouldRender]]">
+
+      <paper-dropdown-menu-light label="[[def.label]]">
+        <paper-listbox class="dropdown-content" selected="{{data.selectedIndex}}">
+
+          <template is="dom-repeat" items="[[def.possibleValueList]]" as="possibleValue">
+            <paper-item>[[possibleValue]]</paper-item>
+          </template>
+
+        </paper-listbox>
+      </paper-dropdown-menu-light>
+
+    </template>
+
+    <!-- local DOM - end -->
+  </template>
+</dom-module>
+
+<!-- element -->
+<dom-module id="de-incremental-counter">
+  <template>
+
+    <!-- style -->
+
+    <style is="custom-style" include="dynamic-element-styles">
+    :host {
+      @apply(--layout-horizontal);
+      width: 100%;
+    }
+    </style>
+
+    <!-- local DOM - start -->
+
+    <template is="dom-if" if="[[shouldRender]]">
+
+      <div class$="generic-container vertical layout styleSet[[depth]]">
+        <div class="title horizontal layout center">
+          [[def.label]] [[data.count]] [[$getUnit(data.count)]]
+          <template is="dom-if" if="[[$lt(data.count,def.limit)]]">
+            <paper-icon-button on-tap="addIconPressed" icon="add-box"></paper-icon-button>
+          </template>
+        </div>
+        <div class="content">
+          <template is="dom-repeat" items="[[virtualItemList]]" as="virtualItem">
+
+            <div class$="generic-container vertical layout styleSet[[$inc(depth)]]">
+              <div class="title horizontal layout center">
+                <div>[[virtualItem.def.defaultLabel]]</div>
+                <div class="flex"></div>
+                <paper-icon-button on-tap="deleteIconPressed" icon="delete"></paper-icon-button>
+              </div>
+              <div class="content">
+                <de-array data="[[virtualItem.data]]" def="[[virtualItem.def]]" depth="[[$inc(depth)]]"></de-array>
+              </div>
+            </div>
+
+          </template>
+        </div>
+      </div>
+
+    </template>
+
+    <!-- local DOM - end -->
+  </template>
+</dom-module>
+
+<!-- element -->
+<dom-module id="de-radio-list">
+  <template>
+
+    <!-- style -->
+
+    <style is="custom-style" include="dynamic-element-styles">
+    :host {
+      @apply(--layout-horizontal);
+      width: 100%;
+    }
+    </style>
+
+    <!-- local DOM - start -->
+
+    <template is="dom-if" if="[[shouldRender]]">
+
+      <div class$="generic-container vertical layout styleSet[[depth]]">
+
+        <template is="dom-repeat" items="[[def.possibleValueList]]" as="possibleValue">
+          <paper-radio-button on-change="possibleValueCheckedStatusChanged" checked="[[$isPossibleValueChecked(possibleValue, data.selectedValue)]]">[[possibleValue]]</paper-radio-button>
+        </template>
+
+        <template is="dom-if" if="[[def.allowCustomValue]]">
+          <template is="dom-repeat" items="[[data.customValueList]]" as="customPossibleValue">
+            <div class="horizontal layout center">
+              <paper-radio-button on-change="customPossibleValueCheckedStatusChanged" checked="[[$isPossibleCustomValueChecked(customPossibleValue, data.selectedValue)]]">[[customPossibleValue]]</paper-radio-button>
+              <paper-icon-button on-tap="deleteCustomValue" icon="delete"></paper-icon-button>
+            </div>
+          </template>
+          <div class="horizontal layout center">
+            <paper-input value="{{typedCustomValue}}" label="Enter Custom Text" class="flex"></paper-input>
+            <paper-icon-button on-tap="addCustomValue" icon="send"></paper-icon-button>
+          </div>
+        </template>
+
+      </div>
+
+    </template>
+
+    <!-- local DOM - end -->
+  </template>
+</dom-module>
+
+<!-- element -->
+<dom-module id="de-checkbox">
+  <template>
+
+    <!-- style -->
+
+    <style is="custom-style" include="dynamic-element-styles">
+    :host {
+      @apply(--layout-horizontal);
+      width: 100%;
+    }
+    </style>
+
+    <!-- local DOM - start -->
+
+    <template is="dom-if" if="[[shouldRender]]">
+
+      <paper-checkbox checked="{{data.isChecked}}">[[def.label]]</paper-checkbox>
+
+    </template>
+
+    <!-- local DOM - end -->
+  </template>
+</dom-module>
+
+<!-- element -->
+<dom-module id="de-autocomplete">
+  <template>
+
+    <!-- style -->
+
+    <style is="custom-style" include="dynamic-element-styles">
+    :host {
+      @apply(--layout-horizontal);
+      width: 100%;
+    }
+    </style>
+
+    <!-- local DOM - start -->
+
+    <template is="dom-if" if="[[shouldRender]]">
+
+      <div class$="generic-container vertical layout styleSet[[depth]]">
+        <div class="title">
+          [[def.label]]
+        </div>
+
+        <custom-autocomplete on-autocomplete-select="autocompleteSelected" source-data-list="[[sourceDataList]]" selected-string-object-list="{{selectedStringObjectList}}"></custom-autocomplete>
+
+        <div class="content">
+          <template is="dom-if" if="[[$equals(def.selectionType,'label')]]">
+            <!-- selectionType: label - start -->
+
+            <template is="dom-repeat" items="[[virtualItemList]]" as="virtualItem">
+
+              <span>[[virtualItem.def.defaultLabel]]</span>
+              <paper-icon-button on-tap="deleteIconPressed" icon="delete"></paper-icon-button>
+
+            </template>
+
+            <!-- selectionType: label - end -->
+          </template>
+          <template is="dom-if" if="[[$equals(def.selectionType,'container')]]">
+            <!-- selectionType: container - start -->
+
+            <template is="dom-repeat" items="[[virtualItemList]]" as="virtualItem">
+              <div class$="generic-container vertical layout styleSet[[$inc(depth)]]">
+                <div class="title horizontal layout center">
+                  <div>[[virtualItem.def.defaultLabel]]</div>
+                  <div class="flex"></div>
+                  <paper-icon-button on-tap="deleteIconPressed" icon="delete"></paper-icon-button>
+                </div>
+                <div class="content">
+                  <de-array data="[[virtualItem.data]]" def="[[virtualItem.def]]" depth="[[$inc(depth)]]"></de-array>
+                </div>
+              </div>
+            </template>
+
+            <!-- selectionType: container - end -->
+          </template>
+
+        </div>
+
+      </div>
+
+    </template>
+
+    <!-- local DOM - end -->
+  </template>
+</dom-module>
+
+<script src="de-all.coffee-compiled.js"></script>

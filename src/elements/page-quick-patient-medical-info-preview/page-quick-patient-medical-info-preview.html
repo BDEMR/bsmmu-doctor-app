@@ -1,0 +1,305 @@
+<link rel="import" href="../../bower-assets/polymer/polymer.html">
+
+<!-- paper-* -->
+<link rel="import" href="../../bower-assets/paper-button/paper-button.html">
+<link rel="import" href="../../bower-assets/paper-card/paper-card.html">
+<link rel="import" href="../../bower-assets/paper-input/paper-input.html">
+<link rel="import" href="../../bower-assets/paper-listbox/paper-listbox.html">
+<link rel="import" href="../../bower-assets/paper-item/paper-item.html">
+<link rel="import" href="../../bower-assets/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="../../bower-assets/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower-assets/paper-menu-button/paper-menu-button.html">
+<link rel="import" href="../../bower-assets/vaadin-date-picker/vaadin-date-picker.html">
+<link rel="import" href="../../bower-assets/paper-radio-button/paper-radio-button.html">
+<link rel="import" href="../../bower-assets/paper-radio-group/paper-radio-group.html">
+<link rel="import" href="../../bower-assets/iron-list/iron-list.html">
+<link rel="import" href="../../bower-assets/paper-checkbox/paper-checkbox.html">
+
+<!-- style -->
+<link rel="import" href="../../styles/common-style.html">
+
+<!-- behavior -->
+<link rel="import" href="../../behaviors/translating.html">
+<link rel="import" href="../../behaviors/page-like.html">
+<link rel="import" href="../../behaviors/api-calling.html">
+<link rel="import" href="../../behaviors/common-computes.html">
+<link rel="import" href="../../behaviors/db-using.html">
+
+<!-- custom-elements -->
+
+<!-- element -->
+<dom-module id="page-quick-patient-medical-info-preview">
+  <template>
+
+    <!-- style -->
+
+    <style is="custom-style" include="common-style">
+      .container {
+        background: red;
+      }
+
+      .checkboxPadding {
+        margin: 5px 0;
+      }
+
+      .checkbox-group paper-checkbox {
+        padding: 15px 0;
+      }
+
+      .seat {
+        padding: 10px 0;
+        border-bottom: 1px solid #ccc;
+      }
+
+      .seat paper-input {
+        width: 100px;
+      }
+
+      .card-custom-header {
+        padding: 15px;
+        /*border-bottom: 1px solid var(--paper-grey-200);*/
+        background-color: var(--paper-grey-50);
+      }
+
+      .card-custom-header .title {
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 28px;
+        color: var(--brand-primary-color) !important;
+      }
+
+      .table {
+        padding: 12px;
+      }
+
+      paper-card {display: block;}
+    </style>
+
+    <div class="master-container">
+
+      <div class="limiting-container vertical layout">
+
+        <paper-card class="m-top-16" heading="Patient Detail">
+          <div class="card-content">
+            <div class="layout horizontal center">
+              <div class="type body-lead capitalize">[[$getFullName(patient.name)]]</div>
+              <div class="m-left-8 type caption bg-gray">{{patient.serial}}</div>
+            </div>
+            <div>
+              <span class="type body">{{patient.phone}}</span>
+            </div>
+            <div>
+              <span class="type body"> {{patient.email}}</span>
+            </div>
+          </div>
+        </paper-card>
+
+        <!-- Card:: Current diagnosis & precedures - start -->
+        <paper-card class="m-top-8">
+          <!--Custom Header-->
+          <div class="card-custom-header">
+            <div class="layout horizontal justified center">
+              <paper-checkbox class="title flex" checked="{{patientStay.currentDiagnosis.isSelected}}">[[$TRANSLATE('Current diagnosis & precedures',LANG)]]</paper-checkbox>
+            </div>
+          </div>
+          <!--Custom Header-->
+
+          <div class="card-content">
+            <table class="table">
+              <tr>
+                <th>Date</th>
+                <th class="flex p-left-16">Diagnosis</th>
+              </tr>
+              <tr class="" hidden="[[!_isEmptyArray(currentDiagnosisList)]]">
+                <td colspan="2" class="type body secondary">-- no data available --</td>
+              </tr>
+              <template is="dom-repeat" items="[[currentDiagnosisList]]" sort="_sortByImportantDiagnosis" id="current-diagnosis-list-repeater">
+                <tr>
+                  <td>[[$mkDateTime(item.createdDatetimeStamp)]]</td>
+                  <td class="flex p-left-16">[[item.diagnosis]]</td>
+                </tr>
+              </template>
+            </table>
+          </div>
+        </paper-card>
+        <!-- Card:: Current diagnosis & precedures - end -->
+
+        <!-- Card:: Current operation performed - start -->
+        <paper-card class="m-top-8">
+
+          <div class="card-custom-header">
+            <div class="layout horizontal justified center">
+              <paper-checkbox class="title flex" checked="{{patientStay.currentOperation.isSelected}}">[[$TRANSLATE('Current operation performed',LANG)]]</paper-checkbox>
+            </div>
+          </div>
+
+          <table class="table">
+            <tr>
+              <th>Date</th>
+              <th class="flex p-left-16">Operation</th>
+            </tr>
+            <tr class="" hidden="[[!_isEmptyArray(currentOperationList)]]">
+              <td colspan="2" class="type body secondary">-- no data available --</td>
+            </tr>
+            <template is="dom-repeat" items="[[currentOperationList]]" sort="_sortByImportantCurrentOperation" id="current-operation-list-repeater">
+              <tr>
+                <td>[[$mkDateTime(item.createdDatetimeStamp)]]</td>
+                <td class="flex p-left-16">[[item.operation]]</td>
+              </tr>
+            </template>
+          </table>
+        </paper-card>
+        <!-- Card:: Current operation performed - end -->
+
+        <!-- Card:: Current Medicine - start -->
+        <paper-card class="m-top-8">
+          <div class="card-custom-header">
+            <div class="layout horizontal justified center">
+              <paper-checkbox class="title flex" checked="{{patientStay.currentMedicine.isSelected}}">[[$TRANSLATE('Current Medicine',LANG)]]</paper-checkbox>
+            </div>
+          </div>
+
+          <template is="dom-if" if="[[_isEmptyArray(matchingCurrentMedicineList)]]">
+            <div class="card-content layout horizontal center center-justified">
+              <div class="type body secondary">-- empty --</div>
+            </div>
+          </template>
+          <template is="dom-if" if="[[!_isEmptyArray(matchingCurrentMedicineList)]]">
+            <div class="p-horizontal-16 layout horizontal end-justified">
+              <paper-icon-button icon="print" on-tap="printCurrentMedicinePressed"></paper-icon-button>
+            </div>
+            <div class="p-0">
+              <paper-listbox>
+
+                <template id="current-medicine-list-repeater" is="dom-repeat" items="[[matchingCurrentMedicineList]]">
+                  <paper-item class="custom layout horizontal center">
+                    <div class="type caption secondary">[[_returnSerial(index)]]</div>
+                    <div class="flex m-left-8">
+                      <div class="layout horizontal wrap center">
+
+                        <div class="flex">
+                          <div class="type body">{{item.data.brandName}} {{item.data.strength}}
+                            <span class="type caption bg-gray">[[item.data.manufacturer]]</span>
+                          </div>
+                          <div class="type caption italic secondary">{{item.data.genericName}} {{item.data.strength}}</div>
+                        </div>
+
+                        <div>
+                          <div class="type caption m-horizontal-4">
+                            [[$TRANSLATE_NUMBER(item.data.dose, LANG)]] [[$TRANSLATE(item.data.form, LANG)]]
+                            <span hidden="[[!item.data.timesPerInterval]]">
+                              [[$TRANSLATE('Every', LANG)]] [[$TRANSLATE_NUMBER(item.data.intervalInHours, LANG)]] [[$TRANSLATE('Hour', LANG)]] </span>
+                            <span hidden="[[!item.data.doseDirection]]">
+                              [[$TRANSLATE_NUMBER(item.data.doseDirection, LANG)]]</span>
+                            for [[_computeTotalDaysCount(item.data.endDateTimeStamp,item.data.startDateTimeStamp)]]
+                            <span hidden$="[[!item.data.endDateTimeStamp]]">[[$TRANSLATE('Days',LANG)]]</span>
+                          </div>
+
+                          <div class="type caption m-horizontal-4">
+                            <span>By </span>
+                            <span class="text-cap">[[$TRANSLATE(item.data.route, LANG)]]</span>
+                            <span>[[$TRANSLATE(item.data.direction, LANG)]] </span>
+                          </div>
+                          <div class="type caption m-horizontal-4">[[item.data.comment]]</div>
+                        </div>
+
+                      </div>
+                    </div>
+                  </paper-item>
+                </template>
+
+              </paper-listbox>
+
+            </div>
+          </template>
+        </paper-card>
+        <!-- Card:: Current Medicine - end -->
+
+        <!-- Card:: Current Investigation - start -->
+        <paper-card class="m-top-8">
+
+          <div class="card-custom-header">
+            <div class="layout horizontal justified center">
+              <paper-checkbox class="title flex" checked="{{patientStay.currentInvestigation.isSelected}}">[[$TRANSLATE('Current Investigation',LANG)]]</paper-checkbox>
+            </div>
+          </div>
+
+          <table class="table">
+            <tr>
+              <th>Date</th>
+              <th class="flex p-left-16">Investigation name</th>
+            </tr>
+            <tr class="" hidden="[[!_isEmptyArray(currentInvestigationList)]]">
+              <td colspan="2" class="type body secondary">-- no data available --</td>
+            </tr>
+            <template is="dom-repeat" items="[[currentInvestigationList]]" sort="" id="current-investigation-list-repeater">
+              <tr>
+                <td>[[$mkDateTime(item.createdDatetimeStamp)]]</td>
+                <td  class="flex p-left-16">[[item.investigationName]]</td>
+              </tr>
+            </template>
+          </table>
+        </paper-card>
+        <!-- Card:: Current Investigation - end -->
+
+        <!-- Card:: Confirm Diagnosis - start -->
+        <paper-card class="m-top-8">
+
+          <div class="card-custom-header">
+            <div class="layout horizontal justified center">
+              <paper-checkbox class="title flex" checked="{{patientStay.previousConfirmedDiagnosis.isSelected}}">[[$TRANSLATE('Confirmed Diagnosis (Previous)',LANG)]]</paper-checkbox>
+            </div>
+          </div>
+
+          <table class="table">
+            <tr>
+              <th>Date</th>
+              <th class="flex p-left-16">Diagnosis</th>
+            </tr>
+            <tr class="" hidden="[[!_isEmptyArray(confirmedDiagnosisList)]]">
+              <td colspan="2" class="type body secondary">-- no data available --</td>
+            </tr>
+            <template is="dom-repeat" items="[[confirmedDiagnosisList]]" sort="_sortByImportantDiagnosis" id="confirmed-diagnosis-list-repeater">
+              <tr>
+                <td>[[$mkDateTime(item.createdDatetimeStamp)]]</td>
+                <td class="flex p-left-16">[[item.diagnosis]]</td>
+              </tr>
+            </template>
+          </table>
+        </paper-card>
+        <!-- Card:: Confirm Diagnosis - end -->
+
+        <!-- Card:: Previous operation - start -->
+        <paper-card class="m-top-8">
+
+          <div class="card-custom-header">
+            <div class="layout horizontal justified center">
+              <paper-checkbox class="title flex" checked="{{patientStay.previousOperation.isSelected}}">[[$TRANSLATE('Previous operation performed',LANG)]]</paper-checkbox>
+            </div>
+          </div>
+
+          <table class="table">
+            <tr>
+              <th>Date</th>
+              <th class="flex p-left-16">Operation</th>
+            </tr>
+            <tr class="" hidden="[[!_isEmptyArray(previousOperationList)]]">
+              <td colspan="2" class="type body secondary">-- no data available --</td>
+            </tr>
+            <template is="dom-repeat" items="[[previousOperationList]]" sort="_sortByImportantPreviousOperation" id="previous-operation-list-repeater">
+              <tr>
+                <td>[[$mkDateTime(item.createdDatetimeStamp)]]</td>
+                <td class="flex p-left-16">[[item.operation]]</td>
+              </tr>
+            </template>
+          </table>
+        </paper-card>
+        <!-- Card:: Previous operation - end -->
+
+      </div>
+    </div>
+
+  </template>
+  <script src="page-quick-patient-medical-info-preview.coffee-compiled.js"></script>
+
+</dom-module>

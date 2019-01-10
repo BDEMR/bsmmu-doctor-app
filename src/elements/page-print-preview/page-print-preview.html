@@ -1,0 +1,86 @@
+<!-- style -->
+<link rel="import" href="../../styles/common-style.html">
+
+<!-- behavior -->
+<link rel="import" href="../../behaviors/common-computes.html">
+<link rel="import" href="../../behaviors/db-using.html">
+<link rel="import" href="../../behaviors/translating.html">
+<link rel="import" href="../../behaviors/page-like.html">
+<link rel="import" href="../../behaviors/api-calling.html">
+
+<!-- custom-elements -->
+
+<!-- element -->
+<dom-module id="page-print-preview">
+  <template>
+
+    <!-- style -->
+
+    <style is="custom-style" include="common-style">
+      :host {
+        background-color: #fff;
+        position: absolute;
+        left: 0;
+        top: 64px;
+        right: 0;
+        bottom: 0;
+      }
+
+      .patient-details {
+        background-color: #f7f7f7;
+        padding: 8px 0;
+        border-top: 1px solid #eee;
+        border-bottom: 1px solid #eee;
+      }
+
+      .header-details {
+        padding: 8px 0;
+      }
+    </style>
+
+    <!-- local DOM -->
+
+    <!-- Header - Image -->
+    <template is="dom-if" if="[[settings.printDecoration.logoDataUri]]">
+      <div>
+        <img width="100%" height="128px" class="logo" src="[[settings.printDecoration.logoDataUri]]" alt="">
+      </div>
+    </template>
+    <!-- /Header - Image -->
+
+    <!-- Header - Details -->
+    <div class="horizontal layout center header-details">
+      <div class="vertical layout flex">
+        <div class="type title-2">[[settings.printDecoration.leftSideLine1]]</div>
+        <div class="type body">[[settings.printDecoration.leftSideLine2]]</div>
+        <div class="type body">[[settings.printDecoration.leftSideLine3]]</div>
+      </div>
+      <div class="vertical layout end">
+        <div class="type title-2">[[settings.printDecoration.rightSideLine1]]</div>
+        <div class="type body">[[settings.printDecoration.rightSideLine2]]</div>
+        <div class="type body">[[settings.printDecoration.rightSideLine3]]</div>
+      </div>
+    </div>
+    <!-- /Header - Details -->
+
+    <!-- Patient - Details -->
+    <div class="horizontal layout center type body patient-details">
+      <template is="dom-if" if="[[!patient.isForOrganizationOnly]]">
+        <div class="m-right-16"><strong>Patient Name: </strong>{{$getFullName(patient.name)}}</div>
+        <div class="m-right-16"><strong>Age: </strong>[[_computeAge(patient.dob)]] years</div>
+        <div class="m-right-16"><strong>Allergy: </strong></div>
+        <div><strong>Blood Group: </strong></div>
+      </template>
+      <template is="dom-if" if="[[patient.isForOrganizationOnly]]">
+        <div class="m-right-16"><strong>Patient Name: </strong><span class="type italic secondary">[REDACTED FOR CONFIDENTIALITY]</span></div>
+        <div class="m-right-16"><strong>Age: </strong><span class="type italic secondary">[REDACTED FOR CONFIDENTIALITY]</span></div>
+        <div class="m-right-16"><strong>Allergy: </strong></div>
+        <div><strong>Blood Group: </strong></div>
+      </template>
+    </div>
+    <!-- /Patient - Details -->
+
+    
+  </template>
+  <script src="page-print-preview.coffee-compiled.js"></script>
+</dom-module>
