@@ -1,0 +1,809 @@
+[
+  {
+    "name": "loss of appetite"
+  },
+  {
+    "name": "weight loss"
+  },
+  {
+    "name": "weight gain"
+  },
+  {
+    "name": "dry mouth"
+  },
+  {
+    "name": "malaise"
+  },
+  {
+    "name": "asthenia"
+  },
+  {
+    "name": "muscle weakness"
+  },
+  {
+    "name": "pyrexia"
+  },
+  {
+    "name": "jaundice"
+  },
+  {
+    "name": "abdominal pain"
+  },
+  {
+    "name": "chest pain"
+  },
+  {
+    "name": "bruising"
+  },
+  {
+    "name": "epistaxis"
+  },
+  {
+    "name": "tremor"
+  },
+  {
+    "name": "convulsions"
+  },
+  {
+    "name": "muscle cramps"
+  },
+  {
+    "name": "tinnitus"
+  },
+  {
+    "name": "dizziness"
+  },
+  {
+    "name": "vertigo"
+  },
+  {
+    "name": "syncope"
+  },
+  {
+    "name": "hypothermia"
+  },
+  {
+    "name": "hyperthermia"
+  },
+  {
+    "name": "discharge"
+  },
+  {
+    "name": "bleeding"
+  },
+  {
+    "name": "swelling"
+  },
+  {
+    "name": "deformity"
+  },
+  {
+    "name": "sweats"
+  },
+  {
+    "name": "chills and shivering"
+  },
+  {
+    "name": "acalculia"
+  },
+  {
+    "name": "acrophobia"
+  },
+  {
+    "name": "agnosia"
+  },
+  {
+    "name": "agoraphobia"
+  },
+  {
+    "name": "akathisia"
+  },
+  {
+    "name": "akinesia"
+  },
+  {
+    "name": "alexia"
+  },
+  {
+    "name": "amusia"
+  },
+  {
+    "name": "anhedonia"
+  },
+  {
+    "name": "anomia"
+  },
+  {
+    "name": "anosognosia"
+  },
+  {
+    "name": "anxiety"
+  },
+  {
+    "name": "apraxia"
+  },
+  {
+    "name": "arachnophobia"
+  },
+  {
+    "name": "ataxia"
+  },
+  {
+    "name": "bradykinesia"
+  },
+  {
+    "name": "cataplexy"
+  },
+  {
+    "name": "chorea"
+  },
+  {
+    "name": "claustrophobia"
+  },
+  {
+    "name": "confusion"
+  },
+  {
+    "name": "deliberate self harm"
+  },
+  {
+    "name": "drug overdose"
+  },
+  {
+    "name": "depression"
+  },
+  {
+    "name": "dysarthria"
+  },
+  {
+    "name": "dysdiadochokinesia"
+  },
+  {
+    "name": "dysgraphia"
+  },
+  {
+    "name": "dystonia"
+  },
+  {
+    "name": "euphoria"
+  },
+  {
+    "name": "hallucination"
+  },
+  {
+    "name": "headache"
+  },
+  {
+    "name": "hemiballismus and ballismus"
+  },
+  {
+    "name": "homicidal ideation"
+  },
+  {
+    "name": "insomnia"
+  },
+  {
+    "name": "Lhermitte's sign"
+  },
+  {
+    "name": "mania"
+  },
+  {
+    "name": "paralysis"
+  },
+  {
+    "name": "paranoia or persecution"
+  },
+  {
+    "name": "paresthesia"
+  },
+  {
+    "name": "phobia"
+  },
+  {
+    "name": "prosopagnosia"
+  },
+  {
+    "name": "sciatica"
+  },
+  {
+    "name": "somnolence"
+  },
+  {
+    "name": "suicidal ideation"
+  },
+  {
+    "name": "tic"
+  },
+  {
+    "name": "tremor"
+  },
+  {
+    "name": "amaurosis fugax  "
+  },
+  {
+    "name": "amaurosis"
+  },
+  {
+    "name": "blurred vision"
+  },
+  {
+    "name": "Dalrymple's sign"
+  },
+  {
+    "name": "double vision"
+  },
+  {
+    "name": "exophthalmos"
+  },
+  {
+    "name": "mydriasis/miosis"
+  },
+  {
+    "name": "nystagmus"
+  },
+  {
+    "name": "anorexia"
+  },
+  {
+    "name": "bloating"
+  },
+  {
+    "name": "belching"
+  },
+  {
+    "name": "blood in stool: melena"
+  },
+  {
+    "name": "blood in stool: hematochezia"
+  },
+  {
+    "name": "constipation"
+  },
+  {
+    "name": "diarrhea"
+  },
+  {
+    "name": "dysphagia"
+  },
+  {
+    "name": "dyspepsia"
+  },
+  {
+    "name": "flatulence"
+  },
+  {
+    "name": "fecal incontinence"
+  },
+  {
+    "name": "haematemesis"
+  },
+  {
+    "name": "nausea"
+  },
+  {
+    "name": "odynophagia"
+  },
+  {
+    "name": "proctalgia fugax"
+  },
+  {
+    "name": "pyrosis"
+  },
+  {
+    "name": "rectal malodor"
+  },
+  {
+    "name": "steatorrhea"
+  },
+  {
+    "name": "vomiting"
+  },
+  {
+    "name": "chest pain"
+  },
+  {
+    "name": "claudication"
+  },
+  {
+    "name": "palpitation"
+  },
+  {
+    "name": "tachycardia"
+  },
+  {
+    "name": "bradycardia"
+  },
+  {
+    "name": "arrhythmia"
+  },
+  {
+    "name": "dysuria"
+  },
+  {
+    "name": "hematuria"
+  },
+  {
+    "name": "impotence"
+  },
+  {
+    "name": "polyuria"
+  },
+  {
+    "name": "retrograde ejaculation"
+  },
+  {
+    "name": "strangury"
+  },
+  {
+    "name": "urinary frequency"
+  },
+  {
+    "name": "urinary incontinence"
+  },
+  {
+    "name": "urinary retention"
+  },
+  {
+    "name": "hypoventilation"
+  },
+  {
+    "name": "hyperventilation"
+  },
+  {
+    "name": "bradypnea"
+  },
+  {
+    "name": "apnea"
+  },
+  {
+    "name": "cough"
+  },
+  {
+    "name": "dyspnea"
+  },
+  {
+    "name": "hemoptysis"
+  },
+  {
+    "name": "pleuritic chest pain"
+  },
+  {
+    "name": "sputum production"
+  },
+  {
+    "name": "tachypnea"
+  },
+  {
+    "name": "abrasion"
+  },
+  {
+    "name": "alopecia"
+  },
+  {
+    "name": "anasarca"
+  },
+  {
+    "name": "blister"
+  },
+  {
+    "name": "edema"
+  },
+  {
+    "name": "hirsutism"
+  },
+  {
+    "name": "itching"
+  },
+  {
+    "name": "laceration"
+  },
+  {
+    "name": "paresthesia"
+  },
+  {
+    "name": "rash"
+  },
+  {
+    "name": "urticaria"
+  },
+  {
+    "name": "abnormal vaginal bleeding"
+  },
+  {
+    "name": "bloody show preceding onset of labour"
+  },
+  {
+    "name": "painful intercourse"
+  },
+  {
+    "name": "pelvic pain"
+  },
+  {
+    "name": "infertility"
+  },
+  {
+    "name": "labour pains"
+  },
+  {
+    "name": "vaginal bleeding in early pregnancy / miscarriage"
+  },
+  {
+    "name": "vaginal bleeding in late pregnancy"
+  },
+  {
+    "name": "vaginal discharge"
+  },
+  {
+    "name": "vaginismus"
+  },
+  {
+    "name": "macule "
+  },
+  {
+    "name": "patch "
+  },
+  {
+    "name": "papule "
+  },
+  {
+    "name": "plaque "
+  },
+  {
+    "name": "nodule "
+  },
+  {
+    "name": "tumour"
+  },
+  {
+    "name": "vesicle "
+  },
+  {
+    "name": "bulla "
+  },
+  {
+    "name": "pustule "
+  },
+  {
+    "name": "cyst "
+  },
+  {
+    "name": "erosion "
+  },
+  {
+    "name": "ulcer "
+  },
+  {
+    "name": "fissure "
+  },
+  {
+    "name": "wheal "
+  },
+  {
+    "name": "telangiectasia "
+  },
+  {
+    "name": "burrow "
+  },
+  {
+    "name": "scale"
+  },
+  {
+    "name": "crust"
+  },
+  {
+    "name": "lichenification"
+  },
+  {
+    "name": "excoriation"
+  },
+  {
+    "name": "induration"
+  },
+  {
+    "name": "atrophy"
+  },
+  {
+    "name": "maceration"
+  },
+  {
+    "name": "umbilication"
+  },
+  {
+    "name": "phyma"
+  },
+  {
+    "name": "generalized"
+  },
+  {
+    "name": "symmetric"
+  },
+  {
+    "name": "flexural"
+  },
+  {
+    "name": "extensor"
+  },
+  {
+    "name": "intertriginous"
+  },
+  {
+    "name": "morbilliform"
+  },
+  {
+    "name": "palmoplantar"
+  },
+  {
+    "name": "periorificial"
+  },
+  {
+    "name": "periungual/subungual"
+  },
+  {
+    "name": "blaschkoid"
+  },
+  {
+    "name": "photodistributed"
+  },
+  {
+    "name": "zosteriform"
+  },
+  {
+    "name": "dermatomal"
+  },
+  {
+    "name": "collarette"
+  },
+  {
+    "name": "comedo"
+  },
+  {
+    "name": "confluent"
+  },
+  {
+    "name": "eczema"
+  },
+  {
+    "name": "evanescent"
+  },
+  {
+    "name": "granuloma"
+  },
+  {
+    "name": "livedo"
+  },
+  {
+    "name": "purpura"
+  },
+  {
+    "name": "erythema"
+  },
+  {
+    "name": "horn "
+  },
+  {
+    "name": "poikiloderma"
+  },
+  {
+    "name": "Carotid Sinus Syncope"
+  },
+  {
+    "name": "Chest pain"
+  },
+  {
+    "name": "Dizziness"
+  },
+  {
+    "name": "Dysponea"
+  },
+  {
+    "name": "Fatigue"
+  },
+  {
+    "name": "Palpitation"
+  },
+  {
+    "name": "Postural Hypotension"
+  },
+  {
+    "name": "Presyncope"
+  },
+  {
+    "name": "Syncope"
+  },
+  {
+    "name": "Vasovagal syncope"
+  },
+  {
+    "name": "Loss of Appetite"
+  },
+  {
+    "name": "Nausea"
+  },
+  {
+    "name": "Vomiting"
+  },
+  {
+    "name": "Indigestion"
+  },
+  {
+    "name": "Dysphagia"
+  },
+  {
+    "name": "Weight loss"
+  },
+  {
+    "name": "Pain"
+  },
+  {
+    "name": "irregular Bowel habit"
+  },
+  {
+    "name": "Ascitis"
+  },
+  {
+    "name": "Vaginal Discharge Bad smell"
+  },
+  {
+    "name": "Vaginal Discharge Bloody"
+  },
+  {
+    "name": "Vaginal Discharge Brown"
+  },
+  {
+    "name": "Vaginal Discharge Cheesy"
+  },
+  {
+    "name": "Vaginal Discharge Clowdy"
+  },
+  {
+    "name": "Vaginal Discharge Fishy odour"
+  },
+  {
+    "name": "Vaginal Discharge Frothy"
+  },
+  {
+    "name": "Vaginal Discharge Gray"
+  },
+  {
+    "name": "Vaginal Discharge Greenish"
+  },
+  {
+    "name": "Vaginal Discharge Pink"
+  },
+  {
+    "name": "Vaginal Discharge Thick"
+  },
+  {
+    "name": "Vaginal Discharge White"
+  },
+  {
+    "name": "Vaginal Discharge Yellow"
+  },
+  {
+    "name": "Incontinence Unable to empty bladder appropriately"
+  },
+  {
+    "name": "Incontinence Disease preventing to reach toilet in time"
+  },
+  {
+    "name": "Incontinence Cannot controll the urge"
+  },
+  {
+    "name": "Incontinence Associated with activity (lough cough sneezing  exercise etc)"
+  },
+  {
+    "name": "Bleeding after intercourse"
+  },
+  {
+    "name": "Dyspareunia"
+  },
+  {
+    "name": "Infertility"
+  },
+  {
+    "name": "Pelvic pain"
+  },
+  {
+    "name": "Vaginal bleeding"
+  },
+  {
+    "name": "Vaginal pain"
+  },
+  {
+    "name": "Vaginal pruritus"
+  },
+  {
+    "name": "IP Joint"
+  },
+  {
+    "name": "MCP Joint"
+  },
+  {
+    "name": "Wrist Joint"
+  },
+  {
+    "name": "Elbow Joint"
+  },
+  {
+    "name": "Shoulder  Joint"
+  },
+  {
+    "name": "Hip Joint"
+  },
+  {
+    "name": "Knee Joint"
+  },
+  {
+    "name": "Ankle joint"
+  },
+  {
+    "name": "Muscle pain"
+  },
+  {
+    "name": "Difficulty mobilising"
+  },
+  {
+    "name": "Vision"
+  },
+  {
+    "name": "Headache"
+  },
+  {
+    "name": "Weakness"
+  },
+  {
+    "name": "Sensory disturbanc"
+  },
+  {
+    "name": "LOC"
+  },
+  {
+    "name": "Seizures"
+  },
+  {
+    "name": "Incontinence"
+  },
+  {
+    "name": "Cough"
+  },
+  {
+    "name": "Sputum"
+  },
+  {
+    "name": "Chest Pain"
+  },
+  {
+    "name": "Shortness of Breath"
+  },
+  {
+    "name": "Wheeze"
+  },
+  {
+    "name": "Stridor"
+  },
+  {
+    "name": "Haemoptysis"
+  },
+  {
+    "name": "Frequency"
+  },
+  {
+    "name": "Dysuria"
+  },
+  {
+    "name": "Polyurea"
+  },
+  {
+    "name": "Urgency"
+  },
+  {
+    "name": "Hesitancy"
+  },
+  {
+    "name": "Nocturia"
+  },
+  {
+    "name": "Incontinence"
+  }
+]

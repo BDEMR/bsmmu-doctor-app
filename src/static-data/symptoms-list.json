@@ -1,809 +1,894 @@
 [
   {
-    "name": "loss of appetite"
+    "category": "General",
+    "name": "Anorexia",
+    "code": "R63.0"
   },
   {
-    "name": "weight loss"
+    "category": "General",
+    "name": "Anorexia (with weight loss)",
+    "code": "R63.4"
   },
   {
-    "name": "weight gain"
+    "category": "General",
+    "name": "Cachexia",
+    "code": "R64"
   },
   {
-    "name": "dry mouth"
+    "category": "General",
+    "name": "Chills and shivering",
+    "code": ""
   },
   {
-    "name": "malaise"
+    "category": "General",
+    "name": "Convulsions",
+    "code": ""
   },
   {
-    "name": "asthenia"
+    "category": "General",
+    "name": "Deformity",
+    "code": ""
   },
   {
-    "name": "muscle weakness"
+    "category": "General",
+    "name": "Discharge",
+    "code": ""
   },
   {
-    "name": "pyrexia"
+    "category": "General",
+    "name": "Dizziness",
+    "code": ""
   },
   {
-    "name": "jaundice"
+    "category": "General",
+    "name": "Dizziness/Vertigo",
+    "code": ""
   },
   {
-    "name": "abdominal pain"
+    "category": "General",
+    "name": "Fatigue",
+    "code": ""
   },
+  
   {
-    "name": "chest pain"
+    "category": "General",
+    "name": "Fatigue(asthania)",
+    "code": ""
   },
   {
-    "name": "bruising"
+    "category": "General",
+    "name": "Fatigue (malaise)",
+    "code": ""
   },
   {
-    "name": "epistaxis"
+    "category": "General",
+    "name": "Hypotheremia",
+    "code": ""
   },
   {
-    "name": "tremor"
+    "category": "General",
+    "name": "Jaundice",
+    "code": ""
   },
   {
-    "name": "convulsions"
+    "category": "General",
+    "name": "Muscle weakness",
+    "code": ""
   },
   {
-    "name": "muscle cramps"
+    "category": "General",
+    "name": "Painfull Lymph nodes",
+    "code": ""
   },
   {
-    "name": "tinnitus"
+    "category": "General",
+    "name": "Pyrexia",
+    "code": ""
   },
   {
-    "name": "dizziness"
+    "category": "General",
+    "name": "Sweat",
+    "code": ""
   },
   {
-    "name": "vertigo"
+    "category": "General",
+    "name": "Swelling",
+    "code": ""
   },
   {
-    "name": "syncope"
+    "category": "General",
+    "name": "Swollen Lymphnodes",
+    "code": ""
   },
   {
-    "name": "hypothermia"
+    "category": "General",
+    "name": "Swollen and Painfull Lymphnodes",
+    "code": ""
   },
   {
-    "name": "hyperthermia"
+    "category": "General",
+    "name": "Weight gain",
+    "code": ""
   },
   {
-    "name": "discharge"
+    "category": "Cardiovascular",
+    "name": "Arrythmia",
+    "code": ""
   },
   {
-    "name": "bleeding"
+    "category": "Cardiovascular",
+    "name": "Bradycardia",
+    "code": ""
   },
   {
-    "name": "swelling"
+    "category": "Cardiovascular",
+    "name": "Chest pain",
+    "code": ""
   },
   {
-    "name": "deformity"
+    "category": "Cardiovascular",
+    "name": "Claudication",
+    "code": ""
   },
   {
-    "name": "sweats"
+    "category": "Cardiovascular",
+    "name": "Palpitation",
+    "code": ""
   },
   {
-    "name": "chills and shivering"
+    "category": "Cardiovascular",
+    "name": "Tachycardia",
+    "code": ""
   },
   {
-    "name": "acalculia"
+    "category": "Ear, Nose and Throat",
+    "name": "Drymouth",
+    "code": ""
   },
   {
-    "name": "acrophobia"
+    "category": "Ear, Nose and Throat",
+    "name": "Epistaxis",
+    "code": ""
   },
   {
-    "name": "agnosia"
+    "category": "Ear, Nose and Throat",
+    "name": "Halitosis",
+    "code": ""
   },
   {
-    "name": "agoraphobia"
+    "category": "Ear, Nose and Throat",
+    "name": "Hearing loss",
+    "code": ""
   },
   {
-    "name": "akathisia"
+    "category": "Ear, Nose and Throat",
+    "name": "Nasal discharge",
+    "code": ""
   },
   {
-    "name": "akinesia"
+    "category": "Ear, Nose and Throat",
+    "name": "Otalgia",
+    "code": ""
   },
   {
-    "name": "alexia"
+    "category": "Ear, Nose and Throat",
+    "name": "Otorrhoea",
+    "code": ""
   },
   {
-    "name": "amusia"
+    "category": "Ear, Nose and Throat",
+    "name": "Sore throat",
+    "code": ""
   },
   {
-    "name": "anhedonia"
+    "category": "Ear, Nose and Throat",
+    "name": "Toothache",
+    "code": ""
   },
   {
-    "name": "anomia"
+    "category": "Ear, Nose and Throat",
+    "name": "Tinnitus",
+    "code": ""
   },
   {
-    "name": "anosognosia"
+    "category": "Ear, Nose and Throat",
+    "name": "Trismus",
+    "code": ""
   },
   {
-    "name": "anxiety"
+    "category": "Gastrointestinal",
+    "name": "Abdominal pain",
+    "code": ""
   },
   {
-    "name": "apraxia"
+    "category": "Gastrointestinal",
+    "name": "Bloating",
+    "code": ""
   },
   {
-    "name": "arachnophobia"
+    "category": "Gastrointestinal",
+    "name": "Belching",
+    "code": ""
   },
   {
-    "name": "ataxia"
+    "category": "Gastrointestinal",
+    "name": "Bleeding (hematemesis)",
+    "code": ""
   },
   {
-    "name": "bradykinesia"
+    "category": "Gastrointestinal",
+    "name": "Bleeding (hematochezia)",
+    "code": ""
   },
   {
-    "name": "cataplexy"
+    "category": "Gastrointestinal",
+    "name": "Bleeding ( melena)",
+    "code": ""
   },
   {
-    "name": "chorea"
+    "category": "Gastrointestinal",
+    "name": "Constipation",
+    "code": ""
   },
   {
-    "name": "claustrophobia"
+    "category": "Gastrointestinal",
+    "name": "Diarrhea",
+    "code": ""
   },
   {
-    "name": "confusion"
+    "category": "Gastrointestinal",
+    "name": "Dysphagia",
+    "code": ""
   },
   {
-    "name": "deliberate self harm"
+    "category": "Gastrointestinal",
+    "name": "Dyspepsia",
+    "code": ""
   },
   {
-    "name": "drug overdose"
+    "category": "Gastrointestinal",
+    "name": "Fecal incontinence",
+    "code": ""
   },
   {
-    "name": "depression"
+    "category": "Gastrointestinal",
+    "name": "Flatulence",
+    "code": ""
   },
   {
-    "name": "dysarthria"
+    "category": "Gastrointestinal",
+    "name": "Heartburn",
+    "code": ""
   },
   {
-    "name": "dysdiadochokinesia"
+    "category": "Gastrointestinal",
+    "name": "Nausea",
+    "code": ""
   },
   {
-    "name": "dysgraphia"
+    "category": "Gastrointestinal",
+    "name": "Odynophagia",
+    "code": ""
   },
   {
-    "name": "dystonia"
+    "category": "Gastrointestinal",
+    "name": "Proctalgia fugax",
+    "code": ""
   },
   {
-    "name": "euphoria"
+    "category": "Gastrointestinal",
+    "name": "Pyrosis",
+    "code": ""
   },
   {
-    "name": "hallucination"
+    "category": "Gastrointestinal",
+    "name": "Rectal Tenesmus",
+    "code": ""
   },
   {
-    "name": "headache"
+    "category": "Gastrointestinal",
+    "name": "Steatorrhea",
+    "code": ""
   },
   {
-    "name": "hemiballismus and ballismus"
+    "category": "Gastrointestinal",
+    "name": "Vomitting",
+    "code": ""
   },
   {
-    "name": "homicidal ideation"
+    "category": "Integumentary",
+    "name": "Alopecia",
+    "code": ""
   },
   {
-    "name": "insomnia"
+    "category": "Integumentary",
+    "name": "Hirsutism",
+    "code": ""
   },
   {
-    "name": "Lhermitte's sign"
+    "category": "Integumentary",
+    "name": "Hypertrichosis",
+    "code": ""
   },
   {
-    "name": "mania"
+    "category": "Integumentary",
+    "name": "Abrasion",
+    "code": ""
   },
   {
-    "name": "paralysis"
+    "category": "Integumentary",
+    "name": "Anasarca",
+    "code": ""
   },
   {
-    "name": "paranoia or persecution"
+    "category": "Integumentary",
+    "name": "Bleeding (petechia)",
+    "code": ""
   },
   {
-    "name": "paresthesia"
+    "category": "Integumentary",
+    "name": "bleeding (purpura)",
+    "code": ""
   },
   {
-    "name": "phobia"
+    "category": "Integumentary",
+    "name": "Bleeding (Echymosis)",
+    "code": ""
   },
   {
-    "name": "prosopagnosia"
+    "category": "Integumentary",
+    "name": "Bleeding (bruising)",
+    "code": ""
   },
   {
-    "name": "sciatica"
+    "category": "Integumentary",
+    "name": "Blister",
+    "code": ""
   },
   {
-    "name": "somnolence"
+    "category": "Integumentary",
+    "name": "Oedema",
+    "code": ""
   },
   {
-    "name": "suicidal ideation"
+    "category": "Integumentary",
+    "name": "Itching",
+    "code": ""
   },
   {
-    "name": "tic"
+    "category": "Integumentary",
+    "name": "Janeway Lesion",
+    "code": ""
   },
   {
-    "name": "tremor"
+    "category": "Integumentary",
+    "name": "Osler's node",
+    "code": ""
   },
   {
-    "name": "amaurosis fugax  "
+    "category": "Integumentary",
+    "name": "Laceration",
+    "code": ""
   },
   {
-    "name": "amaurosis"
+    "category": "Integumentary",
+    "name": "Rash",
+    "code": ""
   },
   {
-    "name": "blurred vision"
+    "category": "Integumentary",
+    "name": "Urticaria",
+    "code": ""
   },
   {
-    "name": "Dalrymple's sign"
+    "category": "Neurological",
+    "name": "Abnormal posturing",
+    "code": ""
   },
   {
-    "name": "double vision"
+    "category": "Neurological",
+    "name": "Acalculia",
+    "code": ""
   },
   {
-    "name": "exophthalmos"
+    "category": "Neurological",
+    "name": "Agnosis",
+    "code": ""
   },
   {
-    "name": "mydriasis/miosis"
+    "category": "Neurological",
+    "name": "Alexia",
+    "code": ""
   },
   {
-    "name": "nystagmus"
+    "category": "Neurological",
+    "name": "Amnesia",
+    "code": ""
   },
   {
-    "name": "anorexia"
+    "category": "Neurological",
+    "name": "Anomia",
+    "code": ""
   },
   {
-    "name": "bloating"
+    "category": "Neurological",
+    "name": "Anosognosia",
+    "code": ""
   },
   {
-    "name": "belching"
+    "category": "Neurological",
+    "name": "Aphasia and apraxia",
+    "code": ""
   },
   {
-    "name": "blood in stool: melena"
+    "category": "Neurological",
+    "name": "Apraxia",
+    "code": ""
   },
   {
-    "name": "blood in stool: hematochezia"
+    "category": "Neurological",
+    "name": "Ataxia",
+    "code": ""
   },
   {
-    "name": "constipation"
+    "category": "Neurological",
+    "name": "Cataplexy",
+    "code": ""
   },
   {
-    "name": "diarrhea"
+    "category": "Neurological",
+    "name": "Confusion",
+    "code": ""
   },
   {
-    "name": "dysphagia"
+    "category": "Neurological",
+    "name": "Dysarthria",
+    "code": ""
   },
   {
-    "name": "dyspepsia"
+    "category": "Neurological",
+    "name": "Hallucination",
+    "code": ""
   },
   {
-    "name": "flatulence"
+    "category": "Neurological",
+    "name": "Headache",
+    "code": ""
   },
   {
-    "name": "fecal incontinence"
+    "category": "Neurological",
+    "name": "Hypokinetic movement disorder",
+    "code": ""
   },
   {
-    "name": "haematemesis"
+    "category": "Neurological",
+    "name": "Akinesia",
+    "code": ""
   },
   {
-    "name": "nausea"
+    "category": "Neurological",
+    "name": "Bradykinesia",
+    "code": ""
   },
   {
-    "name": "odynophagia"
+    "category": "Neurological",
+    "name": "Hyperkinetic movement dosorder)",
+    "code": ""
   },
   {
-    "name": "proctalgia fugax"
+   "category": "Neurological",
+    "name": "Akathisia",
+    "code": ""
   },
   {
-    "name": "pyrosis"
+   "category": "Neurological",
+    "name": "Athetosis",
+    "code": ""
   },
   {
-    "name": "rectal malodor"
+   "category": "Neurological",
+    "name": "Ballismus",
+    "code": ""
   },
   {
-    "name": "steatorrhea"
+    "category": "Neurological",
+    "name": "Ballismus",
+    "code": ""
   },
   {
-    "name": "vomiting"
+    "category": "Neurological",
+    "name": "Blepharospasm",
+    "code": ""
   },
   {
-    "name": "chest pain"
+    "category": "Neurological",
+    "name": "Chorea",
+    "code": ""
   },
   {
-    "name": "claudication"
+    "category": "Neurological",
+    "name": "Dystonia",
+    "code": ""
   },
   {
-    "name": "palpitation"
+    "category": "Neurological",
+    "name": "Fasciculation",
+    "code": ""
   },
   {
-    "name": "tachycardia"
+    "category": "Neurological",
+    "name": "Muscle cramps",
+    "code": ""
   },
   {
-    "name": "bradycardia"
+    "category": "Neurological",
+    "name": "Myoclonus",
+    "code": ""
   },
   {
-    "name": "arrhythmia"
+    "category": "Neurological",
+    "name": "Opsoclonus",
+    "code": ""
   },
   {
-    "name": "dysuria"
+    "category": "Neurological",
+    "name": "Tic",
+    "code": ""
   },
   {
-    "name": "hematuria"
+    "category": "Neurological",
+    "name": "Tremor",
+    "code": ""
   },
   {
-    "name": "impotence"
+    "category": "Neurological",
+    "name": "Flapping tremor",
+    "code": ""
   },
   {
-    "name": "polyuria"
+    "category": "Neurological",
+    "name": "Insomnia",
+    "code": ""
   },
   {
-    "name": "retrograde ejaculation"
+    "category": "Neurological",
+    "name": "Lhermitte's sign",
+    "code": ""
   },
   {
-    "name": "strangury"
+    "category": "Neurological",
+    "name": "Loss of consciouness",
+    "code": ""
   },
   {
-    "name": "urinary frequency"
+    "category": "Neurological",
+    "name": "Syncope",
+    "code": ""
   },
   {
-    "name": "urinary incontinence"
+    "category": "Neurological",
+    "name": "Neck Stiffness",
+    "code": ""
   },
   {
-    "name": "urinary retention"
+    "category": "Neurological",
+    "name": "Opisthotonus",
+    "code": ""
   },
   {
-    "name": "hypoventilation"
+    "category": "Neurological",
+    "name": "Paralysis",
+    "code": ""
   },
   {
-    "name": "hyperventilation"
+    "category": "Neurological",
+    "name": "Paralysis and Paresis",
+    "code": ""
   },
   {
-    "name": "bradypnea"
+    "category": "Neurological",
+    "name": "Paresis",
+    "code": ""
   },
   {
-    "name": "apnea"
+    "category": "Neurological",
+    "name": "Paresthesia",
+    "code": ""
   },
   {
-    "name": "cough"
+    "category": "Neurological",
+    "name": "Prosopagnosia",
+    "code": ""
   },
   {
-    "name": "dyspnea"
+    "category": "Neurological",
+    "name": "Somnolence",
+    "code": ""
   },
   {
-    "name": "hemoptysis"
+    "category": "Obstetrics",
+    "name": "Vaginal bleeding in early preganancy",
+    "code": ""
   },
   {
-    "name": "pleuritic chest pain"
+    "category": "Obstetrics",
+    "name": "Vaginal bleeding in miscarraige",
+    "code": ""
   },
   {
-    "name": "sputum production"
+    "category": "Obstetrics",
+    "name": "Vaginal bleeding in late preganancy",
+    "code": ""
   },
   {
-    "name": "tachypnea"
+    "category": "Obstetrics",
+    "name": "Amenorrhea",
+    "code": ""
   },
   {
-    "name": "abrasion"
+    "category": "Obstetrics",
+    "name": "Infertility",
+    "code": ""
   },
   {
-    "name": "alopecia"
+    "category": "Obstetrics",
+    "name": "Painfull intercourse",
+    "code": ""
   },
   {
-    "name": "anasarca"
+    "category": "Obstetrics",
+    "name": "Pelvic pain",
+    "code": ""
   },
   {
-    "name": "blister"
+    "category": "Obstetrics",
+    "name": "Vaginal discharge",
+    "code": ""
   },
   {
-    "name": "edema"
+    "category": "Ocular",
+    "name": "Amaurosis fugax",
+    "code": ""
   },
   {
-    "name": "hirsutism"
+    "category": "Ocular",
+    "name": "Amaurosis",
+    "code": ""
   },
   {
-    "name": "itching"
+    "category": "Ocular",
+    "name": "Blurred vision",
+    "code": ""
   },
   {
-    "name": "laceration"
+    "category": "Ocular",
+    "name": "Dalrymple's sign",
+    "code": ""
   },
   {
-    "name": "paresthesia"
+    "category": "Ocular",
+    "name": "Double vision",
+    "code": ""
   },
   {
-    "name": "rash"
+    "category": "Ocular",
+    "name": "Exopthalmos",
+    "code": ""
   },
   {
-    "name": "urticaria"
+    "category": "Ocular",
+    "name": "Mydriasis",
+    "code": ""
   },
   {
-    "name": "abnormal vaginal bleeding"
+    "category": "Ocular",
+    "name": "Miosis",
+    "code": ""
   },
   {
-    "name": "bloody show preceding onset of labour"
+    "category": "Ocular",
+    "name": "Nystagmus",
+    "code": ""
   },
   {
-    "name": "painful intercourse"
+    "category": "Psychiatrics",
+    "name": "Amusia",
+    "code": ""
   },
   {
-    "name": "pelvic pain"
+    "category": "Psychiatrics",
+    "name": "Anhedonia",
+    "code": ""
   },
   {
-    "name": "infertility"
+    "category": "Psychiatrics",
+    "name": "Anxiety",
+    "code": ""
   },
   {
-    "name": "labour pains"
+    "category": "Psychiatrics",
+    "name": "Apathy",
+    "code": ""
   },
   {
-    "name": "vaginal bleeding in early pregnancy / miscarriage"
+    "category": "Psychiatrics",
+    "name": "Confabulation",
+    "code": ""
   },
   {
-    "name": "vaginal bleeding in late pregnancy"
+    "category": "Psychiatrics",
+    "name": "Depression",
+    "code": ""
   },
   {
-    "name": "vaginal discharge"
+    "category": "Psychiatrics",
+    "name": "Delusion",
+    "code": ""
   },
   {
-    "name": "vaginismus"
+    "category": "Psychiatrics",
+    "name": "Euphoria",
+    "code": ""
   },
   {
-    "name": "macule "
+    "category": "Psychiatrics",
+    "name": "Homicidal ideation",
+    "code": ""
   },
   {
-    "name": "patch "
+    "category": "Psychiatrics",
+    "name": "Irritability",
+    "code": ""
   },
   {
-    "name": "papule "
+    "category": "Psychiatrics",
+    "name": "Mania",
+    "code": ""
   },
   {
-    "name": "plaque "
+    "category": "Psychiatrics",
+    "name": "Paranoid Ideation",
+    "code": ""
   },
   {
-    "name": "nodule "
+    "category": "Psychiatrics",
+    "name": "Phobia",
+    "code": ""
   },
   {
-    "name": "tumour"
+    "category": "Psychiatrics",
+    "name": "Suicidal Ideation",
+    "code": ""
   },
   {
-    "name": "vesicle "
+    "category": "Pulmonary",
+    "name": "Apnoea",
+    "code": ""
   },
   {
-    "name": "bulla "
+    "category": "Pulmonary",
+    "name": "Hypopnoea",
+    "code": ""
   },
   {
-    "name": "pustule "
+    "category": "Pulmonary",
+    "name": "Cough",
+    "code": ""
   },
   {
-    "name": "cyst "
+    "category": "Pulmonary",
+    "name": "Dyspnoea",
+    "code": ""
   },
   {
-    "name": "erosion "
+    "category": "Pulmonary",
+    "name": "Bradypnoea",
+    "code": ""
   },
   {
-    "name": "ulcer "
+    "category": "Pulmonary",
+    "name": "Tachypnoea",
+    "code": ""
   },
   {
-    "name": "fissure "
+    "category": "Pulmonary",
+    "name": "Orthopnoea",
+    "code": ""
   },
   {
-    "name": "wheal "
+    "category": "Pulmonary",
+    "name": "Platypnoea",
+    "code": ""
   },
   {
-    "name": "telangiectasia "
+    "category": "Pulmonary",
+    "name": "Trepopnoea",
+    "code": ""
   },
   {
-    "name": "burrow "
+    "category": "Pulmonary",
+    "name": "Heamoptysis",
+    "code": ""
   },
   {
-    "name": "scale"
+    "category": "Pulmonary",
+    "name": "Pleuritic Chest pain",
+    "code": ""
   },
   {
-    "name": "crust"
+    "category": "Pulmonary",
+    "name": "Sputum production",
+    "code": ""
   },
   {
-    "name": "lichenification"
+    "category": "Rheumatologic",
+    "name": "Arthralgia",
+    "code": ""
   },
   {
-    "name": "excoriation"
+    "category": "Rheumatologic",
+    "name": "Back pain",
+    "code": ""
   },
   {
-    "name": "induration"
+    "category": "Rheumatologic",
+    "name": "Sciatica",
+    "code": ""
   },
   {
-    "name": "atrophy"
+    "category": "Urologic",
+    "name": "Dysuria",
+    "code": ""
   },
   {
-    "name": "maceration"
+    "category": "Urologic",
+    "name": "Hematospermia",
+    "code": ""
   },
   {
-    "name": "umbilication"
+    "category": "Urologic",
+    "name": "Hematuria",
+    "code": ""
   },
   {
-    "name": "phyma"
+    "category": "Urologic",
+    "name": "Impotence",
+    "code": ""
   },
   {
-    "name": "generalized"
+    "category": "Urologic",
+    "name": "Polyuria",
+    "code": ""
   },
   {
-    "name": "symmetric"
+    "category": "Urologic",
+    "name": "Retrograde ejaculation",
+    "code": ""
   },
   {
-    "name": "flexural"
+    "category": "Urologic",
+    "name": "Strangury",
+    "code": ""
   },
   {
-    "name": "extensor"
+    "category": "Urologic",
+    "name": "Urethral discharge",
+    "code": ""
   },
   {
-    "name": "intertriginous"
+    "category": "Urologic",
+    "name": "Urinary frequency",
+    "code": ""
   },
   {
-    "name": "morbilliform"
+    "category": "Urologic",
+    "name": "Urinary incontinence",
+    "code": ""
   },
   {
-    "name": "palmoplantar"
-  },
-  {
-    "name": "periorificial"
-  },
-  {
-    "name": "periungual/subungual"
-  },
-  {
-    "name": "blaschkoid"
-  },
-  {
-    "name": "photodistributed"
-  },
-  {
-    "name": "zosteriform"
-  },
-  {
-    "name": "dermatomal"
-  },
-  {
-    "name": "collarette"
-  },
-  {
-    "name": "comedo"
-  },
-  {
-    "name": "confluent"
-  },
-  {
-    "name": "eczema"
-  },
-  {
-    "name": "evanescent"
-  },
-  {
-    "name": "granuloma"
-  },
-  {
-    "name": "livedo"
-  },
-  {
-    "name": "purpura"
-  },
-  {
-    "name": "erythema"
-  },
-  {
-    "name": "horn "
-  },
-  {
-    "name": "poikiloderma"
-  },
-  {
-    "name": "Carotid Sinus Syncope"
-  },
-  {
-    "name": "Chest pain"
-  },
-  {
-    "name": "Dizziness"
-  },
-  {
-    "name": "Dysponea"
-  },
-  {
-    "name": "Fatigue"
-  },
-  {
-    "name": "Palpitation"
-  },
-  {
-    "name": "Postural Hypotension"
-  },
-  {
-    "name": "Presyncope"
-  },
-  {
-    "name": "Syncope"
-  },
-  {
-    "name": "Vasovagal syncope"
-  },
-  {
-    "name": "Loss of Appetite"
-  },
-  {
-    "name": "Nausea"
-  },
-  {
-    "name": "Vomiting"
-  },
-  {
-    "name": "Indigestion"
-  },
-  {
-    "name": "Dysphagia"
-  },
-  {
-    "name": "Weight loss"
-  },
-  {
-    "name": "Pain"
-  },
-  {
-    "name": "irregular Bowel habit"
-  },
-  {
-    "name": "Ascitis"
-  },
-  {
-    "name": "Vaginal Discharge Bad smell"
-  },
-  {
-    "name": "Vaginal Discharge Bloody"
-  },
-  {
-    "name": "Vaginal Discharge Brown"
-  },
-  {
-    "name": "Vaginal Discharge Cheesy"
-  },
-  {
-    "name": "Vaginal Discharge Clowdy"
-  },
-  {
-    "name": "Vaginal Discharge Fishy odour"
-  },
-  {
-    "name": "Vaginal Discharge Frothy"
-  },
-  {
-    "name": "Vaginal Discharge Gray"
-  },
-  {
-    "name": "Vaginal Discharge Greenish"
-  },
-  {
-    "name": "Vaginal Discharge Pink"
-  },
-  {
-    "name": "Vaginal Discharge Thick"
-  },
-  {
-    "name": "Vaginal Discharge White"
-  },
-  {
-    "name": "Vaginal Discharge Yellow"
-  },
-  {
-    "name": "Incontinence Unable to empty bladder appropriately"
-  },
-  {
-    "name": "Incontinence Disease preventing to reach toilet in time"
-  },
-  {
-    "name": "Incontinence Cannot controll the urge"
-  },
-  {
-    "name": "Incontinence Associated with activity (lough cough sneezing  exercise etc)"
-  },
-  {
-    "name": "Bleeding after intercourse"
-  },
-  {
-    "name": "Dyspareunia"
-  },
-  {
-    "name": "Infertility"
-  },
-  {
-    "name": "Pelvic pain"
-  },
-  {
-    "name": "Vaginal bleeding"
-  },
-  {
-    "name": "Vaginal pain"
-  },
-  {
-    "name": "Vaginal pruritus"
-  },
-  {
-    "name": "IP Joint"
-  },
-  {
-    "name": "MCP Joint"
-  },
-  {
-    "name": "Wrist Joint"
-  },
-  {
-    "name": "Elbow Joint"
-  },
-  {
-    "name": "Shoulder  Joint"
-  },
-  {
-    "name": "Hip Joint"
-  },
-  {
-    "name": "Knee Joint"
-  },
-  {
-    "name": "Ankle joint"
-  },
-  {
-    "name": "Muscle pain"
-  },
-  {
-    "name": "Difficulty mobilising"
-  },
-  {
-    "name": "Vision"
-  },
-  {
-    "name": "Headache"
-  },
-  {
-    "name": "Weakness"
-  },
-  {
-    "name": "Sensory disturbanc"
-  },
-  {
-    "name": "LOC"
-  },
-  {
-    "name": "Seizures"
-  },
-  {
-    "name": "Incontinence"
-  },
-  {
-    "name": "Cough"
-  },
-  {
-    "name": "Sputum"
-  },
-  {
-    "name": "Chest Pain"
-  },
-  {
-    "name": "Shortness of Breath"
-  },
-  {
-    "name": "Wheeze"
-  },
-  {
-    "name": "Stridor"
-  },
-  {
-    "name": "Haemoptysis"
-  },
-  {
-    "name": "Frequency"
-  },
-  {
-    "name": "Dysuria"
-  },
-  {
-    "name": "Polyurea"
-  },
-  {
-    "name": "Urgency"
-  },
-  {
-    "name": "Hesitancy"
-  },
-  {
-    "name": "Nocturia"
-  },
-  {
-    "name": "Incontinence"
+    "category": "Urologic",
+    "name": "Urinary retention",
+    "code": ""
   }
 ]
+  
