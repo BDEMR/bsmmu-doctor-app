@@ -128,7 +128,7 @@ gulp.task('serve-debug', function () {
       livereload: false,
       directoryListing: false,
       host: '127.0.0.1',
-      port: 8005,
+      port: 8012,
       open: false,
       fallback: '404.html'
     }));
