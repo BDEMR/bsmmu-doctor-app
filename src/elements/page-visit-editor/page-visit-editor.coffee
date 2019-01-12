@@ -511,6 +511,16 @@ Polymer {
       notify: true
       value: []
 
+    symptomsCategoryList:
+      type: Array
+      notify: true
+      value: []
+
+    matchingSymptomsDataList:
+      type: Array
+      notify: true
+      value: []
+
     addedIdentifiedSymptomsList:
       type: Array
       notify: true
@@ -2209,8 +2219,9 @@ Polymer {
         for item in symptomsList
           unless item.name is ''
             object = {}
+            object.category = item.category
             object.label = item.name
-            object.value = item    
+            object.value = item .name   
             @push "symptomsDataList", object
 
       # get all custom symptoms
@@ -2222,6 +2233,7 @@ Polymer {
         for item in customSymptomslist
 
           customObject = {}
+          customObject.category = item.data?.category or 'custom'
           customObject.label = item.data.name
           customObject.value = item.data.name
 
@@ -2229,12 +2241,33 @@ Polymer {
 
           @push "symptomsDataList", customObject
 
+      @_generateSymptomCategory @symptomsDataList
+
       @symptomsDataList.sort (left, right)->
         return -1 if left.label < right.label
         return 1 if left.label > right.label
         return 0
 
+      @set 'matchingSymptomsDataList', @symptomsDataList
+
       # console.log @symptomsDataList
+
+  _generateSymptomCategory:(symptomList)->
+    categoryMap = {}
+    for item in symptomList
+      categoryMap[item.category] = null
+    for key, value of categoryMap
+      @push 'symptomsCategoryList', key
+
+    @unshift 'symptomsCategoryList', 'All'
+
+  symptomCategorySelected:(e)->
+    index = e.detail.selected
+    unless index is 0
+      category = @symptomsCategoryList[index]
+      filteredList = @symptomsDataList.filter (item)=> item.category.toLowerCase() is category.toLowerCase()
+      console.log category, filteredList
+      @set 'matchingSymptomsDataList', filteredList
 
   ## User Added Custom Symptoms
   saveUserAddedCustomSymptoms: (symptomName)->
@@ -2247,6 +2280,7 @@ Polymer {
       createdByUserSerial: @user.serial
       data:
         name: symptomName
+        category: 'custom'
 
     app.db.insert 'custom-symptoms-list', object
     

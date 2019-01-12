@@ -913,10 +913,18 @@
 
               <!-- Card - Symptoms - start -->
               <div class="card-item-2">
-                <div class="preview-title">
+                <div class="preview-title layot horizontal">
                   <!-- <iron-ajax url="../../static-data/symptoms-list.json" last-response="{{symptomsDataList}}" auto></iron-ajax> -->
                   <!-- <iron-icon class="m-right-8" src="../../images/icons/ico_symptoms.png"></iron-icon> -->
-                  <vaadin-combo-box class="flex combobox-custom-style" label="Symptoms" id="comboBoxSymptoms" items="{{symptomsDataList}}"
+                  <paper-dropdown-menu class="flex combobox-custom-style" label="Category">
+                    <paper-menu class="dropdown-content" selected="0" on-iron-activate="symptomCategorySelected">
+                      <template is='dom-repeat' items='[[symptomsCategoryList]]'>
+                        <paper-item>[[item]]</paper-item>
+                      </template>
+                    </paper-menu>
+                  </paper-dropdown-menu>
+                  
+                  <vaadin-combo-box class="flex combobox-custom-style" label="Symptoms" id="comboBoxSymptoms" items="{{matchingSymptomsDataList}}"
                     allow-custom-value="true" value-changed="onComboBoxSymptomsValueChanged" on-keyup="comboBoxKeyUpSymptomsValueChanged"
                     selected-item="{{comboBoxSymptomsSelectedItem}}" value="{{comboBoxSymptomsInputValue}}">
                   </vaadin-combo-box>
