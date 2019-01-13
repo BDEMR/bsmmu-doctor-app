@@ -120,7 +120,7 @@ app.pages.pageList = [
     name: 'login'
     element: 'page-login'
     windowTitlePostfix: 'Login'
-    headerTitle: 'Doctor App'
+    headerTitle: 'BSMMU Doctor App'
     preload: true
     hrefList: [ 'login' ]
     requireAuthentication : false

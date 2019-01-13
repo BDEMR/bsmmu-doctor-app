@@ -376,10 +376,10 @@ Polymer {
 
   $getString1: (daysLeft, LANG)->
     if LANG is 'en-us'
-      return "Your license for Doctor App will <br>expire in #{daysLeft} days."
+      return "Your license for BSMMU Doctor App will <br>expire in #{daysLeft} days."
     else if LANG is 'bn-bd'
       daysLeft = @$TRANSLATE_NUMBER daysLeft, LANG
-      return "আপনার Doctor App এর লাইসেন্স বাতিল <br>হতে #{daysLeft} দিন বাকি আছে।"
+      return "আপনার BSMMU Doctor App এর লাইসেন্স বাতিল <br>হতে #{daysLeft} দিন বাকি আছে।"
     else
       return "TRANSLATION_FAILED"
 
