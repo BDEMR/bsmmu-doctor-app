@@ -39,6 +39,6 @@ const getVersion = () => {
 gulpBuild()
 // moveContent()
 let version = getVersion()
-process.chdir('./polymer-build/build-debug')
+// process.chdir('./polymer-build/build-debug')
 publish(version);
 console.log("Build Finished.")
