@@ -41,7 +41,7 @@ app.behaviors.local['root-element'].dataLoader =
       }
       {
         name: 'symptomsList'
-        url: 'static-data/symptoms-list.json'
+        url: 'static-data/categorized-symptoms-list.json'
       }
 
       {
@@ -103,7 +103,7 @@ app.behaviors.local['root-element'].dataLoader =
       }
       {
         name: 'symptomsList'
-        url: 'https://bdemr.b-cdn.net/symptoms-list-25-10-2017.json'
+        url: 'https://bdemr.b-cdn.net/categorized-symptoms-list.json'
       }
       {
         name: 'examinationList'
