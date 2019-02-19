@@ -1063,6 +1063,29 @@
         ]
     },
     {
+        "name": "Heart",
+        "examinationValueList": [
+            {
+                "value": "Raised JVP"
+            },
+            {
+                "value": "Bi-basal crepitations"
+            },
+            {
+                "value": "First heart sound: normal/ loud/soft"
+            },
+            {
+                "value": "2nd heart sound: normal/ loud"
+            },
+            {
+                "value": "Shifted cardiac apex"
+            },
+            {
+                "value": "Murmur"
+            }
+        ]
+    },
+    {
         "name": "Cardiopulmonary (Murmur grade)",
         "examinationValueList": [
             {
@@ -1185,6 +1208,44 @@
             },
             {
                 "value": "Venous Pulse"
+            }
+        ]
+    },
+    {
+        "name": "General",
+        "examinationValueList": [
+            {
+                "value": "Anemia"
+            },
+            {
+                "value": "Jaundice"
+            },
+            {
+                "value": "Cyanosis"
+            },
+            {
+                "value": "Dehydration"
+            },
+            {
+                "value": "Lymphadenopathy"
+            },
+            {
+                "value": "Clubbing"
+            },
+            {
+                "value": "Leukonychia"
+            },
+            {
+                "value": "Koilonychia"
+            },
+            {
+                "value": "Thyromegaly"
+            },
+            {
+                "value": "Leg edema"
+            },
+            {
+                "value": "Puffy face"
             }
         ]
     },
@@ -1455,6 +1516,29 @@
             },
             {
                 "value": "Can subtract 7 from the previous result"
+            }
+        ]
+    },
+    {
+        "name": "Lungs",
+        "examinationValueList": [
+            {
+                "value": "Crepitations"
+            },
+            {
+                "value": "Wheeze"
+            },
+            {
+                "value": "Features of Pleural Effusion"
+            },
+            {
+                "value": "Features of consolidation"
+            },
+            {
+                "value": "Features of Collapse"
+            },
+            {
+                "value": "Features of Fibrosis"
             }
         ]
     },
@@ -3304,6 +3388,32 @@
         ]
     },
     {
+        "name": "Nervous System",
+        "examinationValueList": [
+            {
+                "value": "Diminished muscle power"
+            },
+            {
+                "value": "Jerks Diminished/absent"
+            },
+            {
+                "value": "Jerks exaggerated "
+            },
+            {
+                "value": "Planter Flexor /  extensor"
+            },
+            {
+                "value": "Sensory Deficit "
+            },
+            {
+                "value": "Muscle tone"
+            },
+            {
+                "value": "Cranial nerve palsy"
+            }
+        ]
+    },
+    {
         "name": "Cranial nerve All",
         "examinationValueList": [
             {
@@ -4683,6 +4793,18 @@
             },
             {
                 "value": "Bowel sound Sluggish"
+            },
+            {
+                "value": "Hepatomegaly"
+            },
+            {
+                "value": "Splenomegaly"
+            },
+            {
+                "value": "Ascites"
+            },
+            {
+                "value": "Lump"
             }
         ]
     },

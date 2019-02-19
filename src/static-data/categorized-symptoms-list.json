@@ -49,7 +49,6 @@
     "name": "Fatigue",
     "code": ""
   },
-  
   {
     "category": "General",
     "name": "Fatigue(asthania)",
@@ -111,6 +110,61 @@
     "code": ""
   },
   {
+    "category": "General",
+    "name": "Fever Type - Irregular",
+    "code": ""
+  },
+  {
+    "category": "General",
+    "name": "Fever Type - Intermittent",
+    "code": ""
+  },
+  {
+    "category": "General",
+    "name": "Fever Type - Continued",
+    "code": ""
+  },
+  {
+    "category": "General",
+    "name": "(Fever) Travelled to endemic zone - Malaria",
+    "code": ""
+  },
+  {
+    "category": "General",
+    "name": "(Fever) Travelled to endemic zone - Kala-azar",
+    "code": ""
+  },
+  {
+    "category": "General",
+    "name": "(Fever) Contact with tuberculosis person - Yes",
+    "code": ""
+  },
+  {
+    "category": "General",
+    "name": "(Fever) Contact with tuberculosis person - No",
+    "code": ""
+  },
+  {
+    "category": "General",
+    "name": "Fever With - Cough / Chest pain",
+    "code": ""
+  },
+  {
+    "category": "General",
+    "name": "Fever With - Diarrhoea",
+    "code": ""
+  },
+  {
+    "category": "General",
+    "name": "Fever With - Headache / Confusion",
+    "code": ""
+  },
+  {
+    "category": "General",
+    "name": "Fever With - Arthritis / Arthragia ",
+    "code": ""
+  },
+  {
     "category": "Cardiovascular",
     "name": "Arrythmia",
     "code": ""
@@ -138,6 +192,181 @@
   {
     "category": "Cardiovascular",
     "name": "Tachycardia",
+    "code": ""
+  },
+  {
+    "category": "Cardiorespiratory Complaints",
+    "name": "Chest Pain Location - Central",
+    "code": ""
+  },
+  {
+    "category": "Cardiorespiratory Complaints",
+    "name": "Chest Pain Location - Peripheral",
+    "code": ""
+  },
+  {
+    "category": "Cardiorespiratory Complaints",
+    "name": "Chest Pain - Exertional",
+    "code": ""
+  },
+  {
+    "category": "Cardiorespiratory Complaints",
+    "name": "Chest Pain - Non-exertional",
+    "code": ""
+  },
+  {
+    "category": "Cardiorespiratory Complaints",
+    "name": "Chest Pain Increases With - Exertion/ Walking/ Activities",
+    "code": ""
+  },
+  {
+    "category": "Cardiorespiratory Complaints",
+    "name": "Chest Pain Increases With - Respiration",
+    "code": ""
+  },
+  {
+    "category": "Cardiorespiratory Complaints",
+    "name": "Chest Pain Increases With - After Meal ",
+    "code": ""
+  },
+  {
+    "category": "Cardiorespiratory Complaints",
+    "name": "Chest Pain Increases With - Empty Stomach",
+    "code": ""
+  },
+  {
+    "category": "Cardiorespiratory Complaints",
+    "name": "Chest Pain Radiation - Left Ulnar Side of Arm or Jaw",
+    "code": ""
+  },
+  {
+    "category": "Cardiorespiratory Complaints",
+    "name": "Chest Pain Radiation - Back",
+    "code": ""
+  },
+  {
+    "category": "Cardiorespiratory Complaints",
+    "name": "Chest Pain Radiation - Shoulder",
+    "code": ""
+  },
+  {
+    "category": "Cardiorespiratory Complaints",
+    "name": "Chest Pain Relieves - Taking Rest",
+    "code": ""
+  },
+  {
+    "category": "Cardiorespiratory Complaints",
+    "name": "Chest Pain Relieves - Nitroglycerine",
+    "code": ""
+  },
+  {
+    "category": "Cardiorespiratory Complaints",
+    "name": "Chest Pain Relieves - NSAIDS",
+    "code": ""
+  },
+  {
+    "category": "Cardiorespiratory Complaints",
+    "name": "Chest Pain Relieves - PPIs",
+    "code": ""
+  },
+  {
+    "category": "Cardiorespiratory Complaints",
+    "name": "Chest Pain Relieves - Meal",
+    "code": ""
+  },
+  {
+    "category": "Cardiorespiratory Complaints",
+    "name": "Cardiorespiratory Complaints - Palpitation",
+    "code": ""
+  },
+  {
+    "category": "Cardiorespiratory Complaints",
+    "name": "Cardiorespiratory Complaints - Odema",
+    "code": ""
+  },
+  {
+    "category": "Cardiorespiratory Complaints",
+    "name": "(Cardiorespiratory) Dyspnoea Type - Exertional",
+    "code": ""
+  },
+  {
+    "category": "Cardiorespiratory Complaints",
+    "name": "(Cardiorespiratory) Dyspnoea Type - Non-exertional",
+    "code": ""
+  },
+  {
+    "category": "Cardiorespiratory Complaints",
+    "name": "(Cardiorespiratory) Dyspnoea Type - Orthopnoea",
+    "code": ""
+  },
+  {
+    "category": "Cardiorespiratory Complaints",
+    "name": "(Cardiorespiratory) Dyspnoea Type - PND",
+    "code": ""
+  },
+  {
+    "category": "Cardiorespiratory Complaints",
+    "name": "(Cardiorespiratory) Dyspnoea History - Diurnal variation",
+    "code": ""
+  },
+  {
+    "category": "Cardiorespiratory Complaints",
+    "name": "(Cardiorespiratory) Dyspnoea History - Seasonal variation",
+    "code": ""
+  },
+  {
+    "category": "Cardiorespiratory Complaints",
+    "name": "(Cardiorespiratory) Dyspnoea History - Childhood history of asthma/breathlessness",
+    "code": ""
+  },
+  {
+    "category": "Cardiorespiratory Complaints",
+    "name": "(Cardiorespiratory) Dyspnoea History - Family history of asthma",
+    "code": ""
+  },
+  {
+    "category": "Cardiorespiratory Complaints",
+    "name": "(Cardiorespiratory) Dyspnoea History - Allergy/ allergic rhinitis",
+    "code": ""
+  },
+  {
+    "category": "Cardiorespiratory Complaints",
+    "name": "(Cardiorespiratory) Dyspnoea History - Smoking",
+    "code": ""
+  },
+  {
+    "category": "Cardiorespiratory Complaints",
+    "name": "(Cardiorespiratory) Dyspnoea History - Occupation",
+    "code": ""
+  },
+  {
+    "category": "Cardiorespiratory Complaints",
+    "name": "(Cardiorespiratory) Cough - Hemoptysis",
+    "code": ""
+  },
+  {
+    "category": "Cardiorespiratory Complaints",
+    "name": "(Cardiorespiratory) Cough History - Diurnal variation",
+    "code": ""
+  },
+  {
+    "category": "Cardiorespiratory Complaints",
+    "name": "(Cardiorespiratory) Cough History - Seasonal variation",
+    "code": ""
+  },
+  {
+    "category": "Cardiorespiratory Complaints",
+    "name": "(Cardiorespiratory) Cough History - Rhinitis/ runny nose",
+    "code": ""
+  },
+  {
+    "category": "Cardiorespiratory Complaints",
+    "name": "(Cardiorespiratory) Cough History - Family history of asthma",
+    "code": ""
+  },
+  {
+    "category": "Cardiorespiratory Complaints",
+    "name": "(Cardiorespiratory) Cough History - Heart burn/ sour eructation ",
     "code": ""
   },
   {
@@ -197,7 +426,182 @@
   },
   {
     "category": "Gastrointestinal",
-    "name": "Abdominal pain",
+    "name": "Abdominal Pain Severity - Mild",
+    "code": ""
+  },
+  {
+    "category": "Gastrointestinal",
+    "name": "Abdominal Pain Severity - Moderate",
+    "code": ""
+  },
+  {
+    "category": "Gastrointestinal",
+    "name": "Abdominal Pain Severity - Severe",
+    "code": ""
+  },
+  {
+    "category": "Gastrointestinal",
+    "name": "Abdominal Pain Location - Around umbilicus",
+    "code": ""
+  },
+  {
+    "category": "Gastrointestinal",
+    "name": "Abdominal Pain Location - Epigastric",
+    "code": ""
+  },
+  {
+    "category": "Gastrointestinal",
+    "name": "Abdominal Pain Location - Right upper abdomen",
+    "code": ""
+  },
+  {
+    "category": "Gastrointestinal",
+    "name": "Abdominal Pain Location - Left upper abdomen",
+    "code": ""
+  },
+  {
+    "category": "Gastrointestinal",
+    "name": "Abdominal Pain Location - Right lower abdomen",
+    "code": ""
+  },
+  {
+    "category": "Gastrointestinal",
+    "name": "Abdominal Pain Location - Left lower abdomen",
+    "code": ""
+  },
+  {
+    "category": "Gastrointestinal",
+    "name": "Abdominal Pain Location - Hypogastrium",
+    "code": ""
+  },
+  {
+    "category": "Gastrointestinal",
+    "name": "Abdominal Pain Nature - Colicky",
+    "code": ""
+  },
+  {
+    "category": "Gastrointestinal",
+    "name": "Abdominal Pain Nature - Dull aching",
+    "code": ""
+  },
+  {
+    "category": "Gastrointestinal",
+    "name": "Abdominal Pain Nature - Burning",
+    "code": ""
+  },
+  {
+    "category": "Gastrointestinal",
+    "name": "Abdominal Pain Radiation - Back",
+    "code": ""
+  },
+  {
+    "category": "Gastrointestinal",
+    "name": "Abdominal Pain Radiation - Shoulder",
+    "code": ""
+  },
+  {
+    "category": "Gastrointestinal",
+    "name": "Abdominal Pain Aggravated By - Meal",
+    "code": ""
+  },
+  {
+    "category": "Gastrointestinal",
+    "name": "Abdominal Pain Aggravated By - Empty stomach",
+    "code": ""
+  },
+  {
+    "category": "Gastrointestinal",
+    "name": "Abdominal Pain Aggravated By - Fatty meal",
+    "code": ""
+  },
+  {
+    "category": "Gastrointestinal",
+    "name": "Abdominal Pain Aggravated By - NSAIDs",
+    "code": ""
+  },
+  {
+    "category": "Gastrointestinal",
+    "name": "Abdominal Pain Relieved By - Meal",
+    "code": ""
+  },
+  {
+    "category": "Gastrointestinal",
+    "name": "Abdominal Pain Relieved By - Bending forward",
+    "code": ""
+  },
+  {
+    "category": "Gastrointestinal",
+    "name": "Abdominal Pain Relieved By - PPI",
+    "code": ""
+  },
+  {
+    "category": "Gastrointestinal",
+    "name": "Abdominal Pain Relieved By - Nitroglycerine ",
+    "code": ""
+  },
+  {
+    "category": "Gastrointestinal",
+    "name": "(Gastrointestinal) Vomiting - Nausea",
+    "code": ""
+  },
+  {
+    "category": "Gastrointestinal",
+    "name": "(Gastrointestinal) Vomiting - Projectile",
+    "code": ""
+  },
+  {
+    "category": "Gastrointestinal",
+    "name": "(Gastrointestinal) Vomiting - Non-projectile",
+    "code": ""
+  },
+  {
+    "category": "Gastrointestinal",
+    "name": "(Gastrointestinal) Vomiting - Contains undigested food particle",
+    "code": ""
+  },
+  {
+    "category": "Gastrointestinal",
+    "name": "(Gastrointestinal) Vomiting - Offensive odour ",
+    "code": ""
+  },
+  {
+    "category": "Gastrointestinal",
+    "name": "(Gastrointestinal) Vomiting - Hematemesis",
+    "code": ""
+  },
+  {
+    "category": "Gastrointestinal",
+    "name": "(Gastrointestinal) Diarrhoea Consistency - Watery",
+    "code": ""
+  },
+  {
+    "category": "Gastrointestinal",
+    "name": "(Gastrointestinal) Diarrhoea Consistency - Semisolid",
+    "code": ""
+  },
+  {
+    "category": "Gastrointestinal",
+    "name": "(Gastrointestinal) Diarrhoea Consistency - Bloody",
+    "code": ""
+  },
+  {
+    "category": "Gastrointestinal",
+    "name": "(Gastrointestinal) Diarrhoea Frequency - <5/day",
+    "code": ""
+  },
+  {
+    "category": "Gastrointestinal",
+    "name": "(Gastrointestinal) Diarrhoea Frequency - >5/day",
+    "code": ""
+  },
+  {
+    "category": "Gastrointestinal",
+    "name": "(Gastrointestinal) Diarrhoea Frequency - >10/day",
+    "code": ""
+  },
+  {
+    "category": "Gastrointestinal",
+    "name": "(Gastrointestinal) Diarrhoea Frequency - 20 or more times",
     "code": ""
   },
   {
@@ -296,6 +700,61 @@
     "code": ""
   },
   {
+    "category": "Genitourinary",
+    "name": "(Genitourinary) Urine - Oliguria/ polyuria/ anuria",
+    "code": ""
+  },
+  {
+    "category": "Genitourinary",
+    "name": "(Genitourinary) Urine - Frequency",
+    "code": ""
+  },
+  {
+    "category": "Genitourinary",
+    "name": "(Genitourinary) Urine - Dysuria",
+    "code": ""
+  },
+  {
+    "category": "Genitourinary",
+    "name": "(Genitourinary) Urine - Hematuria",
+    "code": ""
+  },
+  {
+    "category": "Genitourinary",
+    "name": "(Genitourinary) Urine - Hesitancy",
+    "code": ""
+  },
+  {
+    "category": "Genitourinary",
+    "name": "(Genitourinary) Urine - Urgency",
+    "code": ""
+  },
+  {
+    "category": "Genitourinary",
+    "name": "(Genitourinary) Urine - Terminal dribbling",
+    "code": ""
+  },
+  {
+    "category": "Genitourinary",
+    "name": "(Genitourinary) Urine - Incontinence of urine",
+    "code": ""
+  },
+  {
+    "category": "Genitourinary",
+    "name": "(Genitourinary) Urine - Whitish discharge per urethra",
+    "code": ""
+  },
+  {
+    "category": "Genitourinary",
+    "name": "Genitourinary - Leucorrhoea",
+    "code": ""
+  },
+  {
+    "category": "Genitourinary",
+    "name": "Genitourinary - Per vaginal bleeding",
+    "code": ""
+  },
+  {
     "category": "Integumentary",
     "name": "Alopecia",
     "code": ""
@@ -378,6 +837,96 @@
   {
     "category": "Integumentary",
     "name": "Urticaria",
+    "code": ""
+  },
+  {
+    "category": "Musculoskeletal",
+    "name": "(Musculoskeletal) Joint Pain - Monoarticular/ oligoarticular/ polyarticular",
+    "code": ""
+  },
+  {
+    "category": "Musculoskeletal",
+    "name": "(Musculoskeletal) Joint Pain - Morning stiffness",
+    "code": ""
+  },
+  {
+    "category": "Musculoskeletal",
+    "name": "(Musculoskeletal) Joint Pain - Tenderness",
+    "code": ""
+  },
+  {
+    "category": "Musculoskeletal",
+    "name": "(Musculoskeletal) Joint Pain - Joint swelling",
+    "code": ""
+  },
+  {
+    "category": "Musculoskeletal",
+    "name": "Low Back Pain History - Inflammatory/ non-inflammatory",
+    "code": ""
+  },
+  {
+    "category": "Musculoskeletal",
+    "name": "Low Back Pain History - Radiation",
+    "code": ""
+  },
+  {
+    "category": "Musculoskeletal",
+    "name": "Low Back Pain History - Motor/ sensory abnormalities",
+    "code": ""
+  },
+  {
+    "category": "Musculoskeletal",
+    "name": "Musculoskeletal - Generalized body ache ",
+    "code": ""
+  },
+  {
+    "category": "Neurology",
+    "name": "Neurology - Unilateral Limb weakness",
+    "code": ""
+  },
+  {
+    "category": "Neurology",
+    "name": "Neurology - Facial Asymmetry ",
+    "code": ""
+  },
+  {
+    "category": "Neurology",
+    "name": "Neurology - Paraplegia",
+    "code": ""
+  },
+  {
+    "category": "Neurology",
+    "name": "Neurology - Quadriplegia",
+    "code": ""
+  },
+  {
+    "category": "Neurology",
+    "name": "Neurology - Tingling/numbness of limbs",
+    "code": ""
+  },
+  {
+    "category": "Neurology",
+    "name": "Neurology - Unconsciousness",
+    "code": ""
+  },
+  {
+    "category": "Neurology",
+    "name": "Neurology - Visual disturbance",
+    "code": ""
+  },
+  {
+    "category": "Neurology",
+    "name": "Neurology - Dizziness",
+    "code": ""
+  },
+  {
+    "category": "Neurology",
+    "name": "Neurology - Speech abnormality",
+    "code": ""
+  },
+  {
+    "category": "Neurology",
+    "name": "Neurology - Fall",
     "code": ""
   },
   {
@@ -476,17 +1025,17 @@
     "code": ""
   },
   {
-   "category": "Neurological",
+    "category": "Neurological",
     "name": "Akathisia",
     "code": ""
   },
   {
-   "category": "Neurological",
+    "category": "Neurological",
     "name": "Athetosis",
     "code": ""
   },
   {
-   "category": "Neurological",
+    "category": "Neurological",
     "name": "Ballismus",
     "code": ""
   },
@@ -889,6 +1438,30 @@
     "category": "Urologic",
     "name": "Urinary retention",
     "code": ""
+  },
+  {
+    "category": "Others",
+    "name": "Weight loss",
+    "code": ""
+  },
+  {
+    "category": "Others",
+    "name": "Anemia",
+    "code": ""
+  },
+  {
+    "category": "Others",
+    "name": "Obesity",
+    "code": ""
+  },
+  {
+    "category": "Others",
+    "name": "Generalized swelling",
+    "code": ""
+  },
+  {
+    "category": "Others",
+    "name": "Skin rash",
+    "code": ""
   }
 ]
-  
