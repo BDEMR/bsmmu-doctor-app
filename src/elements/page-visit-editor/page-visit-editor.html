@@ -621,6 +621,7 @@
 
       vaadin-combo-box.combobox-custom-style {
         padding: 2px;
+        width: 100%;
       }
 
       vaadin-combo-box.combobox-custom-style ::content paper-input-container {
@@ -913,21 +914,23 @@
 
               <!-- Card - Symptoms - start -->
               <div class="card-item-2">
-                <div class="preview-title layot horizontal">
+                <div class="preview-title layout horizontal center">
                   <!-- <iron-ajax url="../../static-data/symptoms-list.json" last-response="{{symptomsDataList}}" auto></iron-ajax> -->
                   <!-- <iron-icon class="m-right-8" src="../../images/icons/ico_symptoms.png"></iron-icon> -->
-                  <paper-dropdown-menu class="flex combobox-custom-style" label="Category">
-                    <paper-menu class="dropdown-content" selected="0" on-iron-activate="symptomCategorySelected">
-                      <template is='dom-repeat' items='[[symptomsCategoryList]]'>
-                        <paper-item>[[item]]</paper-item>
-                      </template>
-                    </paper-menu>
-                  </paper-dropdown-menu>
-                  
-                  <vaadin-combo-box class="flex combobox-custom-style" label="Symptoms" id="comboBoxSymptoms" items="{{matchingSymptomsDataList}}"
-                    allow-custom-value="true" value-changed="onComboBoxSymptomsValueChanged" on-keyup="comboBoxKeyUpSymptomsValueChanged"
-                    selected-item="{{comboBoxSymptomsSelectedItem}}" value="{{comboBoxSymptomsInputValue}}">
-                  </vaadin-combo-box>
+                  <div class="flex">
+                    <paper-dropdown-menu class="combobox-custom-style" label="Category">
+                      <paper-menu class="dropdown-content" selected="0" on-iron-activate="symptomCategorySelected">
+                        <template is='dom-repeat' items='[[symptomsCategoryList]]'>
+                          <paper-item>[[item]]</paper-item>
+                        </template>
+                      </paper-menu>
+                    </paper-dropdown-menu>
+                    
+                    <vaadin-combo-box class="combobox-custom-style" label="Symptoms" id="comboBoxSymptoms" items="{{matchingSymptomsDataList}}"
+                      allow-custom-value="true" value-changed="onComboBoxSymptomsValueChanged" on-keyup="comboBoxKeyUpSymptomsValueChanged"
+                      selected-item="{{comboBoxSymptomsSelectedItem}}" value="{{comboBoxSymptomsInputValue}}">
+                    </vaadin-combo-box>
+                  </div>
                   <div class="action-area">
                     <paper-button class="btn-add" on-tap="addSymptoms">
                       <iron-icon icon="icons:add"></iron-icon>
