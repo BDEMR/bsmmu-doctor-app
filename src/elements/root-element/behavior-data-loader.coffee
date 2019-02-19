@@ -103,11 +103,11 @@ app.behaviors.local['root-element'].dataLoader =
       }
       {
         name: 'symptomsList'
-        url: 'https://bdemr.b-cdn.net/categorized-symptoms-list.json'
+        url: 'https://bdemr.b-cdn.net/categorized-symptoms-list-bsmmu-02-19-2019.json'
       }
       {
         name: 'examinationList'
-        url: 'https://bdemr.b-cdn.net/examination-list-25-10-2017.json'
+        url: 'https://bdemr.b-cdn.net/examination-list-bsmmu-02-19-2019.json'
       }
       {
         name: 'medicineList'
@@ -135,7 +135,7 @@ app.behaviors.local['root-element'].dataLoader =
       }
       {
         name: 'dynamicElementDefinitionPreoperativeAssessment'
-        url: 'https://bdemr.b-cdn.net/de-def-doctor-app-history-and-physical-examination-10-12-2017.json'
+        url: 'https://bdemr.b-cdn.net/de-def-doctor-app-history-and-physical-examination-bsmmu-02-19-2019.json'
       }
       {
         name: 'pccMedicineList'
