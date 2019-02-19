@@ -112,6 +112,249 @@
                                     },
                                     "childList": [
                                         {
+                                            "key": "General Symptoms",
+                                            "label": "General Symptoms",
+                                            "type": "card",
+                                            "print": {
+                                                "newLineBeforeThis": 0
+                                            },
+                                            "childList": [
+                                                {
+                                                    "type": "checkList",
+                                                    "key": "General Symptoms",
+                                                    "possibleValueList": [
+                                                        "Appetite Decreased",
+                                                        "Appetite Increased",
+                                                        "Fever",
+                                                        "Weight Gain",
+                                                        "Weight loss"
+                                                    ],
+                                                    "allowCustomValue": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "key": "Eyes",
+                                            "label": "Eyes",
+                                            "type": "card",
+                                            "print": {
+                                                "newLineBeforeThis": 0
+                                            },
+                                            "childList": [
+                                                {
+                                                    "type": "checkList",
+                                                    "key": "Eyes",
+                                                    "possibleValueList": [
+                                                        "Cataracts",
+                                                        "Double Vision",
+                                                        "Excessive Tearing",
+                                                        "Glasses",
+                                                        "Glaucoma",
+                                                        "Pain",
+                                                        "Redness",
+                                                        "Visual Difficulty"
+                                                        
+                                                    ],
+                                                    "allowCustomValue": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "key": "Ears",
+                                            "label": "Ears",
+                                            "type": "card",
+                                            "print": {
+                                                "newLineBeforeThis": 0
+                                            },
+                                            "childList": [
+                                                {
+                                                    "type": "checkList",
+                                                    "key": "Ears",
+                                                    "possibleValueList": [
+                                                        "Hearing Difficulty Both Ear",
+                                                        "Hearing Difficulty Left Ear",
+                                                        "Hearing Difficulty Right Ear",
+                                                        "Vertigo",
+                                                        "Tinnitus",
+                                                        "Discharge Both Ear",
+                                                        "Discharge Left Ear",
+                                                        "Discharge Right Ear"
+                                                    ],
+                                                    "allowCustomValue": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "key": "Neck",
+                                            "label": "Neck",
+                                            "type": "card",
+                                            "print": {
+                                                "newLineBeforeThis": 0
+                                            },
+                                            "childList": [
+                                                {
+                                                    "type": "checkList",
+                                                    "key": "Neck",
+                                                    "possibleValueList": [
+                                                        "Lump in the neck",
+                                                        "Goitre"
+                                                    ],
+                                                    "allowCustomValue": true
+                                                }                                         
+                                            ]
+                                        },
+                                        {
+                                            "key": "Breast",
+                                            "label": "Breast",
+                                            "type": "card",
+                                            "print": {
+                                                "newLineBeforeThis": 0
+                                            },
+                                            "childList": [
+                                                {
+                                                    "type": "checkList",
+                                                    "key": "Breast",
+                                                    "possibleValueList": [
+                                                        "Lump – Right Breast",
+                                                        "Lump – Left Breast",
+                                                        "Lump – Both Breast",
+                                                        "Pain – Right Breast ",
+                                                        "Pain – Left Breast",
+                                                        "Pain – Both Breast",
+                                                        "Discomfort – Right Breast ",
+                                                        "Discomfort – Left Breast",
+                                                        "Discomfort – Both Breast",
+                                                        "Nipple Discharge – Right Breast ",
+                                                        "Nipple Discharge  – Left Breast",
+                                                        "Nipple Discharge  – Both Breast"
+                                                    ],
+                                                    "allowCustomValue": true
+                                                }                                         
+                                            ]
+                                        },
+                                        {
+                                            "key": "Genitourinary",
+                                            "label": "Genitourinary",
+                                            "type": "card",
+                                            "print": {
+                                                "newLineBeforeThis": 0
+                                            },
+                                            "childList": [
+                                                {
+                                                    "type": "checkList",
+                                                    "key": "Genitourinary",
+                                                    "possibleValueList": [
+                                                        "Dysuria",
+                                                        "Hemateria",
+                                                        "Frequency",
+                                                        "Vaginal Disease"
+                                                    ],
+                                                    "allowCustomValue": true
+                                                }                                         
+                                            ]
+                                        },
+                                        {
+                                            "key": "Endocrine",
+                                            "label": "Endocrine",
+                                            "type": "card",
+                                            "print": {
+                                                "newLineBeforeThis": 0
+                                            },
+                                            "childList": [
+                                                {
+                                                    "type": "checkList",
+                                                    "key": "Endocrine",
+                                                    "possibleValueList": [
+                                                        "Heat Intolerance",
+                                                        "Cold Intolerance",
+                                                        "Lost of Libido",
+                                                        "Impotence",
+                                                        "Excessive Hunger"
+                                                    ],
+                                                    "allowCustomValue": true
+                                                }                                         
+                                            ]
+                                        },
+                                        {
+                                            "key": "Mouth & Throat",
+                                            "label": "Mouth & Throat",
+                                            "type": "card",
+                                            "print": {
+                                                "newLineBeforeThis": 0
+                                            },
+                                            "childList": [
+                                                {
+                                                    "type": "checkList",
+                                                    "key": "Mouth & Throat",
+                                                    "possibleValueList": [
+                                                        "Bleeding Gums",
+                                                        "Sore Tounge",
+                                                        "Frequent Sore throat",
+                                                        "Hoarseness",
+                                                        "Oral Ulceration",
+                                                        "Pigmentation"
+                                                        
+                                                    ],
+                                                    "allowCustomValue": true
+                                                },
+                                                {
+                                                    "key": "Dental/ Periodental disease",
+                                                    "label": "Dental/ Periodental disease",
+                                                    "type": "card",
+                                                    "print": {
+                                                        "newLineBeforeThis": 0,
+                                                        "boldLabel": false
+                                                    },
+                                                    "childList": [
+                                                        {
+                                                            "type": "checkList",
+                                                            "key": "Dental/ Periodental disease",
+                                                            "possibleValueList": [],
+                                                            "allowCustomValue": true
+                                                        }
+                                                    ]
+                                                }                                                
+                                            ]
+                                        },
+                                        {
+                                            "key": "Skin",
+                                            "label": "Skin",
+                                            "type": "card",
+                                            "print": {
+                                                "newLineBeforeThis": 0
+                                            },
+                                            "childList": [
+                                                {
+                                                    "type": "checkList",
+                                                    "key": "Skin",
+                                                    "possibleValueList": [
+                                                        "Rashes",
+                                                        "Lumps",
+                                                        "Itches"
+                                                    ],
+                                                    "allowCustomValue": true
+                                                },
+                                                {
+                                                    "key": "Color Changes",
+                                                    "label": "Color Changes",
+                                                    "type": "card",
+                                                    "print": {
+                                                        "newLineBeforeThis": 0,
+                                                        "boldLabel": false
+                                                    },
+                                                    "childList": [
+                                                        {
+                                                            "type": "checkList",
+                                                            "key": "Color Changes",
+                                                            "possibleValueList": [
+                                                            ],
+                                                            "allowCustomValue": true
+                                                        }
+                                                    ]
+                                                }                                               
+                                            ]
+                                        },
+                                        {
                                             "key": "CVS",
                                             "label": "CVS",
                                             "type": "card",
@@ -1701,7 +1944,7 @@
                 {
                     "type": "collection",
                     "key": "History of Past Problem / Diagnosis",
-                    "label": "History of Past Problem / Diagnosis",
+                    "label": "History of Past Problem / Diagnosis (By System)",
                     "childList": [
                         {
                             "type": "group",
@@ -15561,6 +15804,261 @@
                             ]
                         }
                     ]
+                },                
+                {
+                    "type": "collection",
+                    "key": "History of Past Problem / Diagnosis",
+                    "label": "History of Past Problem / Diagnosis (By Name)",
+                    "childList": [
+                        {
+                            "type": "group",
+                            "key": "Childhood Illness",
+                            "label": "Childhood Illness",
+                            "childList": [
+                                {
+                                    "type": "card",
+                                    "key": "Childhood Illness print",
+                                    "label": "Childhood Illness",
+                                    "print": {
+                                        "newLineBeforeThis": 0,
+                                        "noColonAfterThis": true,
+                                        "newLineAfterThis": 1,
+                                        "boldLabel": true
+                                    },
+                                    "childList": [
+                                        {
+                                            "type": "input",
+                                            "key": "childhood illness",
+                                            "label": "Childhood illness",
+                                            "labelType": "float",
+                                            "valueType": "multilineText",
+                                            "print": {
+                                                "noColonAfterThis": true,
+                                                "hideLabel": true
+                                            }
+                                        }                                        
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "group",
+                            "key": "Adulthood Illness",
+                            "label": "Adulthood Illness",
+                            "childList": [
+                                {
+                                    "type": "card",
+                                    "key": "Adulthood Illness print",
+                                    "label": "Adulthood Illness",
+                                    "print": {
+                                        "newLineBeforeThis": 1,
+                                        "noColonAfterThis": true,
+                                        "newLineAfterThis": 1,
+                                        "boldLabel": true
+                                    },
+                                    "childList": [
+                                        {
+                                            "type": "input",
+                                            "key": "adulthood illness",
+                                            "label": "Adulthood illness",
+                                            "labelType": "float",
+                                            "valueType": "multilineText",
+                                            "print": {
+                                                "noColonAfterThis": true,
+                                                "hideLabel": true
+                                            }
+                                        }                                        
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "group",
+                            "key": "Accident and Injuries",
+                            "label": "Accident and Injuries",
+                            "childList": [
+                                {
+                                    "type": "card",
+                                    "key": "Accident and Injuries print",
+                                    "label": "Accident and Injuries",
+                                    "print": {
+                                        "newLineBeforeThis": 1,
+                                        "noColonAfterThis": true,
+                                        "newLineAfterThis": 1,
+                                        "boldLabel": true
+                                    },
+                                    "childList": [
+                                        {
+                                            "type": "input",
+                                            "key": "accident and injuries",
+                                            "label": "Accident and Injuries",
+                                            "labelType": "float",
+                                            "valueType": "multilineText",
+                                            "print": {
+                                                "noColonAfterThis": true,
+                                                "hideLabel": true
+                                            }
+                                        }                                        
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "group",
+                            "key": "Operations/Interventions",
+                            "label": "Operations/Interventions",
+                            "childList": [
+                                {
+                                    "type": "card",
+                                    "key": "Operations/Interventions print",
+                                    "label": "Operations/Interventions",
+                                    "print": {
+                                        "newLineBeforeThis": 1,
+                                        "noColonAfterThis": true,
+                                        "newLineAfterThis": 1,
+                                        "boldLabel": true
+                                    },
+                                    "childList": [
+                                        {
+                                            "type": "input",
+                                            "key": "operation/interventions",
+                                            "label": "Operations/Interventions",
+                                            "labelType": "float",
+                                            "valueType": "multilineText",
+                                            "print": {
+                                                "noColonAfterThis": true,
+                                                "hideLabel": true
+                                            }
+                                        }                                        
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "group",
+                            "key": "Hospitalizations",
+                            "label": "Hospitalizations",
+                            "childList": [
+                                {
+                                    "type": "card",
+                                    "key": "Hospitalizations print",
+                                    "label": "Hospitalizations",
+                                    "print": {
+                                        "newLineBeforeThis": 1,
+                                        "noColonAfterThis": true,
+                                        "newLineAfterThis": 1,
+                                        "boldLabel": true
+                                    },
+                                    "childList": [
+                                        {
+                                            "type": "input",
+                                            "key": "hospitalizations",
+                                            "label": "Hospitalizations",
+                                            "labelType": "float",
+                                            "valueType": "multilineText",
+                                            "print": {
+                                                "noColonAfterThis": true,
+                                                "hideLabel": true
+                                            }
+                                        }                                        
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "group",
+                            "key": "Transfusions",
+                            "label": "Transfusions",
+                            "childList": [
+                                {
+                                    "type": "card",
+                                    "key": "Transfusions print",
+                                    "label": "Transfusions",
+                                    "print": {
+                                        "newLineBeforeThis": 1,
+                                        "boldLabel": true,
+                                        "noColonAfterThis": true,
+                                        "newLineAfterThis": 1
+                                    },
+                                    "childList": [
+                                        {
+                                            "type": "input",
+                                            "key": "transfusions",
+                                            "label": "Transfusions",
+                                            "labelType": "float",
+                                            "valueType": "multilineText",
+                                            "print": {
+                                                "noColonAfterThis": true,
+                                                "hideLabel": true
+                                            }
+                                        }                                        
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "group",
+                            "key": "Psychiatric Illness",
+                            "label": "Psychiatric Illnesses",
+                            "childList": [
+                                {
+                                    "type": "card",
+                                    "key": "Psychiatric Illnesses print",
+                                    "label": "Psychiatric Illnesses",
+                                    "print": {
+                                        "newLineBeforeThis": 1,
+                                        "boldLabel": true,
+                                        "noColonAfterThis": true,
+                                        "newLineAfterThis": 1
+                                    },
+                                    "childList": [
+                                        {
+                                            "type": "input",
+                                            "key": "psychiatric illnesses",
+                                            "label": "Psychiatric Illnesses",
+                                            "labelType": "float",
+                                            "valueType": "multilineText",
+                                            "print": {
+                                                "noColonAfterThis": true,
+                                                "hideLabel": true
+                                            }
+                                        }                                        
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "group",
+                            "key": "Others",
+                            "label": "Others",
+                            "childList": [
+                                {
+                                    "type": "card",
+                                    "key": "Others print",
+                                    "label": "Others",
+                                    "print": {
+                                        "newLineBeforeThis": 1,
+                                        "boldLabel": true,
+                                        "noColonAfterThis": true,
+                                        "newLineAfterThis": 1
+                                    },
+                                    "childList": [
+                                        {
+                                            "type": "input",
+                                            "key": "others",
+                                            "label": "Others",
+                                            "labelType": "float",
+                                            "valueType": "multilineText",
+                                            "print": {
+                                                "noColonAfterThis": true,
+                                                "hideLabel": true
+                                            }
+                                        }                                        
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
                 },
                 {
                     "type": "collection",
@@ -15613,15 +16111,23 @@
                                                 "onSelectionChange": "function (self, path, context) {\n                          var selfObj;\n                          return selfObj = self;\n\n                          /*\n                          if self.data.selectedValueList.length > 0\n                            data = context.data['History']['Family History']['Default']['Default']\n                            for key , value of data\n                              data[ key ].isChecked = false\n                            #console.log self.parentNode.parentNode.host.parentNode.parentNode.parentNode\n                          parentNode = self.parentNode.childNodes\n                          isChecked = self.data.isChecked\n                          for node in parentNode\n                            if node.nodeName.toLowerCase() is 'dynamic-element-3'\n                              node.data.isChecked = isChecked\n                              node.domReady()\n                           */\n                        }"
                                             },
                                             "possibleValueList": [
-                                                "Family Altered suxamethonium metabolism",
-                                                "Family Malignant hyperpyrexia",
-                                                "Family Myotonic Dystrophy",
+                                                "Family History of Altered Suxamethonium metabolism",
+                                                "Family History of Allergies",
+                                                "Family History of Arthritis",
+                                                "Family History of Asthma",
+                                                "Family History of Breast Cancer",
+                                                "Family History of Collorectal Cancer",
+                                                "Family History of Coronary Artery Disease (CAD)",
+                                                "Family History of Diabetes",
+                                                "Family History of Dyslipidaemia",
+                                                "Family History of Epilepsy",
                                                 "Family History of Hypertension",
                                                 "Family History of Ischeamic Heart Disease",
-                                                "Family History of Diabetes",
-                                                "Family History of Collorectal Cancer",
-                                                "Family History of Breast Cancer",
-                                                "Family History of Stroke"
+                                                "Family History of Kidney Disease",
+                                                "Family History of Malignant hyperpyrexia",
+                                                "Family History of Myotonic Dystrophy",
+                                                "Family History of Stroke",
+                                                "Family History of Others"
                                             ],
                                             "allowCustomValue": true
                                         }
@@ -18974,7 +19480,7 @@
                                                 },
                                                 {
                                                     "key": "Number of years smoking",
-                                                    "label": "Number of years smoking",
+                                                    "label": "Number of pack-years of smoking",
                                                     "type": "card",
                                                     "print": {
                                                         "boldLabel": false
@@ -18983,7 +19489,7 @@
                                                         {
                                                             "type": "input",
                                                             "key": "Number of years smoking:",
-                                                            "label": "Number of years smoking:",
+                                                            "label": "Number of pack-years of smoking:",
                                                             "labelType": "float",
                                                             "valueType": "multilineText",
                                                             "print": {
@@ -19865,8 +20371,8 @@
         },
         {
             "type": "category",
-            "key": "Examination",
-            "label": "Examination",
+            "key": "Physical Examination",
+            "label": "Physical Examination",
             "childList": [
                 {
                     "type": "collection",
@@ -19878,6 +20384,203 @@
                             "key": "List",
                             "label": "List",
                             "childList": [
+                                {
+                                    "key": "General Survey",
+                                    "label": "General Survey",
+                                    "type": "toggleableContainer",
+                                    "print": {
+                                        "newLineBeforeThis": 0
+                                    },
+                                    "childList": [
+                                        {
+                                            "key": "Appearance",
+                                            "label": "Appearance",
+                                            "type": "card",
+                                            "print": {
+                                                "newLineBeforeThis": 0,
+                                                "boldLabel": false
+                                            },
+                                            "childList": [
+                                                {
+                                                    "type": "checkList",
+                                                    "key": "Appearance",
+                                                    "possibleValueList": [],
+                                                    "allowCustomValue": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "key": "Anaemia",
+                                            "label": "Anaemia",
+                                            "type": "card",
+                                            "print": {
+                                                "newLineBeforeThis": 0,
+                                                "boldLabel": false
+                                            },
+                                            "childList": [
+                                                {
+                                                    "type": "checkList",
+                                                    "key": "card",
+                                                    "possibleValueList": [],
+                                                    "allowCustomValue": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "key": "Built",
+                                            "label": "Built",
+                                            "type": "card",
+                                            "print": {
+                                                "newLineBeforeThis": 0,
+                                                "boldLabel": false
+                                            },
+                                            "childList": [
+                                                {
+                                                    "type": "checkList",
+                                                    "key": "Built",
+                                                    "possibleValueList": [],
+                                                    "allowCustomValue": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "key": "Cyanosis",
+                                            "label": "Cyanosis",
+                                            "type": "card",
+                                            "print": {
+                                                "newLineBeforeThis": 0,
+                                                "boldLabel": false
+                                            },
+                                            "childList": [
+                                                {
+                                                    "type": "checkList",
+                                                    "key": "Cyanosis",
+                                                    "possibleValueList": [],
+                                                    "allowCustomValue": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "key": "Jaundice",
+                                            "label": "Jaundice",
+                                            "type": "card",
+                                            "print": {
+                                                "newLineBeforeThis": 0,
+                                                "boldLabel": false
+                                            },
+                                            "childList": [
+                                                {
+                                                    "type": "checkList",
+                                                    "key": "Jaundice",
+                                                    "possibleValueList": [],
+                                                    "allowCustomValue": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "key": "Decubitus",
+                                            "label": "Decubitus",
+                                            "type": "card",
+                                            "print": {
+                                                "newLineBeforeThis": 0,
+                                                "boldLabel": false
+                                            },
+                                            "childList": [
+                                                {
+                                                    "type": "checkList",
+                                                    "key": "Decubitus",
+                                                    "possibleValueList": [],
+                                                    "allowCustomValue": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "key": "Nutrition",
+                                            "label": "Nutrition",
+                                            "type": "card",
+                                            "print": {
+                                                "newLineBeforeThis": 0,
+                                                "boldLabel": false
+                                            },
+                                            "childList": [
+                                                {
+                                                    "type": "checkList",
+                                                    "key": "Nutrition",
+                                                    "possibleValueList": [],
+                                                    "allowCustomValue": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "key": "Oedema",
+                                            "label": "Oedema",
+                                            "type": "card",
+                                            "print": {
+                                                "newLineBeforeThis": 0,
+                                                "boldLabel": false
+                                            },
+                                            "childList": [
+                                                {
+                                                    "type": "checkList",
+                                                    "key": "Oedema",
+                                                    "possibleValueList": [],
+                                                    "allowCustomValue": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "key": "Clubbing",
+                                            "label": "Clubbing",
+                                            "type": "card",
+                                            "print": {
+                                                "newLineBeforeThis": 0,
+                                                "boldLabel": false
+                                            },
+                                            "childList": [
+                                                {
+                                                    "type": "checkList",
+                                                    "key": "Clubbing",
+                                                    "possibleValueList": [],
+                                                    "allowCustomValue": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "key": "Koilonychia",
+                                            "label": "Koilonychia",
+                                            "type": "card",
+                                            "print": {
+                                                "newLineBeforeThis": 0,
+                                                "boldLabel": false
+                                            },
+                                            "childList": [
+                                                {
+                                                    "type": "checkList",
+                                                    "key": "Koilonychia",
+                                                    "possibleValueList": [],
+                                                    "allowCustomValue": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "key": "Leukonychia",
+                                            "label": "Leukonychia",
+                                            "type": "card",
+                                            "print": {
+                                                "newLineBeforeThis": 0,
+                                                "boldLabel": false
+                                            },
+                                            "childList": [
+                                                {
+                                                    "type": "checkList",
+                                                    "key": "Leukonychia",
+                                                    "possibleValueList": [],
+                                                    "allowCustomValue": true
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },                                
                                 {
                                     "type": "card",
                                     "key": "BP",
@@ -20099,6 +20802,478 @@
                                                 "maxValue": 200,
                                                 "decimalPrecisionDigits": 0
                                             }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "collection",
+                    "key": "Eye",
+                    "label": "Eye",
+                    "childList": [
+                        {
+                            "type": "group",
+                            "key": "List",
+                            "label": "List",
+                            "childList": [
+                                {
+                                    "key": "Eye",
+                                    "label": "Eye",
+                                    "type": "card",
+                                    "print": {
+                                        "newLineBeforeThis": 0
+                                    },
+                                    "childList": [
+                                        {
+                                            "key": "Custom Input",
+                                            "label": "Custom Input",
+                                            "type": "card",
+                                            "print": {
+                                                "newLineBeforeThis": 0,
+                                                "boldLabel": false
+                                            },
+                                            "childList": [
+                                                {
+                                                    "type": "checkList",
+                                                    "key": "Custom Input",
+                                                    "possibleValueList": [],
+                                                    "allowCustomValue": true
+                                                }
+                                            ]
+                                        }
+
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "collection",
+                    "key": "Skin and Nail Condition",
+                    "label": "Skin and Nail Condition",
+                    "childList": [
+                        {
+                            "type": "group",
+                            "key": "List",
+                            "label": "List",
+                            "childList": [
+                                {
+                                    "key": "Skin and Nail Condition",
+                                    "label": "Skin and Nail Condition",
+                                    "type": "card",
+                                    "print": {
+                                        "newLineBeforeThis": 0
+                                    },
+                                    "childList": [
+                                        {
+                                            "key": "Custom Input",
+                                            "label": "Custom Input",
+                                            "type": "card",
+                                            "print": {
+                                                "newLineBeforeThis": 0,
+                                                "boldLabel": false
+                                            },
+                                            "childList": [
+                                                {
+                                                    "type": "checkList",
+                                                    "key": "Custom Input",
+                                                    "possibleValueList": [],
+                                                    "allowCustomValue": true
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "collection",
+                    "key": "Mouth",
+                    "label": "Mouth",
+                    "childList": [
+                        {
+                            "type": "group",
+                            "key": "List",
+                            "label": "List",
+                            "childList": [
+                                {
+                                    "key": "Mouth",
+                                    "label": "Mouth",
+                                    "type": "card",
+                                    "print": {
+                                        "newLineBeforeThis": 0
+                                    },
+                                    "childList": [
+                                        {
+                                            "key": "Custom Input",
+                                            "label": "Custom Input",
+                                            "type": "card",
+                                            "print": {
+                                                "newLineBeforeThis": 0,
+                                                "boldLabel": false
+                                            },
+                                            "childList": [
+                                                {
+                                                    "type": "checkList",
+                                                    "key": "Custom Input",
+                                                    "possibleValueList": [],
+                                                    "allowCustomValue": true
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "collection",
+                    "key": "Breast",
+                    "label": "Breast",
+                    "childList": [
+                        {
+                            "type": "group",
+                            "key": "List",
+                            "label": "List",
+                            "childList": [
+                                {
+                                    "key": "Breast",
+                                    "label": "Breast",
+                                    "type": "card",
+                                    "print": {
+                                        "newLineBeforeThis": 0
+                                    },
+                                    "childList": [
+                                        {
+                                            "key": "Custom Input",
+                                            "label": "Custom Input",
+                                            "type": "card",
+                                            "print": {
+                                                "newLineBeforeThis": 0,
+                                                "boldLabel": false
+                                            },
+                                            "childList": [
+                                                {
+                                                    "type": "checkList",
+                                                    "key": "Custom Input",
+                                                    "possibleValueList": [],
+                                                    "allowCustomValue": true
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "collection",
+                    "key": "Head Neck",
+                    "label": "Head Neck",
+                    "childList": [
+                        {
+                            "type": "group",
+                            "key": "List",
+                            "label": "List",
+                            "childList": [
+                                {
+                                    "key": "Head Neck",
+                                    "label": "Head Neck",
+                                    "type": "card",
+                                    "print": {
+                                        "newLineBeforeThis": 0
+                                    },
+                                    "childList": [
+                                        {
+                                            "key": "Custom Input",
+                                            "label": "Custom Input",
+                                            "type": "card",
+                                            "print": {
+                                                "newLineBeforeThis": 0,
+                                                "boldLabel": false
+                                            },
+                                            "childList": [
+                                                {
+                                                    "type": "checkList",
+                                                    "key": "Custom Input",
+                                                    "possibleValueList": [],
+                                                    "allowCustomValue": true
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "collection",
+                    "key": "Digital Rectal Examination",
+                    "label": "Digital Rectal Examination",
+                    "childList": [
+                        {
+                            "type": "group",
+                            "key": "List",
+                            "label": "List",
+                            "childList": [
+                                {
+                                    "key": "Digital Rectal Examination",
+                                    "label": "Digital Rectal Examination",
+                                    "type": "card",
+                                    "print": {
+                                        "newLineBeforeThis": 0
+                                    },
+                                    "childList": [
+                                        {
+                                            "key": "Custom Input",
+                                            "label": "Custom Input",
+                                            "type": "card",
+                                            "print": {
+                                                "newLineBeforeThis": 0,
+                                                "boldLabel": false
+                                            },
+                                            "childList": [
+                                                {
+                                                    "type": "checkList",
+                                                    "key": "Custom Input",
+                                                    "possibleValueList": [],
+                                                    "allowCustomValue": true
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "collection",
+                    "key": "Genitalia",
+                    "label": "Genitalia",
+                    "childList": [
+                        {
+                            "type": "group",
+                            "key": "List",
+                            "label": "List",
+                            "childList": [
+                                {
+                                    "key": "Genitalia",
+                                    "label": "Genitalia",
+                                    "type": "card",
+                                    "print": {
+                                        "newLineBeforeThis": 0
+                                    },
+                                    "childList": [
+                                        {
+                                            "key": "Custom Input",
+                                            "label": "Custom Input",
+                                            "type": "card",
+                                            "print": {
+                                                "newLineBeforeThis": 0,
+                                                "boldLabel": false
+                                            },
+                                            "childList": [
+                                                {
+                                                    "type": "checkList",
+                                                    "key": "Custom Input",
+                                                    "possibleValueList": [],
+                                                    "allowCustomValue": true
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "collection",
+                    "key": "Abdomen",
+                    "label": "Abdomen",
+                    "childList": [
+                        {
+                            "type": "group",
+                            "key": "List",
+                            "label": "List",
+                            "childList": [
+                                {
+                                    "key": "Abdomen",
+                                    "label": "Abdomen",
+                                    "type": "card",
+                                    "print": {
+                                        "newLineBeforeThis": 0
+                                    },
+                                    "childList": [
+                                        {
+                                            "key": "Inspection",
+                                            "label": "Inspection",
+                                            "type": "card",
+                                            "print": {
+                                                "newLineBeforeThis": 0,
+                                                "boldLabel": false
+                                            },
+                                            "childList": [
+                                                {
+                                                    "type": "checkList",
+                                                    "key": "Inspection",
+                                                    "possibleValueList": [],
+                                                    "allowCustomValue": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "key": "Palpation",
+                                            "label": "Palpation",
+                                            "type": "card",
+                                            "print": {
+                                                "newLineBeforeThis": 0,
+                                                "boldLabel": false
+                                            },
+                                            "childList": [
+                                                {
+                                                    "type": "checkList",
+                                                    "key": "Palpation",
+                                                    "possibleValueList": [],
+                                                    "allowCustomValue": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "key": "Percussion",
+                                            "label": "Percussion",
+                                            "type": "card",
+                                            "print": {
+                                                "newLineBeforeThis": 0,
+                                                "boldLabel": false
+                                            },
+                                            "childList": [
+                                                {
+                                                    "type": "checkList",
+                                                    "key": "Percussion",
+                                                    "possibleValueList": [],
+                                                    "allowCustomValue": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "key": "Auscultation",
+                                            "label": "Auscultation",
+                                            "type": "card",
+                                            "print": {
+                                                "newLineBeforeThis": 0,
+                                                "boldLabel": false
+                                            },
+                                            "childList": [
+                                                {
+                                                    "type": "checkList",
+                                                    "key": "Auscultation",
+                                                    "possibleValueList": [],
+                                                    "allowCustomValue": true
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "collection",
+                    "key": "Musculoskeletal System",
+                    "label": "Musculoskeletal System",
+                    "childList": [
+                        {
+                            "type": "group",
+                            "key": "List",
+                            "label": "List",
+                            "childList": [
+                                {
+                                    "key": "Musculoskeletal System",
+                                    "label": "Musculoskeletal System",
+                                    "type": "card",
+                                    "print": {
+                                        "newLineBeforeThis": 0
+                                    },
+                                    "childList": [
+                                        {
+                                            "key": "Gait",
+                                            "label": "Gait",
+                                            "type": "card",
+                                            "print": {
+                                                "newLineBeforeThis": 0,
+                                                "boldLabel": false
+                                            },
+                                            "childList": [
+                                                {
+                                                    "type": "checkList",
+                                                    "key": "Gait",
+                                                    "possibleValueList": [],
+                                                    "allowCustomValue": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "key": "Arms",
+                                            "label": "Arms",
+                                            "type": "card",
+                                            "print": {
+                                                "newLineBeforeThis": 0,
+                                                "boldLabel": false
+                                            },
+                                            "childList": [
+                                                {
+                                                    "type": "checkList",
+                                                    "key": "Arms",
+                                                    "possibleValueList": [],
+                                                    "allowCustomValue": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "key": "Limbs",
+                                            "label": "Limbs",
+                                            "type": "card",
+                                            "print": {
+                                                "newLineBeforeThis": 0,
+                                                "boldLabel": false
+                                            },
+                                            "childList": [
+                                                {
+                                                    "type": "checkList",
+                                                    "key": "Limbs",
+                                                    "possibleValueList": [],
+                                                    "allowCustomValue": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "key": "Spine",
+                                            "label": "Spine",
+                                            "type": "card",
+                                            "print": {
+                                                "newLineBeforeThis": 0,
+                                                "boldLabel": false
+                                            },
+                                            "childList": [
+                                                {
+                                                    "type": "checkList",
+                                                    "key": "Spine",
+                                                    "possibleValueList": [],
+                                                    "allowCustomValue": true
+                                                }
+                                            ]
                                         }
                                     ]
                                 }
@@ -20556,8 +21731,8 @@
                 },
                 {
                     "type": "collection",
-                    "key": "CVS",
-                    "label": "CVS",
+                    "key": "Cardiovascular System",
+                    "label": "Cardiovascular System",
                     "childList": [
                         {
                             "type": "group",
@@ -20682,6 +21857,40 @@
                                             ]
                                         },
                                         {
+                                            "key": "Parasternal Impulse",
+                                            "label": "Parasternal Impulse",
+                                            "type": "card",
+                                            "print": {
+                                                "newLineBeforeThis": 0,
+                                                "boldLabel": false
+                                            },
+                                            "childList": [
+                                                {
+                                                    "type": "checkList",
+                                                    "key": "Parasternal Impulse",
+                                                    "possibleValueList": [],
+                                                    "allowCustomValue": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "key": "Palpable P2",
+                                            "label": "Palpable P2",
+                                            "type": "card",
+                                            "print": {
+                                                "newLineBeforeThis": 0,
+                                                "boldLabel": false
+                                            },
+                                            "childList": [
+                                                {
+                                                    "type": "checkList",
+                                                    "key": "Palpable P2",
+                                                    "possibleValueList": [],
+                                                    "allowCustomValue": true
+                                                }
+                                            ]
+                                        },
+                                        {
                                             "key": "Other",
                                             "label": "Other",
                                             "type": "card",
@@ -20710,25 +21919,44 @@
                                     },
                                     "childList": [
                                         {
-                                            "key": "S1 & S2",
-                                            "label": "S1 & S2",
-                                            "type": "checkbox"
-                                        },
+                                            "key": "Heart Sound",
+                                            "label": "Heart Sound",
+                                            "type": "card",
+                                            "print": {
+                                                "newLineBeforeThis": 0,
+                                                "boldLabel": false
+                                            },
+                                            "childList": [
+                                                {
+                                                    "type": "checkList",
+                                                    "key": "Heart Sound",
+                                                    "possibleValueList": [
+                                                        "S1",
+                                                        "S2",
+                                                        "S3",
+                                                        "S4"
+                                                    ],
+                                                    "allowCustomValue": true
+                                                }
+                                            ]
+                                        },                                        
                                         {
-                                            "key": "S3 present",
-                                            "label": "S3 present",
-                                            "type": "checkbox"
-                                        },
-                                        {
-                                            "key": "S4 present",
-                                            "label": "S4 present",
-                                            "type": "checkbox"
-                                        },
-                                        {
-                                            "key": "S3 & S4 present",
-                                            "label": "S3 & S4 present",
-                                            "type": "checkbox"
-                                        },
+                                            "key": "Pericardial Rub",
+                                            "label": "Pericardial Rub",
+                                            "type": "card",
+                                            "print": {
+                                                "newLineBeforeThis": 0,
+                                                "boldLabel": false
+                                            },
+                                            "childList": [
+                                                {
+                                                    "type": "checkList",
+                                                    "key": "Pericardial Rub",
+                                                    "possibleValueList": [],
+                                                    "allowCustomValue": true
+                                                }
+                                            ]
+                                        },                                        
                                         {
                                             "key": "Systolic click",
                                             "label": "Systolic click",
@@ -20744,7 +21972,8 @@
                                                     "possibleValueList": [
                                                         "Early Systole",
                                                         "Late Systole"
-                                                    ]
+                                                    ],
+                                                    "allowCustomValue": true
                                                 }
                                             ]
                                         },
@@ -20762,7 +21991,8 @@
                                                     "key": "Opening Snap",
                                                     "possibleValueList": [
                                                         "Early Diastole"
-                                                    ]
+                                                    ],
+                                                    "allowCustomValue": true
                                                 }
                                             ]
                                         },
@@ -22227,7 +23457,24 @@
                                             "allowCustomValue": true
                                         }
                                     ]
-                                }
+                                },
+                                {
+                                    "key": "Percussion",
+                                    "label": "Percussion",
+                                    "type": "card",
+                                    "print": {
+                                        "newLineBeforeThis": 0,
+                                        "boldLabel": false
+                                    },
+                                    "childList": [
+                                        {
+                                            "type": "checkList",
+                                            "key": "Percussion",
+                                            "possibleValueList": [],
+                                            "allowCustomValue": true
+                                        }
+                                    ]
+                                }                                
                             ]
                         }
                     ]
@@ -22594,6 +23841,57 @@
                                                         "noColonAfterThis": true,
                                                         "hideLabel": true
                                                     }
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "card",
+                                    "key": "Signs of Meningeal Irritations",
+                                    "label": "Signs of Meningeal Irritations",
+                                    "print": {
+                                        "newLineBeforeThis": true,
+                                        "boldLabel": true
+                                    },
+                                    "childList": [
+                                        {
+                                            "key": "Neck Rigidity",
+                                            "label": "Neck Rigidity",
+                                            "type": "toggleableContainer",
+                                            "childList": [
+                                                {
+                                                    "type": "checkList",
+                                                    "key": "Neck Rigidity",
+                                                    "possibleValueList": [],
+                                                    "allowCustomValue": true
+                                                    
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "key": "Kernig's Sign",
+                                            "label": "Kernig's Sign",
+                                            "type": "toggleableContainer",
+                                            "childList": [
+                                                {
+                                                    "type": "checkList",
+                                                    "key": "Kernig's Sign",
+                                                    "possibleValueList": [],
+                                                    "allowCustomValue": true
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "key": "Others",
+                                            "label": "Others",
+                                            "type": "toggleableContainer",
+                                            "childList": [
+                                                {
+                                                    "type": "checkList",
+                                                    "key": "Others",
+                                                    "possibleValueList": [],
+                                                    "allowCustomValue": true
                                                 }
                                             ]
                                         }
