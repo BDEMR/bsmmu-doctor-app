@@ -1,0 +1,247 @@
+<link rel="import" href="../../bower-assets/paper-button/paper-button.html">
+<link rel="import" href="../../bower-assets/paper-card/paper-card.html">
+<link rel="import" href="../../bower-assets/paper-input/paper-input.html">
+<link rel="import" href="../../bower-assets/paper-listbox/paper-listbox.html">
+<link rel="import" href="../../bower-assets/paper-item/paper-item.html">
+<link rel="import" href="../../bower-assets/paper-fab/paper-fab.html">
+<link rel="import" href="../../bower-assets/paper-toggle-button/paper-toggle-button.html">
+<link rel="import" href="../../bower-assets/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="../../bower-assets/paper-menu-button/paper-menu-button.html">
+<link rel="import" href="../../elements/custom-vital-search/custom-vital-search.html">
+<link rel="import" href="../../bower-assets/vaadin-grid/vaadin-grid.html">
+<!-- style -->
+<link rel="import" href="../../styles/common-style.html">
+
+<link rel="import" href="../../bower-assets/paper-tabs/paper-tabs.html">
+<link rel="import" href="../../bower-assets/paper-tabs/paper-tab.html">
+
+<!-- behavior -->
+<link rel="import" href="../../behaviors/translating.html">
+<link rel="import" href="../../behaviors/page-like.html">
+<link rel="import" href="../../behaviors/api-calling.html">
+<link rel="import" href="../../behaviors/common-computes.html">
+<link rel="import" href="../../behaviors/db-using.html">
+
+<!-- custom-elements -->
+
+<!-- element -->
+<dom-module id="page-chamber-manager">
+  <template>
+
+    <!-- style -->
+
+    <style is="custom-style" include="common-style">
+      paper-tabs {
+        background-color: var(--brand-primary-color);
+        color: #fff;
+        --paper-tabs-selection-bar-color: #fff;
+
+      }
+
+
+      .limiting-container {
+        margin-top: 10px;
+        width: 80%;
+      }
+
+
+      .more-optons {
+        color: #777777;
+      }
+
+
+      .new-patient-fab {
+        position: fixed;
+        right: 20px;
+        bottom: 164px;
+      }
+
+
+      paper-button {
+        margin: 3px;
+      }
+
+
+      .card-custom-header {
+        padding: 15px;
+        border-bottom: 1px solid var(--paper-grey-200);
+        background-color: var(--paper-grey-50);
+      }
+
+      .card-custom-header .title {
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 28px;
+        color: var(--brand-primary-color);
+      }
+
+      .modifier {
+        font-size: 14px;
+        background: #000000;
+        color: #ffffff;
+        margin: 0 4px;
+        padding: 2px 8px;
+        border-radius: 4px;
+        text-transform: uppercase;
+        font-weight: 400;
+      }
+
+      .modifier.online {
+        background: #757575;
+      }
+
+      .modifier.local-only {
+        background: #039BE5;
+      }
+
+      .modifier.locally-updated {
+        background: #009688;
+      }
+
+      .modifier.imported {
+        background: #4CAF50;
+      }
+
+      #search-tab {
+        background-color: #43A047;
+      }
+
+      #log-tab {
+        background-color: var(--paper-teal-800);
+      }
+    </style>
+
+    <!-- local DOM -->
+    <div class="master-container">
+
+      <div class="limiting-container">
+
+        <paper-card class="organization-info-cards">
+
+          <div class="card-custom-header">
+            <div class="layout horizontal center">
+              <div class="title flex">Chambers</div>
+            </div>
+          </div>
+
+          <!-- <template is="dom-if" if="[[matchingChamberList.length]]">
+            <div class="p-0">
+              <paper-listbox>
+
+                <template id="assistant-list-repeater" is="dom-repeat" items="[[matchingChamberList]]" as="chamber">
+                  <paper-item class="custom layout horizontal center">
+                    <div class="type caption secondary">[[chamber.shortCode]]</div>
+
+                    <div class="flex m-left-8">
+                      <div class="type body capitalize">
+                        <span class="type secondary">Chamber Name: </span>[[chamber.name]]</div>
+
+                      <div class="type body capitalize">
+                        <span class="type secondary">Doctor Name: </span>[[chamber.doctorName]]</div>
+
+                      <div class="type body capitalize">
+                        <span class="type secondary">Doctor Phone: </span>[[chamber.doctorPhone]]</div>
+                      <div class="type body capitalize">
+                        <span class="type secondary">Specialization: </span>[[chamber.specialization]]</div>
+                      <div class="type caption">
+                        <span class="type secondary">Address: </span>[[chamber.address]]</div>
+                      <div class="type caption">
+                        <span class="type secondary">City: </span>[[chamber.city]]</div>
+                    </div>
+
+                    <paper-button class="colored" on-tap="viewChamber">View</paper-button>
+                  </paper-item>
+                </template>
+
+              </paper-listbox>
+
+            </div>
+          </template> -->
+
+          <div class="report-row horizontal layout justified">
+            <div>Total Chamber: [[matchingChamberList.length]]</div>
+            <div>Total Available: Slot [[getTotalFreeSlots(matchingChamberList)]]</div>
+            <div>Total Booked: [[getTotalBooked(matchingChamberList)]]</div>
+            <div>Total Awaiting: [[getTotalAwaiting(matchingChamberList)]]</div>
+            <div>Total Completed: [[getTotalCompleted(matchingChamberList)]]</div>
+          </div>
+
+          <vaadin-grid class="m-top-8" items="[[matchingChamberList]]" loading="[[loading]]">
+            <vaadin-grid-column flex-grow="0" width="90px">
+              <template class="header">ShortCode</template>
+              <template>
+                <span class="type caption">[[item.shortCode]]</span>
+              </template>
+            </vaadin-grid-column>
+            <vaadin-grid-column resizable>
+              <template class="header">Chamber Name</template>
+              <template>
+                <span class="type bold">[[item.name]]</span>
+              </template>
+            </vaadin-grid-column>
+            <vaadin-grid-column resizable>
+              <template class="header">Doctor Name</template>
+              <template>
+                <div>
+                  <template is="dom-repeat" items="[[item.assignedDoctors]]" as="doctor">
+                    <div class="layout horizontal center">
+                      <div class="type caption-2 secondary">[[_returnIndex(index)]].</div>
+                      <div class="flex m-left-8">
+                        <div class="type body">[[doctor.name]] <i class="type caption-2">[[doctor.degreeList]]</i></div>
+                        <div class="type caption-2">[[doctor.specializationList]]</div>
+                        <div class="type caption-2">[[doctor.experience]]</div>
+                        <div class="type caption-2">[[doctor.phone]], [[doctor.email]]</div>
+                      </div>
+                    </div>
+                  </template>
+                </div>
+              </template>
+            </vaadin-grid-column>
+            <vaadin-grid-column flex-grow="0" width="110px">
+              <template class="header">Available Slot</template>
+              <template>
+                <div class="layout">
+                  <span>[[getFreeSlots(item.freeSlots)]]</span>
+              </template>
+            </vaadin-grid-column>
+            <vaadin-grid-column flex-grow="0" width="90px">
+              <template class="header">Booked</template>
+              <template>
+                <div class="layout">
+                  <span>[[item.bookedPatient]]</span>
+              </template>
+            </vaadin-grid-column>
+            <vaadin-grid-column flex-grow="0" width="90px">
+              <template class="header">Awaiting</template>
+              <template>
+                <div class="layout">
+                  <span>[[item.awaitingPatient]]</span>
+              </template>
+            </vaadin-grid-column>
+            <vaadin-grid-column flex-grow="0" width="90px">
+              <template class="header">Completed</template>
+              <template>
+                <div class="layout">
+                  <span>[[item.completedPatient]]</span>
+              </template>
+            </vaadin-grid-column>
+            <vaadin-grid-column resizable>
+              <template class="header">Action</template>
+              <template>
+                <div class="layout vertical start">
+                  <paper-button class="btn btn-sm btn-primary" on-tap="viewChamberSchedule">View Schedules</paper-button>
+              </template>
+            </vaadin-grid-column>
+          </vaadin-grid>
+          
+          <div class="card-actions">
+            <paper-button raised class="colored" on-tap="newPatientPressed">Add Patient</paper-button>
+          </div>
+        </paper-card>
+
+      </div>
+
+    </div>
+  </template>
+  <script src="page-chamber-manager.coffee-compiled.js"></script>
+</dom-module>

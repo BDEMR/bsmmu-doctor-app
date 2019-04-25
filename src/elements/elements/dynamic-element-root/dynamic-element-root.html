@@ -1,0 +1,99 @@
+<!-- 
+  dynamic-element-root
+
+  this element serves as the root element for all dynamic elements. all required 'imports' should be 
+  done in this file.
+  
+ -->
+<link rel="import" href="../../bower-assets/polymer/polymer.html">
+
+<!-- iron-* -->
+<link rel="import" href="../../bower-assets/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower-assets/iron-icon/iron-icon.html">
+
+<!-- paper-* -->
+<link rel="import" href="../../bower-assets/paper-button/paper-button.html">
+<link rel="import" href="../../bower-assets/paper-card/paper-card.html">
+<link rel="import" href="../../bower-assets/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower-assets/paper-input/paper-input.html">
+<link rel="import" href="../../bower-assets/paper-input/paper-input-container.html">
+<link rel="import" href="../../bower-assets/paper-input/paper-textarea.html">
+<link rel="import" href="../../bower-assets/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower-assets/paper-dropdown-menu/paper-dropdown-menu-light.html">
+<link rel="import" href="../../bower-assets/paper-listbox/paper-listbox.html">
+<link rel="import" href="../../bower-assets/paper-item/paper-item.html">
+<link rel="import" href="../../bower-assets/paper-fab/paper-fab.html">
+<link rel="import" href="../../bower-assets/paper-toggle-button/paper-toggle-button.html">
+<link rel="import" href="../../bower-assets/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="../../bower-assets/paper-menu-button/paper-menu-button.html">
+<link rel="import" href="../../bower-assets/paper-tabs/paper-tab.html">
+<link rel="import" href="../../bower-assets/paper-tabs/paper-tabs.html">
+<link rel="import" href="../../bower-assets/paper-radio-button/paper-radio-button.html">
+
+<!-- style -->
+<link rel="import" href="../../styles/common-style.html">
+<link rel="import" href="../../styles/dynamic-element-styles.html">
+
+<!-- behavior -->
+<link rel="import" href="../../behaviors/common-computes.html">
+<link rel="import" href="../../behaviors/utils.html">
+
+<!-- custom-elements -->
+<link rel="import" href="../custom-autocomplete/custom-autocomplete.html">
+
+<link rel="import" href="../dynamic-elements/de-category.html">
+<link rel="import" href="../dynamic-elements/de-collection.html">
+<link rel="import" href="../dynamic-elements/de-array.html">
+<link rel="import" href="../dynamic-elements/de-all.html">
+
+<!-- element -->
+<dom-module id="dynamic-element-root">
+  <template>
+
+    <!-- style -->
+
+    <style is="custom-style" include="common-style">
+    paper-tabs.category-tabs {
+      --paper-tabs-selection-bar-color: white;
+      --paper-tabs: {
+        background: #5c4575;
+        color: white;
+      }
+    }
+    </style>
+    <!-- local DOM - start -->
+
+    <template is="dom-if" if="[[isSystemReady]]">
+
+      <paper-tabs class="category-tabs" selected="{{categoryTabSelectedIndex}}" scrollable on-iron-select="categoryTabSelected">
+        <template is="dom-repeat" items="[[def.childList]]" as="category">
+          <paper-tab>[[category.label]]</paper-tab>
+        </template>
+      </paper-tabs>
+
+      <template is="dom-if" if="[[currentCategory]]">
+        <template is="dom-if" if="[[!currentCategory.isCustomCategory]]">
+
+          <div hidden>[[$loadGenericCategoryElement(currentCategory)]]</div>
+
+          <!-- <de-category data="[[currentCategoryData]]" def="[[currentCategory]]"></de-category> -->
+
+        </template>
+        <template is="dom-if" if="[[currentCategory.isCustomCategory]]">
+
+          <!-- collection-container - start -->
+          <div hidden>[[$loadCustomCategoryElement(currentCategory)]]</div>
+          <!-- collection-container - start -->
+
+        </template>
+      </template>
+
+      <div class="element-insertion-point"></div>
+
+    </template>
+
+    <!-- <paper-button on-tap="debugPressed" raised>DEBUG</paper-button> -->
+    <!-- local DOM - end -->
+  </template>
+  <script src="dynamic-element-root.coffee-compiled.js"></script>
+</dom-module>

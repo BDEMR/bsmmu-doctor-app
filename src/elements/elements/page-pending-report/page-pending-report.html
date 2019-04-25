@@ -1,0 +1,561 @@
+<link rel="import" href="../../bower-assets/polymer/polymer.html">
+
+<!-- iron-* -->
+<link rel="import" href="../../bower-assets/iron-pages/iron-pages.html">
+
+<!-- paper-* -->
+<link rel="import" href="../../bower-assets/paper-button/paper-button.html">
+<link rel="import" href="../../bower-assets/paper-card/paper-card.html">
+<link rel="import" href="../../bower-assets/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower-assets/paper-dropdown-menu/paper-dropdown-menu-light.html">
+<link rel="import" href="../../bower-assets/paper-listbox/paper-listbox.html">
+<link rel="import" href="../../bower-assets/paper-item/paper-item.html">
+<link rel="import" href="../../bower-assets/paper-checkbox/paper-checkbox.html">
+
+<link rel="import" href="../../bower-assets/paper-input/paper-input.html">
+<link rel="import" href="../../bower-assets/paper-input/paper-textarea.html">
+
+
+<link rel="import" href="../../bower-assets/vaadin-date-picker/vaadin-date-picker.html">
+<link rel="import" href="../../bower-assets/vaadin-combo-box/vaadin-combo-box.html">
+
+<!-- style -->
+<link rel="import" href="../../styles/common-style.html">
+
+<!-- behavior -->
+<link rel="import" href="../../behaviors/common-computes.html">
+<link rel="import" href="../../behaviors/db-using.html">
+<link rel="import" href="../../behaviors/translating.html">
+<link rel="import" href="../../behaviors/page-like.html">
+<link rel="import" href="../../behaviors/api-calling.html">
+
+<!-- custom-elements -->
+
+<!-- element -->
+<dom-module id="page-pending-report">
+  <template>
+
+    <!-- style -->
+    <style is="custom-style" include="common-style">
+
+      .limiting-container {
+        margin-top: 10px;
+      }
+      .table{
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      .table th {
+        text-align: left;
+        background-color: var(--paper-grey-50);
+      }
+
+      .table td {
+        color: #444;
+      }
+
+      .table td, .table th{
+        vertical-align: middle;
+        padding: 10px 20px;
+        border-bottom: 1px solid var(--paper-grey-100);
+      }
+
+       .table tr:last-child td {
+        border-bottom: 0;
+      }
+
+      .table.two-col th {
+        text-align: right;
+        background-color: white;
+        width: 50%;
+      }
+
+      .two-col .header th {
+        background-color: var(--paper-grey-50);
+        text-align: center;
+        padding: 20px 0;
+        text-trasnform: uppercase;
+      }
+
+      .block{display: block}
+
+      .filter-query {
+        --paper-input-container: {
+          width: 250px;
+          padding: 0;
+        }
+        --paper-input-container-label: {
+          font-size: 13px;
+        }
+        --paper-input-container-input: {
+          font-size: 13px;
+        }        
+      }
+      .search {
+        @apply(--layout-end-justified);
+      }
+
+      @media only screen and (min-width : 320px) and (max-width : 480px){
+        .table td, .table th{
+          vertical-align: top;
+          font-size: 14px;
+        }
+        .search {
+          margin-top: 10px;
+          @apply(--layout-start-justified);
+        }
+      }
+
+      paper-dropdown-menu {
+        width: 100%;
+      }
+
+      .limiting-container {
+        margin-top: 10px;
+      }
+
+      .card-custom-header {
+        padding: 15px;
+        border-bottom: 1px solid var(--paper-grey-200);
+        background-color: var(--paper-grey-50);
+      }
+
+      .card-custom-header .title {
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 28px;
+        color: var(--brand-primary-color);
+      }
+
+      .custom-card-list-item {
+        padding: 4px 16px;
+        border-bottom: 1px solid #eee;
+      }
+
+      .custom-card-list-item:last-child {
+        border-bottom: none;
+      }
+
+      paper-checkbox {
+        margin: 8px;
+      }
+
+      .card-item {
+        border-radius: 6px;
+        border: 1px solid #eee;
+        margin: 3px;
+      }
+
+      .card-item div {
+        background-color: #fafafa;
+        /*border-right: 1px solid #eee;*/
+      }
+
+      /*Region - Patient Gallary*/
+
+      .new-attachment-preview {
+        display: block;
+        ;
+        width: 100%;
+        max-height: 128px;
+      }
+
+      .descriptive-area {
+        padding: 4px;
+      }
+
+      paper-button {
+        background: white;
+      }
+
+      .attachment-card {
+        background: white;
+        width: 128px;
+        height: 128px;
+        margin: 6px;
+      }
+
+      .image {
+        display: block;
+        width: 128px;
+        height: 128px;
+      }
+
+      .footer {
+        margin-top: 4px;
+      }
+
+      .usage {
+        margin-right: 20px;
+      }
+
+      .usage .title {
+        font-size: 36px;
+        text-align: left;
+      }
+
+      .attachment-card-list {
+        margin: 10px 0;
+      }
+
+      .attachment-card-list paper-material {
+        margin-right: 10px;
+        margin-bottom: 10px;
+      }
+
+      .attachment-card .footer {
+        padding: 10px;
+      }
+
+      ol.order-list {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+      }
+
+      ul.unorderd-list-custom {
+        margin: 4px 0;
+        padding-left: 16px;
+      }
+
+      ol.order-list li:nth-child(even) {
+        background-color: var(--paper-teal-50)
+      }
+
+      ol.order-list li {
+        padding: 8px 16px;
+      }
+
+      .print-sub-header {
+        font-size: bold;
+        background-color: #fafafa;
+        margin-bottom: 8px;
+      }
+
+      .test-result-count {
+        font-weight: bold;
+        color: var(--paper-green-500);
+      }
+
+      paper-icon-button.custom-icon-button {
+        width: 32px;
+        height: 32px;
+      }
+
+      paper-item.custom-2 {
+        padding: 0 !important;
+        --paper-item-min-height: 48px;
+
+        --paper-item-selected: {
+          background-color: var(--paper-teal-500);
+          color: #fff;
+          border-bottom: 2px solid var(--paper-teal-500);
+        }
+
+        --paper-item-focused: {
+          background-color: var(--paper-teal-500);
+          color: #fff;
+          border-bottom: 2px solid var(--paper-teal-500);
+        }
+
+        --paper-item-focused-before: {
+          background-color: var(--paper-teal-500);
+          color: #fff;
+          border-bottom: 2px solid var(--paper-teal-500);
+        }
+      }
+
+      paper-item.custom-2.iron-selected {
+        font-weight: 400;
+      }
+
+      paper-item.custom-2.iron-selected:hover {
+        background-color: var(--paper-teal-500);
+        color: #fff;
+      }
+
+      paper-item.custom-2.iron-selected .item-heading {
+        padding-top: 8px;
+        padding-bottom: 8px;
+      }
+
+      paper-item.custom-2 .item-heading {
+        padding-left: 16px;
+      }
+
+      paper-checbox.item-checkbox {
+        --paper-checkbox-unchecked-color: #fff;
+      }
+
+      .item-content {
+        color: rgba(0, 0, 0, .87);
+        background-color: #fafafa;
+      }
+
+      .custom-small-button {
+        padding: 4px 8px;
+        border-radius: 3px;
+        font-size: 12px;
+        color: #000;
+        font-weight: 500;
+        background: #eee;
+      }
+
+      .custom-small-button iron-icon {
+        margin-right: 6px;
+        height: 14px;
+        width: 14px;
+        color: #000;
+      }
+
+      .custom-small-button.colored {
+        color: #fff;
+        background: #009588;
+      }
+
+      .custom-small-button.colored iron-icon {
+        color: #fff;
+      }
+
+      paper-dialog .buttons {
+        padding: 10px 16px;
+      }
+
+      paper-dialog>* {
+        padding: 0 16px;
+      }
+
+      paper-tab.iron-selected {
+        background-color: var(--paper-teal-500);
+        color: #fff;
+      }
+
+      .b-colored {
+        border: 2px solid var(--paper-teal-500);
+      }
+
+      .preview-title {
+        padding-left: 16px;
+        padding-right: 8px;
+        background-color: #fafafa;
+        min-height: 64px;
+        border-bottom: 1px solid #eee;
+      }
+
+      .btn-add {
+        min-width: 0;
+        padding-top: 0.5em;
+        padding-bottom: 0.5em;
+        background-color: #eceff1;
+        color: rgba(0, 0, 0, .87);
+      }
+
+      .card-actions-2 {
+        padding: 15px;
+        border-top: 1px solid #eee;
+
+      }
+
+      paper-item.custom {
+        padding: 8px;
+
+      }
+
+      paper-item.custom:nth-child(even) {
+        background-color: #fafafa
+      }
+
+      vaadin-date-picker ::content paper-input-container {
+        padding-top: 0 !important;
+      }
+
+      vaadin-date-picker ::content .floated-label-placeholder {
+        display: none;
+      }
+
+      @media screen and (max-width: 597px) {
+        vaadin-date-picker ::content .floated-label-placeholder {
+          display: block;
+        }
+        vaadin-date-picker {
+          width: 100%;
+        }
+      }
+
+      paper-dialog#dialogAttachement {
+        margin: 0 16px !important;
+        top: 24px !important;
+      }
+
+      paper-dialog .buttons paper-button {
+        margin: 3px !important;
+      }
+
+      .custom-scroll {
+        overflow-y: auto;
+        max-height: 390px;
+      }
+
+      .custom-item {
+        margin-top: 4px !important;
+        margin-bottom: 4px !important;
+        background-color: #fff;
+        box-sizing: border-box;
+        padding: 8px;
+      }
+
+      .custom-item:first-child {
+        border-top: none !important;
+      }
+    </style>
+    <!-- /style -->
+
+    
+    <div class="master-container">
+
+      <div class="limiting-container">
+
+        <!-- Demography - start -->
+        <paper-card heading="Patient Info">
+          <div class="card-content">
+
+            <div class="basic-list">
+
+              <!-- <div class="layout horizontal">
+                <iron-image class="avatar" sizing="cover" src="../../images/avatar.png"></iron-image>
+                <div class="m-horizontal-5 flex">
+                  <div class="type caption m-horizontal-5 bg-gray">DA1234</div>
+                  <div class="type body-lead m-horizontal-5">Mr. John Doe</div>
+                </div>
+              </div> -->
+
+              <div class="layout horizontal center">
+                <div class="type body-lead capitalize">{{$getFullName(patient.name)}}</div>
+                <div class="m-left-8 type caption bg-gray">{{patient.serial}}</div>
+              </div>
+              <div class="type caption secondary">Created on [[$mkDate(patient.createdDatetimeStamp)]] by [[$findCreator(patient.createdByUserSerial)]]</div>
+              
+              
+
+              <div class="layout horizontal">
+                <!-- <div class="type body">Male</div> -->
+                <div class="type body" hidden$="[[_isEmptyString(patient.dob)]]">[[_computeAge(patient.dob)]] years</div>
+                <!-- <div class="m-left-10 type body">AB+</div> -->
+                <!-- <div class="m-left-10 type body">5'4"</div> -->
+                <!-- <div class="m-left-10 type body">65Kgs</div> -->
+              </div>
+
+              <div hidden$="[[_isEmptyString(patient.nIdOrSsn)]]">
+                <iron-icon class="icon small" icon="icons:perm-identity"></iron-icon><span class="type body m-left-10">{{patient.nIdOrSsn}}</span>
+              </div>
+
+              <div hidden$="[[_isEmptyString(patient.phone)]]">
+                <iron-icon class="icon small" icon="communication:phone"></iron-icon><span class="type body m-left-10">{{patient.phone}}</span>
+              </div>
+              <div hidden$="[[_isEmptyString(patient.email)]]">
+                <iron-icon class="icon small" icon="communication:mail-outline"></iron-icon><span class="type body m-left-10"> {{patient.email}}</span>
+              </div>
+
+              <div>
+                <iron-icon hidden$="[[_isEmptyString(patient.address.line1)]]" class="icon small" icon="home"></iron-icon>
+                <span class="m-left-10" hidden$="[[_isEmptyString(patient.address.line1)]]">{{patient.address.line1}}</span>
+                <span hidden$="[[_isEmptyString(patient.address.line2)]]">, {{patient.address.line2}}</span>
+                <span hidden$="[[_isEmptyString(patient.address.postalCode)]]">, {{patient.address.postalCode}}</span>
+                <span hidden$="[[_isEmptyString(patient.address.cityOrTown)]]">, {{patient.address.cityOrTown}}</span>
+                <span hidden$="[[_isEmptyString(patient.address.stateOrProvince)]]">, {{patient.address.stateOrProvince}}</span>
+                <span hidden$="[[_isEmptyString(patient.address.country)]]">, {{patient.address.country}}</span>
+              </div>
+
+              <!-- <template is="dom-if" if="[[_isEmptyArray(patient.doctorsPrivateNote)]]"> -->
+              <div hidden$="[[_isEmptyString(patient.doctorsPrivateNote)]]">
+                <div class="sp"></div>
+                <div >
+                  <span class="type bold">Quick Notes (Kept Private): </span>
+                  <span>{{patient.doctorsPrivateNote}}</span>
+                </div>
+              </div>
+              
+                
+              <!-- </template> -->
+
+              
+              
+            </div>
+
+          </div>
+        </paper-card>
+        <!-- Demography - end -->
+
+        <paper-card class="m-top-8" heading="{{pendingReport.investigationName}}">
+
+
+          <div class="preview-title horizontal layout center">
+            <div class="flex">
+              <!-- <div class="type body-lead" style="color: #009688; font-weight: 500;"> Investigation Name: {{pendingReport.investigationName}}</div> -->
+              <div class="type body">
+                <strong>Advised by:</strong> {{pendingReport.advisedDoctorName}} on [[$mkDateTime(pendingReport.advisedTestCreatedDatetimeStamp)]]
+              </div>
+              <div class="type body">
+                <strong>Record Created on:</strong> [[$mkDateTime(pendingReport.createdDatetimeStamp)]]
+              </div>
+
+
+            </div>
+
+          </div>
+
+          <div class="p-4">
+            <template is="dom-repeat" items="{{pendingReport.data.testList}}">
+              <div class="custom-item">
+                <div style="width: 100%;">
+                  <div class="horizontal layout center">
+                    <div class=" flex type body" style="font-weight: bold; text-transform: capitalize; color: green;">
+                      <span class="type caption m-right-8">[[_returnSerial(index)]].</span>{{item.testName}}</div>
+                  </div>
+                  <div class="horizontal layout center wrap center-justified">
+                    <paper-textarea style="min-width: 128px;" no-label-float="true" class="m-horizontal-8 flex" label="Value" value="{{item.testResult}}"></paper-textarea>
+                    <vaadin-combo-box class="m-horizontal-8" no-label-float="true" label="Unit(s)" items="{{item.testUnitList}}" allow-custom-value="true" value="{{item.testUnit}}"></vaadin-combo-box>
+                    <vaadin-date-picker no-label-float="true" label="[[$TRANSLATE('Date Perform',LANG)]]" class="m-horizontal-8" value="{{item.datePerform}}"></vaadin-date-picker>
+                  </div>
+                  <div class="horizontal layout center m-left-8 m-top-8">
+                    <div class="type caption-2">
+                      <strong>Reference:</strong> {{item.referenceRange}}</div>
+                    <paper-button on-tap="showRefRangeDialog" class="m-left-8 custom-small-button">
+                      <iron-icon icon="create"></iron-icon>Edit</paper-button>
+                  </div>
+                  <div>
+                    <paper-textarea no-label-float="true" label="Comment" class="m-horizontal-8" value="{{item.comment}}"></paper-textarea>
+                  </div>
+                  <div>
+                    <paper-textarea no-label-float="true" label="Method" class="m-horizontal-8" value="{{item.method}}"></paper-textarea>
+                  </div>
+                </div>
+              </div>
+            </template>
+          </div>
+          <div>
+              <paper-textarea value="{{pendingReport.data.overallComment}}" class="m-horizontal-8" label="Overall Comments"></paper-textarea>
+          </div>
+
+          <div class="card-actions">
+            <paper-checkbox checked={{pendingReport.availableToPatient}}>Available to Patient</paper-checkbox>
+            <paper-checkbox checked={{pendingReport.data.flags.flagAsError}}>Flag as error</paper-checkbox>
+            <paper-button class="colored" raised on-tap="_updateTestResults">Save Record</paper-button>
+          </div>
+
+
+                         
+        </paper-card>
+
+
+ 
+        
+      </div>
+    </div>
+    <!-- /local DOM -->
+
+  </template>
+  <script src="page-pending-report.coffee-compiled.js"></script>
+</dom-module>

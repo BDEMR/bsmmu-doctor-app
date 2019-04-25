@@ -1,0 +1,936 @@
+<!-- style -->
+<link rel="import" href="../../styles/common-style.html">
+
+<!-- behavior -->
+<link rel="import" href="../../behaviors/common-computes.html">
+<link rel="import" href="../../behaviors/db-using.html">
+<link rel="import" href="../../behaviors/translating.html">
+<link rel="import" href="../../behaviors/page-like.html">
+
+<!-- custom-elements -->
+
+<!-- element -->
+<dom-module id="page-print-invoice">
+  <template>
+
+    <!-- style -->
+
+    <style is="custom-style" include="common-style">
+      .limiting-container {
+        margin-top: 8px;
+      }
+
+      .external-card-title {
+        margin-top: 20px;
+        margin-left: 20px;
+        margin-right: 10px;
+        color: #777777;
+      }
+
+      .b-radius paper-listbox {
+        border-radius: 6px;
+      }
+
+      .info-card {
+        @apply(--layout-vertical);
+        /*@apply(--layout-center);*/
+        margin-top: 10px;
+        margin-left: 10px;
+        margin-right: 10px;
+        padding-bottom: 20px;
+      }
+
+      .info-card .row {
+        margin-left: 10px;
+        /*margin-right: 10px;*/
+        margin-top: 10px;
+      }
+
+      .info-card .hr {
+        margin-left: 20px;
+        margin-right: 20px;
+        height: 1px;
+        /*width: 100px;*/
+        background: #dddddd;
+      }
+
+      .info-card .row .modifier {
+        font-size: 14px;
+        background: #000000;
+        color: #ffffff;
+        margin-left: 5px;
+        padding-top: 2px;
+        padding-bottom: 2px;
+        padding-left: 4px;
+        padding-right: 4px;
+        border-radius: 4px;
+        text-transform: uppercase;
+      }
+
+      .info-card .row .modifier.online {
+        background: #757575;
+      }
+
+      .info-card .row .modifier.local-only {
+        background: #039BE5;
+      }
+
+      .info-card .row .modifier.locally-updated {
+        background: #009688;
+      }
+
+      .info-card .row .modifier.imported {
+        background: #4CAF50;
+      }
+
+      .info-row {
+        margin-top: 10px;
+      }
+
+      .top-info-row {
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+
+      .serial-number {
+        background: #37474F;
+        color: #ffffff;
+        margin-left: 5px;
+        padding-top: 2px;
+        padding-bottom: 2px;
+        padding-left: 4px;
+        padding-right: 4px;
+        border-radius: 4px;
+        text-transform: uppercase;
+        font-weight: bold;
+        display: inline-block;
+        font-size: 14px;
+      }
+
+      .address1 {
+        margin-right: 10px;
+      }
+
+      .name {
+        margin-left: 5px;
+        font-size: 24px;
+      }
+
+      .email {
+        margin-left: 5px;
+        font-size: 14px;
+      }
+
+      .phone {
+        margin-left: 5px;
+      }
+
+      .val {
+        text-decoration: underline;
+      }
+
+      .account-box {
+        --iron-icon-width: 96px;
+        --iron-icon-height: 96px;
+      }
+
+      .list-item {
+        margin-top: 8px;
+        margin-bottom: 8px;
+      }
+
+      .copy-button {
+        background-color: #1FAE0B;
+      }
+
+      .paste-button {
+        background-color: #f44336;
+        color: white;
+      }
+
+      .table {
+        width: 100%;
+      }
+
+      .table th {
+        text-align: left;
+      }
+
+
+
+      .item-action {
+        border-top: 1px solid #e8e8e8;
+        padding: 5px 16px;
+        position: relative;
+        padding: 15px;
+        text-align: right;
+      }
+
+      paper-dropdown-menu {
+        width: 100%;
+      }
+
+
+      paper-checkbox.remind {
+        padding: 15px 25px;
+      }
+
+      paper-checkbox.guideline-checkbox {
+        --paper-checkbox-size: 14px;
+      }
+
+      .guideline {
+        margin-left: 10px;
+        margin-top: 70px;
+        height: 90%;
+        overflow: auto;
+      }
+
+      .guideline h1 {
+        text-align: left;
+        padding: 10px 0;
+        border-bottom: 1px solid var(--paper-green-500);
+        color: var(--brand-primary-color);
+      }
+
+      .guideline .dose {
+        margin: 10px 0;
+        padding: 10px;
+      }
+
+      .guideline .subDose {
+        padding: 10px;
+        margin: 5px 0;
+        border: 1px solid #e0e0e0;
+        border-radius: 3px;
+        /*background-color: var(--paper-grey-50);*/
+      }
+
+      .guideline .age-group {
+        border-bottom: 1px solid #ccc;
+      }
+
+      .disclaimer p {
+        color: red;
+      }
+
+      app-drawer {
+        --app-drawer-width: 400px;
+        --app-drawer-scrim-background: rgba(0, 0, 0, 0.1);
+        --app-drawer-content-container: {
+          border-left: 1px solid #ccc;
+          padding-left: 10px;
+        }
+        text-align: left;
+      }
+
+      paper-material {
+        border: 1px solid var(--paper-grey-200);
+      }
+
+      paper-fab {
+        float: right;
+        margin-right: 10px;
+        margin-top: 30px;
+      }
+
+      .indication-group {
+        border: 1px solid var(--paper-blue-grey-100);
+        padding: 15px;
+        border-radius: 3px;
+      }
+
+      .indication-group paper-dropdown-menu {
+        --paper-input-container-color: var(--paper-orange-500);
+      }
+
+      .card-custom-header {
+        padding: 15px;
+        border-bottom: 1px solid var(--paper-grey-200);
+        background-color: var(--paper-grey-50);
+      }
+
+      .card-custom-header .title {
+        font-size: 20px;
+        font-weight: 500;
+        color: var(--brand-primary-color);
+      }
+
+      @media screen and (max-width: 480px) {
+        app-drawer {
+          --app-drawer-width: 95%;
+        }
+
+        .btn-add.m-vert {
+          margin: 0.29em;
+        }
+      }
+
+      .card-item-2 {
+        border-radius: 2px;
+        margin: 8px 4px;
+        border: 2px solid #eee;
+        background-color: #fff;
+      }
+
+      .card-item {
+        border-radius: 6px;
+        border: 1px solid #eee;
+        margin: 3px;
+      }
+
+      .custom-card-content {
+        background-color: #f7f7f7;
+      }
+
+
+
+      .card-item div {
+        background-color: #fafafa;
+        /*border-right: 1px solid #eee;*/
+      }
+
+      paper-checkbox {
+        margin: 8px;
+      }
+
+      .btn-custom {
+        background-color: #fafafa !important;
+        border: 1px solid #eee;
+        margin: 3px;
+      }
+
+      .btn-custom-2 {
+        background-color: #fafafa !important;
+        border-radius-top-left: 0;
+        border-radius-bottom-left: 0;
+        margin: 0 !important;
+      }
+
+      .combobox-custom {
+        padding: 8px 16px;
+        background-color: #f7f7f7;
+        border-bottom: 1px solid #eee;
+      }
+
+      /*Full Visit Preview - start*/
+
+      .document {
+        font-family: 'Times New Roman';
+        background: white;
+      }
+
+      .document-title {
+        font-size: 16px;
+        text-decoration: underline;
+        font-weight: bold;
+        @apply(--layout-vertical);
+        @apply(--layout-center);
+      }
+
+
+
+      .external-card-title {
+        margin-top: 20px;
+        margin-left: 20px;
+        margin-right: 10px;
+        color: #777777;
+      }
+
+      .info-card {
+        @apply(--layout-vertical);
+        /*@apply(--layout-center);*/
+        margin-top: 10px;
+        margin-left: 10px;
+        margin-right: 10px;
+        padding-bottom: 20px;
+      }
+
+      .info-card .row {
+        margin-left: 10px;
+        /*margin-right: 10px;*/
+        margin-top: 10px;
+      }
+
+      .info-card .hr {
+        margin-left: 20px;
+        margin-right: 20px;
+        height: 1px;
+        /*width: 100px;*/
+        background: #dddddd;
+      }
+
+      .info-card .row .modifier {
+        font-size: 14px;
+        background: #000000;
+        color: #ffffff;
+        margin-left: 5px;
+        padding-top: 2px;
+        padding-bottom: 2px;
+        padding-left: 4px;
+        padding-right: 4px;
+        border-radius: 4px;
+        text-transform: uppercase;
+      }
+
+      .info-card .row .modifier.online {
+        background: #757575;
+      }
+
+      .info-card .row .modifier.local-only {
+        background: #039BE5;
+      }
+
+      .info-card .row .modifier.locally-updated {
+        background: #009688;
+      }
+
+      .info-card .row .modifier.imported {
+        background: #4CAF50;
+      }
+
+      .info-row {
+        margin-top: 10px;
+      }
+
+      .top-info-row {
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+
+      .serial-number {
+        background: #37474F;
+        color: #ffffff;
+        margin-left: 5px;
+        padding-top: 2px;
+        padding-bottom: 2px;
+        padding-left: 4px;
+        padding-right: 4px;
+        border-radius: 4px;
+        text-transform: uppercase;
+        font-weight: bold;
+        display: inline-block;
+        font-size: 14px;
+      }
+
+      .address1 {
+        margin-right: 10px;
+      }
+
+      .name {
+        margin-left: 5px;
+        font-size: 24px;
+      }
+
+      .email {
+        margin-left: 5px;
+        font-size: 14px;
+      }
+
+      .phone {
+        margin-left: 5px;
+      }
+
+      .val {
+        text-decoration: underline;
+      }
+
+      .account-box {
+        --iron-icon-width: 96px;
+        --iron-icon-height: 96px;
+      }
+
+      .document {
+        font-family: 'Times New Roman';
+        background: white;
+      }
+
+      .document-title {
+        font-size: 20px;
+        font-weight: bold;
+      }
+
+      .collection {
+        color: red;
+        background: grey;
+      }
+
+      .document-header {
+        /*background-color: #fafafa;*/
+        padding-left: 10px;
+        padding-right: 10px;
+        border-bottom: 1px solid #eee;
+      }
+
+      .document-header .logo {
+        max-width: 128px;
+        max-height: 128px;
+      }
+
+      .horiline {
+        width: 100%;
+        height: 0px;
+        /*background: black;*/
+        border: 1px solid black;
+        margin-bottom: 6px;
+      }
+
+      .leftSide {
+        margin-left: 6px;
+      }
+
+      .leftSideLine1 {
+        font-size: 24px;
+      }
+
+      .rightSideLine1 {
+        font-size: 22px;
+      }
+
+
+      .document-header2 .logo {
+        max-width: 128px;
+        max-height: 128px;
+      }
+
+
+      .item {
+        padding: 10px;
+        border: 1px solid grey;
+      }
+
+      #printPreview {
+        word-break: break-word;
+        /*display: none !important;*/
+
+      }
+
+      @media print {
+
+        #hideOnPrint {
+          display: none !important;
+        }
+
+        #printPreview {
+          display: block !important;
+          background-color: transparent;
+        }
+      }
+
+      @media print {
+        app-header-layout #contentContainer {
+          overflow-y: unset !important;
+        }
+      }
+
+      .preview-title {
+        @apply(--layout-horizontal);
+        @apply(--layout-center);
+        padding-left: 12px;
+        padding-right: 8px;
+        background-color: #fff;
+        min-height: 60px;
+        /*border-bottom: 1px solid #eee;*/
+      }
+
+      .custom-content {
+        @apply(--layout-horizontal);
+        @apply(--layout-wrap);
+        @apply(--layout-center);
+        padding-left: 12px;
+        padding-right: 8px;
+      }
+
+      .b-top {
+        border-top: 1px solid #eee;
+      }
+
+      /*.content {
+        padding-top: 8px;
+      }*/
+
+      .content.top {}
+
+      .content.left {
+        width: 40%;
+        /*padding-right: 8px;*/
+      }
+
+      .content.right {
+        width: 60%;
+      }
+
+      @media screen and (max-width: 639px) {
+        .content.left {
+          /*margin-top: 8px;*/
+          width: 100%;
+          /*padding: 0;*/
+        }
+
+        .content.right {
+          width: 100%;
+          /*padding: 0;*/
+          /*margin-top: 8px;*/
+        }
+      }
+
+      .tabColor {
+        background-color: teal !important;
+      }
+
+      vaadin-combo-box.combobox-custom-style {
+        padding: 2px;
+      }
+
+      vaadin-combo-box.combobox-custom-style ::content paper-input-container {
+        padding: 4px 0;
+      }
+
+      vaadin-combo-box.combobox-custom-style ::content label {
+        font-size: 18px !important;
+        /*color: rgba(0, 0, 0, .87) !important;*/
+      }
+
+      /*vaadin-combo-box.combobox-custom-style ::content .unfocused-line {
+        border-bottom: none;
+      }*/
+
+      vaadin-combo-box.combobox-custom-style ::content input {
+        font-size: 18px !important;
+        color: rgba(0, 0, 0, .87) !important;
+      }
+
+      .paper-input-custom ::content input {
+        font-size: 18px !important;
+        color: rgba(0, 0, 0, .87) !important;
+      }
+
+      .paper-input-custom ::content label {
+        font-size: 18px !important;
+        color: #737373 !important;
+      }
+
+
+      paper-textarea.textarea-custom-style ::content label {
+        font-size: 18px !important;
+      }
+
+      paper-textarea.textarea-custom-style ::content iron-autogrow-textarea {
+        font-size: 18px !important;
+      }
+
+      /*paper-textarea ::content .unfocused-line{
+        border-bottom: none;
+      }*/
+
+      .type.title-2 {
+        font-size: 18px;
+        line-height: 50px;
+      }
+
+      vaadin-date-picker.date-picker-custom-style ::content paper-input-container {
+        padding: 0;
+      }
+
+      /*vaadin-date-picker.date-picker-custom-style ::content .unfocused-line {
+        border-bottom: none;
+      }*/
+
+      vaadin-date-picker.date-picker-custom-style ::content label {
+        font-size: 18px !important;
+      }
+
+      vaadin-date-picker.date-picker-custom-style ::content input {
+        font-size: 18px !important;
+      }
+
+      vaadin-date-picker.date-picker-custom-style ::content .floated-label-placeholder {
+        display: none;
+      }
+
+      vaadin-date-picker.date-picker-custom-style {
+        padding: 8px 8px 8px 0;
+      }
+
+      paper-dropdown-menu.dropdown-menu-custom-style ::content label {
+        font-size: 18px !important;
+      }
+
+      paper-dropdown-menu.dropdown-menu-custom-style ::content input {
+        font-size: 18px !important;
+      }
+
+      .border-top {
+        border-top: 1px solid #eee;
+      }
+
+      .action-area {
+        padding: 5px 0 5px 8px;
+      }
+
+      .btn-add {
+        min-width: 0;
+        padding-top: 0.5em;
+        padding-bottom: 0.5em;
+        background-color: #eceff1;
+        color: rgba(0, 0, 0, .87);
+      }
+
+      .btn-add.small {
+        margin: 3px;
+        font-size: 14px;
+      }
+
+
+      paper-tabs.custom-tabs {
+        background-color: #f7f7f7;
+        height: 56px;
+      }
+
+      /*Print Preview*/
+
+      .patient-details {
+        background-color: #5c4575;
+        color: #fff;
+      }
+
+      /*.print-content {
+        border-top: 1px solid #eee;
+        @apply(--layout-horizontal);
+      }
+
+      .print-content .left {
+        width: 34%;
+        border-right: 1px solid #eee;
+      }
+
+      .print-content .right {
+        width: 66%;
+      }*/
+
+      ol.order-list {
+        margin: 4px 0;
+        padding-left: 16px;
+        list-style-type: lower-alpha;
+      }
+
+      ul.unorderd-list-custom {
+        margin: 4px 0;
+        padding-left: 16px;
+      }
+
+      ol.order-list li {
+        margin: 4px 0;
+      }
+
+      .print-sub-header {
+        font-size: bold;
+        background-color: #fafafa;
+        margin-bottom: 8px;
+      }
+      .profile-image {
+        height: 78px;
+        width: 78px;
+        border-radius: 50%;
+        border: 2px solid #f7f7f7;
+      }
+    </style>
+
+    <!-- local DOM -->
+
+    <div class="master-container">
+      <div class="limiting-container">
+        <!-- Print Preview Area - start -->
+        <paper-card id="printPreview" elevation="0">
+
+          <div class="print-header horizontal layout center center-justified">
+            <h1>[[settings.printDecoration.headerLine]]</h1>
+          </div>
+
+          <!-- Print Header - Main - start -->
+          <div class="document-header horizontal layout center">
+            <template is="dom-if" if="[[settings.printDecoration.logoDataUri]]">
+              <img class="logo" src="[[settings.printDecoration.logoDataUri]]" alt="">
+            </template>
+
+            <div class="leftSide">
+              <div class="leftSideLine1">[[settings.printDecoration.leftSideLine1]]</div>
+              <div class="leftSideLine2">[[settings.printDecoration.leftSideLine2]]</div>
+              <div class="leftSideLine3">[[settings.printDecoration.leftSideLine3]]</div>
+            </div>
+            <div class="flex"></div>
+            <div class="rightSide layout end-justified">
+              <div class="rightSideLine1">[[settings.printDecoration.rightSideLine1]]</div>
+              <div class="rightSideLine2">[[settings.printDecoration.rightSideLine2]]</div>
+              <div class="rightSideLine3">[[settings.printDecoration.rightSideLine3]]</div>
+            </div>
+          </div>
+          <!-- Print Header - Main - end -->
+
+          <!-- Print Header - Patient Details - start -->
+          <div class="document-header horizontal layout center p-vertical-8">
+            <!-- <template is="dom-if" if="[[!patient.isForOrganizationOnly]]"> -->
+            <div class="m-horizontal-4">
+              <strong>Patient Serial: </strong>
+              <span>{{patient.serial}}</span>
+            </div>
+            <div class="m-horizontal-4">
+              <strong>Patient Name: </strong>
+              <span>{{$getFullName(patient.name)}}</span>
+            </div>
+            <div class="m-horizontal-4">
+              <strong>Sex: </strong>
+              <span>{{patient.gender}}</span>
+            </div>
+            <div class="m-horizontal-4">
+              <strong>Age: </strong>
+              <span>[[_computeAge(patient.dateOfBirth)]] years </span>
+            </div>
+            <div class="m-horizontal-4">
+              <strong>Blood Group: </strong>
+              <span>[[patient.bloodGroup]]</span>
+            </div>
+            <div class="m-horizontal-4">
+              <strong>Allergy: </strong>
+              <span>[[patient.allergy]]</span>
+            </div>
+            <!-- </template> -->
+
+            <!-- <template is="dom-if" if="[[patient.isForOrganizationOnly]]">
+              <div class="m-horizontal-4">
+                <strong>Patient Name: </strong>
+                <i></i>
+              </div>
+              <div class="m-horizontal-4">
+                <strong>Age: </strong>
+                <i>REDACTED FOR CONFIDENTIALITY</i>
+              </div>
+              <div class="m-horizontal-4">
+                <strong>Blood Group: [[patient.bloodGroup]]</strong>
+                <span> </span>
+              </div>
+              <div class="m-horizontal-4">
+                <strong>Allergy: [[patient.allergy]]</strong>
+                <span> </span>
+              </div>
+            </template> -->
+          </div>
+          <!-- Print Header - Patient Details - end -->
+
+          <!-- Print Content [FULL] - start -->
+          <div class="print-content">
+
+            <!--Invoice Starts -->
+            
+            <div class="horizontal layout row">
+              <div class="flex x-end key">Serial:</div>
+              <div class="flex val">[[invoice.serial]]</div>
+            </div>
+
+            <div class="horizontal layout row">
+              <div class="flex x-end key">Name of Institution:</div>
+              <div class="flex val">[[invoice.data.nameOfInstitution]]</div>
+            </div>
+
+            <div class="horizontal layout row">
+              <div class="flex x-end key">Name of Patient:</div>
+              <div class="flex val">[[invoice.data.nameOfPatient]]</div>
+            </div>
+
+            <div class="horizontal layout row">
+              <div class="flex x-end key">Name of Billing Person:</div>
+              <div class="flex val">[[invoice.data.billingPersonsName]]</div>
+            </div>
+
+            <div class="horizontal layout row">
+              <div class="flex x-end key">Service Rendered:</div>
+              <div class="flex val">[[$fromListOrCustom(serviceRenderedOptionList, invoice.data.serviceRenderedSelectedIndex, invoice.data.customServiceRendered)]]</div>
+            </div>
+
+            <div class="horizontal layout row">
+              <div class="flex x-end key">Source of the patient:</div>
+              <div class="flex val">[[$fromListOrCustom(sourceOfPatientOptionList, invoice.data.sourceOfPatientSelectedIndex, invoice.data.customSourceOfPatient)]]</div>
+            </div>
+
+            <div class="horizontal layout row">
+              <div class="flex x-end key">Date Performed:</div>
+              <div class="flex val">[[invoice.data.datePerformed]]</div>
+            </div>
+
+            <div class="horizontal layout row">
+              <div class="flex x-end key">Date Due:</div>
+              <div class="flex val">[[invoice.data.dateDue]]</div>
+            </div>
+
+            <div class="horizontal layout row">
+              <div class="flex x-end key">Time From:</div>
+              <div class="flex val">[[invoice.data.timeFrom]]</div>
+            </div>
+
+            <div class="horizontal layout row">
+              <div class="flex x-end key">Time To:</div>
+              <div class="flex val">[[invoice.data.timeTo]]</div>
+            </div>
+
+            <div class="horizontal layout row">
+              <div class="flex x-end key">Comments:</div>
+              <div class="flex val">[[invoice.data.comments]]</div>
+            </div>
+
+            <div class="horizontal layout row">
+              <div class="flex x-end key">Fee Paid On:</div>
+              <div class="flex val">[[invoice.data.feePaidOn]]</div>
+            </div>
+
+            <div class="horizontal layout row">
+              <div class="flex x-end key">Fee Paid By:</div>
+              <div class="flex val">[[$fromListOrCustom(feePaidByOptionList, invoice.data.feePaidBySelectedIndex, invoice.data.customSourceOfPatient)]]</div>
+            </div>
+
+            <div class="horizontal layout row">
+              <hr class="flex" />
+            </div>
+
+            <div class="horizontal layout row">
+              <div class="flex x-end key">Fee Billed:</div>
+              <div class="flex val">[[invoice.data.feeBilledAmount]]</div>
+            </div>
+
+            <div class="horizontal layout row">
+              <div class="flex x-end key">Fee Paid:</div>
+              <div class="flex val">[[invoice.data.feePaidAmount]]</div>
+            </div>
+
+            <div class="horizontal layout row">
+              <div class="flex x-end key">Fee Remaining:</div>
+              <div class="flex val">[[$calculateRemaining(invoice.data.feePaidAmount, invoice.data.feeBilledAmount, invoice.data.isCleared)]]</div>
+            </div>
+
+            <div class="horizontal layout row">
+              <hr class="flex" />
+            </div>
+
+            <div class="horizontal layout row">
+              <div class="flex x-end key">Payment Status</div>
+              <div class="flex val">[[$toReadbleStatus(invoice.data.paymentStatus)]]</div>
+            </div>
+          </div>
+          <!-- Print Content [FULL] - end -->
+
+          <template is="dom-if" if="[[settings.flags.showUserNameOnPrintPreview]]">
+            <div class="type caption secondary" style="text-align: center; padding: 8px;">
+              <div><i><strong>printed by: </strong>{{user.name}}</i></div>
+            </div>
+          </template>
+          
+        </paper-card>
+
+      </div>
+
+    </div>
+
+  </template>
+  <script src="page-print-invoice.coffee-compiled.js"></script>
+</dom-module>
+
+

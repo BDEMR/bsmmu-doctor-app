@@ -1,0 +1,92 @@
+<link rel="import" href="../../bower-assets/paper-card/paper-card.html">
+<link rel="import" href="../../bower-assets/paper-input/paper-input.html">
+<link rel="import" href="../../bower-assets/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower-assets/paper-menu/paper-menu.html">
+<link rel="import" href="../../bower-assets/paper-item/paper-item.html">
+<link rel="import" href="../../bower-assets/paper-icon-button/paper-icon-button.html">
+<!-- Custom AutoComplete -->
+<link rel="import" href="../../bower-assets/paper-autocomplete/paper-autocomplete.html">
+
+<link rel="import" href="../../behaviors/page-like.html">
+<link rel="import" href="../../behaviors/translating.html">
+
+<!-- Commong Styles -->
+<link rel="import" href="../../styles/common-style.html">
+
+<dom-module id='page-notification-panel'>
+  <template>
+    <style is='custom-style' include='iron-flex iron-flex-alignment common-style'>
+      .search-area {
+        padding: 10px;
+        background-color: var(--paper-blue-grey-50);
+        border-radius: 5px;
+      }
+
+      paper-autocomplete {
+        --paper-input-container-color: var(--paper-indigo-500);
+      }
+      
+    </style>
+
+    <!--local dom-->
+    <div class="master-container">
+      <div class="limiting-container">
+
+        <paper-card>
+          <div class="card-content">
+            <h2>Send Notification</h2>
+            <div class="layout horizontal center search-area">
+              <!-- <paper-dropdown-menu label="Type of Recipient">
+                <paper-menu class="dropdown-content" selected="{{roleSelected}}">
+                  <paper-item>[[$TRANSLATE('Patient',LANG)]]</paper-item>
+                  <paper-item>[[$TRANSLATE('Doctor',LANG)]]</paper-item>
+                  <paper-item>[[$TRANSLATE('Clinic',LANG)]]</paper-item>
+                </paper-menu>
+              </paper-dropdown-menu> -->
+              <paper-autocomplete
+                class="flex" 
+                id="userSearch"
+                label="[[$TRANSLATE('Search for User',LANG)]]"
+                text="{{searchFieldMainInput}}"
+                remote-source="true"
+                on-autocomplete-selected="userSelected"
+                on-autocomplete-reset="userSearchCleared"
+                on-keyup="userSearchStartKeyPressed"
+                text-property="name"
+                value-property="idOnServer"
+                min-length="4"
+                error-message="Input Required"
+                required
+                style="margin-left: 10px;">
+                <template autocomplete-custom-template>
+                  <paper-item on-tap="_onSelect" id$="[[_getSuggestionId(index)]]" role="option" aria-selected="false">
+                      <div class="type bold">[[item.name]]</div>
+                      <div class="type secondary m-left-8">([[item.phone]])</div>
+                      <div class="type secondary m-left-8">[[item.email]]</div>
+                    <paper-ripple></paper-ripple>
+                  </paper-item>
+                </template>
+              </paper-autocomplete>
+              <paper-button  class="btn btn-success" on-tap="userSearchButtonPressed">Search</paper-button>
+            </div>
+            <paper-input class="flex" label="Message" value="{{notificationMessage}}"></paper-input>
+          </div>
+          <div class="card-actions layout horizontal justified">
+            <paper-button class="btn btn-info" raised on-tap="smsSendButtonPressed">
+              Send SMS &nbsp;
+              <iron-icon icon="mail"></iron-icon>
+            </paper-button>
+            <paper-button class="btn btn-success" raised on-tap="notificationSendButtonPressed">
+              Send (1 BDT, Patient) &nbsp;
+              <iron-icon icon="send"></iron-icon>
+              </paper-button>
+          </div>
+        </paper-card>  
+
+      </div>
+    </div>
+
+    
+  </template>
+  <script src="page-notification-panel.coffee-compiled.js"></script>
+</dom-module>

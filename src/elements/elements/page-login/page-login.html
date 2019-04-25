@@ -1,0 +1,162 @@
+<link rel="import" href="../../bower-assets/paper-button/paper-button.html">
+<link rel="import" href="../../bower-assets/paper-card/paper-card.html">
+<link rel="import" href="../../bower-assets/paper-input/paper-input.html">
+<link rel="import" href="../../bower-assets/paper-checkbox/paper-checkbox.html">
+
+
+<!-- style -->
+<link rel="import" href="../../styles/common-style.html">
+
+<!-- behavior -->
+<link rel="import" href="../../behaviors/translating.html">
+<link rel="import" href="../../behaviors/page-like.html">
+<link rel="import" href="../../behaviors/api-calling.html">
+<link rel="import" href="../../behaviors/db-using.html">
+<link rel="import" href="../../behaviors/common-computes.html">
+
+<!-- custom-elements -->
+
+<!-- element -->
+<dom-module id="page-login">
+  <template>
+
+    <!-- style -->
+
+    <style is="custom-style" include="common-style">
+    .limiting-container {
+      margin-top: 10px;
+    }
+    
+    .smaller-container {
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+    
+    .login-box {
+      max-width: 420px;
+      width: 100%;
+    }
+    
+    .login-button {
+      background-color: #5c4575;
+      color: #fff;
+    }
+    
+    .row-3 {
+      margin-top: 10px;
+    }
+    
+    .row-4 {
+      margin-top: 10px;
+      margin-right: 6px;
+    }
+    
+    a {
+      font-size: 14px;
+      color: #1E88E5;
+      /*text-decoration: none;*/
+    }
+    
+    .copyright-notice {
+      margin-top: 20px;
+      color: #000;
+    }
+    
+    .credentials-message {
+      text-align: center;
+      margin-bottom: 20px;
+      margin-top: 20px;
+      font-size: 16px;
+      color: #000;
+    }
+    </style>
+
+    <!-- local DOM -->
+
+    <div class="master-container">
+
+      <div class="limiting-container">
+
+        <div class="smaller-container vertical layout center">
+
+          <template is="dom-if" if="[[$equals(mode, 'doctor-selection')]]">
+
+            <div class="credentials-message">Please select which doctor you want to work as.</div>
+
+            <paper-card class="login-box">
+
+              <div class="card-content vertical layout">
+
+                <template is="dom-if" if="[[tempUser.isUserThemselvesADoctor]]">
+                  <div class="horizontal layout center wrap">
+                    <paper-button class="login-button" on-tap="loginAsMyselfPressed" raised>Login as Myself</paper-button>
+                  </div>
+                </template>
+
+                <template is="dom-repeat" items="[[tempUser.listOfDoctorsAssistantTo]]" as="ofDoctor">
+                  <br />
+                  <br />
+                  <div class="horizontal layout center wrap">
+                    <paper-button class="login-button" on-tap="loginAsSomeoneElsePressed" raised>Login on behalf of [[ofDoctor.name]]</paper-button>
+                  </div>
+                </template>
+
+              </div>
+
+            </paper-card>
+            
+          </template>
+
+          <template is="dom-if" if="[[$equals(mode, 'login')]]">
+
+            <div class="credentials-message">Please log in using your bdemr.com credentials.</div>
+
+            <paper-card class="login-box">
+
+              <div class="card-content vertical layout">
+
+                <div class="horizontal layout center wrap">
+                  <paper-input class="flex" label="Email or phone number" value="{{loginFormData.emailOrPhone}}" placeholder="john@example.com" always-float-label></paper-input>
+                </div>
+
+                <div class="horizontal layout center wrap">
+                  <paper-input class="flex" label="Password" type="password" value="{{loginFormData.password}}" placeholder="XXXXXXXX" on-keyup="enterKeyPressed" always-float-label></paper-input>
+                </div>
+
+                <div class="horizontal layout center wrap row-3">
+                  <paper-checkbox checked="{{shouldRememberUser}}">Remember Me</paper-checkbox>
+                  <div class="flex"></div>
+                  <iron-a11y-keys id="a11y" target="[[target]]" keys="enter" on-keys-pressed="onEnter"></iron-a11y-keys>
+                  <paper-button class="login-button" on-tap="loginButtonPressed" raised>Login</paper-button>
+                 
+                  
+                </div>
+
+                <div class="horizontal layout center wrap row-4">
+                  <a href="https://my.bdemr.com/#!/login" target="_blank">Forgot Password?</a>
+                  <div class="flex"></div>
+                  <a href="https://bdemr.com/signup" target="_blank">Signup</a>
+                </div>
+
+              </div>
+
+            </paper-card>
+
+          </template>
+
+
+
+          <div class="copyright-notice vertical layout center-justified center">
+            <div>All rights reserved</div>
+            <div>2016 © BDEMR Solutions. Corp.</div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </template>
+  <script src="page-login.coffee-compiled.js"></script>
+</dom-module>

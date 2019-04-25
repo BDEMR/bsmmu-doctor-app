@@ -1,0 +1,155 @@
+<link rel="import" href="../../bower-assets/polymer/polymer.html">
+
+<!-- iron-* -->
+<link rel="import" href="../../bower-assets/iron-icons/iron-icons.html">
+
+<!-- paper-* -->
+<link rel="import" href="../../bower-assets/paper-button/paper-button.html">
+<link rel="import" href="../../bower-assets/paper-card/paper-card.html">
+<link rel="import" href="../../bower-assets/paper-input/paper-input.html">
+<link rel="import" href="../../bower-assets/paper-input/paper-textarea.html">
+<link rel="import" href="../../bower-assets/paper-dropdown-menu/paper-dropdown-menu-light.html">
+<link rel="import" href="../../bower-assets/paper-listbox/paper-listbox.html">
+<link rel="import" href="../../bower-assets/paper-item/paper-item.html">
+<link rel="import" href="../../bower-assets/paper-fab/paper-fab.html">
+<link rel="import" href="../../bower-assets/paper-toggle-button/paper-toggle-button.html">
+<link rel="import" href="../../bower-assets/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="../../bower-assets/paper-menu-button/paper-menu-button.html">
+<link rel="import" href="../../bower-assets/paper-toggle-button/paper-toggle-button.html">
+<!-- style -->
+<link rel="import" href="../../styles/common-style.html">
+
+<!-- behavior -->
+<link rel="import" href="../../behaviors/translating.html">
+<link rel="import" href="../../behaviors/page-like.html">
+<link rel="import" href="../../behaviors/api-calling.html">
+<link rel="import" href="../../behaviors/common-computes.html">
+<link rel="import" href="../../behaviors/db-using.html">
+
+<!-- custom-elements -->
+
+<!-- element -->
+<dom-module id="page-search-record">
+  <template>
+
+    <!-- style -->
+
+    <style is="custom-style" include="common-style">
+      .limiting-container {
+        margin-top: 10px;
+      }
+
+      paper-button {
+        background: white;
+      }
+
+      .results {
+        margin-top: 20px;
+        padding: 10px;
+      }
+
+      .results-top {
+        margin-top: 20px;
+        text-align: center;
+      }
+
+      th {
+        border-right: 1px solid #EEEEEE;
+        color: #888888;
+      }
+
+      .tf {
+        font-weight: bold;
+      }
+
+      .tr:hover {
+        background: #eeeeee;
+        cursor: pointer;
+      }
+
+      .primary {
+        color: white;
+        background: #2196F3;
+      }
+
+      .search-item {
+        margin: 4px;
+        padding: 4px;
+        background: #ECEFF1;
+      }
+    </style>
+
+    <!-- local DOM -->
+
+    <div class="master-container">
+
+      <div class="limiting-container vertical layout">
+
+        <!-- search strip - start -->
+        <paper-card class="results vertical layout">
+
+          <div class="horizontal layout center">
+            <paper-input class="flex" type="date" label="Date Created [From]" value="{{searchParameters.dateCreatedFrom}}" always-float-label></paper-input>
+            <paper-input class="flex" type="date" label="Date Created [To]" value="{{searchParameters.dateCreatedTo}}" always-float-label></paper-input>
+            <paper-button class="primary" raised on-tap="searchButtonPressed">Search</paper-button>
+          </div>
+
+          <div class="horizontal layout search-item">
+            <paper-checkbox checked="{{searchParameters.symptoms.shouldSearch}}">Symptoms</paper-checkbox>
+            <template is="dom-if" if="[[searchParameters.symptoms.shouldSearch]]">
+              <paper-input label="Insert symptom to search" value="{{searchParameters.symptoms.searchString}}"></paper-input>
+            </template>
+          </div>
+
+          <div class="horizontal layout search-item">
+            <paper-checkbox checked="{{searchParameters.diagnosis.shouldSearch}}">Diagnosis</paper-checkbox>
+            <template is="dom-if" if="[[searchParameters.diagnosis.shouldSearch]]">
+              <paper-input label="Insert symptom to search" value="{{searchParameters.diagnosis.searchString}}"></paper-input>
+            </template>
+          </div>
+
+        </paper-card>
+        <!-- search strip - end -->
+
+        <br />
+
+        <!-- search results - start -->
+
+        <div class="results-top">Found [[matchingRecordList.length]] results</div>
+
+        <paper-card class="results vertical layout">
+
+          <div class="card-content horizontal layout">
+
+            <table>
+              <thead>
+                <tr>
+                  <th>SERIAL</th>
+                  <th>DATE CREATED</th>
+                  <th>PATIENT SERIAL</th>
+                  <th>RECORD TYPE</th>
+                </tr>
+              </thead>
+              <tbody>
+                <template is="dom-repeat" items="[[matchingRecordList]]" as="record">
+                  <tr class="tr" on-tap="recordPressed">
+                    <td>[[record.serial]]</td>
+                    <td>[[$mkDate(record.createdDatetimeStamp)]]</td>
+                    <td>[[record.patientSerial]]</td>
+                    <td>[[record.recordType]]</td>
+                  </tr>
+                </template>
+              </tbody>
+            </table>
+
+          </div>
+        </paper-card>
+        <!-- search results - end -->
+
+      </div>
+
+    </div>
+
+  </template>
+  <script src="page-search-record.coffee-compiled.js"></script>
+</dom-module>

@@ -1,0 +1,172 @@
+<!-- paper-* -->
+<link rel="import" href="../../bower-assets/paper-button/paper-button.html">
+<link rel="import" href="../../bower-assets/paper-card/paper-card.html">
+<link rel="import" href="../../bower-assets/paper-input/paper-input.html">
+<link rel="import" href="../../bower-assets/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower-assets/paper-listbox/paper-listbox.html">
+<link rel="import" href="../../bower-assets/iron-selector/iron-selector.html">
+<link rel="import" href="../../bower-assets/paper-item/paper-item.html">
+
+<!-- Custom AutoComplete -->
+<link rel="import" href="../../bower-assets/paper-autocomplete/paper-autocomplete.html">
+
+
+<!-- style -->
+<link rel="import" href="../../styles/common-style.html">
+
+<!-- behavior -->
+<link rel="import" href="../../behaviors/common-computes.html">
+<link rel="import" href="../../behaviors/db-using.html">
+<link rel="import" href="../../behaviors/translating.html">
+<link rel="import" href="../../behaviors/page-like.html">
+<link rel="import" href="../../behaviors/api-calling.html">
+
+<!-- custom-elements -->
+
+<!-- element -->
+<dom-module id="page-medicine-dispension">
+  <template>
+
+    <!-- style -->
+
+    <style is="custom-style" include="common-style">
+      .card-custom-header {
+        padding: 15px;
+        border-bottom: 1px solid var(--paper-grey-200);
+        background-color: var(--paper-grey-50);
+      }
+
+      .card-custom-header .title {
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 28px;
+        color: var(--brand-primary-color);
+      }
+
+      .medication-item {
+        padding: 15px;
+        border-bottom: 1px solid rgb(204, 204, 204); 
+      }
+
+      .medication-item:nth-child(odd) {
+        background-color: var(--paper-grey-100);
+      }
+
+      .medication-item .patient-name {
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      .prescription {
+        border-bottom: 1px solid #eee;
+      }
+
+      .prescription:nth-last-child(2) {
+        border: none;
+      }
+
+      @media only screen and (max-width: 480px) {
+        .table--medicine {
+          @apply(--layout-vertical);
+          border: 1px solid var(--paper-green-300);
+
+          app-drawer {
+            --app-drawer-width: 95%;
+          }
+        }
+    </style>
+
+    <!-- local DOM -->
+
+
+    <div class="master-container">
+
+      <div class="limiting-container">
+
+
+        <!-- Organization Selection- start -->
+
+        <paper-card>
+          <div class="card-content">
+
+            <paper-dropdown-menu class="m-right-8" label="Clinic/Hospital" id="organizationDropdown">
+              <paper-listbox class="dropdown-content" on-iron-select="organizationSelected" selected="{{selectedOrganizationIndex}}">
+                <template is="dom-repeat" items="[[organizationsIBelongToList]]" as="organization">
+                  <paper-item>[[organization.name]]</paper-item>
+                </template>
+              </paper-listbox>
+            </paper-dropdown-menu>
+
+            <template is="dom-if" if="[[$notUndefined(selectedOrganizationIndex)]]">
+              <paper-dropdown-menu class="m-horizontal-4" label="Department" id="departmentDropdown">
+                <paper-listbox class="dropdown-content" on-iron-select="departmentSelected" selected="{{selectedDepartmentIndex}}">
+                  <template is="dom-repeat" items="[[patientStayObject.departmentList]]" as="department">
+                    <paper-item>[[department.name]]</paper-item>
+                  </template>
+                </paper-listbox>
+              </paper-dropdown-menu>
+            </template>
+
+            <template is="dom-if" if="[[$notUndefined(selectedDepartmentIndex)]]">
+              <paper-dropdown-menu class="m-horizontal-4" label="Unit" id="unitDropdown">
+                <paper-listbox class="dropdown-content" on-iron-select="unitSelected" selected="{{selectedUnitIndex}}">
+                  <template is="dom-repeat" items="[[unitList]]" as="unit">
+                    <paper-item>[[unit.name]]</paper-item>
+                  </template>
+                </paper-listbox>
+              </paper-dropdown-menu>
+            </template>
+
+            <template is="dom-if" if="[[$notUndefined(selectedUnitIndex)]]">
+              <paper-dropdown-menu class="m-horizontal-4" label="Ward" id="wardDropdown">
+                <paper-listbox class="dropdown-content" on-iron-select="wardSelected" selected="{{selectedWardIndex}}">
+                  <template is="dom-repeat" items="[[wardList]]" as="ward">
+                    <paper-item>[[ward.name]]</paper-item>
+                  </template>
+                </paper-listbox>
+              </paper-dropdown-menu>
+            </template>
+
+          </div>
+        </paper-card>
+
+        <paper-card heading="Medication List" class="m-top-8">
+          <div class="">
+            <template is="dom-repeat" items="[[matchingMedicationList]]">
+              <div class="medication-item">
+                <div class="patient-name">[[$getFullName(item.patient.name)]]</div>
+                <div>Phone: [[item.patient.phoneNumberList.0.phoneNumber]] | Email: [[item.patient.emailAddressList.0.emailAddress]]</div>
+                <div>Seat Number [[item.patient.seat]]</div>
+                <div class="m-left-16">
+                  <template is="dom-repeat" items="[[item.medicationList]]" as='medicine'>
+                    <paper-item class="prescription">
+                      <div class="flex-2">[[medicine.data.brandName]]</div>
+                      <div class="flex-1">[[medicine.data.doseDirection]]</div>
+                      <div class="flex-1 type caption-2">
+                        <span class="type secondary">Last Dose: </span>
+                        <span>[[_getLastDoseDateTime(medicine.data.intakeDateTimeStampList, medicine.data.intakeDateTimeStampList.length)]]</span>
+                      </div>
+                      <!-- <div class="flex-1 layout vertical">
+                        <span class="type secondary caption-2">Next Dose</span>
+                        <span>[[_getNextDoseDateTime(item.data.intakeDateTimeStampList, item.data.nextDoseDateTimeStamp)]]</span>
+                      </div> -->
+                      <div class="flex-1">
+                        <paper-button class="btn btn-primary btn-sm" on-tap="tookDoseClicked">Give Medicine</paper-button>
+                      </div>
+                    </paper-item>
+                  </template>
+                </div>
+              </div>
+            </template>
+          </div>
+        </paper-card>
+
+
+      </div>
+
+    </div>
+
+  </template>
+  <script src="../mixin/mixin-patient-stay.coffee-compiled.js"></script>
+  <script src="page-medicine-dispension.coffee-compiled.js"></script>
+</dom-module>

@@ -1,0 +1,256 @@
+<link rel="import" href="../../bower-assets/polymer/polymer.html">
+
+<!-- iron-* -->
+<link rel="import" href="../../bower-assets/iron-pages/iron-pages.html">
+
+<!-- paper-* -->
+<link rel="import" href="../../bower-assets/paper-button/paper-button.html">
+<link rel="import" href="../../bower-assets/paper-card/paper-card.html">
+<link rel="import" href="../../bower-assets/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower-assets/paper-dropdown-menu/paper-dropdown-menu-light.html">
+<link rel="import" href="../../bower-assets/paper-listbox/paper-listbox.html">
+<link rel="import" href="../../bower-assets/paper-item/paper-item.html">
+<!-- style -->
+<link rel="import" href="../../styles/common-style.html">
+
+<!-- behavior -->
+<link rel="import" href="../../behaviors/common-computes.html">
+<link rel="import" href="../../behaviors/db-using.html">
+<link rel="import" href="../../behaviors/translating.html">
+<link rel="import" href="../../behaviors/page-like.html">
+<link rel="import" href="../../behaviors/api-calling.html">
+
+<!-- custom-elements -->
+
+<!-- element -->
+<dom-module id="page-review-report">
+  <template>
+
+    <!-- style -->
+    <style is="custom-style" include="common-style">
+
+      .limiting-container {
+        margin-top: 10px;
+      }
+      .table{
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      .table th {
+        text-align: left;
+        background-color: var(--paper-grey-50);
+      }
+
+      .table td {
+        color: #444;
+      }
+
+      .table td, .table th{
+        vertical-align: middle;
+        padding: 10px 20px;
+        border-bottom: 1px solid var(--paper-grey-100);
+      }
+
+       .table tr:last-child td {
+        border-bottom: 0;
+      }
+
+      .table.two-col th {
+        text-align: right;
+        background-color: white;
+        width: 50%;
+      }
+
+      .two-col .header th {
+        background-color: var(--paper-grey-50);
+        text-align: center;
+        padding: 20px 0;
+        text-trasnform: uppercase;
+      }
+
+      .block{display: block}
+
+      .filter-query {
+        --paper-input-container: {
+          width: 250px;
+          padding: 0;
+        }
+        --paper-input-container-label: {
+          font-size: 13px;
+        }
+        --paper-input-container-input: {
+          font-size: 13px;
+        }        
+      }
+      .search {
+        @apply(--layout-end-justified);
+      }
+
+      @media only screen and (min-width : 320px) and (max-width : 480px){
+        .table td, .table th{
+          vertical-align: top;
+          font-size: 14px;
+        }
+        .search {
+          margin-top: 10px;
+          @apply(--layout-start-justified);
+        }
+      }
+    </style>
+    <!-- /style -->
+
+    
+    <div class="master-container">
+
+      <div class="limiting-container">
+
+        <!-- Demography - start -->
+        <paper-card heading="Demography">
+          <div class="card-content">
+
+            <div class="basic-list">
+
+              <!-- <div class="layout horizontal">
+                <iron-image class="avatar" sizing="cover" src="../../images/avatar.png"></iron-image>
+                <div class="m-horizontal-5 flex">
+                  <div class="type caption m-horizontal-5 bg-gray">DA1234</div>
+                  <div class="type body-lead m-horizontal-5">Mr. John Doe</div>
+                </div>
+              </div> -->
+
+              <div class="layout horizontal center">
+                <div class="type body-lead capitalize">{{$getFullName(patient.name)}}</div>
+                <div class="m-left-8 type caption bg-gray">{{patient.serial}}</div>
+              </div>
+              <div class="type caption secondary">Created on [[$mkDate(patient.createdDatetimeStamp)]] by [[$findCreator(patient.createdByUserSerial)]]</div>
+              
+              
+
+              <div class="layout horizontal">
+                <!-- <div class="type body">Male</div> -->
+                <div class="type body" hidden$="[[_isEmptyString(patient.dob)]]">[[_computeAge(patient.dob)]] years</div>
+                <!-- <div class="m-left-10 type body">AB+</div> -->
+                <!-- <div class="m-left-10 type body">5'4"</div> -->
+                <!-- <div class="m-left-10 type body">65Kgs</div> -->
+              </div>
+
+              <div hidden$="[[_isEmptyString(patient.nIdOrSsn)]]">
+                <iron-icon class="icon small" icon="icons:perm-identity"></iron-icon><span class="type body m-left-10">{{patient.nIdOrSsn}}</span>
+              </div>
+
+              <div hidden$="[[_isEmptyString(patient.phone)]]">
+                <iron-icon class="icon small" icon="communication:phone"></iron-icon><span class="type body m-left-10">{{patient.phone}}</span>
+              </div>
+              <div hidden$="[[_isEmptyString(patient.email)]]">
+                <iron-icon class="icon small" icon="communication:mail-outline"></iron-icon><span class="type body m-left-10"> {{patient.email}}</span>
+              </div>
+
+              <div>
+                <iron-icon hidden$="[[_isEmptyString(patient.address.line1)]]" class="icon small" icon="home"></iron-icon>
+                <span class="m-left-10" hidden$="[[_isEmptyString(patient.address.line1)]]">{{patient.address.line1}}</span>
+                <span hidden$="[[_isEmptyString(patient.address.line2)]]">, {{patient.address.line2}}</span>
+                <span hidden$="[[_isEmptyString(patient.address.postalCode)]]">, {{patient.address.postalCode}}</span>
+                <span hidden$="[[_isEmptyString(patient.address.cityOrTown)]]">, {{patient.address.cityOrTown}}</span>
+                <span hidden$="[[_isEmptyString(patient.address.stateOrProvince)]]">, {{patient.address.stateOrProvince}}</span>
+                <span hidden$="[[_isEmptyString(patient.address.country)]]">, {{patient.address.country}}</span>
+              </div>
+
+              <!-- <template is="dom-if" if="[[_isEmptyArray(patient.doctorsPrivateNote)]]"> -->
+              <div hidden$="[[_isEmptyString(patient.doctorsPrivateNote)]]">
+                <div class="sp"></div>
+                <div >
+                  <span class="type bold">Quick Notes (Kept Private): </span>
+                  <span>{{patient.doctorsPrivateNote}}</span>
+                </div>
+              </div>
+              
+                
+              <!-- </template> -->
+
+              
+              
+            </div>
+
+          </div>
+        </paper-card>
+        <!-- Demography - end -->
+
+        <paper-card class="m-top-8" heading="Test Results">
+
+
+          <div class="card-content">
+            <template is="dom-if" if="[[_compareFn(reviewReport.data.testList.length, '!=', 1)]]">
+              <div class="type body-lead">{{reviewReport.investigationName}}</div>
+              <div class="sp"></div>
+              <ul>
+                <template is="dom-repeat" items="{{reviewReport.data.testList}}">
+                  
+                  <li class="m-top-8">
+                    <div>
+                      {{item.testName}}: {{item.testResult}} {{item.testUnit}}
+                    </div>
+                    <div class="type caption-2"><strong>Institution/Hospital Name:</strong> {{item.institutionName}}</div>
+                    <div class="type caption-2"><strong>Date Performed: </strong>{{item.datePerform}}</div>
+                    <div class="type caption-2"><strong>Reference Range: </strong>{{item.referenceRange}}</div>
+                  </li>
+                  
+                </template>
+              </ul>
+              <div>
+                <span class="type caption-2">
+                  <strong>Advised by:</strong> {{reviewReport.advisedDoctorName}} - {{reviewReport.advisedDoctorSpeciality}}
+                </span>
+              </div>
+              <div>
+                <span class="type caption-2">
+                  <strong>Reported by:</strong> {{reviewReport.reportedDoctorName}} - {{reviewReport.reportedDoctorSpeciality}}
+                </span>
+              </div>
+
+            </template>
+
+            <template is="dom-if" if="[[_compareFn(reviewReport.data.testList.length, '==', 1)]]">
+              <div class="type body-lead">{{reviewReport.investigationName}}: {{reviewReport.data.testList.0.testResult}} {{reviewReport.data.testList.0.testUnit}}</div>
+              <div class="sp"></div>
+
+              <div class="type caption-2"><strong>Institution/Hospital Name:</strong> {{reviewReport.data.testList.0.institutionName}}</div>
+              <div class="type caption-2"><strong>Date Performed: </strong>{{reviewReport.data.testList.0.datePerform}}</div>
+              <div class="type caption-2"><strong>Reference Range: </strong>{{reviewReport.data.testList.0.referenceRange}}</div>
+
+              <div>
+                <span class="type caption-2">
+                  <strong>Advised by:</strong> {{reviewReport.advisedDoctorName}} - {{reviewReport.advisedDoctorSpeciality}}
+                </span>
+              </div>
+
+              <div>
+                <span class="type caption-2">
+                  <strong>Reported by:</strong> {{reviewReport.reportedDoctorName}} - {{reviewReport.reportedDoctorSpeciality}}
+                </span>
+              </div>
+
+            </template>
+
+            
+          </div>
+
+          <div class="card-actions">
+            <paper-button class="type warning" on-tap="flagAsErrorTestResultsItemClicked">Flag As Error</paper-button>
+            <paper-button raised class="colored" on-tap="seenByAdvisedDoctor">SEEN</paper-button>
+          </div>
+
+
+                         
+        </paper-card>
+
+
+ 
+        
+      </div>
+    </div>
+    <!-- /local DOM -->
+
+  </template>
+  <script src="page-review-report.coffee-compiled.js"></script>
+</dom-module>

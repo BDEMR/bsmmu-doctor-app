@@ -1,0 +1,258 @@
+<link rel="import" href="../../bower-assets/paper-button/paper-button.html">
+<link rel="import" href="../../bower-assets/paper-card/paper-card.html">
+<link rel="import" href="../../bower-assets/paper-input/paper-input.html">
+<link rel="import" href="../../bower-assets/paper-input/paper-textarea.html">
+<link rel="import" href="../../bower-assets/paper-listbox/paper-listbox.html">
+<link rel="import" href="../../bower-assets/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="../../bower-assets/paper-item/paper-item.html">
+<link rel="import" href="../../bower-assets/paper-radio-group/paper-radio-group.html">
+<link rel="import" href="../../bower-assets/paper-radio-button/paper-radio-button.html">
+<link rel="import" href="../../bower-assets/paper-menu-button/paper-menu-button.html">
+<link rel="import" href="../../bower-assets/paper-dialog-scrollable/paper-dialog-scrollable.html">
+
+<link rel="import" href="../../bower-assets/paper-autocomplete/paper-autocomplete.html">
+
+<!-- style -->
+<link rel="import" href="../../styles/common-style.html">
+
+<!-- behavior -->
+<link rel="import" href="../../behaviors/common-computes.html">
+<link rel="import" href="../../behaviors/db-using.html">
+<link rel="import" href="../../behaviors/translating.html">
+<link rel="import" href="../../behaviors/page-like.html">
+<link rel="import" href="../../behaviors/api-calling.html">
+<!-- custom-elements -->
+
+<!-- element -->
+<dom-module id="page-foc-admin-panel">
+  <template>
+
+    <!-- style -->
+
+    <style is="custom-style" include="common-style">
+      .limiting-container {
+        margin-top: 10px;
+      }
+
+      .organization-info-card-counter {
+        margin-top: 20px;
+        margin-left: 20px;
+        margin-right: 10px;
+        color: #777777;
+      }
+
+      .organization-info-cards {
+        @apply(--layout-vertical);
+        /*@apply(--layout-center);*/
+        margin-top: 10px;
+        margin-left: 10px;
+        margin-right: 10px;
+        padding-bottom: 20px;
+      }
+
+      .organization-info-cards .row {
+        margin-left: 10px;
+        /*margin-right: 10px;*/
+        margin-top: 10px;
+      }
+
+      .organization-info-cards .hr {
+        margin-left: 20px;
+        margin-right: 20px;
+        height: 1px;
+        /*width: 100px;*/
+        background: #dddddd;
+      }
+
+      .organization-info-cards .row .modifier {
+        font-size: 14px;
+        background: #000000;
+        color: #ffffff;
+        margin-left: 5px;
+        padding-top: 2px;
+        padding-bottom: 2px;
+        padding-left: 4px;
+        padding-right: 4px;
+        border-radius: 4px;
+        text-transform: uppercase;
+      }
+
+      .organization-info-cards .row .modifier.online {
+        background: #757575;
+      }
+
+      .organization-info-cards .row .modifier.local-only {
+        background: #039BE5;
+      }
+
+      .organization-info-cards .row .modifier.locally-updated {
+        background: #009688;
+      }
+
+      .organization-info-cards .row .modifier.imported {
+        background: #4CAF50;
+      }
+
+      .info-row {
+        margin-top: 10px;
+      }
+
+      .top-info-row {
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+
+      .serial-number {
+        background: #37474F;
+        color: #ffffff;
+        margin-left: 5px;
+        padding-top: 2px;
+        padding-bottom: 2px;
+        padding-left: 4px;
+        padding-right: 4px;
+        border-radius: 4px;
+        text-transform: uppercase;
+        font-weight: bold;
+      }
+
+      .address1 {
+        margin-right: 10px;
+      }
+
+      .break-on-tablet {
+        @apply(--layout-horizontal);
+      }
+
+      @media screen and (max-width: 740px) {
+        .break-on-tablet {
+          display: block;
+        }
+      }
+
+      .val {
+        text-decoration: underline;
+      }
+
+      .card-custom-header {
+        padding: 15px;
+        border-bottom: 1px solid var(--paper-grey-200);
+        background-color: var(--paper-grey-50);
+      }
+
+      .card-custom-header .title {
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 28px;
+        color: var(--brand-primary-color);
+      }
+
+      .primary {
+        background: #388E3C;
+        color: white;
+      }
+
+      .type.caption-3 {
+        font-size: 14.5px;
+        font-weight: bold;
+        line-height: 18px;
+      }
+
+      .text-muted {
+        color: var(--secondary-text-color);
+      }
+
+      .log-box {
+        padding: 10px 0px;
+        border-bottom: solid 1px #eee;
+      }
+
+      .custom-layout {}
+    </style>
+
+    <!-- local DOM -->
+
+    <div class="master-container">
+
+      <div class="limiting-container">
+
+        <template is="dom-if" if="{{!isOrganizationValid}}">
+          Organization invalid
+        </template>
+
+        <!-- editing organization - start -->
+        <template is="dom-if" if="{{isOrganizationValid}}">
+
+          <paper-card heading="Basic Information">
+            <div class="card-content">
+              <div class="horizontal layout center top-info-row">
+                <div>ID: </div>
+                <div class="serial-number">[[organization.idOnServer]]</div>
+                <div class="flex"></div>
+              </div>
+              <div class="info-row">
+                <div>Name: [[organization.name]]</div>
+              </div>
+              <div class="info-row">
+                <div>Region: [[organization.effectiveRegion]]</div>
+              </div>
+              <div class="info-row">
+                <div>Address: [[organization.address]]</div>
+              </div>
+            </div>
+          </paper-card>
+
+          <!-- FOC Package management Start -->
+          <paper-card class="m-top-8" heading="Add/Update FOC Packages">
+            <div class="card-content">
+              <paper-input class="flex" value="{{newPackage.name}}" label="Package Name" type="text"></paper-input>
+              <paper-input class="flex" value="{{newPackage.displayName}}" label="Display Name" type="text"></paper-input>
+              <paper-input class="flex" value="{{newPackage.needsToPay}}" label="Needs to Pay" type="number"></paper-input>
+              <paper-input class="flex" value="{{newPackage.freeForDays}}" label="Free for Days" type="number"></paper-input>
+              <!-- <template is="dom-repeat" items="[[newPackage.offerableBy]]"><paper-input class="flex" value="{{newPackage.offerableBy.0}}" label="Offerable By" type="text"></paper-input></template> -->
+            </div>
+            <div class="card-actions">
+              <paper-checkbox checked="{{newPackage.isActive}}">Is Active</paper-checkbox>
+              <paper-checkbox checked="{{newPackage.applicableToAnyOrganization}}">Applicable to Any Organization</paper-checkbox>
+              <paper-button raised class="btn btn-success" on-tap="_addPackageButtonPressed">Add/Update Package +</paper-button>
+            </div>
+          </paper-card>
+          <!-- Add Patient End -->
+
+          <paper-card class="m-top-8" heading="Available Packages">
+            <div class="card-content">
+              <template is="dom-repeat" items="[[packageList]]">
+                <div hidden$="[[!item.isActive]]">
+                  <div class="layout vertical">
+                    <div>Package #[[_returnSerial(index)]]</div>
+                    <div>Available Package: [[item.name]]</div>
+                    <div>Free of for days: [[item.freeForDays]]&nbsp;Days</div>
+                    <div>Needs to pay: [[item.needsToPay]]&nbsp;BDT</div>
+                  </div>
+                  <paper-button class="btn btn-success" raised on-tap="_editPackageButtonClicked" style="margin-bottom: 15px;">Edit Package</paper-button>
+                </div>
+              </template>
+            </div>
+          </paper-card>
+
+          <paper-card class="m-top-8" heading="Deactivated packages">
+            <div class="card-content">
+              <template is="dom-repeat" items="[[packageList]]">
+                <div hidden$="[[item.isActive]]">
+                  <div class="layout vertica">
+                    <div>Package #[[_returnSerial(index)]]</div>
+                    <div>Available Package: [[item.name]]</div>
+                    <div>Free of for days: [[item.freeForDays]]&nbsp;Days</div>
+                    <div>Needs to pay: [[item.needsToPay]]&nbsp;BDT</div>
+                  </div>
+                  <paper-button class="btn btn-success" raised on-tap="_editPackageButtonClicked" style="margin-bottom: 15px;">Edit Package</paper-button>
+                </div>
+              </template>
+            </div>
+          </paper-card>
+
+        </template>
+      </div>
+    </div>
+  </template>
+  <script src="page-foc-admin-panel.coffee-compiled.js"></script>
+</dom-module>

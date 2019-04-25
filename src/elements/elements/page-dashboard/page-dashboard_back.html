@@ -1,0 +1,222 @@
+<link rel="import" href="../../bower-assets/paper-button/paper-button.html">
+<link rel="import" href="../../bower-assets/paper-card/paper-card.html">
+<link rel="import" href="../../bower-assets/paper-dropdown-menu/paper-dropdown-menu-light.html">
+<link rel="import" href="../../bower-assets/paper-listbox/paper-listbox.html">
+<link rel="import" href="../../bower-assets/paper-item/paper-item.html">
+
+<!-- style -->
+<link rel="import" href="../../styles/common-style.html">
+
+<!-- behavior -->
+<link rel="import" href="../../behaviors/translating.html">
+<link rel="import" href="../../behaviors/page-like.html">
+<link rel="import" href="../../behaviors/db-using.html">
+
+<!-- custom-elements -->
+<link rel="import" href="../../elements/html-block/html-block.html">
+
+<!-- element -->
+<dom-module id="page-dashboard">
+  <template>
+
+    <!-- style -->
+
+    <style is="custom-style" include="common-style">
+    .row.one {
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+    
+    .row.one .card-group {
+      @apply(--layout-horizontal);
+      @apply(--layout-flex);
+      margin-left: 5px;
+      margin-right: 5px;
+    }
+    /*.row.one .card-group:first-child {
+      margin-left: 10px;
+    }
+    
+    .row.one .card-group:last-child {
+      margin-right: 10px;
+    }*/
+    
+    .card {
+      @apply(--layout-flex);
+      min-height: 100px;
+      margin: 3px;
+    }
+    
+    .row.one .card:first-child {
+      margin-left: 0px;
+    }
+    
+    .row.one .card:last-child {
+      margin-right: 0px;
+    }
+    
+    @media screen and (max-width: 740px) {
+      .row.one .card-group:first-child {
+        margin-right: 10px;
+      }
+      .row.one .card-group:last-child {
+        margin-top: 10px;
+        margin-left: 10px;
+      }
+    }
+    
+    @media screen and (max-width: 480px) {
+      .row.one .card-group {
+        display: block;
+      }
+      .row.one .card:first-child {
+        margin-right: 0px;
+      }
+      .row.one .card:last-child {
+        margin-top: 10px;
+        margin-left: 0px;
+      }
+    }
+    
+    .card-content.single-block .number {
+      font-size: 72px;
+    }
+    
+    .card-content.single-block .subtitle {
+      text-transform: uppercase;
+    }
+    
+    .row.two {
+      @apply(--layout-horizontal);
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+    
+    .row.two .card.one {
+      @apply(--layout-flex);
+      margin-right: 5px;
+    }
+    
+    .row.two .card.two {
+      margin-left: 5px;
+      padding-left: 10px;
+      @apply(--layout-flex-3);
+    }
+    
+    @media screen and (max-width: 740px) {
+      .row.two {
+        margin-left: 5px;
+        margin-right: 5px;
+        display: block;
+      }
+      .row.two .card.one {
+        margin-left: 5px;
+        margin-right: 5px;
+      }
+      .row.two .card.two {
+        margin-top: 10px;
+        margin-left: 5px;
+        margin-right: 5px;
+      }
+    }
+    
+    .right-hand-text {
+      padding-left: 20px;
+    }
+    
+    .language-strip {
+      margin: 10px;
+      @apply(--layout-horizontal);
+      @apply(--layout-center);
+      @apply(--layout-end-justified);
+    }
+    
+
+    .footer-text {
+      margin-top: 30px;
+    }
+
+    </style>
+
+    <!-- local DOM -->
+
+
+
+    <div class="master-container">
+
+      <div class="limiting-container">
+
+        <div class="language-strip">
+          <paper-dropdown-menu-light label="Language">
+            <paper-listbox class="dropdown-content" selected="{{languageSelectedIndex}}">
+              <paper-item>English (US)</paper-item>
+              <paper-item>Bengali / বাংলা</paper-item>
+            </paper-listbox>
+          </paper-dropdown-menu-light>
+        </div>
+
+        <!-- row one - start -->
+        <div class="row one break-on-tablet">
+
+          <div class="card-group">
+
+            <paper-card class="card vertical layout center">
+              <div class="card-content single-block horizontal layout">
+                <div class="vertical layout center">
+                  <div class="number">[[$TRANSLATE_NUMBER(newPatientCount,LANG)]]</div>
+                  <div class="subtitle">[[$TRANSLATE('new patients',LANG)]]</div>
+                </div>
+              </div>
+              <div class="card-actions">
+                <paper-button class="colored" raised on-tap="viewNewPatientsTapped">[[$TRANSLATE('view',LANG)]]</paper-button>
+              </div>
+            </paper-card>
+
+            <paper-card class="card vertical layout center">
+              <div class="card-content single-block horizontal layout">
+                <div class="vertical layout center">
+                  <div class="number">[[$TRANSLATE_NUMBER(totalPatientCount,LANG)]]</div>
+                  <div class="subtitle">[[$TRANSLATE('total patients',LANG)]]</div>
+                </div>
+              </div>
+              <div class="card-actions">
+                <paper-button class="colored" raised on-tap="viewAllPatientsTapped">[[$TRANSLATE('view',LANG)]]</paper-button>
+              </div>
+            </paper-card>
+
+          </div>
+
+        </div>
+        <!-- row one - end -->
+
+        <div class="row one break-on-tablet">
+          <div class="card-group">
+            <paper-card class="card two vertical layout center">
+              <div class="card-content single-block horizontal layout center">
+                <div class="vertical layout center">
+                  <div class="number">[[$TRANSLATE_NUMBER(daysLeft,LANG)]]</div>
+                  <div class="subtitle">[[$TRANSLATE('days left',LANG)]]</div>
+                </div>
+                <div class="right-hand-text">
+                  <html-block html="[[$getString1(daysLeft, LANG)]]"></html-block>
+                  <br>
+                </div>
+              </div>
+              <div class="card-actions">
+                <paper-button class="colored" raised on-tap="renewAnaesMonTapped">[[$TRANSLATE('renew',LANG)]]</paper-button>
+                <paper-button on-tap="purchaseAnaesMonTapped">[[$TRANSLATE('purchase',LANG)]]</paper-button>
+              </div>
+            </paper-card>
+          </div>
+
+        </div>
+
+        <div class="footer-text">Logged in as [[user.name]]</div>
+
+      </div>
+
+    </div>
+
+  </template>
+  <script src="page-dashboard.coffee-compiled.js"></script>
+</dom-module>

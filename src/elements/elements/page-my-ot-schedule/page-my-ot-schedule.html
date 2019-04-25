@@ -1,0 +1,142 @@
+<link rel="import" href="../../bower-assets/paper-button/paper-button.html">
+<link rel="import" href="../../bower-assets/paper-card/paper-card.html">
+<link rel="import" href="../../bower-assets/paper-input/paper-input.html">
+<link rel="import" href="../../bower-assets/paper-listbox/paper-listbox.html">
+<link rel="import" href="../../bower-assets/paper-item/paper-item.html">
+<link rel="import" href="../../bower-assets/paper-fab/paper-fab.html">
+<link rel="import" href="../../bower-assets/paper-menu-button/paper-menu-button.html">
+<link rel="import" href="../../elements/custom-vital-search/custom-vital-search.html">
+<!-- style -->
+<link rel="import" href="../../styles/common-style.html">
+
+<!-- behavior -->
+<link rel="import" href="../../behaviors/translating.html">
+<link rel="import" href="../../behaviors/page-like.html">
+<link rel="import" href="../../behaviors/api-calling.html">
+<link rel="import" href="../../behaviors/common-computes.html">
+<link rel="import" href="../../behaviors/db-using.html">
+
+<!-- custom-elements -->
+
+<!-- element -->
+<dom-module id="page-my-ot-schedule">
+  <template>
+
+    <!-- style -->
+
+    <style is="custom-style" include="common-style">
+      .limiting-container {
+        margin-top: 10px;
+        width: 80%;
+      }
+
+      .table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      .table th {
+        padding: 10px;
+        vertical-align: left;
+        text-align: left;
+        background-color: var(--paper-grey-50);
+        border: 1px solid var(--paper-grey-300);
+      }
+
+      .table td {
+        text-align: left;
+        padding: 10px;
+        border: 1px solid var(--paper-grey-300);
+      }
+
+      paper-progress {
+        width: 100%;
+        --paper-progress-active-color: var(--paper-orange-500);
+      }
+    </style>
+
+    <!-- local DOM -->
+
+    <div class="master-container">
+
+      <div class="limiting-container">
+
+        <template is="dom-if" if="[[loadingCounter]]">
+          <div class="layout horizontal center type bold text-center">
+            <paper-progress indeterminate></paper-progress>
+          </div>
+          <h2 class="type center">Please Wait, Loading...</h2>
+        </template>
+
+        <paper-card heading="My Operation Schedules">
+          <div class="card-content">
+            <div class="layout horizontal paper-custom end wrap">
+              <paper-input type="search" class="filter-query" label="Filter By Institution Name" no-label-float value="{{searchString}}"></paper-input>
+          
+              <custom-vital-search on-date-select="filterByDateClicked" on-clear="filterByDateClearButtonClicked"></custom-vital-search>
+          
+              <paper-button class="btn btn-success" raised on-tap="searchButtonClicked">Search</paper-button>
+              <paper-button raised on-tap="resetButtonClicked">Reset</paper-button>
+              <div style="color: rgb(182, 182, 182)" class="m-left-8 m-bottom-8"><strong>Press Search</strong> to
+                Generate The Operation List</div>
+            </div>
+          </div>
+          <div class="card-content">
+            <template is="dom-if" if="[[!filteredOtManagementList.length]]">
+              <h3 style="text-align: center;">--- NO DATA YET ---</h3>
+            </template>
+            <table class="table">
+              <tr>
+                <th>Operation Theater Name</th>
+                <th>Operation Name</th>
+                <th>Operation Date</th>
+                <th>Operation Time</th>
+                <th>Operation related Infos</th>
+                <th>Status</th>
+              </tr>
+              <template is="dom-repeat" items="[[matchingOtManagementList]]">
+                <tr>
+                  <td>[[item.data.theaterName]]</td>
+                  <td>[[item.data.operationName]]</td>
+                  <td>[[$formatDate(item.data.operationDate)]]</td>
+                  <td>
+                    <div class="layout vertical">
+                      <div class="m-bottom-8">
+                        <span class="type secondary">Start Time: </span>[[item.data.startTime]]
+                      </div>
+                      <div class="m-bottom-8">
+                        <span class="type secondary">End Time: </span>[[item.data.endTime]]
+                      </div>
+
+                    </div>
+                  </td>
+                  <td>
+                    <div class="layout vertical">
+                      <div class="m-bottom-8">
+                        <span class="type secondary">Organization Name: </span>[[item.data.nameOfTheOrganization]]</div>
+                      <div class="m-bottom-8">
+                        <span class="type secondary">Institution Name: </span>[[item.data.nameOfTheInstitution]]</div>
+                      <div class="m-bottom-8">
+                        <span class="type secondary">Department Name: </span>[[item.data.nameOfTheDepartment]]</div>
+                      <div class="m-bottom-8"><span class="type secondary">Surgeon: </span>[[item.data.surgeon.name]]</div>
+                      <div class="m-bottom-8"><span class="type secondary">Anaesthesist: </span>[[item.data.anaesthesist.name]]</div>
+                      <div class="m-bottom-8"><span class="type secondary">Assistant Surgeon #1: </span>[[item.data.assistantSurgeon1.name]]</div>
+                      <div class="m-bottom-8"><span class="type secondary">Assistant Surgeon #2: </span>[[item.data.assistantSurgeon2.name]]</div>
+                      <div><span class="type secondary">Assistant Surgeon #3: </span>[[item.data.assistantSurgeon3.name]]</div>
+                    </div>
+                  </td>
+                  <td>[[item.data.otStatus]]</td>
+                </tr>
+              </template>
+            </table>
+          </div>
+        </paper-card>
+
+
+      </div>
+
+    </div>
+
+  </template>
+  <script src="page-my-ot-schedule.coffee-compiled.js"></script>
+</dom-module>

@@ -1,0 +1,453 @@
+<link rel="import" href="../../bower-assets/paper-button/paper-button.html">
+<link rel="import" href="../../bower-assets/paper-card/paper-card.html">
+<link rel="import" href="../../bower-assets/paper-input/paper-input.html">
+<link rel="import" href="../../bower-assets/paper-listbox/paper-listbox.html">
+<link rel="import" href="../../bower-assets/paper-item/paper-item.html">
+<link rel="import" href="../../bower-assets/paper-menu-button/paper-menu-button.html">
+<link rel="import" href="../../bower-assets/paper-fab/paper-fab.html">
+<link rel="import" href="../../bower-assets/paper-tabs/paper-tabs.html">
+<link rel="import" href="../../bower-assets/paper-tabs/paper-tab.html">
+<link rel="import" href="../../bower-assets/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="../../bower-assets/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower-assets/paper-dropdown-menu/paper-dropdown-menu-light.html">
+<link rel="import" href="../../bower-assets/paper-listbox/paper-listbox.html">
+<link rel="import" href="../../bower-assets/paper-toggle-button/paper-toggle-button.html">
+<link rel="import" href="../../bower-assets/paper-progress/paper-progress.html">
+<link rel="import" href="../../elements/custom-vital-search/custom-vital-search.html">
+<link rel="import" href="../../bower-assets/vaadin-grid/vaadin-grid.html">
+<!-- style -->
+<link rel="import" href="../../bower-assets/vaadin-combo-box/vaadin-combo-box.html">
+<link rel="import" href="../../styles/common-style.html">
+
+<!-- behavior -->
+<link rel="import" href="../../behaviors/translating.html">
+<link rel="import" href="../../behaviors/page-like.html">
+<link rel="import" href="../../behaviors/api-calling.html">
+<link rel="import" href="../../behaviors/common-computes.html">
+<link rel="import" href="../../behaviors/db-using.html">
+
+<!-- custom-elements -->
+
+<!-- element -->
+<dom-module id="page-chamber-patients">
+  <template>
+
+    <!-- style -->
+
+    <style is="custom-style" include="common-style">
+      .limiting-container {
+        margin-top: 10px;
+        width: 90%;
+      }
+
+      .new-fab {
+        position: fixed;
+        right: 20px;
+        bottom: 164px;
+      }
+
+      paper-button {
+        margin: 3px;
+      }
+
+      paper-button:last-child {
+        margin-right: 0px;
+      }
+
+      .card-custom-header {
+        padding: 15px;
+        border-bottom: 1px solid var(--paper-grey-200);
+        background-color: var(--paper-grey-50);
+      }
+
+      .card-custom-header .title {
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 28px;
+        color: var(--brand-primary-color);
+      }
+
+      .modifier {
+        font-size: 14px;
+        background: #000000;
+        color: #ffffff;
+        margin: 0 4px;
+        padding: 2px 8px;
+        border-radius: 4px;
+        text-transform: uppercase;
+        font-weight: 400;
+      }
+
+      .modifier.type1 {
+        background: #757575;
+      }
+
+      .organization-info-cards {
+        @apply(--layout-vertical);
+        /*@apply(--layout-center);*/
+        margin-top: 10px;
+        margin-left: 10px;
+        margin-right: 10px;
+        padding-bottom: 20px;
+      }
+
+      .organization-info-card-counter {
+        margin-top: 20px;
+        margin-left: 20px;
+        margin-right: 10px;
+        color: #777777;
+      }
+
+      .std1 {
+        padding: 12px;
+      }
+
+      .mr12 {
+        margin-right: 12px;
+      }
+
+      .chamber-prop {
+        margin-right: 2px;
+      }
+
+      .calendar {
+        max-width: 960px;
+        min-width: 960px;
+      }
+
+      .calendar-entry {
+        min-width: 128px;
+        min-height: 96px;
+        margin: 4px;
+      }
+
+      .calendar-entry.white {
+        background: white;
+      }
+
+      .calendar-entry.day-name {
+        background: #dddddd;
+        text-align: center;
+      }
+
+      .status.booked {
+        color: var(--paper-teal-500);
+      }
+
+      .status.awaiting {
+        color: var(--paper-orange-500);
+      }
+
+      .status.completed {
+        color: green;
+      }
+
+      .status.require-second-visit {
+        color: var(--paper-purple-500)
+      }
+
+      .status.canceled {
+        color: red
+      }
+
+      .list {
+        border-bottom: 1px solid var(--paper-teal-300);
+        padding: 10px 0;
+        @apply(--layout-start);
+      }
+
+      .list:nth-last-child(2) {
+        border: none;
+      }
+
+      #sample-modal>vaadin-combo-box,
+      #time-slot-modal>vaadin-combo-box {
+        padding: 0 24px;
+      }
+
+      .paper-custom {
+        background-color: var(--paper-grey-100);
+        border: 1px solid #dadada;
+        border-radius: 6px;
+        padding: 0px 8px 12px 8px;
+      }
+
+      .report-row {
+        padding: 15px;
+        background-color: var(--paper-grey-100);
+        font-weight: bold;
+        margin: 10px 0;
+      }
+      
+      paper-progress {
+        width: 100%;
+        --paper-progress-active-color: var(--paper-orange-500);
+      }      
+    </style>
+
+    <!-- local DOM -->
+
+    <div class="master-container">
+      <template is="dom-if" if="[[isLoading]]">
+        <div class="layout horizontal center type bold text-center">
+          <paper-progress indeterminate></paper-progress>
+        </div>
+        <h2 class="type center">Please Wait, Loading...</h2>
+      </template>
+
+      <div class="limiting-container">
+        <paper-card>
+          <div class="card-custom-header">
+            <div class="layout horizontal center">
+              <div class="title flex">Search Chamber</div>
+            </div>
+          </div>
+
+          <paper-progress indeterminate hidden="[[!isLoading]]"></paper-progress>
+
+          <div class="card-content">
+            <div class="info-row horizontal layout">
+              <paper-input class="flex paper-custom" value="{{chamberSearchString}}" label="Search With Short Code or Chamber Name"></paper-input>
+              <paper-button raised class="btn btn-primary" on-tap="searchChamberTapped">Search</paper-button>
+            </div>
+
+            <vaadin-grid class="m-top-8" items="[[matchingChamberList]]" loading="[[loading]]">
+              <vaadin-grid-column flex-grow="0" width="90px">
+                <template class="header">ShortCode</template>
+                <template>
+                  <span class="type caption">[[item.shortCode]]</span>
+                </template>
+              </vaadin-grid-column>
+              <vaadin-grid-column resizable>
+                <template class="header">Chamber Name</template>
+                <template>
+                  <span class="type bold">[[item.name]]</span>
+                </template>
+              </vaadin-grid-column>
+              <vaadin-grid-column resizable>
+                <template class="header">Specialization</template>
+                <template>
+                  <span class="type secondary">[[item.specialization]]</span>
+                </template>
+              </vaadin-grid-column>
+              <vaadin-grid-column flex-grow="0" width="110px">
+                <template class="header">Available Slot</template>
+                <template>
+                  <div class="layout">
+                    <span>[[getFreeSlots(item.freeSlots)]]</span>
+                </template>
+              </vaadin-grid-column>
+              <vaadin-grid-column flex-grow="0" width="90px">
+                <template class="header">Booked</template>
+                <template>
+                  <div class="layout">
+                    <span>[[item.bookedPatient]]</span>
+                </template>
+              </vaadin-grid-column>
+              <vaadin-grid-column flex-grow="0" width="90px">
+                <template class="header">Awaiting</template>
+                <template>
+                  <div class="layout">
+                    <span>[[item.awaitingPatient]]</span>
+                </template>
+              </vaadin-grid-column>
+              <vaadin-grid-column flex-grow="0" width="90px">
+                <template class="header">Completed</template>
+                <template>
+                  <div class="layout">
+                    <span>[[item.completedPatient]]</span>
+                </template>
+              </vaadin-grid-column>
+              <vaadin-grid-column resizable>
+                <template class="header">Action</template>
+                <template>
+                  <div class="layout vertical start">
+                    <paper-button class="btn btn-sm btn-primary" on-tap="viewChamberSchedule">View Schedules</paper-button>
+                </template>
+              </vaadin-grid-column>
+            </vaadin-grid>
+
+          </div>
+        </paper-card>
+
+        <template is="dom-if" if="[[schedule]]">
+
+          <!-- Card - Header - start -->
+          <paper-card class="m-top-8">
+
+            <div class="card-custom-header">
+              <div class="layout horizontal center">
+                <div class="title flex">Chamber: [[chamber.name]]</div>
+                <paper-button class="colored" raised on-tap="goToChamberCalanderView">
+                  <iron-icon icon="icons:date-range" class="m-right-8"></iron-icon> Switch Date
+                </paper-button>
+              </div>
+            </div>
+
+            <div class="std1 horizontal layout">
+              <div class="vertical layout">
+                <div>Chamber Date: [[$formatDate(schedule.dateString)]]</div>
+                <div>Starts: [[$formatTimeString(schedule.startTimeString)]]</div>
+                <div>Ends: [[$formatTimeString(schedule.endTimeString)]]</div>
+                <div>Reschedule Delay: [[schedule.rescheduleDelayInMinutes]]</div>
+              </div>
+              <div class="flex"></div>
+              <div class="vertical layout">
+                <template is="dom-repeat" items="[[timeSlotAvailability]]">
+                  <div>From [[$formatTimeSlotString(item.timeSlot)]]: [[item.availableCount]] Free</div>
+                </template>
+              </div>
+            </div>
+
+          </paper-card>
+          <!-- Card - Header - end -->
+
+          <paper-card header="Search and Add Patient" class="m-top-8">
+            <div class="card-content">
+              <!-- new-entry - start -->
+              <div class="horizontal layout center">
+                <paper-input class="flex" value="{{searchPatientInput}}" label="Search with Patient Name, phone, Email, NID or Hospital Number"
+                  on-keyup="searchPatintKeyPressed"></paper-input>
+                <paper-button raised on-tap="searchPatientTapped" class="btn btn-primary">Search Patient</paper-button>
+              </div>
+              <paper-listbox>
+                <template id="patient-list-repeater" is="dom-repeat" items="[[matchingPatientList]]" as="patient">
+                  <paper-item class="custom layout horizontal center">
+                    <div class="type caption secondary">[[patient.serial]]</div>
+                    <div class="flex m-left-8">
+                      <div class="type body capitalize">[[$getFullName(patient.name)]]</div>
+                      <div class="type caption">[[patient.email]]</div>
+                      <div class="type caption">[[patient.phone]]</div>
+                    </div>
+                    <paper-icon-button icon="add" on-tap="addPatientTapped"></paper-icon-button>
+                  </paper-item>
+                </template>
+              </paper-listbox>
+              <!-- new-entry - end -->
+            </div>
+            <div class="card-actions">
+              <paper-button on-tap="newPatientButtonPressed" raised class="btn btn-success">
+                <iron-icon icon="add"></iron-icon>
+                Book New Patient
+              </paper-button>
+            </div>
+          </paper-card>
+
+          <!-- Card - Booking - start -->
+          <paper-card class="m-top-8">
+
+            <div class="card-custom-header">
+              <div class="layout horizontal center">
+                <div class="title flex">Booked [[schedule.bookingList.length]] </div>
+                <div class="title flex" style="color: orange">Awaiting [[awatingPatientCount]]</div>
+                <div class="title flex" style="color: green">Completed [[completedPatientCount]] </div>
+                <!-- <div class="title flex-2" style="color: rgb(0, 162, 255)">[[secondVisitPatientCount]] Patient(s)
+                  Requires a Second Visit</div> -->
+                <div class="flex layout horizontal">
+                  <paper-toggle-button checked="{{hideActivityLog}}">Show Activity Log</paper-toggle-button>
+                  <paper-icon-button icon="print" on-tap="chamberPatientsListPrintButtonPressed"></paper-icon-button>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-content">
+              <template is="dom-repeat" items="[[schedule.bookingList]]" as="entry" index-as="entryIndex">
+                <!-- entry - start -->
+                <paper-item class="list">
+                  <div class="flex">
+                    <div class="">Serial #[[_returnSerial(entryIndex)]]</div>
+                    <div><span class="type capitalize bold">[[entry.patientFullName]]</span></div>
+                    <div><span class="type caption">[[entry.patientEmail]]</span></div>
+                    <div><span class="type caption">[[entry.patientPhone]]</span></div>
+                  </div>
+                  <div class="m-left-8 flex layout">
+                    <div class="type body capitalize">
+                      <span class="type secondary">Time Slot:</span>
+                      <br> [[$formatTimeSlotString(entry.timeSlot)]]
+                      <paper-icon-button icon="create" on-tap="setTimeSlotClicked"></paper-icon-button>
+                    </div>
+                  </div>
+                  <div class="m-left-24 flex">
+                    <div class="type body capitalize">
+                      <span class="type secondary">Status:</span>
+                      <br>
+                      <span class$="{{_changeStatusColorForPatientChamberBooking(entry.status)}} label type bg-gray">[[entry.status]]</span>
+                    </div>
+                    <!-- <div class="type body capitalize">
+                      <span class="type secondary">Payment Status:</span>
+                      <br> [[entry.paymentStatus]]</div> -->
+                  </div>
+
+                  <div class="flex layout wrap">
+                    <template is="dom-if" if="[[$equals(entry.status, 'require-second-visit')]]">
+                      <div hidden>[[entry]]</div>
+                      <paper-button raised on-tap="markAsDoneTapped" class="btn btn-success btn-sm">Mark as Completed</paper-button>
+                    </template>
+                    <template is="dom-if" if="[[$equals(entry.status, 'booked')]]">
+                      <div hidden>[[entry]]</div>
+                      <paper-button raised on-tap="sendSMSButtonClicked" class="btn btn-success  btn-sm">Send
+                        Confirmation SMS</paper-button>
+                      <paper-button raised on-tap="patientArrivedTapped" class="btn btn-success  btn-sm">Patient
+                        Arrived</paper-button>
+                      <paper-button raised on-tap="doctorCancelTapped" class="btn btn-danger  btn-sm">Cancel</paper-button>
+
+                    </template>
+
+                    <template is="dom-if" if="[[$equals(entry.status, 'awaiting')]]">
+                      <div hidden>[[entry]]</div>
+                      <paper-button raised on-tap="viewChamberPatient" class="btn btn-success  btn-sm">View Patient</paper-button>
+                      <paper-button raised on-tap="generateToken" class="btn btn-sm">Generate Token</paper-button>
+                      <paper-button raised on-tap="markAsDoneTapped" class="btn btn-success  btn-sm">Mark as Completed</paper-button>
+                      <paper-button raised on-tap="requiresSecondVisitTapped" class="btn btn-primary btn-sm">Requires
+                        Second Visit</paper-button>
+                      <paper-button raised on-tap="doctorCancelTapped" class="btn btn-danger  btn-sm">Cancel</paper-button>
+
+                    </template>
+
+                  </div>
+
+                  <div class="flex-2" hidden="[[!hideActivityLog]]">
+                    <ul>
+                      <template is='dom-repeat' items='[[entry.activityLog]]' as='activity'>
+                        <li>Status: <span class="type bold">[[activity.status]]</span> on
+                          [[$formatDateTime(activity.createdDateTimeStamp)]]</li>
+                      </template>
+                    </ul>
+                  </div>
+
+
+                  <!-- <paper-icon-button icon="add" on-tap="addPatientToTapped"></paper-icon-button> -->
+                </paper-item>
+                <!-- entry - end -->
+              </template>
+            </div>
+
+          </paper-card>
+          <!-- Card - Booking - end -->
+
+        </template>
+      </div>
+    </div>
+
+    <paper-dialog no-cancel-on-outside-click id="time-slot-modal" on-iron-overlay-closed="timeSlotModalClosed">
+      <h2>Change Time Slot</h2>
+      <vaadin-combo-box id="timeSlotComboBox" label="Time Slot" items="[[schedule.timeSlotList]]" value="{{timeSlot}}"></vaadin-combo-box>
+      <div class="buttons">
+        <paper-button dialog-dismiss>Cancel</paper-button>
+        <paper-button dialog-confirm>Confirm</paper-button>
+      </div>
+    </paper-dialog>
+
+    <paper-dialog class="p-16" no-cancel-on-outside-click id="tokenDialog">
+      <h2>Generate Token</h2>
+      <paper-input label="Department" value="{{tokenObject.data.departmentName}}"></paper-input>
+      <paper-input label="Room" value="{{tokenObject.data.roomNumber}}"></paper-input>
+      <div class="buttons">
+        <paper-button dialog-dismiss>Cancel</paper-button>
+        <paper-button class="colored" raised on-click="tokenDialogConfirm">Generate</paper-button>
+      </div>
+    </paper-dialog>
+
+  </template>
+  <script src="page-chamber-patients.coffee-compiled.js"></script>
+</dom-module>

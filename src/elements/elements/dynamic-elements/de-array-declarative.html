@@ -1,0 +1,68 @@
+<!-- element -->
+<dom-module id="de-array">
+  <template>
+
+    <!-- style -->
+
+    <!-- <style is="custom-style" include="common-style">
+
+    </style> -->
+
+    <!-- local DOM - start -->
+
+    <template is="dom-if" if="[[shouldRender]]">
+      <div class="category-container horizontal layout wrap">
+        <template is="dom-repeat" items="[[def.childList]]" as="dynamicElement" index-as="dynamicElementIndex">
+
+          <template is="dom-if" if="[[$equals(dynamicElement.type, 'card')]]">
+            <de-card data="[[$makeData(dynamicElement)]]" def="[[dynamicElement]]" depth="[[$inc(depth)]]"></de-card>
+          </template>
+
+          <template is="dom-if" if="[[$equals(dynamicElement.type, 'label')]]">
+            <de-label data="[[$makeData(dynamicElement, 'no')]]" def="[[dynamicElement]]" depth="[[$inc(depth)]]"></de-label>
+          </template>
+
+          <template is="dom-if" if="[[$equals(dynamicElement.type, 'container')]]">
+            <de-container data="[[$makeData(dynamicElement)]]" def="[[dynamicElement]]" depth="[[$inc(depth)]]"></de-container>
+          </template>
+
+          <template is="dom-if" if="[[$equals(dynamicElement.type, 'checkbox')]]">
+            <de-checkbox data="[[$makeData(dynamicElement, 'no')]]" def="[[dynamicElement]]" depth="[[$inc(depth)]]"></de-checkbox>
+          </template>
+
+          <template is="dom-if" if="[[$equals(dynamicElement.type, 'toggleableContainer')]]">
+            <de-toggleable-container data="[[$makeData(dynamicElement)]]" def="[[dynamicElement]]" depth="[[$inc(depth)]]"></de-toggleable-container>
+          </template>
+
+          <template is="dom-if" if="[[$equals(dynamicElement.type, 'checkList')]]">
+            <de-check-list data="[[$makeData(dynamicElement, 'no')]]" def="[[dynamicElement]]" depth="[[$inc(depth)]]"></de-check-list>
+          </template>
+
+          <template is="dom-if" if="[[$equals(dynamicElement.type, 'radioList')]]">
+            <de-radio-list data="[[$makeData(dynamicElement, 'no')]]" def="[[dynamicElement]]" depth="[[$inc(depth)]]"></de-radio-list>
+          </template>
+
+          <template is="dom-if" if="[[$equals(dynamicElement.type, 'singleSelectDropdown')]]">
+            <de-single-select-dropdown data="[[$makeData(dynamicElement, 'no')]]" def="[[dynamicElement]]" depth="[[$inc(depth)]]"></de-single-select-dropdown>
+          </template>
+
+          <template is="dom-if" if="[[$equals(dynamicElement.type, 'input')]]">
+            <de-input data="[[$makeData(dynamicElement, 'no')]]" def="[[dynamicElement]]" depth="[[$inc(depth)]]"></de-input>
+          </template>
+
+          <template is="dom-if" if="[[$equals(dynamicElement.type, 'incrementalCounter')]]">
+            <de-incremental-counter data="[[$makeData(dynamicElement, 'no')]]" def="[[dynamicElement]]" depth="[[$inc(depth)]]"></de-incremental-counter>
+          </template>
+
+          <template is="dom-if" if="[[$equals(dynamicElement.type, 'autocomplete')]]">
+            <de-autocomplete data="[[$makeData(dynamicElement, 'no')]]" def="[[dynamicElement]]" depth="[[$inc(depth)]]"></de-autocomplete>
+          </template>
+
+        </template>
+      </div>
+    </template>
+
+    <!-- local DOM - end -->
+  </template>
+  <script src="de-array.coffee-compiled.js"></script>
+</dom-module>

@@ -1,0 +1,495 @@
+<link rel="import" href="../../bower-assets/polymer/polymer.html">
+
+
+<link rel="import" href="../../bower-assets/paper-card/paper-card.html">
+
+<link rel="import" href="../../bower-assets/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower-assets/paper-menu/paper-menu.html">
+<link rel="import" href="../../bower-assets/paper-item/paper-item.html">
+<link rel="import" href="../../bower-assets/paper-input/paper-input.html">
+<link rel="import" href="../../bower-assets/paper-input/paper-textarea.html">
+<link rel="import" href="../../bower-assets/paper-button/paper-button.html">
+<link rel="import" href="../../bower-assets/paper-fab/paper-fab.html">
+<link rel="import" href="../../bower-assets/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="../../bower-assets/vaadin-date-picker/vaadin-date-picker.html">
+<link rel="import" href="../../bower-assets/app-layout/app-drawer/app-drawer.html">
+<link rel="import" href="../../bower-assets/paper-toggle-button/paper-toggle-button.html">
+
+<link rel="import" href="../../behaviors/api-calling.html">
+<link rel="import" href="../../behaviors/db-using.html">
+<link rel="import" href="../../behaviors/page-like.html">
+<link rel="import" href="../../behaviors/translating.html">
+
+<!-- Custom AutoComplete -->
+<link rel="import" href="../../bower-assets/paper-autocomplete/paper-autocomplete.html">
+
+<!-- Commong Styles -->
+<link rel="import" href="../../styles/common-style.html">
+
+
+<dom-module id='page-medicine-editor'>
+  <template>
+    <style is='custom-style' include="common-style">
+      paper-dropdown-menu {
+        width: 100%;
+      }
+
+
+      paper-checkbox.remind {
+        padding: 15px 25px;
+      }
+
+      paper-checkbox.guideline-checkbox {
+        --paper-checkbox-size: 14px;
+      }
+
+      .guideline {
+        margin-left: 10px;
+        margin-top: 70px;
+        height: 90%;
+        overflow: auto;
+      }
+
+      .guideline h1 {
+        text-align: left;
+        padding: 10px 0;
+        border-bottom: 1px solid var(--paper-green-500);
+        color: var(--brand-primary-color);
+      }
+
+      .guideline .dose {
+        margin: 10px 0;
+        padding: 10px;
+      }
+
+      .guideline .subDose{
+        padding: 10px;
+        margin: 5px 0;
+        border: 1px solid #e0e0e0;
+        border-radius: 3px;
+        /*background-color: var(--paper-grey-50);*/
+      }
+
+      .guideline .age-group {
+        border-bottom: 1px solid #ccc;
+      }
+
+      .disclaimer p {
+        color: red;
+      }
+
+      app-drawer {
+        --app-drawer-width: 400px;
+        --app-drawer-scrim-background: rgba(0,0,0,0.1);
+        --app-drawer-content-container: {
+          border-left: 1px solid #ccc;
+          padding-left: 10px;
+        }
+        text-align: left;
+      }
+
+      paper-material {
+        border: 1px solid var(--paper-grey-200);
+      }
+
+      paper-fab {
+        float: right;
+        margin-right: 10px;
+        margin-top: 30px;
+        color: #333;
+        --paper-fab-background: var(--paper-grey-300);
+      }
+
+      .indication-group {
+        border:1px solid var(--paper-blue-grey-100);
+        padding: 15px;
+        border-radius: 3px;
+      }
+
+      .indication-group paper-dropdown-menu {
+        --paper-input-container-color: var(--paper-orange-500);
+      }
+
+      .card-custom-header {
+        padding: 15px;
+        border-bottom: 1px solid var(--paper-grey-200);
+        background-color: var(--paper-grey-50);
+      }
+
+      .card-custom-header .title {
+        font-size: 20px;
+        font-weight: 500;
+        color: var(--brand-primary-color);
+      }
+
+      @media screen and (max-width : 480px){
+        app-drawer {
+          --app-drawer-width: 95%;
+        }
+      }
+    </style>
+
+    <div class="master-container">
+
+      <div class="limiting-container">
+
+        <!--Add Medicine Form-->
+        <paper-card>
+          <div class="card-custom-header">
+            <div class="layout horizontal justified center">
+              <div class="title">[[$TRANSLATE('Add Medicine',LANG)]]</div>
+              <!--<paper-button class="" disableda$="[[!activeDoseGuideline]]" raised on-tap="toggleGuideline">Show Guideline</paper-button>-->
+              <paper-toggle-button checked="{{showDetailedForm}}">Show Advanced</paper-toggle-button>
+            </div>
+          </div>
+          <div class="card-content">
+            <div class="form-group">
+              <div>
+                <paper-autocomplete 
+                  id="brandName"
+                  label="[[$TRANSLATE('Brand Name',LANG)]]"
+                  text="{{medicine.brandName}}"
+                  source="[[brandNameSourceDataList]]"
+                  on-autocomplete-selected="brandNameAutocompleteSelected"
+                  on-autocomplete-reset="brandNameCleared"
+                  min-length="2"
+                  on-input="validate"
+                  error-message="Input Required"
+                  required
+                ></paper-autocomplete>
+              </div>
+            </div>
+
+            <div hidden="[[!showDetailedForm]]">
+            <div class="form-group">
+              <div>
+                <paper-autocomplete 
+                  id="genericName"
+                  label="[[$TRANSLATE('Generic Name',LANG)]]"
+                  text="{{medicine.genericName}}"
+                  source="[[genericNameSourceDataList]]"
+                  on-autocomplete-selected="genericNameAutocompleteSelected"
+                  on-autocomplete-reset="genericNameCleared"
+                  min-length="2"
+                  error-message="Input Required"
+                  on-input="validate"
+                  required
+                ></paper-autocomplete>
+              </div>
+              <div>
+                <paper-autocomplete 
+                  id="manufacturer"
+                  label="[[$TRANSLATE('Manufacturer Name',LANG)]]"
+                  text="{{medicine.manufacturer}}"
+                  source="[[manufacturerSourceDataList]]"
+                  on-autocomplete-selected="manufacturerAutocompleteSelected"
+                  on-autocomplete-reset="manufacturerCleared"
+                  error-message="Input Required"
+                  min-length="2"
+                  on-input="validate"
+                  required
+                ></paper-autocomplete>
+              </div>
+            </div>
+            </div>
+
+            <div class="form-group">
+              <div>
+                <paper-dropdown-menu id="morning" error-message="Chose an option" required>
+                  <paper-menu selected="{{morningDoseSelectedIndex}}" class="dropdown-content" on-iron-select="_morningDoseSelectedIndexChanged">
+                    <template is="dom-repeat" items="[[doseList]]">
+                      <paper-item>{{item}}</paper-item>
+                    </template>
+                  </paper-menu>
+                </paper-dropdown-menu>
+              </div>
+              <div>
+                <paper-dropdown-menu id="noon" error-message="Chose an option" required>
+                  <paper-menu selected="{{noonDoseSelectedIndex}}" class="dropdown-content" on-iron-select="_noonDoseSelectedIndexChanged">
+                    <template is="dom-repeat" items="[[doseList]]">
+                      <paper-item>{{item}}</paper-item>
+                    </template>
+                  </paper-menu>
+                </paper-dropdown-menu>
+              </div>
+              <div>
+                <paper-dropdown-menu id="night" error-message="Chose an option" required>
+                  <paper-menu selected="{{nightDoseSelectedIndex}}" class="dropdown-content" on-iron-select="_nightDoseSelectedIndexChanged">
+                    <template is="dom-repeat" items="[[doseList]]">
+                      <paper-item>{{item}}</paper-item>
+                    </template>
+                  </paper-menu>
+                </paper-dropdown-menu>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <!--Direction-->
+              <div>
+                <paper-dropdown-menu label="[[$TRANSLATE('Direction',LANG)]]">
+                  <paper-menu selected="{{directionSelectedIndex}}" class="dropdown-content" on-iron-select="_directionSelectedIndexChanged">
+                    <template is="dom-repeat" items="[[directionList]]">
+                      <paper-item>[[$TRANSLATE(item,LANG)]]</paper-item>
+                    </template>
+                  </paper-menu>
+                </paper-dropdown-menu>
+              </div>
+              <!--Direction-->
+              <!--Form-->
+              <div>
+                <paper-dropdown-menu id="form" error-message="Chose an option" label="[[$TRANSLATE('Form',LANG)]]" required>
+                  <paper-menu selected="{{medicineFormSelectedIndex}}" class="dropdown-content" on-iron-select="_medicineFormSelectedIndexChanged">
+                    <template is="dom-repeat" items="{{medicineFormList}}">
+                      <paper-item>{{item}}</paper-item>
+                    </template>
+                  </paper-menu>
+                </paper-dropdown-menu>
+              </div>
+              <template is="dom-if" if="[[_isFormCustom(matchingMedicineList, medicineFormSelectedIndex)]]">
+                <div>
+                  <paper-input label="Form" value="{{medicine.form}}" id="custom-form" error-message="Input Required" required></paper-input>
+                </div>
+              </template>
+              <!--Form-->
+            </div>
+
+            <div hidden="[[!showDetailedForm]]">
+            <div class="form-group">
+              <!--Strength-->
+              <template is="dom-if" if="[[_isStregnthDropdown(matchingMedicineList)]]">
+                <div>
+                  <paper-dropdown-menu label="[[$TRANSLATE('Strength',LANG)]]" required id="strength" error-message="Chose an Option" >
+                    <paper-menu id="strengthDropdown" selected="{{strengthSelectedIndex}}" class="dropdown-content" on-iron-select="_strengthSelectedIndexChanged">
+                      <template is="dom-repeat" items="{{strengthList}}">
+                        <paper-item>{{item}}</paper-item>
+                      </template>
+                    </paper-menu>
+                  </paper-dropdown-menu>
+                </div>
+              </template>
+              <template is="dom-if" if="[[_isStregnthCustom(matchingMedicineList, strengthSelectedIndex)]]">
+                <div>
+                  <paper-input label="[[$TRANSLATE('Strength',LANG)]]" required value="{{medicine.strength}}" id="strength" error-message="Input Required" on-input="validate"></paper-input>
+                </div>
+              </template>
+              <!--Strength-->
+              <!--Route-->
+              <div>
+                <paper-dropdown-menu label="[[$TRANSLATE('Route',LANG)]]">
+                  <paper-menu selected="{{routeSelectedIndex}}" class="dropdown-content" on-iron-select="_routeSelectedIndexChanged">
+                    <template is="dom-repeat" items="[[routeList]]">
+                      <paper-item>[[$TRANSLATE(item,LANG)]]</paper-item>
+                    </template>
+                  </paper-menu>
+                </paper-dropdown-menu>
+              </div>
+              <template is="dom-if" if="[[_isRouteCustom(routeSelectedIndex)]]">
+                <div>
+                  <paper-input label="[[$TRANSLATE('Route',LANG)]]" value="{{medicine.route}}" error-message="Input Required"></paper-input>
+                </div>
+              </template>
+              <!--Route-->
+            </div>
+
+            <div class="form-group">
+              <!--Dose-->
+              <div>
+                <paper-input label="[[$TRANSLATE('Dose',LANG)]]" value="{{medicine.dose}}" type="number" min="1" max="20" maxlength="2" on-input="_doseValueChanged" required></paper-input>
+              </div>
+              <!--Dose-->
+              <!--Unit-->
+              <div>
+                <paper-dropdown-menu id="doseUnit" error-message="Chose an option" label="[[$TRANSLATE('Unit',LANG)]]" required>
+                  <paper-menu selected="{{doseUnitSelectedIndex}}" class="dropdown-content" on-iron-select="_doseUnitSelectedIndexChanged">
+                    <template is="dom-repeat" items="[[doseUnitList]]">
+                      <paper-item>{{item}}</paper-item>
+                    </template>
+                  </paper-menu>
+                </paper-dropdown-menu>
+              </div>
+              <template is="dom-if" if="[[_isUnitCustom(doseUnitSelectedIndex)]]">
+                <div>
+                  <paper-input id="custom-dose-unit" label="Custom Unit" value="{{medicine.doseUnit}}" required id="doseUnit" error-message="Input Required"></paper-input>
+                </div>
+              </template>
+              <!--Unit-->
+            </div>
+
+            <div class="form-group">
+              <!--Times Per Interval-->
+              <div>
+                <paper-input type="number" label="[[$TRANSLATE('Times per',LANG)]]" min="1" value="{{medicine.timesPerInterval}}"></paper-input>
+              </div>
+
+              <!--Interval in Days-->
+              <div>
+                <paper-input type="number" label="[[$TRANSLATE('Every',LANG)]]" min="1" max="30" value="{{intervalInDays}}"><div suffix>[[$TRANSLATE('Days',LANG)]]</div></paper-input>
+              </div>
+            </div>
+            </div>
+
+            <div class="form-group layout horizontal end screen-sm">
+              <!--Start Date-->
+              <div>
+                <vaadin-date-picker label="[[$TRANSLATE('Start Date',LANG)]]" value="{{medicine.startDateTimeStamp}}"></vaadin-date-picker>
+              </div>
+              <!--Start Date-->
+
+              <!--End Date-->
+              
+              <div>
+                <vaadin-date-picker id="endDate" label="[[$TRANSLATE('Ends on',LANG)]]" value="{{medicine.endDateTimeStamp}}"></vaadin-date-picker>
+              </div>
+              <div>
+                <paper-checkbox checked="{{medicine.continue}}" on-change="asNeededSelected">[[$TRANSLATE('Continue As Needed',LANG)]]</paper-checkbox>
+              </div>
+              <!--End Date-->
+            </div>
+
+            <br>
+            <br>
+            
+            <div hidden="[[!showDetailedForm]]">
+              <div class="form-group">
+                <!--Quantity Per Fill-->
+                <div>
+                  <paper-input label="[[$TRANSLATE('Quantity Per Fill',LANG)]]" type="number" min="1" value="{{medicine.quantityPerPrescription}}"></paper-input>
+                </div>
+                <!--Quantity Per Fill-->
+
+                <!--Number of Fill-->
+                <div>
+                  <paper-input label="[[$TRANSLATE('Number of Refill',LANG)]]" type="number" value="{{medicine.numberOfRefill}}"></paper-input>
+                </div>
+                <!--Number of Fill-->
+              </div>
+              
+              <div class="form-group">
+                <div>
+                  <paper-textarea label="[[$TRANSLATE('Comments',LANG)]]" value="{{medicine.comments}}"></paper-textarea>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- <div class="layout horizontal end-justified">
+            <paper-checkbox class="remind" checked="{{medicine.remind}}">[[$TRANSLATE('Remind Me To Take This Medicine',LANG)]]</paper-checkbox>
+          </div> -->
+
+          <div class="card-actions">
+            <paper-button class="btn" on-click="cancelButtonClicked">Cancel</paper-button>
+            <paper-button class="btn" on-click="saveAndAddAsFavoriteMedicinePressed">Add + Favorite</paper-button>
+            <paper-button class="btn btn-success" on-click="saveMedicineButtonClicked" raised>Add</paper-button>
+          </div>
+
+        </paper-card>
+        <!--End Medicine Form-->
+
+      </div>
+    </div>
+
+    <!-- Dose Guideline Starts -->
+    <app-drawer id="guidelineContainer" align="right" persistent>
+      <div class="guideline" >
+        <template is="dom-if" if="[[!shouldShowDisclaimer(showGuidelineDisclaimer)]]">
+          <div class="disclaimer text-sm text-muted">
+            <p><strong>Disclaimer:</strong> This guideline is just an example and true dosage, indication etc. should be followed from authentic medical sources. This guideline will be updated periodically but at the discretion of the website authority and do not imply that the information is current. Anybody using this guideline should do so at his/her own risk and using their own knowledge base..
+            </p>
+            <div class="layout horizontal justified">
+            <paper-checkbox class="guideline-checkbox" on-change="showGuidelineDisclaimerChanged">Don't Show This Disclaimer Again</paper-checkbox>
+            </div>
+          </div>
+        </template>
+        
+        <paper-fab mini icon="close" on-tap="toggleGuideline"></paper-fab>
+        <h1>Guideline</h1>
+        <div class="indication-group">
+          <div>
+            <paper-dropdown-menu label="Indication">
+              <paper-menu selected="{{guidelineIndicationSelectedIndex}}" class="dropdown-content">
+                <template is="dom-repeat" items="[[guidelineIndicationList]]">
+                  <paper-item>{{item}}</paper-item>
+                </template>
+              </paper-menu>
+            </paper-dropdown-menu>
+          </div>
+          <div>
+            <paper-dropdown-menu label="Age">
+              <paper-menu selected="{{guidelineAgeSelectedIndex}}" class="dropdown-content">
+                <template is="dom-repeat" items="[[guidelineAgeList]]">
+                  <paper-item>{{item}}</paper-item>
+                </template>
+              </paper-menu>
+            </paper-dropdown-menu>
+          </div>
+        </div>
+
+        <template is="dom-if" if="[[activeDoseGuideline]]">
+          <template is="dom-repeat" items="[[activeDoseGuideline.doseList]]" as="dose">
+
+            <template is="dom-if" if="[[$doesPassFilter(activeDoseGuideline, dose, 'not-available', guidelineIndicationSelectedIndex, guidelineAgeSelectedIndex)]]">
+
+              <paper-material elevation="1" class="dose">
+
+                <template is="dom-if" if="[[dose.description]]">
+                  <h2 class="age-group">[[dose.ageGroup]]</h2>
+                  <div>[[dose.description]] </div>
+                </template>
+
+                <template is="dom-if" if="[[dose.subDoseList.length]]">
+                  <p style="font-weight: bold">SUBDOSES: </p>
+                  <template is="dom-repeat" items="[[dose.subDoseList]]" as="subDose">
+                    <div class="subDose">
+
+                      <template is="dom-if" if="[[subDose.notes]]">
+                        <div style="text-transform: capitalize">[[subDose.notes]]</div>
+                      </template>
+
+                      <template is="dom-if" if="[[subDose.type]]">
+                        <div><strong>Type:</strong> [[subDose.type]] </div>
+                      </template>
+
+                      <template is="dom-if" if="[[subDose.condition]]">
+                        <div><strong>Condition</strong>: [[subDose.condition]] </div>
+                      </template>
+
+                      <template is="dom-if" if="[[subDose.indication]]">
+                        <div><storng>Indication</storng>: [[subDose.indication]] </div>
+                      </template>
+
+
+                      <template is="dom-if" if="[[subDose.notRecommended]]">
+                        <div style="text-decoration: underline;">NOT RECOMMENDED FOR THE GIVEN COMBINATION</div>
+                      </template>
+
+                      <div hidden>[[dose]]</div>
+                      <br>
+                      <paper-button raised on-tap="fillMinimumPressed">Fill Minimum</paper-button>
+                      <paper-button raised on-tap="fillMaximumPressed">Fill Maximum</paper-button>
+                      <!-- <paper-button raised style="background: yellow" on-tap="fillMaximumPressed">Fill Maximum</paper-button> -->
+
+                    </div>
+                  </template>
+                </template>
+
+              </paper-material>
+
+            </template>
+
+          </template>
+        </template>
+
+        <template is="dom-if" if="[[!activeDoseGuideline]]">
+          <template is="dom-if" if="[[medicine.genericName]]">
+            <p>No Dose Guideline available for the given medicine.</p>
+          </template>
+        </template>
+      </div>
+    </app-drawer>
+    <!-- Dose Guideline Ends -->
+
+  </template>
+  <script src='page-medicine-editor.coffee-compiled.js'></script>
+</dom-module>
+

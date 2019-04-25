@@ -1,0 +1,335 @@
+<link rel="import" href="../../bower-assets/polymer/polymer.html">
+
+<!-- iron-* -->
+<link rel="import" href="../../bower-assets/iron-pages/iron-pages.html">
+
+<!-- paper-* -->
+<link rel="import" href="../../bower-assets/paper-button/paper-button.html">
+<link rel="import" href="../../bower-assets/paper-tabs/paper-tabs.html">
+<link rel="import" href="../../bower-assets/paper-tabs/paper-tab.html">
+<link rel="import" href="../../bower-assets/paper-card/paper-card.html">
+<link rel="import" href="../../bower-assets/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower-assets/paper-dropdown-menu/paper-dropdown-menu-light.html">
+<link rel="import" href="../../bower-assets/paper-listbox/paper-listbox.html">
+<link rel="import" href="../../bower-assets/paper-item/paper-item.html">
+<!-- style -->
+<link rel="import" href="../../styles/common-style.html">
+
+<!-- behavior -->
+<link rel="import" href="../../behaviors/common-computes.html">
+<link rel="import" href="../../behaviors/db-using.html">
+<link rel="import" href="../../behaviors/translating.html">
+<link rel="import" href="../../behaviors/page-like.html">
+<link rel="import" href="../../behaviors/api-calling.html">
+
+<!-- custom-elements -->
+
+<!-- element -->
+<dom-module id="page-reports-manager">
+  <template>
+
+    <!-- style -->
+    <style is="custom-style" include="common-style">
+
+      .limiting-container {
+        margin-top: 10px;
+      }
+      .table{
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      .table th {
+        text-align: left;
+        background-color: var(--paper-grey-50);
+      }
+
+      .table td {
+        color: #444;
+      }
+
+      .table td, .table th{
+        vertical-align: middle;
+        padding: 10px 20px;
+        border-bottom: 1px solid var(--paper-grey-100);
+      }
+
+       .table tr:last-child td {
+        border-bottom: 0;
+      }
+
+      .table.two-col th {
+        text-align: right;
+        background-color: white;
+        width: 50%;
+      }
+
+      .two-col .header th {
+        background-color: var(--paper-grey-50);
+        text-align: center;
+        padding: 20px 0;
+        text-trasnform: uppercase;
+      }
+
+      .block{display: block}
+
+      .filter-query {
+        --paper-input-container: {
+          width: 250px;
+          padding: 0;
+        }
+        --paper-input-container-label: {
+          font-size: 13px;
+        }
+        --paper-input-container-input: {
+          font-size: 13px;
+        }        
+      }
+      .search {
+        @apply(--layout-end-justified);
+      }
+
+      @media only screen and (min-width : 320px) and (max-width : 480px){
+        .table td, .table th{
+          vertical-align: top;
+          font-size: 14px;
+        }
+        .search {
+          margin-top: 10px;
+          @apply(--layout-start-justified);
+        }
+      }
+
+      .counter {
+        background-color: #4c3764;
+        color: #fff;
+        font-weight: bold;
+        height: 24px;
+        width: 24px;
+        border-radius: 50%;
+        margin-left: 8px;
+      }
+    </style>
+    <!-- /style -->
+
+    <!-- local DOM -->
+    <div id="tabContainer" class="tabs-container">
+      <paper-tabs id="tabs" selected="{{selectedReportPageIndex}}" noink='true'>
+        <paper-tab style="text-transform: uppercase;">[[$TRANSLATE('Pending Reports for reporting doctor',LANG)]]</paper-tab>
+        <paper-tab style="text-transform: uppercase;">[[$TRANSLATE('Review Reports for referring doctor',LANG)]]</paper-tab>
+      </paper-tabs>
+    </div>
+    
+    <div class="master-container">
+
+      <div class="limiting-container">
+        <iron-pages selected="{{selectedReportPageIndex}}">
+
+          <!-- Pending Reports - start -->
+          <section>
+            <paper-card heading="Pending Reports for reporting doctor">
+
+              <paper-tabs class="basic-tabs" id="tabs" selected="{{selectedPendingReportsPage}}">
+                <paper-tab>
+                  [[$TRANSLATE('Unseen Pending reports',LANG)]]
+                  <div hidden$="{{$compareFn(reportCounter.unseenPendingReportCounter, '==', 0)}}" class="counter horizontal layout center center-justified">
+                    <div>
+                      {{reportCounter.unseenPendingReportCounter}}
+                    </div>
+                  </div>
+                </paper-tab>
+                <paper-tab>
+                  [[$TRANSLATE('Seen Pending reports',LANG)]]
+                  <div hidden$="{{$compareFn(reportCounter.seenPendingReportCounter, '==', 0)}}" class="counter horizontal layout center center-justified">
+                    <div>
+                      {{reportCounter.seenPendingReportCounter}}
+                    </div>
+                  </div>
+                </paper-tab>
+              </paper-tabs>
+
+              <iron-pages selected="{{selectedPendingReportsPage}}" on-iron-select="_selectedPendingReportsPageChanged">
+
+                <!-- Page:: Pending Reports - Unseen - start -->
+                <section>
+                  <template is="dom-if" if="[[_isEmptyArray(unseenPendingReportsList)]]">
+                    <div class="card-content">
+                      <div class="layout horizontal center center-justified">
+                        <div class="type body secondary">-- no unseen pending reports available --</div>
+                      </div>
+                    </div>
+                  </template>
+                  <div class="p-0">
+                    <paper-listbox>
+                      
+                      <template id="pending-reports-list-repeater" is="dom-repeat" items="[[unseenPendingReportsList]]">
+                        <paper-item class="custom layout horizontal center">
+                          <div class="type caption secondary">[[item.reportSerial]]</div>
+                          
+                          <div class="flex m-left-8">
+                            <div class="type body capitalize"><strong>Investigation Name: </strong>[[item.investigationName]]</div>
+                            <div class="type body capitalize"><strong>Patient Name: </strong>[[item.patientName]]</div>
+                            <div class="type caption">
+                              <strong>Created Date: </strong>
+                              <span>[[$mkDateTime(item.createdDateTimeStamp)]]</span>
+                            </div>
+                          </div>
+                
+                          <paper-button class="colored" raised on-tap="viewPendingReport">view</paper-button>
+
+                      </template>
+
+                    </paper-listbox>
+                  </div>
+                </section>
+                <!-- Page:: Pending Reports - Unseen - end -->
+                
+                <!-- Page:: Pending Reports - Seen - start -->
+                <section>
+                  <template is="dom-if" if="[[_isEmptyArray(seenPendingReportsList)]]">
+                    <div class="card-content">
+                      <div class="layout horizontal center center-justified">
+                        <div class="type body secondary">-- no seen pending reports available --</div>
+                      </div>
+                    </div>
+                  </template>
+                  <div class="p-0">
+                    <paper-listbox>
+                      
+                      <template is="dom-repeat" items="[[seenPendingReportsList]]">
+                        <paper-item class="custom layout horizontal center">
+                          <div class="type caption secondary">[[item.reportSerial]]</div>
+                          
+                          <div class="flex m-left-8">
+                            <div class="type body capitalize"><strong>Investigation Name: </strong>[[item.investigationName]]</div>
+                            <div class="type body capitalize"><strong>Patient Name: </strong>[[item.patientName]]</div>
+                            <div class="type caption">
+                              <strong>Created Date: </strong>
+                              <span>[[$mkDateTime(item.createdDateTimeStamp)]]</span>
+                            </div>
+                          </div>
+
+                          <div class="type danger" hidden$="[[!item.flagAsError]]">
+                            Flagged as Error
+                          </div>
+
+                      </template>
+
+                    </paper-listbox>
+                  </div>
+                </section>
+                <!-- Page:: Pending Reports - Seen - end -->
+
+              </iron-pages>
+
+            </paper-card>
+          </section>
+          <!-- Pending Reports - end -->
+
+          <!-- Review Reports - start -->
+          <section>
+            <paper-card heading="Review Reports for referring doctor">
+
+              <paper-tabs class="basic-tabs" id="tabs" selected="{{selectedReviewReportsPage}}">
+                <paper-tab>[[$TRANSLATE('Unseen',LANG)]]
+                  <div hidden$="{{$compareFn(reportCounter.unseenReviewReportCounter, '==', 0)}}" class="counter horizontal layout center center-justified">
+                    <div>
+                      {{reportCounter.unseenReviewReportCounter}}
+                    </div>
+                  </div>
+                </paper-tab>
+                <paper-tab>[[$TRANSLATE('Seen',LANG)]]
+                  <div hidden$="{{$compareFn(reportCounter.seenReviewReportCounter, '==', 0)}}" class="counter horizontal layout center center-justified">
+                    <div>
+                      {{reportCounter.seenReviewReportCounter}}
+                    </div>
+                  </div>
+                </paper-tab>
+              </paper-tabs>
+
+              <iron-pages selected="{{selectedReviewReportsPage}}" on-iron-select="_selectedReviewReportsPageChanged">
+
+                <!-- Page:: Review Reports - Unseen - start -->
+                <section>
+                  <template is="dom-if" if="[[_isEmptyArray(unseenReviewReportsList)]]">
+                    <div class="card-content">
+                      <div class="layout horizontal center center-justified">
+                        <div class="type body secondary">-- no unseen review reports available --</div>
+                      </div>
+                    </div>
+                  </template>
+                  <div class="p-0">
+                    <paper-listbox>
+                      
+                      <template id="review-reports-list-repeater" is="dom-repeat" items="[[unseenReviewReportsList]]">
+                        <paper-item class="custom layout horizontal center">
+                          <div class="type caption secondary">[[item.reportSerial]]</div>
+                          
+                          <div class="flex m-left-8">
+                            <div class="type body capitalize"><strong>Investigation Name: </strong>[[item.investigationName]]</div>
+                            <div class="type body capitalize"><strong>Patient Name: </strong>[[item.patientName]]</div>
+                            <div class="type caption">
+                              <strong>Created Date: </strong>
+                              <span>[[$mkDateTime(item.createdDateTimeStamp)]]</span>
+                            </div>
+                          </div>
+                
+                          <paper-button class="colored" raised on-tap="viewReviewReport">view</paper-button>
+
+                      </template>
+
+                    </paper-listbox>
+                  </div>
+                </section>
+                <!-- Page:: Review Reports - Unseen - end -->
+                
+                <!-- Page:: Review Reports - Seen - start -->
+                <section>
+                  <template is="dom-if" if="[[_isEmptyArray(seenReviewReportsList)]]">
+                    <div class="card-content">
+                      <div class="layout horizontal center center-justified">
+                        <div class="type body secondary">-- no seen review reports available --</div>
+                      </div>
+                    </div>
+                  </template>
+                  <div class="p-0">
+                    <paper-listbox>
+                      
+                      <template is="dom-repeat" items="[[seenReviewReportsList]]">
+                        <paper-item class="custom layout horizontal center">
+                          <div class="type caption secondary">[[item.reportSerial]]</div>
+                          
+                          <div class="flex m-left-8">
+                            <div class="type body capitalize"><strong>Investigation Name: </strong>[[item.investigationName]]</div>
+                            <div class="type body capitalize"><strong>Patient Name: </strong>[[item.patientName]]</div>
+                            <div class="type caption">
+                              <strong>Created Date: </strong>
+                              <span>[[$mkDateTime(item.createdDateTimeStamp)]]</span>
+                            </div>
+                          </div>
+
+                          <div class="type danger" hidden$="[[!item.flagAsError]]">
+                            Flagged as Error
+                          </div>
+
+                      </template>
+
+                    </paper-listbox>
+                  </div>
+                </section>
+                <!-- Page:: Review Reports - Seen - end -->
+
+              </iron-pages>
+            </paper-card>
+          </section>
+          <!-- Review Reports - end -->
+
+        </iron-pages>
+        
+      </div>
+    </div>
+    <!-- /local DOM -->
+
+  </template>
+  <script src="page-reports-manager.coffee-compiled.js"></script>
+</dom-module>

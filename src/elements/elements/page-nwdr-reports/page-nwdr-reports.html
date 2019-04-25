@@ -1,0 +1,258 @@
+<link rel="import" href="../../bower-assets/paper-button/paper-button.html">
+<link rel="import" href="../../bower-assets/paper-card/paper-card.html">
+<link rel="import" href="../../bower-assets/paper-input/paper-input.html">
+<link rel="import" href="../../bower-assets/paper-listbox/paper-listbox.html">
+<link rel="import" href="../../bower-assets/paper-item/paper-item.html">
+<link rel="import" href="../../bower-assets/paper-menu-button/paper-menu-button.html">
+<link rel="import" href="../../bower-assets/paper-fab/paper-fab.html">
+<link rel="import" href="../../bower-assets/paper-tabs/paper-tabs.html">
+<link rel="import" href="../../bower-assets/paper-tabs/paper-tab.html">
+<link rel="import" href="../../bower-assets/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="../../bower-assets/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower-assets/paper-dropdown-menu/paper-dropdown-menu-light.html">
+<link rel="import" href="../../bower-assets/paper-listbox/paper-listbox.html">
+
+<link rel="import" href="../../bower-assets/vaadin-grid/vaadin-grid.html">
+<link rel="import" href="../../bower-assets/vaadin-grid/vaadin-grid-filter.html">
+<link rel="import" href="../../bower-assets/vaadin-grid/vaadin-grid-sorter.html">
+
+
+<!-- style -->
+<link rel="import" href="../../styles/common-style.html">
+
+<link rel="import" href="../custom-vital-search/custom-vital-search.html">
+<link rel="import" href="../../bower-assets/vaadin-combo-box/vaadin-combo-box.html">
+
+<!-- behavior -->
+<link rel="import" href="../../behaviors/translating.html">
+<link rel="import" href="../../behaviors/page-like.html">
+<link rel="import" href="../../behaviors/api-calling.html">
+<link rel="import" href="../../behaviors/common-computes.html">
+<link rel="import" href="../../behaviors/db-using.html">
+
+<!-- custom-elements -->
+
+<!-- element -->
+<dom-module id="page-nwdr-reports">
+  <template>
+
+    <!-- style -->
+
+    <style is="custom-style" include="common-style">
+      .limiting-container {
+        margin-top: 8px;
+        width: calc( 100% - 16px);
+      }
+
+      .card-custom-header {
+        padding: 15px;
+        border-bottom: 1px solid var(--paper-grey-200);
+        background-color: var(--paper-grey-50);
+      }
+
+      .card-custom-header .title {
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 28px;
+        color: var(--brand-primary-color);
+      }
+
+      paper-tabs.basic-tabs {
+        --paper-tabs-selection-bar: {
+          color: var(--paper-teal-500);
+          background-color: var(--paper-teal-500);
+        }
+      }
+    </style>
+
+    <!-- local DOM -->
+
+    <div class="master-container">
+      <div class="limiting-container">
+        <paper-card class="m-top-8">
+          <div class="card-custom-header">
+            <div class="layout horizontal center">
+              <div class="title flex">Patients List</div>
+              <vaadin-combo-box class="organization-dropdown m-right-8" label="Organization" items="[[childOrganizationList]]" on-value-changed="organizationSelected" loading="[[organizationLoading]]" disabled="[[!childOrganizationList.length]]"></vaadin-combo-box>
+
+            </div>
+          </div>
+          <!-- <div class="card-content">
+            <paper-progress indeterminate hidden="[[!loading]]"></paper-progress>
+          </div> -->
+
+          <paper-tabs style="font-size: 18px; background-color: #fafafa;" class="basic-tabs" selected="{{selectedDateRangeIndex}}" scrollable>
+            <template is="dom-repeat" items="[[dayRangeTypeList]]">
+              <paper-tab>[[item.type]]</paper-tab>
+            </template>
+          </paper-tabs>
+
+          <template is="dom-if" if="{{nwdrPatientList}}">
+            <div class="card-content">
+              <div class="horizontal layout center">
+                <div class="type body flex secondary">
+                  <strong>Patient Found: {{nwdrPatientCounter}}</strong>
+                </div>
+
+                <template is="dom-if" if="{{!$equals(selectedDateRangeIndex, 4)}}">
+                  <div class="type body secondary">
+                    (From [[_formatDateTime(dateCreatedFrom)]] to [[_formatDateTime(dateCreatedTo)]])
+                  </div>
+                </template>
+
+
+                <template is="dom-if" if="{{$equals(selectedDateRangeIndex, 4)}}">
+                  <div class="horizontal layout center">
+                    <custom-vital-search style="width:210px" on-date-select="filterByDateClicked" on-clear="filterByDateClearButtonClicked"></custom-vital-search>
+                    <paper-button on-tap="filterButtonClicked">Filter</paper-button>
+                  </div>
+                </template>
+
+              </div>
+            </div>
+
+            <vaadin-grid items="[[nwdrPatientList]]">
+              <vaadin-grid-column>
+                <template class="header layout horizontal">
+                  SI
+                </template>
+                <template>
+                  <div class="type body">
+                    <div>[[_returnSerial(index)]].</div>
+                  </div>
+                </template>
+              </vaadin-grid-column>
+
+              <vaadin-grid-column>
+                <template class="header layout horizontal">
+                  <!-- <vaadin-grid-filter aria-label="Full Name" path="name" value="[[nameFilter]]">
+                    <paper-input label="Patient Name" value="{{nameFilter}}" no-label-float></paper-input>
+                  </vaadin-grid-filter> -->
+                  Patient Name
+                </template>
+                <template>
+                  <div class="type body">
+                    <div>[[$getFullName(item.name)]]</div>
+                  </div>
+                </template>
+              </vaadin-grid-column>
+
+               <vaadin-grid-column>
+                <template class="header layout horizontal">
+                  <!-- <vaadin-grid-filter aria-label="Full Name" path="name" value="[[nameFilter]]">
+                    <paper-input label="Patient Name" value="{{nameFilter}}" no-label-float></paper-input>
+                  </vaadin-grid-filter> -->
+                  Gender
+                </template>
+                <template>
+                  <div class="type body">
+                    <div>[[item.gender]]</div>
+                  </div>
+                </template>
+              </vaadin-grid-column>
+
+              <vaadin-grid-column>
+                <template class="header layout horizontal">
+                  <!-- <vaadin-grid-filter aria-label="Full Name" path="name" value="[[nameFilter]]">
+                    <paper-input label="Patient Name" value="{{nameFilter}}" no-label-float></paper-input>
+                  </vaadin-grid-filter> -->
+                  Patient ID
+                </template>
+                <template>
+                  <div class="type body">
+                    <div>[[item.nwdrPatientId]]</div>
+                  </div>
+                </template>
+              </vaadin-grid-column>
+
+              <vaadin-grid-column>
+                <template class="header layout horizontal">
+                  Organization Serial
+                </template>
+                <template>
+                  <div class="type body">
+                    <div>[[item.organizationId]]</div>
+                  </div>
+                </template>
+              </vaadin-grid-column>
+
+              <vaadin-grid-column>
+                <template class="header layout horizontal">
+                  Organization Name
+                </template>
+                <template>
+                  <div class="type body">
+                    <div>[[item.orgName]]</div>
+                  </div>
+                </template>
+              </vaadin-grid-column>
+
+              <vaadin-grid-column>
+                <template class="header layout horizontal">
+                  Date Registration
+                </template>
+                <template>
+                  <div class="type body">
+                    <div>[[$mkDateTime(item.cratedDatetimeStamp)]]</div>
+                  </div>
+                </template>
+              </vaadin-grid-column>
+
+              <vaadin-grid-column>
+                <template class="header layout horizontal">
+                  Last Visit
+                </template>
+                <template>
+                  <div class="type body">
+                    <div>[[$mkDateTime(item.lastVisit.createdDatetimeStamp)]]</div>
+                  </div>
+                </template>
+              </vaadin-grid-column>
+
+              <vaadin-grid-column>
+                <template class="header layout horizontal">
+                  Last Visit Type
+                </template>
+                <template>
+                  <div class="type body">
+                    <div>[[item.lastVisit.visitType]]</div>
+                  </div>
+                </template>
+              </vaadin-grid-column>
+
+              <vaadin-grid-column>
+                <template class="header layout horizontal">
+                  Action
+                </template>
+                <template>
+                  <paper-button style="background: #eee;" on-tap="viewPatientNdrRecordList">View Records</paper-button>
+                </template>
+              </vaadin-grid-column>
+
+
+
+            <!-- <div class="p-0 b-top">
+              <paper-listbox>
+                <template is="dom-repeat" items="[[nwdrPatientList]]">
+
+                  <paper-item class="custom layout horizontal">
+                    <div class="type caption-2 m-right-8">[[_returnSerial(index)]].</div>
+                    <div class="flex">
+                      <div class="type body">
+                        <div>[[$getFullName(item.name)]]</div>
+                        <div class="type caption-2">[[_formatDateTime(item.cratedDatetimeStamp)]]</div>
+                      </div>
+                    </div>
+                    <paper-button on-tap="viewPatientNdrRecordList">View Records</paper-button>
+                  </paper-item>
+                </template>
+              </paper-listbox>
+            </div> -->
+          </template>
+        </paper-card>
+      </div>
+    </div>
+
+  </template>
+  <script src="page-nwdr-reports.coffee-compiled.js"></script>
+</dom-module>
