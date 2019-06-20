@@ -1394,6 +1394,20 @@ app.pages.pageList = [
     hideHeaderTitle: false
   }
 
+  {
+    name: 'Public Appointments Booking'
+    element: 'page-public-booking'
+    windowTitlePostfix: 'Public Appointments Booking'
+    headerTitle: 'Public Appointment Booking'
+    preload: true
+    hrefList: [ 'public-booking' ]
+    requireAuthentication : false
+    headerType: 'modal'
+    leftMenuEnabled: false
+    showPrintButton: false
+    accessId: 'none'
+    hideHeaderTitle: false
+  }
 ]
 
 app.pages.error404 = {

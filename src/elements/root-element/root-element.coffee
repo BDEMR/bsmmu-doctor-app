@@ -290,7 +290,7 @@ Polymer {
           if @skipWelcomePage()
             @navigateToPage '#/login'
           else
-            @navigateToPage '#/welcome'
+            @navigateToPage '#/public-booking'
       else
         @page = possiblePage
     else
