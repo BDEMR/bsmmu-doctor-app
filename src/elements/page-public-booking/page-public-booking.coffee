@@ -35,6 +35,10 @@ Polymer {
     filteredSpecializationList:
       type: Array
       value: -> []
+
+    filteredDoctorList:
+      type: Array
+      value: -> []
     
     degreeList:
       type: Array
@@ -209,6 +213,54 @@ Polymer {
     # now call api to get specializatoin for this org
     @_loadSpecializationForOrganisation()
     
+  
+  doctorSelected: (e)->
+    return unless e.detail.value
+    doctor = e.detail.value
+    console.log 'selected doctor', doctor
+    @set 'filterByDoctorId', doctor.idOnServer
+    @set 'filterByDoctorName', doctor.name
+
+    # # now call api to get specializatoin for this org
+    # @_loadSpecializationForOrganisation()
+  
+  specializationSelected: (e)->
+    return unless e.detail.value
+    specialization = e.detail.value
+    @_loadDoctorsForSpecializationAndOrganisation specialization
+
+
+  _loadDoctorsForSpecializationAndOrganisation: (specialization)->
+    data = {
+      organizationId: @get 'filterByOrganizationId'
+      specialization
+    }
+    
+    @domHost.callApi '/bdemr--patient-get-doctors-of-specialization-in-an-organization', data, (err, response)=>
+      if response.hasError
+        this.domHost.showModalDialog response.error.message
+        # clear previously loaded data
+        @filteredDoctorList = []
+        @filterByDoctorName = ''
+
+      else
+        # doctors of specialization
+        doctorList = response.data
+        # specList = []
+        # for chamber in chambers
+        #   unless specList.includes chamber.specialization
+        #     specList.push chamber.specialization
+
+        # sort doctors name
+        doctorList.sort (prev, after)->
+          return -1 if prev < after
+          return 1 if prev > after
+          return 0;
+
+        @set 'filteredDoctorList', doctorList
+        console.log 'filtered doctor list ', @filteredDoctorList;
+
+
 
   searchBookingTapped: (e = null)->
     {
@@ -248,6 +300,7 @@ Polymer {
 
   loginTapped: ()->
     @domHost.navigateToPage '#/login'   
+  
   # ====================================== NEW BOOK END
 
   showMessageIfSpecialOrganization: (orgId)->
