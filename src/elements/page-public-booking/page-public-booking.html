@@ -295,11 +295,6 @@
             </vaadin-combo-box>
             <br>
 
-            <paper-input always-float-label class="local-custom-input" type="date"
-              label="[[$TRANSLATE('Select a Booking Date',LANG)]]" value="{{dateString}}">
-            </paper-input>
-
-
             <!-- search by doctor -->
             <vaadin-combo-box always-float-label id="doctorSearch" class="local-custom-input flex"
             label="[[$TRANSLATE('Name of Doctor',LANG)]]" allow-custom-value="false" item-label-path="name"
@@ -311,6 +306,10 @@
             <!-- <paper-input always-float-label class="local-custom-input" label="[[$TRANSLATE('Name of Doctor',LANG)]]"
                 value="{{filterByName}}">
             </paper-input> -->
+
+            <paper-input always-float-label class="local-custom-input" type="date"
+              label="[[$TRANSLATE('Select a Booking Date',LANG)]]" value="{{dateString}}">
+            </paper-input>
 
 
             <div class="m-top-16 m-left-8">
