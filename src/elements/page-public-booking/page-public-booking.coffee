@@ -288,6 +288,9 @@ Polymer {
       @selectedTimeSlotFromSchduleDateDrpdwn = schedule.timeSlotList
 
   searchBookingTapped: (e = null)->
+    d = new Date();
+    d.setFullYear(d.getFullYear());
+
     {
       filterByExperience
       filterByDegree
@@ -307,7 +310,7 @@ Polymer {
       filterByShortCode: filterByShortCode or null
       filterByChamberAddress: filterByChamberAddress or null
       filterByOrganizationId: filterByOrganizationId or null
-      dateString: dateString or null
+      dateString: dateString or lib.datetime.mkDate(d)
     }
 
     console.log 'org name', @filterByOrganizationName
