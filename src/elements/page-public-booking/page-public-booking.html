@@ -364,7 +364,7 @@
               <h2 class="no-result-style">No result found</h2>
             </template>
 
-            <template is="dom-repeat" items="[[chamberList]]" as="chamber" index-as="chamberIndex">
+            <template is="dom-repeat" items="[[chamberList]]" as="chamber" index-as="chamberIndex" id="search-result-card-repeater">
               <paper-card style="margin-top:10px" heading="[[chamber.name]]">
                 <div class="card-content">
                   <div class="chamber-info">
