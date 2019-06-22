@@ -38,6 +38,10 @@ Polymer {
 
     filteredDoctorList:
       type: Array
+      value: -> []      
+
+    selectedTimeSlotFromSchduleDateDrpdwn:
+      type: Array
       value: -> []
     
     degreeList:
@@ -50,6 +54,18 @@ Polymer {
 
     selectedChamber:
       type: Object
+      value: null
+
+    selectedScheduleIdFromDateDropdown:
+      type: String
+      value: ""
+
+    selectedSchedulePage:
+      type: Number
+      value: 0
+
+    selectedDateString:
+      type: String
       value: null
 
     specialMessageOrganizationList:
@@ -124,6 +140,8 @@ Polymer {
     data = { 
       signUpData: @newMember
       chamber: @selectedChamber
+      selectedDateStringFromUser: @selectedDateString
+      selectedTimeSlotFromUser: @selectedTimeSlotFromSchduleDateDrpdwn
     }
     this.domHost.callApi '/bdemr--patient-app-public-booking-signup-api', data, (err, response)=>
       if response.hasError
@@ -141,7 +159,7 @@ Polymer {
       return
     console.log 'chamber pressed', @selectedChamber
     @selectedSchedule = {
-      scheduleId: chamber.scheduleList[0].scheduleId
+      scheduleId: @selectedScheduleIdFromDateDropdown
       chamberId: chamber._id
     }
     @showSignupFormDialog =>
@@ -261,6 +279,13 @@ Polymer {
         console.log 'filtered doctor list ', @filteredDoctorList;
 
 
+  _scheduleSelected: (e)->
+    selectedDateStringIndex = e.model.__data__.chamber.selectedSchedulePage
+    if selectedDateStringIndex is 0
+      schedule = e.model.__data__.chamber.scheduleList[selectedDateStringIndex]
+      @selectedDateString = schedule.dateString
+      @selectedScheduleIdFromDateDropdown = schedule.scheduleId
+      @selectedTimeSlotFromSchduleDateDrpdwn = schedule.timeSlotList
 
   searchBookingTapped: (e = null)->
     {
@@ -287,12 +312,12 @@ Polymer {
 
     console.log 'org name', @filterByOrganizationName
     console.log 'all filters', data
-    if !data.dateString
-      @domHost.showModalDialog @$TRANSLATE('Select the Date of the Booking', @LANG)
-    else
-      this._searchDoctorToBook data, =>
-        console.log(this.chamberList)
-        null
+    # if !data.dateString
+    #   @domHost.showModalDialog @$TRANSLATE('Select the Date of the Booking', @LANG)
+    # else
+    this._searchDoctorToBook data, =>
+      console.log(this.chamberList)
+      null
 
   bookingInfoAndDisclaimerOkayClicked: (e)->
     @$$('#bookingCompleteAndDisclaimer').close()
@@ -301,6 +326,56 @@ Polymer {
   loginTapped: ()->
     @domHost.navigateToPage '#/login'   
   
+  prevSchedule: (e)->
+    el = @locateParentNode e.target, 'PAPER-ICON-BUTTON'
+    el.opened = false
+    repeater = @$$ '#search-result-card-repeater'
+    index = repeater.indexForElement el
+    chamber = @chamberList[index]
+
+    path = 'chamberList.' + index + '.selectedSchedulePage'
+    timeSlotPath = 'chamberList.' + index + '._selectedTimeSlotIndex'
+    @set timeSlotPath, -1
+
+    if chamber.selectedSchedulePage > 0
+      @set path, chamber.selectedSchedulePage - 1
+      schedule = chamber.scheduleList[chamber.selectedSchedulePage]
+      @selectedDateString = schedule.dateString
+      @selectedTimeSlotFromSchduleDateDrpdwn = schedule.timeSlotList           
+    else
+      @set path, chamber.scheduleList.length - 1
+      schedule = chamber.scheduleList[chamber.scheduleList.length - 1]
+      @selectedDateString = schedule.dateString
+      @selectedTimeSlotFromSchduleDateDrpdwn = schedule.timeSlotList          
+
+
+  nextSchedule: (e)->
+    el = @locateParentNode e.target, 'PAPER-ICON-BUTTON'
+    el.opened = false
+    repeater = @$$ '#search-result-card-repeater'
+    index = repeater.indexForElement el
+    chamber = @chamberList[index]
+
+    path = 'chamberList.' + index + '.selectedSchedulePage'
+    timeSlotPath = 'chamberList.' + index + '._selectedTimeSlotIndex'
+    @set timeSlotPath, -1    
+
+    if chamber.selectedSchedulePage < chamber.scheduleList.length - 1
+      @set path, chamber.selectedSchedulePage + 1
+      schedule = chamber.scheduleList[chamber.selectedSchedulePage]
+      console.log schedule
+      @selectedDateString = schedule.dateString
+      @selectedTimeSlotFromSchduleDateDrpdwn = schedule.timeSlotList
+    else
+      @set path, 0
+      schedule = chamber.scheduleList[0]
+      @selectedDateString = schedule.dateString
+      @selectedTimeSlotFromSchduleDateDrpdwn = schedule.timeSlotList     
+    
+    
+
+  loginTapped: ()->
+    @domHost.navigateToPage '#/login'   
   # ====================================== NEW BOOK END
 
   showMessageIfSpecialOrganization: (orgId)->

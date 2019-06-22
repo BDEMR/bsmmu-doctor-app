@@ -35,7 +35,6 @@
 <dom-module id="page-public-booking">
   <template>
     <style is="custom-style" include="common-style">
-
       .limiting-container {
         margin-top: 10px;
       }
@@ -398,10 +397,43 @@
                       </div>
                     </div>
 
-                    <div class="chamber-info">
+                    <iron-pages selected="{{chamber.selectedSchedulePage}}" on-iron-select="_scheduleSelected">
+                      <template is="dom-repeat" items="[[chamber.scheduleList]]" as="schedule" index-as="scheduleIndex">
+                        <section>
+                          <div class="horizontal layout center">
+                            <paper-icon-button icon="chevron-left" on-click="prevSchedule"></paper-icon-button>
+                            <div class="flex"></div>
+                            <div>[[schedule.dateString]]</div>
+                            <div class="flex"></div>
+                            <paper-icon-button icon="chevron-right" on-tap="nextSchedule"></paper-icon-button>
+                          </div>
+
+                          <paper-radio-group selected="{{chamber._selectedTimeSlotIndex}}">
+                            <template is="dom-repeat" items="[[schedule.timeSlotList]]" as="slot" index-as="slotIndex">
+                              <paper-radio-button disabled="{{$compareFn(slot.availableCount, '<=', 0)}}" name="[[slotIndex]]">[[slot.timeSlot]] (Available
+                              [[slot.availableCount]])</paper-radio-button>
+                            </template>
+                          </paper-radio-group>
+                          
+                        </section>
+                      </template>
+                    </iron-pages>
+
+                    <!-- <div class="chamber-info">
+                      <paper-dropdown-menu-light label="[[$TRANSLATE('Select Date Slot',LANG)]]" style="width: 300px;">
+                        <paper-listbox class="dropdown-content" selected="{{chamber._selectedDateStringIndex}}"
+                          on-iron-select="_scheduleSelected">
+                          <template is="dom-repeat" items="[[chamber.scheduleList]]" as="schedule" index-as="scheduleIndex">
+                            <paper-item data-value="[[schedule.dateString]]">[[schedule.dateString]]</paper-item>
+                          </template>
+                        </paper-listbox>
+                      </paper-dropdown-menu-light>
+                    </div>
+
+                    <div class="chamber-info" hidden$="{{!_isTimeSlotSelected(chamberIndex)}}">
                       <paper-dropdown-menu-light label="[[$TRANSLATE('Select Time Slot',LANG)]]" style="width: 300px;">
                         <paper-listbox class="dropdown-content" selected="{{chamber._selectedTimeSlotIndex}}">
-                          <template is="dom-repeat" items="[[chamber.scheduleList.0.timeSlotList]]" as="slot"
+                          <template is="dom-repeat" items="[[selectedScheduleTimeSlot.list]]" as="slot"
                             index-as="slotIndex">
                             <paper-item data-value="[[slot.timeSlot]]">[[slot.timeSlot]] (Available
                               [[slot.availableCount]])
@@ -409,7 +441,17 @@
                           </template>
                         </paper-listbox>
                       </paper-dropdown-menu-light>
-                    </div>
+                    </div> -->
+
+                    <!-- <div class="chamber-info">
+                      <vaadin-combo-box always-float-label id="scheduleListId" items = [[chamber.scheduleList]]
+                        class="flex" label="[[$TRANSLATE('Date',LANG)]]"
+                        on-selected-item-changed="_scheduleSelected" allow-custom-value value="{{selectedDateString}}">
+                        <template>
+                          <div><strong>{{item.dateString}}</strong></div>
+                        </template>
+                      </vaadin-combo-box>
+                    </div> -->
 
                   </div>
                 </div>
