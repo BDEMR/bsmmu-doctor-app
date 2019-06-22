@@ -326,9 +326,6 @@ Polymer {
     @$$('#bookingCompleteAndDisclaimer').close()
     window.location.reload()
 
-  loginTapped: ()->
-    @domHost.navigateToPage '#/login'   
-  
   prevSchedule: (e)->
     el = @locateParentNode e.target, 'PAPER-ICON-BUTTON'
     el.opened = false

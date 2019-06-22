@@ -50,7 +50,7 @@
       .chamber-info {
         margin-top: 10px;
       }
-      
+
       .layout1 {
         @apply(--layout-horizontal);
       }
@@ -105,6 +105,7 @@
         line-height: 28px;
         color: var(--brand-primary-color);
       }
+
       /* Card Custom Header End */
 
       .specialization-style {
@@ -152,12 +153,13 @@
           padding-top: 15px !important;
           padding-left: 10px !important;
         }
+
         --paper-input-container-label-focus: {
           color: var(--brand-primary-color);
         }
 
       }
-      
+
       .local-custom-input ::content paper-input-container ::content input {
         background-color: var(--custom-input-box-color);
         color: var(--custom-input-text-color);
@@ -183,6 +185,7 @@
       paper-autocomplete.local-custom-input ::content #autocompleteInput ::content paper-input-container #input {
         padding-right: 35px;
       }
+
       /* Local Custom Input Field Style -- End --*/
 
       #title-label {
@@ -199,9 +202,9 @@
       }
 
       .login-button-style {
-          position: relative;
-          left: 40%;
-        }
+        position: relative;
+        left: 40%;
+      }
 
       .booking-label-style {
         position: relative;
@@ -209,6 +212,7 @@
       }
 
       @media only screen and (min-width: 320px) and (max-width: 800px) {
+
         .table td,
         .table th {
           vertical-align: top;
@@ -228,10 +232,8 @@
           float: right;
           width: 100%;
         }
-              
+
       }
-
-
     </style>
     <div class="master-container">
 
@@ -244,7 +246,8 @@
 
         <div class="layout vertical center">
           <div class="flex m-bottom-40">
-            <paper-button class="btn" style="font-size: 18px; background-color: #4286f4; color: #ffffff;" raised on-tap="loginTapped">Login to BSMMU App</paper-button>
+            <paper-button class="btn" style="font-size: 18px; background-color: #4286f4; color: #ffffff;" raised
+              on-tap="loginTapped">Login to BSMMU App</paper-button>
           </div>
           <div class="flex" style="color: var(--brand-primary-color); font-size: 35px;"><strong>Booking</strong></div>
         </div>
@@ -258,16 +261,18 @@
             </div>
             <div>
               <p>BDEMR এর Public Appointment Booking দিয়ে যে কোনো বুকিং সমপন্ন করলেই বিডিইএমআর পেশেন্ট এপ (BDEMR
-                Patient App) এ আপনার একটি একাউন্ট তৈরি হবে। একাউন্ট একসেস করার তথ্যসমূহ বুকিং সম্পন্ন করলেই পাওয়া যাবে।</p>
+                Patient App) এ আপনার একটি একাউন্ট তৈরি হবে। একাউন্ট একসেস করার তথ্যসমূহ বুকিং সম্পন্ন করলেই পাওয়া যাবে।
+              </p>
             </div>
           </div>
         </paper-card>
-        
+
 
         <paper-card>
           <div class="card-custom-header">
             <div class="layout vertical center">
-              <div hidden="[[!isOrganizationPreselected]]" id="title-label" class="title flex m-bottom-16">[[filterByOrganizationName]]</div>
+              <div hidden="[[!isOrganizationPreselected]]" id="title-label" class="title flex m-bottom-16">
+                [[filterByOrganizationName]]</div>
               <div id="title-label" class="title flex">[[$TRANSLATE('Search and Book A Doctor',LANG)]]</div>
             </div>
           </div>
@@ -275,10 +280,10 @@
           <div class="card-content">
 
             <!-- search by organization -->
-            <vaadin-combo-box hidden="[[isOrganizationPreselected]]" always-float-label id="organizationSearch" class="local-custom-input flex"
-              label="[[$TRANSLATE('Search By Organization',LANG)]]" item-label-path="name"
-              filter="{{organizationSearchQuery}}" loading="[[fetchingOrganizationSearchResult]]" allow-custom-value
-              value="{{filterByOrganizationName}}" on-selected-item-changed="organizationSelected">
+            <vaadin-combo-box hidden="[[isOrganizationPreselected]]" always-float-label id="organizationSearch"
+              class="local-custom-input flex" label="[[$TRANSLATE('Search By Organization',LANG)]]"
+              item-label-path="name" filter="{{organizationSearchQuery}}" loading="[[fetchingOrganizationSearchResult]]"
+              allow-custom-value value="{{filterByOrganizationName}}" on-selected-item-changed="organizationSelected">
               <template>
                 <div><strong>[[item.name]]</strong></div>
               </template>
@@ -288,7 +293,8 @@
             <!-- search by specialization -->
             <vaadin-combo-box always-float-label id="specializationSearch" class="local-custom-input flex"
               label="[[$TRANSLATE('Select Department',LANG)]]" allow-custom-value="false"
-              value="{{filterBySpecialization}}" items="[[filteredSpecializationList]]" on-selected-item-changed="specializationSelected">
+              value="{{filterBySpecialization}}" items="[[filteredSpecializationList]]"
+              on-selected-item-changed="specializationSelected">
               <template>
                 <div><strong>[[item]]</strong></div>
               </template>
@@ -297,7 +303,7 @@
 
             <!-- search by doctor -->
             <vaadin-combo-box always-float-label id="doctorSearch" class="local-custom-input flex"
-            label="[[$TRANSLATE('Name of Doctor',LANG)]]" allow-custom-value="false" item-label-path="name"
+              label="[[$TRANSLATE('Name of Doctor',LANG)]]" allow-custom-value="false" item-label-path="name"
               value="[[filterByDoctorName]]" items="[[filteredDoctorList]]" on-selected-item-changed="doctorSelected">
               <template>
                 <div><strong>[[item.name]]</strong></div>
@@ -323,13 +329,14 @@
                     label="[[$TRANSLATE('Short Code of Doctor (If Known)',LANG)]]" value="{{filterByShortCode}}">
                   </paper-input>
                 </div>
-  
+
                 <div class="layout horizontal wrap">
                   <div class="align-left">
-                    <paper-autocomplete always-float-label class="local-custom-input" label="[[$TRANSLATE('Degree',LANG)]]"
-                      text="{{filterByDegree}}" source="[[degreeList]]" required></paper-autocomplete>
+                    <paper-autocomplete always-float-label class="local-custom-input"
+                      label="[[$TRANSLATE('Degree',LANG)]]" text="{{filterByDegree}}" source="[[degreeList]]" required>
+                    </paper-autocomplete>
                   </div>
-    
+
                   <div class="align-right">
                     <paper-input always-float-label class="local-custom-input"
                       label="[[$TRANSLATE('Location/Address',LANG)]]" value="{{filterByChamberAddress}}">
@@ -338,11 +345,12 @@
                 </div>
               </div>
             </template>
-            
+
           </div>
           <!-- <paper-input label="[[$TRANSLATE('Experience',LANG)]]" value="{{filterByExperience}}"></paper-input> -->
           <div class="card-actions">
-            <paper-button class="btn btn-success" raised on-tap="searchBookingTapped">[[$TRANSLATE('Search',LANG)]]</paper-button>
+            <paper-button class="btn btn-success" raised on-tap="searchBookingTapped">[[$TRANSLATE('Search',LANG)]]
+            </paper-button>
           </div>
         </paper-card>
 
@@ -409,11 +417,12 @@
 
                           <paper-radio-group selected="{{chamber._selectedTimeSlotIndex}}">
                             <template is="dom-repeat" items="[[schedule.timeSlotList]]" as="slot" index-as="slotIndex">
-                              <paper-radio-button disabled="{{$compareFn(slot.availableCount, '<=', 0)}}" name="[[slotIndex]]">[[slot.timeSlot]] (Available
-                              [[slot.availableCount]])</paper-radio-button>
+                              <paper-radio-button disabled="{{$compareFn(slot.availableCount, '<=', 0)}}"
+                                name="[[slotIndex]]">[[slot.timeSlot]] (Available
+                                [[slot.availableCount]])</paper-radio-button>
                             </template>
                           </paper-radio-group>
-                          
+
                         </section>
                       </template>
                     </iron-pages>
@@ -494,7 +503,8 @@
           </paper-dialog-scrollable>
           <div class="buttons m-top-16">
             <paper-button dialog-dismiss>Cancel</paper-button>
-            <paper-button class="btn btn-success colored" on-click="signupAndBookThePatient" autofocus raised>Done</paper-button>
+            <paper-button class="btn btn-success colored" on-click="signupAndBookThePatient" autofocus raised>Done
+            </paper-button>
           </div>
 
         </paper-dialog>
@@ -524,7 +534,8 @@
             </div>
           </paper-dialog-scrollable>
           <div class="card-actions">
-            <paper-button class="btn btn-success" raised on-click="bookingInfoAndDisclaimerOkayClicked">Okay</paper-button>
+            <paper-button class="btn btn-success" raised on-click="bookingInfoAndDisclaimerOkayClicked">Okay
+            </paper-button>
           </div>
         </paper-dialog>
 
