@@ -756,8 +756,8 @@
     <paper-dialog id="generic-modal-prompt" modal on-iron-overlay-closed="genericModalPromptClosed">
       <h2>[[genericModalPromptContents]]</h2>
       <div class="buttons">
-        <paper-button dialog-dismiss>Cancel</paper-button>
-        <paper-button dialog-confirm autofocus>Confirm</paper-button>
+        <paper-button dialog-dismiss>[[$TRANSLATE('Cancel', LANG)]]</paper-button>
+        <paper-button dialog-confirm autofocus>[[$TRANSLATE('Confirm', LANG)]]</paper-button>
       </div>
     </paper-dialog>
     <!-- generic-modal-prompt - end -->
@@ -767,8 +767,8 @@
       <h2>[[genericModalInputContents]]</h2>
       <paper-input type="text" autofocus value="{{genericModalInputFieldValue}}"></paper-input>
       <div class="buttons">
-        <paper-button dialog-dismiss>Cancel</paper-button>
-        <paper-button dialog-confirm autofocus>Confirm</paper-button>
+        <paper-button dialog-dismiss>[[$TRANSLATE('Cancel', LANG)]]</paper-button>
+        <paper-button dialog-confirm autofocus>[[$TRANSLATE('Confirm', LANG)]]</paper-button>
       </div>
     </paper-dialog>
     <!-- generic-modal-input - end -->

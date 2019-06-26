@@ -103,15 +103,23 @@ Polymer {
         
   
   navigatedIn: ()->
-    params = @domHost.getPageParams()
-    
-    if params['id']
-      @_getOrganizationDetails params['id'], ()=>
-        warningData = sessionStorage.getItem('warningShown')
-        if warningData
-          return
-        else
-          @_showBookingWarningToUser()
+    # params = @domHost.getPageParams()
+    # if params['id']
+    #   @_getOrganizationDetails params['id'], ()=>
+    #     warningData = sessionStorage.getItem('warningShown')
+    #     if warningData
+    #       return
+    #     else
+    #       @_showBookingWarningToUser()
+
+    # ONLY for BSMMU. id is hardcoded and rest is left as it is
+    bsmmuId = '5ca1b674ad6ab7161f30467a'
+    @_getOrganizationDetails bsmmuId, ()=>
+      warningData = sessionStorage.getItem('warningShown')
+      if warningData
+        return
+      else
+        @_showBookingWarningToUser()
   
   # ====================================== NEW BOOK START
 
@@ -195,9 +203,16 @@ Polymer {
         # all chambers info
         chambers = response.data
         specList = []
+        # ** this uses chamber specialization
         for chamber in chambers
           unless specList.includes chamber.specialization
             specList.push chamber.specialization
+
+        # # ** this uses assigned doctors specializationList
+        # for chamber in chambers
+        #   for doctor in chamber.assignedDoctors
+        #     unless specList.includes doctor.specializationList
+        #       specList.push doctor.specializationList
 
         @set 'filteredSpecializationList', specList
         console.log 'filtered specs ', @filteredSpecializationList;
@@ -239,12 +254,12 @@ Polymer {
     @set 'filterByDoctorId', doctor.idOnServer
     @set 'filterByDoctorName', doctor.name
 
-    # # now call api to get specializatoin for this org
-    # @_loadSpecializationForOrganisation()
   
   specializationSelected: (e)->
     return unless e.detail.value
     specialization = e.detail.value
+    console.log 'selected spec', specialization
+    @set 'filterBySpecialization', specialization
     @_loadDoctorsForSpecializationAndOrganisation specialization
 
 
@@ -264,10 +279,6 @@ Polymer {
       else
         # doctors of specialization
         doctorList = response.data
-        # specList = []
-        # for chamber in chambers
-        #   unless specList.includes chamber.specialization
-        #     specList.push chamber.specialization
 
         # sort doctors name
         doctorList.sort (prev, after)->
