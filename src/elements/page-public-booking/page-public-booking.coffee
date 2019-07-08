@@ -203,16 +203,17 @@ Polymer {
         # all chambers info
         chambers = response.data
         specList = []
-        # ** this uses chamber specialization
-        for chamber in chambers
-          unless specList.includes chamber.specialization
-            specList.push chamber.specialization
 
-        # # ** this uses assigned doctors specializationList
+        # ** this uses chamber specialization
         # for chamber in chambers
-        #   for doctor in chamber.assignedDoctors
-        #     unless specList.includes doctor.specializationList
-        #       specList.push doctor.specializationList
+        #   unless specList.includes chamber.specialization
+        #     specList.push chamber.specialization
+
+        # ** this uses assigned doctors specializationList
+        for chamber in chambers
+          for doctor in chamber.assignedDoctors
+            unless specList.includes doctor.specializationList
+              specList.push doctor.specializationList
 
         @set 'filteredSpecializationList', specList
         console.log 'filtered specs ', @filteredSpecializationList;
@@ -306,7 +307,7 @@ Polymer {
       filterByExperience
       filterByDegree
       filterBySpecialization
-      filterByName
+      filterByDoctorName
       filterByShortCode
       filterByChamberAddress
       filterByOrganizationId
@@ -317,7 +318,7 @@ Polymer {
       filterByExperience: filterByExperience or null
       filterByDegree: filterByDegree or null
       filterBySpecialization: filterBySpecialization or null
-      filterByName: filterByName or null
+      filterByDoctorName: filterByDoctorName or null
       filterByShortCode: filterByShortCode or null
       filterByChamberAddress: filterByChamberAddress or null
       filterByOrganizationId: filterByOrganizationId or null
