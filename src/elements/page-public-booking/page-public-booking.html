@@ -314,7 +314,7 @@
             <!-- search by doctor -->
             <vaadin-combo-box always-float-label id="doctorSearch" class="local-custom-input flex"
               label="[[$TRANSLATE('Name of Doctor',LANG)]]" allow-custom-value="false" item-label-path="name"
-              value="[[filterByDoctorName]]" items="[[filteredDoctorList]]" on-selected-item-changed="doctorSelected">
+              value="{{filterByDoctorName}}" items="[[filteredDoctorList]]" on-selected-item-changed="doctorSelected">
               <template>
                 <div><strong>[[item.name]]</strong></div>
               </template>
