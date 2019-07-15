@@ -136,6 +136,29 @@ Polymer {
 
     @set 'newMember', newMember
     cbfn()
+  
+  _sendBookingConfirmationSmsToUserIfOrganizaionHaveBalance: (patient, bookingSerial)->
+    serialString = ''
+    if bookingSerial
+      serialString = 'Your serial is ' + bookingSerial
+
+    timeSlot = @selectedTimeSlotFromSchduleDateDrpdwn[@selectedChamber._selectedTimeSlotIndex].timeSlot
+    message = "#{this.selectedChamber.name} created an appointment for you on #{this.selectedDateString} at #{timeSlot.replace(/\-/g,':')}. #{serialString}"
+    
+    organizationId = @selectedChamber.organizationId
+
+    data =
+      receiverUserId: patient.userId
+      phoneNumber: patient.phone
+      smsBody: message
+      organizationId: organizationId
+    @isLoading = true
+    @callApi '/bdemr--send-public-sms-from-organization-account', data, (err, response)=>
+      @isLoading = false
+      # if response.hasError
+      #   @domHost.showModalDialog response.error.message
+      # else
+      #   @domHost.showModalDialog 'Successfuly Sent'
 
   signupAndBookThePatient:()->
     unless @newMember.name and @newMember.dateOfBirth and @newMember.gender and @newMember.emailOrPhone
@@ -151,10 +174,18 @@ Polymer {
       selectedDateStringFromUser: @selectedDateString
       selectedTimeSlotFromUser: @selectedTimeSlotFromSchduleDateDrpdwn
     }
+
+    console.log {data}
+
     this.domHost.callApi '/bdemr--patient-app-public-booking-signup-api', data, (err, response)=>
       if response.hasError
         this.domHost.showModalDialog response.error.message
       else
+        organizationId = @selectedChamber.organizationId
+        patient = response.data.newPatient
+        serial = response.data.serial
+        @_sendBookingConfirmationSmsToUserIfOrganizaionHaveBalance patient, serial
+
         @$$('#dialogSignupForm').close()
         @$$('#bookingCompleteAndDisclaimer').toggle()
         
