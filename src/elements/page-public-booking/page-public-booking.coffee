@@ -113,7 +113,7 @@ Polymer {
     #       @_showBookingWarningToUser()
 
     # ONLY for BSMMU. id is hardcoded and rest is left as it is
-    bsmmuId = "5ca1b674ad6ab7161f30467a"
+    bsmmuId = "5cac197c0171aa1ba85612f3"
     @_getOrganizationDetails bsmmuId, ()=>
       warningData = sessionStorage.getItem('warningShown')
       if warningData
@@ -333,7 +333,7 @@ Polymer {
   searchBookingTapped: (e = null)->
     d = new Date();
     d.setFullYear(d.getFullYear());
-
+    console.log @filterByDoctorName
     {
       filterByExperience
       filterByDegree
