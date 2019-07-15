@@ -284,7 +284,7 @@ Polymer {
     doctor = e.detail.value
     console.log 'selected doctor', doctor
     @set 'filterByDoctorId', doctor.idOnServer
-    @set 'filterByDoctorName', doctor.name
+    @set 'filterByDoctorName', doctor.name.trim()
 
   
   specializationSelected: (e)->
@@ -309,6 +309,7 @@ Polymer {
         @filterByDoctorName = ''
 
       else
+        @filterByDoctorName = ''
         # doctors of specialization
         doctorList = response.data
 
