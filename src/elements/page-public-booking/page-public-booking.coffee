@@ -242,9 +242,10 @@ Polymer {
 
         # ** this uses assigned doctors specializationList
         for chamber in chambers
-          for doctor in chamber.assignedDoctors
-            unless specList.includes doctor.specializationList
-              specList.push doctor.specializationList
+          if chamber.assignedDoctors
+            for doctor in chamber.assignedDoctors
+              unless specList.includes doctor.specializationList
+                specList.push doctor.specializationList
 
         @set 'filteredSpecializationList', specList
         console.log 'filtered specs ', @filteredSpecializationList;
