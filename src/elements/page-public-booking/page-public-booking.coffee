@@ -351,7 +351,7 @@ Polymer {
       filterByExperience: filterByExperience or null
       filterByDegree: filterByDegree or null
       filterBySpecialization: filterBySpecialization or null
-      filterByDoctorName: filterByDoctorName or null
+      filterByDoctorName: @removeBanglaString(filterByDoctorName) or null
       filterByShortCode: filterByShortCode or null
       filterByChamberAddress: filterByChamberAddress or null
       filterByOrganizationId: filterByOrganizationId or null
@@ -421,6 +421,15 @@ Polymer {
 
   loginTapped: ()->
     @domHost.navigateToPage '#/login'   
+
+  removeBanglaString: (name)->
+    endIndex = name.indexOf "("
+    if endIndex isnt -1
+      endIndex--
+      return name.slice(0, endIndex)
+    return name
+    
+
   # ====================================== NEW BOOK END
 
   showMessageIfSpecialOrganization: (orgId)->
