@@ -63,19 +63,19 @@ Polymer {
       type: String
       value: null
 
-    # organizationProps:
-    #   type: Object
-    #   value: 
-    #     organizationId: '5ca1b674ad6ab7161f30467a'
-    #     organizationName: 'Bangabandhu Sheikh Mujib Medical University (BSMMU)'
-    #     cancelMessage: 'অনুগ্রহ করে বিএসএমএমইউ এর বহির্বিভাগে সরাসরি যোগাযোগ করুন'
-
     organizationProps:
       type: Object
       value: 
-        organizationId: '5c8a4b7ef240c27591dcefb0' #demo org
-        organizationName: 'Demo Org'
+        organizationId: '5ca1b674ad6ab7161f30467a'
+        organizationName: 'Bangabandhu Sheikh Mujib Medical University (BSMMU)'
         cancelMessage: 'অনুগ্রহ করে বিএসএমএমইউ এর বহির্বিভাগে সরাসরি যোগাযোগ করুন'
+
+    # organizationProps:
+    #   type: Object
+    #   value: 
+    #     organizationId: '5c8a4b7ef240c27591dcefb0' #demo org
+    #     organizationName: 'Demo Org'
+    #     cancelMessage: 'অনুগ্রহ করে বিএসএমএমইউ এর বহির্বিভাগে সরাসরি যোগাযোগ করুন'
 
     
 
@@ -221,6 +221,7 @@ Polymer {
 
         @set 'filteredSpecializationList', specList
         console.log 'filtered specs ', @filteredSpecializationList
+      cbfn()
         
 
     
