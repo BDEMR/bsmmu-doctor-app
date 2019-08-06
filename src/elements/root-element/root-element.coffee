@@ -472,6 +472,21 @@ Polymer {
 
   # === NOTE - Common Dialog Boxes ===
 
+  # public booking cancel modal dialog - START
+  showPublicBookingCancelModalDialog: (content, cbfn)->
+    @publicBookingCancelModalDialogContents = content
+    @$$('#public-booking-cancel-modal-prompt').toggle()
+    @$$('#public-booking-cancel-modal-prompt').center()
+    @publicBookingCancelModalDialogDoneCallback = cbfn
+
+  publicBookingCancelModalDialogClosed: (e)->
+    if e.detail.confirmed
+      @publicBookingCancelModalDialogDoneCallback true
+    @publicBookingCancelModalDialogDoneCallback = null
+
+  # public booking cancel modal dialog - END
+  
+
   showModalDialog: (content)->
     if typeof(content) is 'string'
       @genericModalDialogContents = content

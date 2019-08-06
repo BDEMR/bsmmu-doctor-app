@@ -752,6 +752,16 @@
 
     </app-drawer-layout>
 
+    <!-- public-booking-cancel-modal-prompt - start -->
+    <paper-dialog id="public-booking-cancel-modal-prompt" modal on-iron-overlay-closed="publicBookingCancelModalDialogClosed">
+      <h2>[[publicBookingCancelModalDialogContents]]</h2>
+      <div class="buttons">
+        <paper-button dialog-confirm autofocus>[[$TRANSLATE('OK', LANG)]]</paper-button>
+      </div>
+    </paper-dialog>
+    <!-- public-booking-cancel-modal-prompt - end -->
+
+    
     <!-- generic-modal-prompt - start -->
     <paper-dialog id="generic-modal-prompt" modal on-iron-overlay-closed="genericModalPromptClosed">
       <h2>[[genericModalPromptContents]]</h2>

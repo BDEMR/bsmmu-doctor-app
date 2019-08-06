@@ -281,25 +281,14 @@
         <paper-card>
           <div class="card-custom-header">
             <div class="layout vertical center">
-              <div hidden="[[!isOrganizationPreselected]]" id="title-label" class="title flex m-bottom-16">
-                [[filterByOrganizationName]]</div>
+              <div id="title-label" class="title flex m-bottom-16">
+                [[organizationProps.organizationName]]</div>
               <div id="title-label" class="title flex">[[$TRANSLATE('Search and Book A Doctor',LANG)]]</div>
             </div>
           </div>
 
           <div class="card-content">
-
-            <!-- search by organization -->
-            <vaadin-combo-box hidden="[[isOrganizationPreselected]]" always-float-label id="organizationSearch"
-              class="local-custom-input flex" label="[[$TRANSLATE('Search By Organization',LANG)]]"
-              item-label-path="name" filter="{{organizationSearchQuery}}" loading="[[fetchingOrganizationSearchResult]]"
-              allow-custom-value value="{{filterByOrganizationName}}" on-selected-item-changed="organizationSelected">
-              <template>
-                <div><strong>[[item.name]]</strong></div>
-              </template>
-            </vaadin-combo-box>
-            <br>
-
+            
             <!-- search by specialization -->
             <vaadin-combo-box always-float-label id="specializationSearch" class="local-custom-input flex"
               label="[[$TRANSLATE('Select Department',LANG)]]" allow-custom-value="false"

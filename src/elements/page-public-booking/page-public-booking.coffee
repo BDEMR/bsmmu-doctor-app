@@ -23,11 +23,6 @@ Polymer {
       type: String
       value: ()-> ""
 
-    organizationSearchQuery:
-      type: String
-      value: -> ""
-      observer: 'organizationSearchInputChanged'
-
     organizationList:
       type: Array
       value: ()-> []
@@ -68,53 +63,30 @@ Polymer {
       type: String
       value: null
 
-    specialMessageOrganizationList:
-      type: Array
-      value: [
-        {organizationId: '5ca1b674ad6ab7161f30467a', organizationSerial: '', organizationName: 'বিএসএমএমইউ '}
-      ]
-    
-    isOrganizationPreselected:
-      type: Boolean
-      value: false
+    # organizationProps:
+    #   type: Object
+    #   value: 
+    #     organizationId: '5ca1b674ad6ab7161f30467a'
+    #     organizationName: 'Bangabandhu Sheikh Mujib Medical University (BSMMU)'
+    #     cancelMessage: 'অনুগ্রহ করে বিএসএমএমইউ এর বহির্বিভাগে সরাসরি যোগাযোগ করুন'
 
+    organizationProps:
+      type: Object
+      value: 
+        organizationId: '5c8a4b7ef240c27591dcefb0' #demo org
+        organizationName: 'Demo Org'
+        cancelMessage: 'অনুগ্রহ করে বিএসএমএমইউ এর বহির্বিভাগে সরাসরি যোগাযোগ করুন'
+
+    
 
   $gte: (a, b)-> parseInt(a) >= parseInt(b)
 
   $diff: (a, b)-> parseInt(a) - parseInt(b)
-
-
-
-  _getOrganizationDetails: (organizationId, cbfn)->
-    console.log {organizationId}
-    data = { organizationId: organizationId }
-    this.domHost.callApi '/bdemr--public-get-organization-details', data, (err, response)=>
-      if response.hasError
-        console.log 'error while organization details', response.error.message
-        # this.domHost.showModalDialog response.error.message
-      else
-        @isOrganizationPreselected = true
-        organization = response.data
-        @set 'filterByOrganizationId', organization.idOnServer
-        @set 'filterByOrganizationName', organization.name
-        # now call api to get specializatoin for this org
-        @_loadSpecializationForOrganisation()
-        cbfn()
-        
+  
   
   navigatedIn: ()->
-    # params = @domHost.getPageParams()
-    # if params['id']
-    #   @_getOrganizationDetails params['id'], ()=>
-    #     warningData = sessionStorage.getItem('warningShown')
-    #     if warningData
-    #       return
-    #     else
-    #       @_showBookingWarningToUser()
-
     # ONLY for BSMMU. id is hardcoded and rest is left as it is
-    bsmmuId = "5ca1b674ad6ab7161f30467a"
-    @_getOrganizationDetails bsmmuId, ()=>
+    @_loadSpecializationForOrganisation =>
       warningData = sessionStorage.getItem('warningShown')
       if warningData
         return
@@ -222,9 +194,9 @@ Polymer {
         cbfn()
 
 
-  _loadSpecializationForOrganisation: ()->
+  _loadSpecializationForOrganisation: (cbfn)->
     data = {
-      organizationId: @get 'filterByOrganizationId'
+      organizationId: @organizationProps.organizationId
     }
     
     @domHost.callApi '/bdemr--public-patient-get-specializations-of-doctors-in-a-organization', data, (err, response)=>
@@ -248,38 +220,10 @@ Polymer {
                 specList.push doctor.specializationList
 
         @set 'filteredSpecializationList', specList
-        console.log 'filtered specs ', @filteredSpecializationList;
+        console.log 'filtered specs ', @filteredSpecializationList
+        
 
-
-  organizationSearchInputChanged: (searchQuery)->
-    @debounce 'search-organization', ()=>
-      @_searchOrganization(searchQuery)
-    , 300
-
-  _searchOrganization: (searchQuery)->
-    return unless searchQuery
-    @fetchingOrganizationSearchResult = true;
-    @domHost.callApi '/bdemr--public-organization-search', { searchString: searchQuery }, (err, response)=>
-      @fetchingOrganizationSearchResult = false
-      if response.hasError
-        @domHost.showModalDialog response.error.message
-      else
-        data = response.data.matchingOrganizationList
-        console.log 'orgs', data
-        if data.length > 0
-          @$$("#organizationSearch").items = data
-
-
-  organizationSelected: (e)->
-    return unless e.detail.value
-    organization = e.detail.value
-    @set 'filterByOrganizationId', organization.idOnServer
-    @set 'filterByOrganizationName', organization.name
-
-    # now call api to get specializatoin for this org
-    @_loadSpecializationForOrganisation()
     
-  
   doctorSelected: (e)->
     return unless e.detail.value
     doctor = e.detail.value
@@ -298,7 +242,7 @@ Polymer {
 
   _loadDoctorsForSpecializationAndOrganisation: (specialization)->
     data = {
-      organizationId: @get 'filterByOrganizationId'
+      organizationId: @organizationProps.organizationId
       specialization
     }
     
@@ -343,7 +287,6 @@ Polymer {
       filterByDoctorName
       filterByShortCode
       filterByChamberAddress
-      filterByOrganizationId
       dateString
     } = this
 
@@ -354,7 +297,7 @@ Polymer {
       filterByDoctorName: @removeBanglaString(filterByDoctorName) or null
       filterByShortCode: filterByShortCode or null
       filterByChamberAddress: filterByChamberAddress or null
-      filterByOrganizationId: filterByOrganizationId or null
+      filterByOrganizationId: @organizationProps.organizationId or null
       dateString: dateString or lib.datetime.mkDate(d)
     }
 
@@ -432,21 +375,14 @@ Polymer {
 
   # ====================================== NEW BOOK END
 
-  showMessageIfSpecialOrganization: (orgId)->
-    for org in @specialMessageOrganizationList
-      if org.organizationId is orgId
-        @domHost.showModalDialog "অনুগ্রহ করে #{org.organizationName} এর বহির্বিভাগে সরাসরি যোগাযোগ করুন"
-        return
-
-
   _showBookingWarningToUser: ()->
     @domHost.showModalPrompt "আপনার অসুস্থতায় কোন বিভাগের চিকিৎসা প্রয়োজন তা নির্বাচনে আপনি কি সক্ষম?", (answer)=>
       if answer
         warningData = sessionStorage.setItem('warningShown', 'true')
       else
         # show the message below only for BSMMU
-        @showMessageIfSpecialOrganization @filterByOrganizationId
-
+        @domHost.showPublicBookingCancelModalDialog @organizationProps.cancelMessage, (gotIt)=>
+          if gotIt then @_showBookingWarningToUser()
     
     # @domHost.showModalDialog "-- !!লক্ষ্য করুন!! -- আপনি কোন বিভাগের ডাক্তারের সাক্ষাৎ চান তা জানা থাকলে পরবর্তী ধাপে (Ok) কিল্ক করুন!"
     #Here used session storage so that user can refresh the page without gettng the warning everytime.
