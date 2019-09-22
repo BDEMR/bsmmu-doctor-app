@@ -132,6 +132,8 @@ Polymer {
       # else
       #   @domHost.showModalDialog 'Successfuly Sent'
 
+  
+  
   signupAndBookThePatient:()->
     unless @newMember.name and @newMember.dateOfBirth and @newMember.gender and @newMember.emailOrPhone
       @domHost.showToast 'Please fill up required fields'  

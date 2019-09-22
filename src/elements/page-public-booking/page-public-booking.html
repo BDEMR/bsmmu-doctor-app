@@ -281,8 +281,7 @@
         <paper-card>
           <div class="card-custom-header">
             <div class="layout vertical center">
-              <div id="title-label" class="title flex m-bottom-16">
-                [[organizationProps.organizationName]]</div>
+              <div id="title-label" class="title flex m-bottom-16">[[$TRANSLATE(organizationProps.organizationName, LANG)]]</div>
               <div id="title-label" class="title flex">[[$TRANSLATE('Search and Book A Doctor',LANG)]]</div>
             </div>
           </div>
@@ -479,34 +478,34 @@
 
         <!-- Dialog for - Add new member - start -->
         <paper-dialog id="dialogSignupForm">
-          <div class="type body-lead" style="color: var(--brand-primary-color); text-align: center">Please Provide Your
-            Booking Information</div>
+          <div class="type body-lead" style="color: var(--brand-primary-color); text-align: center">
+            [[$TRANSLATE('Please Provide Your Booking Information', LANG)]]</div>
           <hr>
           <paper-dialog-scrollable style="position:relative;top:-20px;">
-            <paper-input class="custom-input" label="Your Name" required value="{{newMember.name}}" auto-validate
-              error-message="Member Name is Required!"></paper-input>
+            <paper-input class="custom-input" label="[[$TRANSLATE('Your Name',LANG)]]" required value="{{newMember.name}}" auto-validate
+              error-message="[[$TRANSLATE('Member Name is Required!',LANG)]]"></paper-input>
 
-            <vaadin-date-picker class="custom-input" required auto-validate error-message="Date of Birth is Required!"
-              type="date" value="{{newMember.dateOfBirth}}" label="Date of Birth"></vaadin-date-picker>
+            <vaadin-date-picker class="custom-input" required auto-validate error-message="[[$TRANSLATE('Date of Birth is Required!',LANG)]]"
+              type="date" value="{{newMember.dateOfBirth}}" label="[[$TRANSLATE('Date of Birth (mm/dd/yyyy)',LANG)]]"></vaadin-date-picker>
 
-            <div class="type body m-top-16" style="position:relative;left:5px;">Gender</div>
+            <div class="type body m-top-16" style="position:relative;left:5px;">[[$TRANSLATE('Gender',LANG)]]</div>
             <paper-radio-group selected="{{newMember.gender}}">
-              <paper-radio-button name="male">Male</paper-radio-button>
-              <paper-radio-button name="female">Female</paper-radio-button>
-              <paper-radio-button name="other">Other</paper-radio-button>
+              <paper-radio-button name="male">[[$TRANSLATE('Male',LANG)]]</paper-radio-button>
+              <paper-radio-button name="female">[[$TRANSLATE('Female',LANG)]]</paper-radio-button>
+              <paper-radio-button name="other">[[$TRANSLATE('Other',LANG)]]</paper-radio-button>
             </paper-radio-group>
 
             <paper-input class="custom-input paper-custom full" class="p-horizontal-8"
-              value="{{newMember.emailOrPhone}}" label="Your Phone Number" pattern="^[0-9]{11,11}(-[0-9]*){0,1}$"
-              required auto-validate error-message="Phone Number Required. i.e.: 01712345678 or 01712345678-12'"
+              value="{{newMember.emailOrPhone}}" label="[[$TRANSLATE('Your Phone Number',LANG)]]" pattern="^[0-9]{11,11}(-[0-9]*){0,1}$"
+              required auto-validate error-message="[[$TRANSLATE('Phone Number Required. i.e.: 01712345678 or 01712345678-12',LANG)]]"
               char-counter minlength="11" maxlength="14">
               <div prefix>+88</div>
             </paper-input>
 
           </paper-dialog-scrollable>
           <div class="buttons m-top-16">
-            <paper-button dialog-dismiss>Cancel</paper-button>
-            <paper-button class="btn btn-success colored" on-click="signupAndBookThePatient" autofocus raised>Done
+            <paper-button dialog-dismiss>[[$TRANSLATE('Cancel',LANG)]]</paper-button>
+            <paper-button class="btn btn-success colored" on-click="signupAndBookThePatient" autofocus raised>[[$TRANSLATE('Done',LANG)]]
             </paper-button>
           </div>
 
