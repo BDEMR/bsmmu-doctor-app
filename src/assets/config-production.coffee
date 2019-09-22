@@ -9,7 +9,7 @@ window.app =
 
     clientName: 'bsmmu'
 
-    clientVersion: '0.0.10'
+    clientVersion: '0.0.11'
 
     clientPlatform: 'web' # can be - 'web', 'android', 'ios', 'windows', 'osx', 'ubuntu'
 
