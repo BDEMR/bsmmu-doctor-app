@@ -361,7 +361,7 @@ app.lang.phrases =
     'Book and Pay from wallet':'বুকিং দিন এবং ওয়ালেট থেকে পরিশোধ করুন'
     'Specializations':'বিশেষজ্ঞ'
     'Select Booking Date and Slot': 'বুকিংয়ের তারিখ এবং স্লট নির্বাচন করুন'
-    'Bangabandhu Sheikh Mujib Medical University (BSMMU)' : 'বঙ্গবন্ধু শেখ মুজিব মেডিকেল ইউনিভার্সিটি (বিএসএমএমইউ)'
+    'Bangabandhu Sheikh Mujib Medical University (BSMMU)' : 'বঙ্গবন্ধু শেখ মুজিব মেডিকেল বিশ্ববিদ্যালয় (বিএসএমএমইউ)'
     'Cardiology':'কার্ডিওলজি'
     'Dermatology & Venereology':'চর্ম ও যৌন'
     'Dermatology & Venerology':'চর্ম ও যৌন'
