@@ -218,8 +218,9 @@ Polymer {
         for chamber in chambers
           if chamber.assignedDoctors
             for doctor in chamber.assignedDoctors
-              unless specList.includes doctor.specializationList
-                specList.push doctor.specializationList
+              docSpecialization = if doctor.specializationList then doctor.specializationList.trim() else ''
+              if (docSpecialization) and (not specList.includes docSpecialization)
+                specList.push docSpecialization
 
         @set 'filteredSpecializationList', specList
         console.log 'filtered specs ', @filteredSpecializationList
