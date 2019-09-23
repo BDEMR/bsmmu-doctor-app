@@ -327,7 +327,4 @@ Polymer {
     @isPatientValid = false
 
 
-      
-  
-
 }

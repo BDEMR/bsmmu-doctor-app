@@ -952,7 +952,7 @@ Polymer {
       return false
 
   _isEmptyString: (data)->
-    if data is null or data is '' or data is 'undefined'
+    if data is null or data is undefined  or data is '' or data is 'undefined'
       return true
     else
       return false
@@ -1875,8 +1875,8 @@ Polymer {
         medicine.lastModifiedDatetimeStamp = lib.datetime.now()
 
         ## flags
-        @medicine.flags.hideMedicineManufacturerName = @settings.flags.hideMedicineManufacturerName
-        @medicine.flags.hideMedicineGenericName = @settings.flags.hideMedicineGenericName
+        @medicine.flags.hideMedicineManufacturerName = @settings?.flags?.hideMedicineManufacturerName?=false
+        @medicine.flags.hideMedicineGenericName = @settings?.flags?.hideMedicineGenericName?=false
 
         app.db.insert 'patient-medications', medicine
 
@@ -2249,8 +2249,8 @@ Polymer {
         return 0
 
       @set 'matchingSymptomsDataList', @symptomsDataList
-
       # console.log @symptomsDataList
+
 
   _generateSymptomCategory:(symptomList)->
     categoryMap = {}
@@ -2268,6 +2268,9 @@ Polymer {
       filteredList = @symptomsDataList.filter (item)=> item.category.toLowerCase() is category.toLowerCase()
       console.log category, filteredList
       @set 'matchingSymptomsDataList', filteredList
+      return
+    @set 'matchingSymptomsDataList', @symptomsDataList
+    
 
   ## User Added Custom Symptoms
   saveUserAddedCustomSymptoms: (symptomName)->
@@ -2448,7 +2451,7 @@ Polymer {
   
 
   addSymptomAsFavorite: (data)->
-    console.log data
+    console.log 'adding favorite symptom', data
     if @_duplicatieSymptomCheck data.name
       return
     else
@@ -2459,13 +2462,14 @@ Polymer {
         organizationId: @currentOrganization.idOnServer
         clientCollectionName: 'user-favorite-symptom'
         isSelected: false
-        data: data
+        data: 
+          name: data
 
       app.db.insert 'user-favorite-symptom', object
       @domHost.showToast 'Added to favorite list'
 
   addAsFavoriteSymptom: (e)->
-    if ((@comboBoxSymptomsInputValue is '') or (@comboBoxSymptomsInputValue is null))
+    if (@comboBoxSymptomsInputValue is '') or (@comboBoxSymptomsInputValue is null)
       @domHost.showToast 'Type/Add a Test first!'
       return
     @addSymptomAsFavorite @comboBoxSymptomsInputValue
@@ -4985,9 +4989,8 @@ Polymer {
 
 
   printButtonPressed: (e)->
- 
+    console.log 'current next visit state', @nextVisit
     @set 'addedExaminationList2', []
-
     @printPrescriptionOnly = @checkForPrintPreviewType()
     
     # hack for addedExamination List not updated on print preview
@@ -5184,7 +5187,7 @@ Polymer {
 
 
   _preloadData: ->
-
+    console.log 'visit new inside preload data'
     params = @domHost.getPageParams()
     user = @getCurrentUser()
     organization = @getCurrentOrganization()
@@ -5203,6 +5206,7 @@ Polymer {
     # Preloaded Data - Diagnosis
     @async => @loadDiagnosisListData()
   
+
   ready: ->
     @_preloadData()
   
@@ -5263,9 +5267,7 @@ Polymer {
 
       @addedVitalList = []
 
-
     
-
     ## Load Visit Record
     unless params['visit']
       @_notifyInvalidVisit()
@@ -5543,7 +5545,7 @@ Polymer {
     @isTestAdvisedValid = false
     @testAdvisedObject = {}
     @matchingFavoriteInvestigationList = []
-    @investigationDataList = []
+    # @investigationDataList = [] # if this list is cleared, after switching among tabs, investigation list not reloaded when re-entered into visit-new
 
     ##Examination
     @addedExaminationList = []

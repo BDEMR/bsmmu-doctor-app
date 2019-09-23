@@ -900,7 +900,7 @@ Polymer {
       return false
 
   _isEmptyString: (data)->
-    if data is null or data is '' or data is 'undefined'
+    if data is null or data is undefined or data is '' or data is 'undefined'
       return true
     else
       return false
