@@ -1795,6 +1795,7 @@ Polymer {
                 @_loadExamination @visit.examinationSerial
 
               ## Visit - Vitals - start
+              @addedVitalList = []
               if @visit.vitalSerial.bp
                  @_loadVitalsForVisit @visit.vitalSerial.bp, 'Blood Pressure'
 
@@ -2174,6 +2175,8 @@ Polymer {
     if params['visit-invoice'] != 'new'
       @domHost.navigateToPage '#/print-invoice/visit:' + @visit.serial + '/patient:' + @patient.serial + '/invoice:' + @invoice.serial
 
+  editVisitRecord: ()->
+    @domHost.navigateToPage '#/visit-editor/visit:' + @visit.serial + '/patient:' + @patient.serial
 
 
 }

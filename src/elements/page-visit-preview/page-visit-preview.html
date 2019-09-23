@@ -775,6 +775,13 @@
         border-radius: 50%;
         border: 2px solid #f7f7f7;
       }
+
+      .btn-add {
+        min-width: 0;
+        padding: 0.3em 1em;
+        background-color: #eceff1;
+        color: rgba(0, 0, 0, .87);
+      }
     </style>
 
     <!-- local DOM -->
@@ -790,7 +797,9 @@
       <div class="limiting-container">
         <!-- Print Preview Area - start -->
         <paper-card id="printPreview" elevation="0">
-
+          <div class="horizontal layout center end-justified">
+            <paper-button class="btn-add colored" raised on-tap="editVisitRecord">Edit</paper-button>
+          </div>
           <div class="print-header horizontal layout center center-justified">
             <h1>[[settings.printDecoration.headerLine]]</h1>
           </div>
@@ -922,7 +931,7 @@
                 </div>
                 <template is="dom-repeat" items="[[addedVitalList]]">
                   <div class="type caption-2">
-                    <strong>{{item.vitalType}}: </strong>
+                    <strong>[[item.vitalType]]: </strong>
                     <span>[[_pritifyVitalData(item)]]</span>
                   </div>
                 </template>
