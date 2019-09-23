@@ -130,7 +130,7 @@
             <paper-card heading="Pending Reports for reporting doctor">
 
               <paper-tabs class="basic-tabs" id="tabs" selected="{{selectedPendingReportsPage}}">
-                <paper-tab>
+                <paper-tab style="background-color: #c4c6cc;" class="m-right-16">
                   [[$TRANSLATE('Unseen Pending reports',LANG)]]
                   <div hidden$="{{$compareFn(reportCounter.unseenPendingReportCounter, '==', 0)}}" class="counter horizontal layout center center-justified">
                     <div>
@@ -138,7 +138,8 @@
                     </div>
                   </div>
                 </paper-tab>
-                <paper-tab>
+
+                <paper-tab style="background-color: #c4c6cc;">
                   [[$TRANSLATE('Seen Pending reports',LANG)]]
                   <div hidden$="{{$compareFn(reportCounter.seenPendingReportCounter, '==', 0)}}" class="counter horizontal layout center center-justified">
                     <div>
@@ -162,8 +163,13 @@
                   <div class="p-0">
                     <paper-listbox>
                       
+                      <template is="dom-if" if="[[!_isEmptyArray(unseenPendingReportsList)]]">
+                        <div class="custom layout horizontal center m-top-8">
+                          <div class="type body capitalize" style="margin-left: 25px;">Serial</div>
+                        </div>
+                      </template>
                       <template id="pending-reports-list-repeater" is="dom-repeat" items="[[unseenPendingReportsList]]">
-                        <paper-item class="custom layout horizontal center">
+                        <paper-item class="custom layout horizontal center m-top-8" style="background-color: lightyellow">
                           <div class="type caption secondary">[[item.reportSerial]]</div>
                           
                           <div class="flex m-left-8">
@@ -195,9 +201,15 @@
                   </template>
                   <div class="p-0">
                     <paper-listbox>
+
+                      <template is="dom-if" if="[[!_isEmptyArray(seenPendingReportsList)]]">
+                        <div class="custom layout horizontal center m-top-8">
+                          <div class="type body capitalize" style="margin-left: 25px;">Serial</div>
+                        </div>
+                      </template>
                       
                       <template is="dom-repeat" items="[[seenPendingReportsList]]">
-                        <paper-item class="custom layout horizontal center">
+                        <paper-item class="custom layout horizontal center m-top-8" style="background-color: lightyellow">
                           <div class="type caption secondary">[[item.reportSerial]]</div>
                           
                           <div class="flex m-left-8">
@@ -231,14 +243,16 @@
             <paper-card heading="Review Reports for referring doctor">
 
               <paper-tabs class="basic-tabs" id="tabs" selected="{{selectedReviewReportsPage}}">
-                <paper-tab>[[$TRANSLATE('Unseen',LANG)]]
+                <paper-tab style="background-color: #c4c6cc;" class="m-right-16">
+                  [[$TRANSLATE('Unseen',LANG)]]
                   <div hidden$="{{$compareFn(reportCounter.unseenReviewReportCounter, '==', 0)}}" class="counter horizontal layout center center-justified">
                     <div>
                       {{reportCounter.unseenReviewReportCounter}}
                     </div>
                   </div>
                 </paper-tab>
-                <paper-tab>[[$TRANSLATE('Seen',LANG)]]
+                <paper-tab style="background-color: #c4c6cc;">
+                  [[$TRANSLATE('Seen',LANG)]]
                   <div hidden$="{{$compareFn(reportCounter.seenReviewReportCounter, '==', 0)}}" class="counter horizontal layout center center-justified">
                     <div>
                       {{reportCounter.seenReviewReportCounter}}
@@ -260,11 +274,17 @@
                   </template>
                   <div class="p-0">
                     <paper-listbox>
-                      
+
+                      <template is="dom-if" if="[[!_isEmptyArray(unseenReviewReportsList)]]">
+                        <div class="custom layout horizontal center m-top-8">
+                          <div class="type body capitalize" style="margin-left: 25px;">Serial</div>
+                        </div>
+                      </template>
+
                       <template id="review-reports-list-repeater" is="dom-repeat" items="[[unseenReviewReportsList]]">
-                        <paper-item class="custom layout horizontal center">
+                        <paper-item class="custom layout horizontal center m-top-8" style="background-color: lightyellow;">
+
                           <div class="type caption secondary">[[item.reportSerial]]</div>
-                          
                           <div class="flex m-left-8">
                             <div class="type body capitalize"><strong>Investigation Name: </strong>[[item.investigationName]]</div>
                             <div class="type body capitalize"><strong>Patient Name: </strong>[[item.patientName]]</div>
@@ -294,9 +314,15 @@
                   </template>
                   <div class="p-0">
                     <paper-listbox>
+
+                      <template is="dom-if" if="[[!_isEmptyArray(seenReviewReportsList)]]">
+                        <div class="custom layout horizontal center m-top-8">
+                          <div class="type body capitalize" style="margin-left: 25px;">Serial</div>
+                        </div>
+                      </template>
                       
                       <template is="dom-repeat" items="[[seenReviewReportsList]]">
-                        <paper-item class="custom layout horizontal center">
+                        <paper-item class="custom layout horizontal center m-top-8" style="background-color: lightyellow;">
                           <div class="type caption secondary">[[item.reportSerial]]</div>
                           
                           <div class="flex m-left-8">
