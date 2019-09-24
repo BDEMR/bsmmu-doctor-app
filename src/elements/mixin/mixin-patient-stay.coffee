@@ -162,6 +162,7 @@ app.behaviors.local.patientStayMixin =
     if @selectedDepartmentIndex?
       department = @patientStayObject.departmentList[@selectedDepartmentIndex]
       @department = department
+      console.log 'inside mixin dept selected', @department
       @set 'unitList', department.unitList
       # @selectedUnitIndex = null
       @debounce 'iron-select', (()-> @_populateSeatList @department), 50
@@ -361,14 +362,17 @@ app.behaviors.local.patientStayMixin =
 
 
   _saveBedInfo: ->
-    for item in @seatList
-      if item.patientSerial is @patient.serial
-        @patientStay.data.locationHospitalName = @organizationsIBelongToList[@selectedOrganizationIndex].name
-        @patientStay.data.locationDepartment = item.department
-        @patientStay.data.locationUnit = item.unit
-        @patientStay.data.locationWard = item.ward
-        @patientStay.data.locationBed = item.name
-        break
+    @patientStay.data.locationHospitalName = @organizationsIBelongToList[@selectedOrganizationIndex].name
+    @patientStay.data.locationDepartment = @department.name
+    console.log 'saved clinic and dept', @patientStay.data
+    # for item in @seatList
+    #   if item.patientSerial is @patient.serial
+    #     @patientStay.data.locationHospitalName = @organizationsIBelongToList[@selectedOrganizationIndex].name
+    #     @patientStay.data.locationDepartment = item.department
+    #     @patientStay.data.locationUnit = item.unit
+    #     @patientStay.data.locationWard = item.ward
+    #     @patientStay.data.locationBed = item.name
+    #     break
   
   _validatePatientStayData: (patientStay)->
     if @patientDischarged 
@@ -424,16 +428,17 @@ app.behaviors.local.patientStayMixin =
 
   _savePatientStay: ()->
     # Check if patient Stay serial not logged on current visit object
+
     if @visit.patientStaySerial is null
       if @patientStay.serial is null
         # Craete a new serial for patient stay object
         @patientStay.serial = @generateSerialForPatientStay()
         @patientStay.createdDatetimeStamp = lib.datetime.now()
-
+        
         # updating current visit object
         @visit.patientStaySerial = @patientStay.serial
         @_saveVisit()
-
+    console.log 'patient stay serial', @patientStay.serial
     @_saveBedInfo()
     
     @patientStay.organizationQueryParameters = {
@@ -465,6 +470,7 @@ app.behaviors.local.patientStayMixin =
     @set 'patientStay', {}
     @set 'patientStay', patientStay
 
+    console.log 'saved patient stay', @patientStay
     @selectedVisitPageIndex = 0
   
   _savePatientStayAdviseOnly: ->

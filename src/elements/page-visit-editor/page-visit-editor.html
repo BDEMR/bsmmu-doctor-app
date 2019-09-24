@@ -2552,15 +2552,17 @@
                 <div>
                   <span class="type bold">Referred By: </span> [[patientStay.data.referredByDoctorName]]
                 </div>
-                <div>
+
+                <!-- <div>
                   <span class="type bold">Admitted By: </span> [[patientStay.data.admittedByDoctorName]]
-                </div>
-                <div class="type italic">
-                  <span>[[patientStay.data.locationHospitalName]]</span> >
-                  <span>[[patientStay.data.locationDepartment]]</span> >
-                  <span>[[patientStay.data.locationUnit]]</span> >
+                </div> -->
+
+                <div class="type italic layout vertical">
+                  <span><strong>Organization suggested:</strong> [[patientStay.data.locationHospitalName]]</span>
+                  <span><strong>Department suggested:</strong> [[patientStay.data.locationDepartment]]</span>
+                  <!-- <span>[[patientStay.data.locationUnit]]</span> >
                   <span>[[patientStay.data.locationWard]]</span> >
-                  <span>[[patientStay.data.locationBed]]</span>
+                  <span>[[patientStay.data.locationBed]]</span> -->
                 </div>
               </template>
               <template is="dom-if" if="[[patientStay.data.currentLocation.length]]">
