@@ -126,7 +126,7 @@ Polymer {
 
   _searchOnline: ->
     @matchingPatientList = []
-    @callApi '/bdemr-patient-search', { apiKey: @user.apiKey, searchQuery: @searchPatientInput}, (err, response)=>
+    @callApi '/bdemr-patient-search-new', { apiKey: @user.apiKey, searchQuery: @searchPatientInput}, (err, response)=>
       if response.hasError
         @domHost.showModalDialog response.error.message
       else  
