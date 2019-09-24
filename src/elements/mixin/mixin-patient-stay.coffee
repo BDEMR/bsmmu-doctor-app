@@ -380,12 +380,12 @@ app.behaviors.local.patientStayMixin =
         return false
     else 
       if @advisedAdmission
-        unless patientStay.data.admissionDateTimeStamp
-          @domHost.showToast 'Admission Date is required'
-          return false
-        unless patientStay.data.currentLocation.length
-          @domHost.showToast 'Please spcify patient current location'
-          return false
+        # unless patientStay.data.admissionDateTimeStamp
+        #   @domHost.showToast 'Admission Date is required'
+        #   return false
+        # unless patientStay.data.currentLocation.length
+        #   @domHost.showToast 'Please spcify patient current location'
+        #   return false
       else
         unless patientStay.data.advise
           @domHost.showToast 'Specify Advise to patient'

@@ -818,7 +818,7 @@
                     <div class="m-left-8 type caption bg-gray">{{patient.serial}}</div>
                   </div>
                   <paper-button style="background: green !important;" raised class="colored btn-add m-vert" on-tap="_gotoPatientQuickPreviewPage">
-                    <iron-icon icon="icons:preview" class="m-right-8"></iron-icon>Quick info
+                    <iron-icon icon="icons:preview" class="m-right-8"></iron-icon>[[$TRANSLATE('Quick info',LANG)]]
                   </paper-button>
                 </div>
                 
@@ -831,7 +831,7 @@
                     </div>
                   </template>
                   <div class="m-horizontal-4">
-                    <strong>Registerd Phone Number: </strong>
+                    <strong>[[$TRANSLATE('Registerd Phone Number',LANG)]]: </strong>
                     <span>{{patient.phone}}</span>
                   </div>
                 </div>
@@ -841,19 +841,19 @@
                   <!-- <template is="dom-if" if="[[!patient.isForOrganizationOnly]]"> -->
 
                   <div class="m-horizontal-4">
-                    <strong>Sex: </strong>
+                    <strong>[[$TRANSLATE('Sex',LANG)]]: </strong>
                     <span>{{patient.gender}}</span>
                   </div>
                   <div class="m-horizontal-4">
-                    <strong>Age: </strong>
+                    <strong>[[$TRANSLATE('Age',LANG)]]: </strong>
                     <span>[[_computeAge(patient.dateOfBirth)]] years </span>
                   </div>
                   <div class="m-horizontal-4">
-                    <strong>Blood Group: </strong>
+                    <strong>[[$TRANSLATE('Blood Group',LANG)]]: </strong>
                     <span> [[patient.bloodGroup]]</span>
                   </div>
                   <div class="m-horizontal-4">
-                    <strong>Allergy: </strong>
+                    <strong>[[$TRANSLATE('Allergy',LANG)]]: </strong>
                     <span>[[patient.allergy]] </span>
                   </div>
                   <!-- </template> -->
@@ -885,11 +885,11 @@
 
               <div class="content left horizontal layout wrap type caption-2">
                 <div class="m-4">
-                  <strong>Record:</strong> [[visit.serial]]</div>
+                  <strong>[[$TRANSLATE('Record',LANG)]]:</strong> [[visit.serial]]</div>
                 <div class="m-4">
-                  <strong>Created Date:</strong> [[$mkDate(visit.createdDatetimeStamp)]]</div>
+                  <strong>[[$TRANSLATE('Created Date',LANG)]]:</strong> [[$mkDate(visit.createdDatetimeStamp)]]</div>
                 <div class="m-4">
-                  <strong>Created By:</strong> {{visit.doctorName}}</div>
+                  <strong>[[$TRANSLATE('Created By',LANG)]]:</strong> {{visit.doctorName}}</div>
               </div>
 
               <div class="content right horizontal layout end-justified">
@@ -898,7 +898,7 @@
                 </paper-button>
 
                 <paper-button class="btn-add m-vert" on-tap="printButtonPressed">
-                  <iron-icon icon="icons:print" class="m-right-8"></iron-icon>Print
+                  <iron-icon icon="icons:print" class="m-right-8"></iron-icon>[[$TRANSLATE('Print',LANG)]]
                 </paper-button>
 
                 <!-- <paper-button raised class="btn-add m-vert" on-tap="openVisitSettingsDialog">
@@ -906,11 +906,11 @@
                 </paper-button> -->
 
                 <paper-button raised class="colored btn-add m-vert" on-tap="arrowBackButtonPressed">
-                  <iron-icon icon="icons:check" class="m-right-8"></iron-icon>Finish
+                  <iron-icon icon="icons:check" class="m-right-8"></iron-icon>[[$TRANSLATE('Finish',LANG)]]
                 </paper-button>
 
                 <paper-button style="background: green !important;" raised class="colored btn-add m-vert" on-tap="makeNewVisitButtonPressed">
-                  <iron-icon icon="icons:check" class="m-right-8"></iron-icon>New Visit
+                  <iron-icon icon="icons:check" class="m-right-8"></iron-icon>[[$TRANSLATE('New Visit',LANG)]]
                 </paper-button>
 
 
@@ -929,7 +929,7 @@
                   <!-- <iron-ajax url="../../static-data/symptoms-list.json" last-response="{{symptomsDataList}}" auto></iron-ajax> -->
                   <!-- <iron-icon class="m-right-8" src="../../images/icons/ico_symptoms.png"></iron-icon> -->
                   <div class="flex">
-                    <paper-dropdown-menu class="combobox-custom-style" label="Category">
+                    <paper-dropdown-menu class="combobox-custom-style" label="[[$TRANSLATE('Category',LANG)]]">
                       <paper-menu class="dropdown-content" selected="0" on-iron-activate="symptomCategorySelected">
                         <template is='dom-repeat' items='[[symptomsCategoryList]]'>
                           <paper-item>[[item]]</paper-item>
@@ -937,7 +937,7 @@
                       </paper-menu>
                     </paper-dropdown-menu>
                     
-                    <vaadin-combo-box class="combobox-custom-style" label="Symptoms" id="comboBoxSymptoms" items="{{matchingSymptomsDataList}}"
+                    <vaadin-combo-box class="combobox-custom-style" label="[[$TRANSLATE('Symptoms',LANG)]]" id="comboBoxSymptoms" items="{{matchingSymptomsDataList}}"
                       allow-custom-value="true" value-changed="onComboBoxSymptomsValueChanged" on-keyup="comboBoxKeyUpSymptomsValueChanged"
                       selected-item="{{comboBoxSymptomsSelectedItem}}" value="{{comboBoxSymptomsInputValue}}">
                     </vaadin-combo-box>
@@ -949,8 +949,8 @@
                   </div>
                 </div>
                 <div class="horizontal layout center end-justified">
-                  <paper-button class="btn-add colored" style="margin-bottom: 8px; margin-right: 12px; font-size: 14px;" on-tap="addAsFavoriteSymptom">add as favorite</paper-button>
-                  <paper-button class="btn-add " style="margin-bottom: 8px; margin-right: 12px; font-size: 14px;" on-tap="showFavoriteSymptomDialog">favorite list</paper-button>
+                  <paper-button class="btn-add colored" style="margin-bottom: 8px; margin-right: 12px; font-size: 14px;" on-tap="addAsFavoriteSymptom">[[$TRANSLATE('add as favorite',LANG)]]</paper-button>
+                  <paper-button class="btn-add " style="margin-bottom: 8px; margin-right: 12px; font-size: 14px;" on-tap="showFavoriteSymptomDialog">[[$TRANSLATE('favorite list',LANG)]]</paper-button>
                 </div>
                 <template is="dom-if" if="[[!_isEmpty(addedIdentifiedSymptomsList.length)]]">
                   <div class="b-radius p-0">
@@ -983,7 +983,7 @@
               <div class="card-item-2">
                 <div class="preview-title">
                   <!-- <iron-icon class="m-right-8" src="../../images/icons/ico_stethoscope.png"></iron-icon> -->
-                  <vaadin-combo-box class="flex combobox-custom-style" label="Examination" id="comboBoxExamination" items="{{examinationDataList}}"
+                  <vaadin-combo-box class="flex combobox-custom-style" label="[[$TRANSLATE('Examination',LANG)]]" id="comboBoxExamination" items="{{examinationDataList}}"
                     allow-custom-value="true" value-changed="onComboBoxExaminationValueChanged" on-keyup="comboBoxKeyUpExaminationValueChanged"
                     selected-item="{{comboBoxExaminationSelectedItem}}" value="{{comboBoxExaminationInputValue}}">
                   </vaadin-combo-box>
@@ -994,8 +994,8 @@
                   </div>
                 </div>
                 <div class="horizontal layout center end-justified">
-                  <paper-button class="btn-add colored" style="margin-bottom: 8px; margin-right: 12px; font-size: 14px;" on-tap="addAsFavoriteExamination">add as favorite</paper-button>
-                  <paper-button class="btn-add " style="margin-bottom: 8px; margin-right: 12px; font-size: 14px;" on-tap="showFavoriteExaminationDialog">favorite list</paper-button>
+                  <paper-button class="btn-add colored" style="margin-bottom: 8px; margin-right: 12px; font-size: 14px;" on-tap="addAsFavoriteExamination">[[$TRANSLATE('add as favorite',LANG)]]</paper-button>
+                  <paper-button class="btn-add " style="margin-bottom: 8px; margin-right: 12px; font-size: 14px;" on-tap="showFavoriteExaminationDialog">[[$TRANSLATE('favorite list',LANG)]]</paper-button>
                 </div>
                 <template is="dom-if" if="[[!_isEmpty(addedExaminationList.length)]]">
                   <div class="p-0 b-radius">
@@ -1037,17 +1037,17 @@
                     <paper-dropdown-menu class="dropdown-menu-custom-style" label="[[$TRANSLATE('Vital',LANG)]]">
                       <paper-menu class="dropdown-content" selected="{{selectedVitalIndex}}" on-iron-select="onVitalIndexChange">
                         <paper-item disabled$="{{isBPAdded}}">
-                          <iron-icon class="m-right-8" src="../../images/icons/ico_blood_pressure.png"></iron-icon>Blood Pressure</paper-item>
+                          <iron-icon class="m-right-8" src="../../images/icons/ico_blood_pressure.png"></iron-icon>[[$TRANSLATE('Blood Pressure',LANG)]]</paper-item>
                         <paper-item disabled$="{{isHRAdded}}">
-                          <iron-icon class="m-right-8" src="../../images/icons/ico_pulse_rate.png"></iron-icon>Heart Rate</paper-item>
+                          <iron-icon class="m-right-8" src="../../images/icons/ico_pulse_rate.png"></iron-icon>[[$TRANSLATE('Heart Rate',LANG)]]</paper-item>
                         <paper-item disabled$="{{isBMIAdded}}">
-                          <iron-icon class="m-right-8" src="../../images/icons/ico_body_shape.png"></iron-icon>BMI</paper-item>
+                          <iron-icon class="m-right-8" src="../../images/icons/ico_body_shape.png"></iron-icon>[[$TRANSLATE('BMI',LANG)]]</paper-item>
                         <paper-item disabled$="{{isRRAdded}}">
-                          <iron-icon class="m-right-8" src="../../images/icons/ico_lungs.png"></iron-icon>Respiratory Rate</paper-item>
+                          <iron-icon class="m-right-8" src="../../images/icons/ico_lungs.png"></iron-icon>[[$TRANSLATE('Respiratory Rate',LANG)]]</paper-item>
                         <paper-item disabled$="{{isSpO2Added}}">
-                          <iron-icon class="m-right-8" src="../../images/icons/oxygen-symbol.png"></iron-icon>SpO2</paper-item>
+                          <iron-icon class="m-right-8" src="../../images/icons/oxygen-symbol.png"></iron-icon>[[$TRANSLATE('SpO2',LANG)]]</paper-item>
                         <paper-item disabled$="{{isTempAdded}}">
-                          <iron-icon class="m-right-8" src="../../images/icons/ico_thermometer.png"></iron-icon>Temperature</paper-item>
+                          <iron-icon class="m-right-8" src="../../images/icons/ico_thermometer.png"></iron-icon>[[$TRANSLATE('Temperature',LANG)]]</paper-item>
                       </paper-menu>
                     </paper-dropdown-menu>
                   </div>
@@ -1252,7 +1252,7 @@
               <div class="card-item-2" hidden$="{{!_checkUserAccess('D030')}}">
                 <div class="preview-title">
                   <!-- <iron-icon class="m-right-8" src="../../images/icons/ico_medicine_flask.png"></iron-icon> -->
-                  <vaadin-combo-box class="flex combobox-custom-style" label="Investigation" id="comboBoxInvestigaiton" items="{{investigationDataList}}"
+                  <vaadin-combo-box class="flex combobox-custom-style" label="[[$TRANSLATE('Investigation',LANG)]]" id="comboBoxInvestigaiton" items="{{investigationDataList}}"
                     allow-custom-value="true" value-changed="onComboBoxInvestigationValueChanged" on-keyup="comboBoxKeyUpInvestigationValueChanged"
                     selected-item="{{comboBoxInvestigationSelectedItem}}" value="{{comboBoxInvestigationInputValue}}">
                   </vaadin-combo-box>
@@ -1263,8 +1263,8 @@
                   </div>
                 </div>
                 <div class="horizontal layout center end-justified">
-                  <paper-button class="btn-add colored" style="margin-bottom: 8px; margin-right: 12px; font-size: 14px;" on-tap="addAsFavoriteInvestigation">add as favorite</paper-button>
-                  <paper-button class="btn-add " style="margin-bottom: 8px; margin-right: 12px; font-size: 14px;" on-tap="showFavoriteInvestigationDialog">favorite list</paper-button>
+                  <paper-button class="btn-add colored" style="margin-bottom: 8px; margin-right: 12px; font-size: 14px;" on-tap="addAsFavoriteInvestigation">[[$TRANSLATE('add as favorite',LANG)]]</paper-button>
+                  <paper-button class="btn-add " style="margin-bottom: 8px; margin-right: 12px; font-size: 14px;" on-tap="showFavoriteInvestigationDialog">[[$TRANSLATE('favorite list',LANG)]]</paper-button>
                 </div>
                 <template is="dom-if" if="[[!_isEmpty(addedInvestigationList.length)]]">
 
@@ -1326,7 +1326,7 @@
                 <div class="preview-title">
                   <!-- <iron-icon class="m-right-8" src="../../images/icons/ico_medical_records.png"></iron-icon> -->
                   <!-- <iron-ajax url="../../static-data/diagnosis-list.json" last-response="{{response}}" auto></iron-ajax> -->
-                  <vaadin-combo-box class="flex combobox-custom-style" label="New Diagnosis" id="comboBoxDiagnosis" items="{{diagnosisListArray}}"
+                  <vaadin-combo-box class="flex combobox-custom-style" label="[[$TRANSLATE('New Diagnosis',LANG)]]" id="comboBoxDiagnosis" items="{{diagnosisListArray}}"
                     allow-custom-value="true" value-changed="onComboBoxDiagnosisValueChanged" on-keyup="comboBoxKeyUpDiagnosisValueChanged"
                     selected-item="{{comboBoxDiagnosisSelectedItem}}" value="{{comboBoxDiagnosisInputValue}}"></vaadin-combo-box>
                   <div class="action-area">
@@ -1358,7 +1358,7 @@
                 <div class="preview-title">
                   <!-- <iron-icon class="m-right-8" src="../../images/icons/ico_notes.png"></iron-icon> -->
                   <div class="flex">
-                    <paper-input class="paper-input-custom" label="Note/Advised" value="{{doctorNotesMessage}}"></paper-input>
+                    <paper-input class="paper-input-custom" label="[[$TRANSLATE('Note/Advised',LANG)]]" value="{{doctorNotesMessage}}"></paper-input>
                   </div>
                   <div class="action-area">
                     <paper-button class="btn-add" on-tap="_addNotePressed">
@@ -1367,8 +1367,8 @@
                   </div>
                 </div>
                 <div class="horizontal layout center end-justified">
-                  <paper-button class="btn-add colored" style="margin-bottom: 8px; margin-right: 12px; font-size: 14px;" on-tap="addAsFavoriteNote">add as favorite</paper-button>
-                  <paper-button class="btn-add " style="margin-bottom: 8px; margin-right: 12px; font-size: 14px;" on-tap="showFavoriteNoteDialog">favorite list</paper-button>
+                  <paper-button class="btn-add colored" style="margin-bottom: 8px; margin-right: 12px; font-size: 14px;" on-tap="addAsFavoriteNote">[[$TRANSLATE('add as favorite',LANG)]]</paper-button>
+                  <paper-button class="btn-add " style="margin-bottom: 8px; margin-right: 12px; font-size: 14px;" on-tap="showFavoriteNoteDialog">[[$TRANSLATE('favorite list',LANG)]]</paper-button>
                 </div>
                 <template is="dom-if" if="{{!_isEmpty(doctorNotes.data.messageList.length)}}">
 
@@ -1396,7 +1396,7 @@
                   <!-- <iron-icon class="m-right-8" src="../../images/icons/ico_calander_time.png"></iron-icon> -->
                   <vaadin-date-picker style="padding-top: 27px;" label="[[$TRANSLATE('Next Visit Date',LANG)]]" class="flex one date-picker-custom-style"
                     value="{{nextVisit.data.nextVisitDateTimestamp}}"></vaadin-date-picker>
-                  <vaadin-combo-box class="flex one combobox-custom-style" label="Add Priority" items="{{priorityTypeList}}" allow-custom-value="true"
+                  <vaadin-combo-box class="flex one combobox-custom-style" label="[[$TRANSLATE('Add Priority',LANG)]]" items="{{priorityTypeList}}" allow-custom-value="true"
                     on-keyup="comboBoxKeyUpPriorityValueChanged" value="{{priorityValue}}" class="flex one">
                   </vaadin-combo-box>
                   <div class="action-area">
@@ -1423,7 +1423,7 @@
 
                 <div class="preview-title layout">
                   <!-- <iron-icon class="m-right-8" src="../../images/icons/ico_invoice.png"></iron-icon> -->
-                  <div class="type title-2 flex">Invoice</div>
+                  <div class="type title-2 flex">[[$TRANSLATE('Invoice',LANG)]]</div>
                   <div class="action-area">
                     <template is="dom-if" if="{{!isInvoiceValid}}">
                       <paper-button class="btn-add m-vert" on-tap="createInvoicePressed">
@@ -1472,7 +1472,7 @@
                 <div class="preview-title layout wrap">
                   <!-- <iron-icon class="m-right-8" src="../../images/icons/ico_history_and_physical.png"></iron-icon> -->
 
-                  <div class="type title-2 flex">History & Physical</div>
+                  <div class="type title-2 flex">[[$TRANSLATE('History & Physical',LANG)]]</div>
 
 
                   <div class="layout horizontal wrap">
@@ -1519,7 +1519,7 @@
               <div class="card-item-2" hidden$="{{!_checkUserAccess('D029')}}">
                 <div class="preview-title horizontal layout center">
                   <!-- <iron-icon class="m-right-8" src="../../images/icons/medical-kit.png"></iron-icon> -->
-                  <div class="type title-2"> Prescription </div>
+                  <div class="type title-2"> [[$TRANSLATE('Prescription',LANG)]] </div>
                 </div>
 
                 <template is="dom-if" if="[[!_isEmpty(matchingPrescribedMedicineList.length)]]">
@@ -1566,10 +1566,10 @@
                 </template>
 
                 <paper-tabs class="basic-tabs" selected="{{selectedMedicinePage}}" class="flex" scrollable hide-scroll-buttons="true">
-                  <paper-tab class="p-horizontal-16">Patient Current Medicine</paper-tab>
-                  <paper-tab class="p-horizontal-16">New Medicine</paper-tab>
-                  <paper-tab class="p-horizontal-16">Favorite(s)</paper-tab>
-                  <paper-tab class="p-horizontal-16">Insulin</paper-tab>
+                  <paper-tab class="p-horizontal-16">[[$TRANSLATE('Patient Current Medicine',LANG)]]</paper-tab>
+                  <paper-tab class="p-horizontal-16">[[$TRANSLATE('New Medicine',LANG)]]</paper-tab>
+                  <paper-tab class="p-horizontal-16">[[$TRANSLATE('Favorite(s)',LANG)]]</paper-tab>
+                  <paper-tab class="p-horizontal-16">[[$TRANSLATE('Insulin',LANG)]]</paper-tab>
                 </paper-tabs>
 
                 <iron-pages selected="{{selectedMedicinePage}}">
@@ -1777,11 +1777,11 @@
 
                     <div class="preview-title layout end-justified" style='padding-top: 4px;'>
 
-                      <paper-button class="btn-dd" on-click="cancelButtonClicked">Clear</paper-button>
+                      <paper-button class="btn-dd" on-click="cancelButtonClicked">[[$TRANSLATE('Clear',LANG)]]</paper-button>
                       <paper-button class="btn-add" on-click="saveAndAddAsFavoriteMedicinePressed" raised>
-                        <iron-icon class="m-right-8" src="../../images/icons/medical-assistance-symbol.png"></iron-icon>Favorite</paper-button>
+                        <iron-icon class="m-right-8" src="../../images/icons/medical-assistance-symbol.png"></iron-icon>[[$TRANSLATE('Favorite',LANG)]]</paper-button>
                       <paper-button class="btn-add colored" on-click="saveMedicineButtonClicked" raised>
-                        <iron-icon class="m-right-8" icon="add"></iron-icon>Add</paper-button>
+                        <iron-icon class="m-right-8" icon="add"></iron-icon>[[$TRANSLATE('Add',LANG)]]</paper-button>
                     </div>
                   </section>
                   <!-- add medicine - end -->
@@ -1901,7 +1901,7 @@
 
                     </template>
                     <div class="card-actions">
-                      <paper-button raised class="btn-add colored" on-tap="showAddInsulinMedicineDialog">Add medicine</paper-button>
+                      <paper-button raised class="btn-add colored" on-tap="showAddInsulinMedicineDialog">[[$TRANSLATE('Add medicine',LANG)]]</paper-button>
                     </div>
                   </section>
                   <!-- insulin - end -->
@@ -1917,8 +1917,8 @@
                     <!-- <iron-icon class="m-right-8" src="../../images/icons/ico_patient_stay.png"></iron-icon> -->
                     <div class="type title-2 flex">[[$TRANSLATE('Patient Stay',LANG)]]</div>
                     <div class="action-area">
-                      <paper-button class="btn-add m-vert" on-tap="">
-                        <iron-icon icon="icons:save"></iron-icon> Save Advised Admission
+                      <paper-button class="btn-add m-vert" on-tap="savePatientStayPressed">
+                        <iron-icon icon="icons:save"></iron-icon> [[$TRANSLATE('Save Advised Admission',LANG)]]
                       </paper-button>
                     </div>
                   </div>
