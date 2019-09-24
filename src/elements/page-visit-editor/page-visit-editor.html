@@ -1238,7 +1238,7 @@
               <!-- Card - Vitals - end -->
 
               <!-- Card - Test Advised - start -->
-              <div class="card-item-2">
+              <div class="card-item-2" hidden$="{{!_checkUserAccess('D030')}}">
                 <div class="preview-title">
                   <!-- <iron-icon class="m-right-8" src="../../images/icons/ico_medicine_flask.png"></iron-icon> -->
                   <vaadin-combo-box class="flex combobox-custom-style" label="Investigation" id="comboBoxInvestigaiton" items="{{investigationDataList}}"
@@ -1505,7 +1505,7 @@
               <!-- Card - History And Physical - end -->
 
               <!-- Card :: Prescription - start -->
-              <div class="card-item-2">
+              <div class="card-item-2" hidden$="{{!_checkUserAccess('D029')}}">
                 <div class="preview-title horizontal layout center">
                   <!-- <iron-icon class="m-right-8" src="../../images/icons/medical-kit.png"></iron-icon> -->
                   <div class="type title-2"> Prescription </div>
