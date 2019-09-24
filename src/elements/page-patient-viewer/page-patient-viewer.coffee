@@ -65,6 +65,11 @@ Polymer {
       value: {}
 
 
+    diagnosisDataList:
+      type: Array
+      notify: true
+      value: []
+    
     matchingVisitList:
       type: Array
       notify: true
@@ -702,7 +707,7 @@ Polymer {
 
       @currentOperationList = list
       
-      app.db.upsert "current-operation", operation, ({serial})-> serial is serial
+      app.db.insert "current-operation", operation, ({serial})-> serial is serial
       @currentOperationValue = ''
 
   deleteCurrentOperation: (e)->
@@ -721,7 +726,7 @@ Polymer {
         app.db.insert 'current-operation--deleted', { serial: operation.serial }
         @domHost.showToast 'Current operation deleted!'
         @_listCurrentOperation @patient.serial
-  
+
   # === Current Operation [END] ===
 
 
@@ -790,12 +795,12 @@ Polymer {
     params = @domHost.getPageParams()
 
     @_loadUser()
-
+    @_loadDiagnosisNameList()
+    
     if params['patient']
       @_loadPatient params['patient']
     else
       @_notifyInvalidPatient()
-    
     # @_organizationNavigatedIn()
     
     @set 'matchingVisitList', []
@@ -825,9 +830,10 @@ Polymer {
       switch selectedSubViewIndex
         when 1
           @_listConfirmedDiagnosis params['patient']
-          @_loadDiagnosisNameList()
+
         when 2
           @_listCurrentOperation params['patient']
+
         when 3
           @set 'selectedMedicinePage', 0
           @_listCurrentMedications params['patient']
@@ -1245,8 +1251,14 @@ Polymer {
   # ================================
 
   _loadDiagnosisNameList: ->
+    diagnosisDataList = []
     @domHost.getStaticData 'diagnosisList', (list)=>
-      @diagnosisDataList = ({text: item.name, alt: ''} for item in list)
+      # diagnosisDataList = ({text: item.name, alt: ''} for item in list)
+      for object in list
+        diagnosisDataList.push(object.name)
+    @set 'diagnosisDataList', diagnosisDataList   
+    console.log 'diagonosis listi',  @diagnosisDataList
+
 
   _sortByImportantDiagnosis: (a, b)->
     if a.markedAsImportant < b.markedAsImportant
