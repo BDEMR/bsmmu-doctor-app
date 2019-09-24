@@ -1745,7 +1745,11 @@
 
                         <!--Duration-->
                         <div>
-                          <vaadin-combo-box id="medicineDurationId" class="pull-duration-down" label="[[$TRANSLATE('Duration',LANG)]]" items="[[medicineDurationList]]" on-value-changed="_medicineDurationSelected" value="{{medicine.medicineDuration}}"></vaadin-combo-box>
+                          <vaadin-combo-box id="medicineDurationId" class="pull-duration-down" label="[[$TRANSLATE('Duration',LANG)]]" items="[[medicineDurationList]]" on-value-changed="_medicineDurationSelected" value="{{medicine.medicineDuration}}">
+                            <template>
+                              [[$TRANSLATE(item, LANG)]]
+                            </template>
+                          </vaadin-combo-box>
                         </div>
                         <!--Duration-->
 
@@ -1762,11 +1766,9 @@
                       <br>
                       <br>
 
-                      <div hidden="[[!showDetailedForm]]">
-                        <div class="form-group">
-                          <div>
-                            <paper-textarea label="[[$TRANSLATE('Comments',LANG)]]" value="{{medicine.comments}}"></paper-textarea>
-                          </div>
+                      <div class="form-group">
+                        <div>
+                          <paper-textarea label="[[$TRANSLATE('Comments',LANG)]]" value="{{medicine.comments}}"></paper-textarea>
                         </div>
                       </div>
                     </div>
