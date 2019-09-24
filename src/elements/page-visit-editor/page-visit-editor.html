@@ -777,6 +777,17 @@
         border-radius: 50%;
         border: 2px solid #f7f7f7;
       }
+
+      .pull-duration-down {
+        position: relative;
+        top: 8px;
+      }
+
+      .pull-continue-down {
+        position: relative;
+        top: 12px;
+      }
+
     </style>
 
     <!-- local DOM -->
@@ -1522,29 +1533,19 @@
 
                           <div class="flex m-left-8">
                             <div class="layout horizontal wrap center">
-
-
                               <div class="flex">
-                                <div class="type body">{{item.data.brandName}}
-                                  <template is="dom-if" if="[[!item.data.flags.hideMedicineManufacturerName]]">
-                                    <span class="type caption bg-gray">[[item.data.manufacturer]]</span>
-                                  </template>
+                                <div class="type body">{{item.data.genericName}}
                                 </div>
                                 <div class="type caption italic secondary">
-                                  <template is="dom-if" if="[[!item.data.flags.hideMedicineGenericName]]">
-                                    <span>{{item.data.genericName}}</span>
-                                  </template>
-
                                   <span>{{item.data.strength}}</span>
                                 </div>
                               </div>
-
                               <div>
                                 <div class="type caption m-horizontal-4">
-                                  <!-- <span>[[$TRANSLATE_NUMBER(item.data.dose, LANG)]] [[$TRANSLATE(item.data.form, LANG)]] [[$TRANSLATE('As', LANG)]]</span> -->[[$TRANSLATE_NUMBER(item.data.doseDirection, LANG)]] [[$TRANSLATE('for', LANG)]] [[_computeTotalDaysCount(item.data.endDateTimeStamp,item.data.startDateTimeStamp)]]
+                                  <!-- <span>[[$TRANSLATE_NUMBER(item.data.dose, LANG)]] [[$TRANSLATE(item.data.form, LANG)]] [[$TRANSLATE('As', LANG)]]</span> -->
+                                  [[$TRANSLATE(item.data.doseDirection, LANG)]] [[_computeTotalDaysCount(item.data.endDateTimeStamp,item.data.startDateTimeStamp)]]
                                   <span hidden$="[[!item.data.endDateTimeStamp]]">[[$TRANSLATE('Days',LANG)]]</span>
                                 </div>
-
                                 <div class="type caption m-horizontal-4">
                                   <span>[[$TRANSLATE('By', LANG)]] </span>
                                   <span class="text-cap">[[$TRANSLATE(item.data.route, LANG)]]</span>
@@ -1557,9 +1558,9 @@
                           </div>
 
                           <paper-icon-button icon="delete" on-tap="deleteMedicinePressed"></paper-icon-button>
-
                         </paper-item>
                       </template>
+
                     </paper-listbox>
                   </div>
                 </template>
@@ -1587,40 +1588,29 @@
                             <div class="type caption secondary">[[_returnSerial(index)]]</div>
                             <div class="flex m-left-8">
                               <div class="layout horizontal wrap center">
-
                                 <div class="flex">
-                                  <div class="type body">{{item.data.brandName}} {{item.data.strength}}
-                                    <template is="dom-if" if="[[!item.data.flags.hideMedicineManufacturerName]]">
-                                      <span class="type caption bg-gray">[[item.data.manufacturer]]</span>
-                                    </template>
+                                  <div class="type body">{{item.data.genericName}}
                                   </div>
                                   <div class="type caption italic secondary">
-                                    <template is="dom-if" if="[[!item.data.flags.hideMedicineGenericName]]">
-                                      <span>{{item.data.genericName}}</span>
-                                    </template>
-
                                     <span>{{item.data.strength}}</span>
                                   </div>
                                 </div>
-
                                 <div>
                                   <div class="type caption m-horizontal-4">
                                     <!-- <span>[[$TRANSLATE_NUMBER(item.data.dose, LANG)]] [[$TRANSLATE(item.data.form, LANG)]] [[$TRANSLATE('As', LANG)]]</span> -->
-                                    <span hidden="[[!item.data.doseDirection]]">
-                                      [[$TRANSLATE_NUMBER(item.data.doseDirection, LANG)]]</span>
-                                    [[$TRANSLATE('for',LANG)]] [[_computeTotalDaysCount(item.data.endDateTimeStamp,item.data.startDateTimeStamp)]]
+                                    [[$TRANSLATE(item.data.doseDirection, LANG)]] [[_computeTotalDaysCount(item.data.endDateTimeStamp,item.data.startDateTimeStamp)]]
                                     <span hidden$="[[!item.data.endDateTimeStamp]]">[[$TRANSLATE('Days',LANG)]]</span>
                                   </div>
-
                                   <div class="type caption m-horizontal-4">
-                                    <span>[[$TRANSLATE('By',LANG)]] </span>
+                                    <span>[[$TRANSLATE('By', LANG)]] </span>
                                     <span class="text-cap">[[$TRANSLATE(item.data.route, LANG)]]</span>
                                     <span>[[$TRANSLATE(item.data.direction, LANG)]] </span>
                                   </div>
                                   <div class="type caption m-horizontal-4">[[item.data.comments]]</div>
                                 </div>
-
+  
                               </div>
+
                             </div>
                             <paper-menu-button class="p-0 b-radius" vertical-align="bottom" horizontal-align="right">
                               <paper-icon-button icon="icons:more-vert" class="dropdown-trigger" alt="options"></paper-icon-button>
@@ -1640,40 +1630,22 @@
                   <!-- add medicine - start -->
                   <section>
                     <div class="card-content">
-                      <div class="layout horizontal wrap end-justified">
-                        <paper-checkbox class="m-4" on-change="onCheckToggleManufaturerName" checked="{{settings.flags.hideMedicineManufacturerName}}">Hide manufacturer name</paper-checkbox>
-                        <paper-checkbox class="m-4" on-change="onCheckToggleGenericName" checked="{{settings.flags.hideMedicineGenericName}}">Hide generic name</paper-checkbox>
+                      
+                      <div>
+                        <paper-autocomplete id="genericName" label="[[$TRANSLATE('Generic Name',LANG)]]" text="{{medicine.genericName}}" source="[[genericNameSourceDataList]]"
+                          on-autocomplete-selected="genericNameAutocompleteSelected" on-autocomplete-reset="genericNameCleared"
+                          min-length="2" error-message="Input Required" on-input="validate" required></paper-autocomplete>
                       </div>
-                      <div class="layout horizontal justified center end m-top-16">
-                        <paper-toggle-button checked="{{showDetailedForm}}">Show Advanced</paper-toggle-button>
-                      </div>
-                      <div class="form-group">
-                        <div>
-                          <paper-autocomplete id="brandName" label="[[$TRANSLATE('Brand Name',LANG)]]" text="{{medicine.brandName}}" source="[[brandNameSourceDataList]]"
-                            on-autocomplete-selected="brandNameAutocompleteSelected" on-autocomplete-reset="brandNameCleared"
-                            min-length="2" on-input="validate" error-message="Input Required" required></paper-autocomplete>
-                        </div>
-                      </div>
-
-                      <div hidden="[[!showDetailedForm]]">
-                        <div class="form-group">
-                          <div>
-                            <paper-autocomplete id="genericName" label="[[$TRANSLATE('Generic Name',LANG)]]" text="{{medicine.genericName}}" source="[[genericNameSourceDataList]]"
-                              on-autocomplete-selected="genericNameAutocompleteSelected" on-autocomplete-reset="genericNameCleared"
-                              min-length="2" error-message="Input Required" on-input="validate" required></paper-autocomplete>
-                          </div>
-                          <div>
-                            <paper-autocomplete id="manufacturer" label="[[$TRANSLATE('Manufacturer Name',LANG)]]" text="{{medicine.manufacturer}}" source="[[manufacturerSourceDataList]]"
-                              on-autocomplete-selected="manufacturerAutocompleteSelected" on-autocomplete-reset="manufacturerCleared"
-                              error-message="Input Required" min-length="2" on-input="validate" required></paper-autocomplete>
-                          </div>
-                        </div>
-                      </div>
+                      
 
                       <div class="form-group">
                         <!--Dose-->
                         <div>
-                          <vaadin-combo-box label="Dose" items="[[doseList]]" allow-custom-value="true" on-keyup="doseSelected" value="{{medicine.doseDirection}}"></vaadin-combo-box>
+                          <vaadin-combo-box label="[[$TRANSLATE('Dose',LANG)]]" items="[[doseList]]" allow-custom-value="true" on-value-changed="doseSelected" value="{{medicine.doseDirection}}">
+                            <template>
+                              [[$TRANSLATE(item,LANG)]]
+                            </template>
+                          </vaadin-combo-box>
                         </div>
                         <!--Dose-->
                       </div>
@@ -1695,7 +1667,7 @@
                           <paper-dropdown-menu id="form" error-message="Chose an option" label="[[$TRANSLATE('Form',LANG)]]" required>
                             <paper-menu selected="{{medicineFormSelectedIndex}}" class="dropdown-content" on-iron-select="_medicineFormSelectedIndexChanged">
                               <template is="dom-repeat" items="{{medicineFormList}}">
-                                <paper-item>{{item}}</paper-item>
+                                <paper-item>[[$TRANSLATE(item,LANG)]]</paper-item>
                               </template>
                             </paper-menu>
                           </paper-dropdown-menu>
@@ -1708,63 +1680,59 @@
                         <!--Form-->
                       </div>
 
-                      <div hidden="[[!showDetailedForm]]">
-                        <div class="form-group">
-                          <!--Strength-->
-                          <template is="dom-if" if="[[_isStregnthDropdown(matchingMedicineList)]]">
-                            <div>
-                              <paper-dropdown-menu label="[[$TRANSLATE('Strength',LANG)]]" id="strength" error-message="Chose an Option">
-                                <paper-menu id="strengthDropdown" selected="{{strengthSelectedIndex}}" class="dropdown-content" on-iron-select="_strengthSelectedIndexChanged">
-                                  <template is="dom-repeat" items="{{strengthList}}">
-                                    <paper-item>{{item}}</paper-item>
-                                  </template>
-                                </paper-menu>
-                              </paper-dropdown-menu>
-                            </div>
-                          </template>
-                          <template is="dom-if" if="[[_isStregnthCustom(matchingMedicineList, strengthSelectedIndex)]]">
-                            <div>
-                              <paper-input label="[[$TRANSLATE('Strength',LANG)]]" required value="{{medicine.strength}}" id="strength" error-message="Input Required"
-                                on-input="validate"></paper-input>
-                            </div>
-                          </template>
-                          <!--Strength-->
-                          <!--Route-->
-                          <div>
-                            <paper-dropdown-menu label="[[$TRANSLATE('Route',LANG)]]">
-                              <paper-menu selected="{{routeSelectedIndex}}" class="dropdown-content" on-iron-select="_routeSelectedIndexChanged">
-                                <template is="dom-repeat" items="[[routeList]]">
-                                  <paper-item>[[$TRANSLATE(item,LANG)]]</paper-item>
-                                </template>
-                              </paper-menu>
-                            </paper-dropdown-menu>
-                          </div>
-                          <template is="dom-if" if="[[_isRouteCustom(routeSelectedIndex)]]">
-                            <div>
-                              <paper-input label="[[$TRANSLATE('Route',LANG)]]" value="{{medicine.route}}" error-message="Input Required"></paper-input>
-                            </div>
-                          </template>
-                          <!--Route-->
+                      <div class="form-group">
+                        <!--Strength-->
+                        <div>
+                          <paper-dropdown-menu label="[[$TRANSLATE('Strength',LANG)]]" id="strength" error-message="Chose an Option">
+                            <paper-menu id="strengthDropdown" selected="{{strengthSelectedIndex}}" class="dropdown-content" on-iron-select="_strengthSelectedIndexChanged">
+                              <template is="dom-repeat" items="{{strengthList}}">
+                                <paper-item>[[$TRANSLATE(item,LANG)]]</paper-item>
+                              </template>
+                            </paper-menu>
+                          </paper-dropdown-menu>
                         </div>
+                        <template is="dom-if" if="[[_isStregnthCustom(matchingMedicineList, strengthSelectedIndex)]]">
+                          <div>
+                            <paper-input label="[[$TRANSLATE('Strength',LANG)]]" required value="{{medicine.strength}}" id="strength" error-message="Input Required"
+                              on-input="validate"></paper-input>
+                          </div>
+                        </template>
+                        <!--Strength-->
+                        <!--Route-->
+                        <div>
+                          <paper-dropdown-menu label="[[$TRANSLATE('Route',LANG)]]">
+                            <paper-menu selected="{{routeSelectedIndex}}" class="dropdown-content" on-iron-select="_routeSelectedIndexChanged">
+                              <template is="dom-repeat" items="[[routeList]]">
+                                <paper-item>[[$TRANSLATE(item,LANG)]]</paper-item>
+                              </template>
+                            </paper-menu>
+                          </paper-dropdown-menu>
+                        </div>
+                        <template is="dom-if" if="[[_isRouteCustom(routeSelectedIndex)]]">
+                          <div>
+                            <paper-input label="[[$TRANSLATE('Route',LANG)]]" value="{{medicine.route}}" error-message="Input Required"></paper-input>
+                          </div>
+                        </template>
+                        <!--Route-->
+                      </div>
 
-                        <div class="form-group">
-                          <!--Unit-->
-                          <div>
-                            <paper-dropdown-menu id="doseUnit" error-message="Chose an option" label="[[$TRANSLATE('Unit',LANG)]]" required>
-                              <paper-menu selected="{{doseUnitSelectedIndex}}" class="dropdown-content" on-iron-select="_doseUnitSelectedIndexChanged">
-                                <template is="dom-repeat" items="[[doseUnitList]]">
-                                  <paper-item>{{item}}</paper-item>
-                                </template>
-                              </paper-menu>
-                            </paper-dropdown-menu>
-                          </div>
-                          <template is="dom-if" if="[[_isUnitCustom(doseUnitSelectedIndex)]]">
-                            <div>
-                              <paper-input id="custom-dose-unit" label="Custom Unit" value="{{medicine.doseUnit}}" required id="doseUnit" error-message="Input Required"></paper-input>
-                            </div>
-                          </template>
-                          <!--Unit-->
+                      <div class="form-group">
+                        <!--Unit-->
+                        <div>
+                          <paper-dropdown-menu id="doseUnit" error-message="Chose an option" label="[[$TRANSLATE('Unit',LANG)]]" required>
+                            <paper-menu selected="{{doseUnitSelectedIndex}}" class="dropdown-content" on-iron-select="_doseUnitSelectedIndexChanged">
+                              <template is="dom-repeat" items="[[doseUnitList]]">
+                                <paper-item>[[$TRANSLATE(item,LANG)]]</paper-item>
+                              </template>
+                            </paper-menu>
+                          </paper-dropdown-menu>
                         </div>
+                        <template is="dom-if" if="[[_isUnitCustom(doseUnitSelectedIndex)]]">
+                          <div>
+                            <paper-input id="custom-dose-unit" label="Custom Unit" value="{{medicine.doseUnit}}" required id="doseUnit" error-message="Input Required"></paper-input>
+                          </div>
+                        </template>
+                        <!--Unit-->
                       </div>
 
 
@@ -1775,13 +1743,18 @@
                         </div>
                         <!--Start Date-->
 
-                        <!--End Date-->
-
+                        <!--Duration-->
                         <div>
-                          <vaadin-date-picker id="endDate" label="[[$TRANSLATE('Ends on',LANG)]]" value="{{medicine.endDateTimeStamp}}"></vaadin-date-picker>
+                          <vaadin-combo-box id="medicineDurationId" class="pull-duration-down" label="[[$TRANSLATE('Duration',LANG)]]" items="[[medicineDurationList]]" on-value-changed="_medicineDurationSelected" value="{{medicine.medicineDuration}}"></vaadin-combo-box>
+                        </div>
+                        <!--Duration-->
+
+                        <!--End Date-->
+                        <div>
+                          <vaadin-date-picker id="endDate" label="[[$TRANSLATE('Ends on',LANG)]]" readonly value="{{generatedEndDate}}"></vaadin-date-picker>
                         </div>
                         <div>
-                          <paper-checkbox checked="{{medicine.continue}}" on-change="asNeededSelected">[[$TRANSLATE('Continue As Needed',LANG)]]</paper-checkbox>
+                          <paper-checkbox class="pull-continue-down" checked="{{medicine.continue}}" on-change="asNeededSelected">[[$TRANSLATE('Continue As Needed',LANG)]]</paper-checkbox>
                         </div>
                         <!--End Date-->
                       </div>
@@ -1830,17 +1803,11 @@
                               <div class="item-header layout horizontal center">
                                 <div class="type caption secondary">[[_returnSerial(index)]]</div>
                                 <div class="flex m-left-8">
-                                  <span class="type body capitalize">{{item.data.brandName}}</span>
+                                  <span class="type body capitalize">{{item.data.genericName}}</span>
                                   <span class="m-horizontal-4 type caption secondary italic lowercase">[
-                                    <template is="dom-if" if="[[!item.data.flags.hideMedicineGenericName]]">
-                                      <span>{{item.data.genericName}}</span>
-                                    </template>
                                     <span>{{item.data.strength}}</span> ]
                                   </span>
 
-                                  <template is="dom-if" if="[[!item.data.flags.hideMedicineManufacturerName]]">
-                                    <span class="type caption bg-gray">[[item.data.manufacturer]]</span>
-                                  </template>
                                 </div>
                                 <paper-icon-button class="m-left-8" icon="add" on-tap="addFavMedicineAsNewMedicineBtnPressed"></paper-icon-button>
                                 <paper-icon-button icon="delete" on-tap="deleteFavoriteMedicinePressed"></paper-icon-button>
@@ -1948,9 +1915,9 @@
 
                   <div class="preview-title layout">
                     <!-- <iron-icon class="m-right-8" src="../../images/icons/ico_patient_stay.png"></iron-icon> -->
-                    <div class="type title-2 flex">Patient Stay</div>
+                    <div class="type title-2 flex">[[$TRANSLATE('Patient Stay',LANG)]]</div>
                     <div class="action-area">
-                      <paper-button class="btn-add m-vert" on-tap="savePatientStayPressed">
+                      <paper-button class="btn-add m-vert" on-tap="">
                         <iron-icon icon="icons:save"></iron-icon> Save Advised Admission
                       </paper-button>
                     </div>
@@ -1960,20 +1927,20 @@
 
                     <section id="admission-section">
 
-                      <div class="type body-lead p-vertical-8 p-horizontal-16">Type</div>
+                      <div class="type body-lead p-vertical-8 p-horizontal-16">[[$TRANSLATE('Type',LANG)]]</div>
                       <div class="card-content layout vertical types">
                         <paper-radio-group id="admissionTypeRadioGroup" selected="{{patientStay.data.admissionType}}" class="layout vertical" on-iron-select="admissionTypeChanged">
                           <template is="dom-repeat" items="[[admissionTypeList]]">
-                            <paper-radio-button name="[[item]]">[[item]]</paper-radio-button>
+                            <paper-radio-button name="[[item]]">[[$TRANSLATE(item,LANG)]]</paper-radio-button>
                           </template>
                         </paper-radio-group>
 
                         <template is="dom-if" if="[[!advisedAdmission]]">
-                          <paper-input class="p-16" label="Advice" value="{{patientStay.data.advise}}"></paper-input>
+                          <paper-input class="p-16" label="[[$TRANSLATE('Advice',LANG)]]" value="{{patientStay.data.advise}}"></paper-input>
                         </template>
                         <template is="dom-if" if="[[advisedAdmission]]">
-                          <paper-input label="Referred By" value="{{patientStay.data.referredByDoctorName}}"></paper-input>
-                          <paper-input label="Admitted By" value="{{patientStay.data.admittedByDoctorName}}"></paper-input>
+                          <paper-input label="[[$TRANSLATE('Referred By',LANG)]]" value="{{patientStay.data.referredByDoctorName}}"></paper-input>
+                          <paper-input label="[[$TRANSLATE('Admitted By',LANG)]]" value="{{patientStay.data.admittedByDoctorName}}"></paper-input>
                         </template>
                       </div>
 
@@ -1981,12 +1948,12 @@
                       <template is="dom-if" if="[[advisedAdmission]]">
 
                         <!-- Admission to - start -->
-                        <div class="type body-lead p-vertical-8 p-horizontal-16">Admission to</div>
+                        <div class="type body-lead p-vertical-8 p-horizontal-16">[[$TRANSLATE('Admission to',LANG)]]</div>
                         <div class="card-content layout horizontal start">
                           <div class="m-right-8">
-                            <vaadin-date-picker label="Admission Date" value="{{patientStay.data.admissionDateTimeStamp}}"></vaadin-date-picker>
+                            <vaadin-date-picker label="[[$TRANSLATE('Admission Date',LANG)]]" value="{{patientStay.data.admissionDateTimeStamp}}"></vaadin-date-picker>
                           </div>
-                          <paper-dropdown-menu class="m-right-8" label="Clinic/Hospital" id="organizationDropdown">
+                          <paper-dropdown-menu class="m-right-8" label="[[$TRANSLATE('Clinic/Hospital',LANG)]]" id="organizationDropdown">
                             <paper-listbox class="dropdown-content" on-iron-select="organizationSelected" selected="{{selectedOrganizationIndex}}">
                               <template is="dom-repeat" items="[[organizationsIBelongToList]]" as="organization">
                                 <paper-item>[[organization.name]]</paper-item>
@@ -1995,7 +1962,7 @@
                           </paper-dropdown-menu>
 
                           <template is="dom-if" if="[[$notUndefined(selectedOrganizationIndex)]]">
-                            <paper-dropdown-menu class="m-right-8" label="Department" id="departmentDropdown">
+                            <paper-dropdown-menu class="m-right-8" label="[[$TRANSLATE('Department',LANG)]]" id="departmentDropdown">
                               <paper-listbox class="dropdown-content" on-iron-select="departmentSelected" selected="{{selectedDepartmentIndex}}">
                                 <template is="dom-repeat" items="[[patientStayObject.departmentList]]" as="department">
                                   <paper-item>[[department.name]]</paper-item>
@@ -2538,23 +2505,15 @@
                 <div class="type caption secondary m-right-8">[[_returnSerial(index)]].</div>
                 <div>
                   <div>
-                    <span class="type caption-2 text-bold">{{item.data.brandName}}</span>
-                    <template is="dom-if" if="[[!item.data.flags.hideMedicineManufacturerName]]">
-                      <span class="type caption bg-gray">[[item.data.manufacturer]]</span>
-                    </template>
+                    <span class="type caption-2 text-bold">{{item.data.genericName}}</span>
                     <div class="type caption italic secondary">
-                      <template is="dom-if" if="[[!item.data.flags.hideMedicineGenericName]]">
-                        <span>{{item.data.genericName}}</span>
-                      </template>
-
                       <span>{{item.data.strength}}</span>
                     </div>
                   </div>
 
-
                   <div class="type caption">
                     <strong>Instruction: </strong>
-                    <span>[[$TRANSLATE_NUMBER(item.data.doseDirection, LANG)]] [[$TRANSLATE('for', LANG)]] [[_computeTotalDaysCount(item.data.endDateTimeStamp,item.data.startDateTimeStamp)]]
+                    <span>[[$TRANSLATE(item.data.doseDirection, LANG)]] [[_computeTotalDaysCount(item.data.endDateTimeStamp,item.data.startDateTimeStamp)]]
                       <span hidden$="[[!item.data.endDateTimeStamp]]">[[$TRANSLATE('Days',LANG)]]</span>
                     </span>
                     <span>[[$TRANSLATE('By', LANG)]] </span>
@@ -2651,23 +2610,15 @@
               <div class="type caption secondary m-right-8">[[_returnSerial(index)]].</div>
               <div>
                 <div>
-                  <span class="type caption-2 text-bold">{{item.data.brandName}}</span>
-                  <template is="dom-if" if="[[!item.data.flags.hideMedicineManufacturerName]]">
-                    <span class="type caption bg-gray">[[item.data.manufacturer]]</span>
-                  </template>
+                  <span class="type caption-2 text-bold">{{item.data.genericName}}</span>
                   <div class="type caption italic secondary">
-                    <template is="dom-if" if="[[!item.data.flags.hideMedicineGenericName]]">
-                      <span>{{item.data.genericName}}</span>
-                    </template>
-
                     <span>{{item.data.strength}}</span>
                   </div>
                 </div>
 
-
                 <div class="type caption">
                   <strong>Instruction: </strong>
-                  <span>[[$TRANSLATE_NUMBER(item.data.doseDirection, LANG)]] [[$TRANSLATE('for', LANG)]] [[_computeTotalDaysCount(item.data.endDateTimeStamp,item.data.startDateTimeStamp)]]
+                  <span>[[$TRANSLATE(item.data.doseDirection, LANG)]] [[_computeTotalDaysCount(item.data.endDateTimeStamp,item.data.startDateTimeStamp)]]
                     <span hidden$="[[!item.data.endDateTimeStamp]]">[[$TRANSLATE('Days',LANG)]]</span>
                   </span>
                   <span>[[$TRANSLATE('By', LANG)]] </span>

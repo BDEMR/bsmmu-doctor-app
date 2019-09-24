@@ -1,4 +1,3 @@
-
 Polymer {
 
   is: 'page-visit-editor'
@@ -316,6 +315,10 @@ Polymer {
       notify: true
       value: {}
 
+    generatedEndDate:
+      type: String
+      value: ''
+
     strengthList:
       type: Array
       value: []
@@ -327,24 +330,86 @@ Polymer {
     doseList:
       type: Array
       value: -> [
-        "1+1+1"
-        "1+0+1"
-        "0+0+1"
-        "1+0+0"
-        "1+1+1+1"
-        "2+2+2"
-        "2+0+2"
-        "0+0+2"
-        "2+0+0"
-        "1/2+1/2+1/2"
-        "1/2+0+1/2"
-        "0+0+1/2"
-        "1/2+0+0"
-        "1/4+1/4+1/4"
-        "1/4+0+1/4"
-        "0+0+1/4"
-        "1/4+0+0"
-        "1/4+1/4+1/4+1/4"
+        "1 Capsule Four Times Daily"
+        "1 Capsule Three Times Daily"
+        "1 Capsule Two Times Daily"
+        "1 Capsule One Time Daily In The Morning"
+        "1 Capsule One Time Daily At Night"
+        "1 Drop Four Times Daily"
+        "1 Drop Three Times Daily"
+        "1 Drop Two Times Daily"
+        "1 Drop One Time Daily In The Morning"
+        "1 Drop One Time Daily At Night"
+        "1 Injection Four Times Daily"
+        "1 Injection Three Times Daily"
+        "1 Injection Two Times Daily"
+        "1 Injection One Time Daily In The Morning"
+        "1 Injection One Time Daily At Night"
+        "1 Tablet Four Times Daily"
+        "1 Tablet Three Times Daily"
+        "1 Tablet Two Times Daily"
+        "1 Tablet One Time Daily In The Morning"
+        "1 Tablet One Time Daily At Night"
+        "2 Capsules Four Times Daily"
+        "2 Capsules Three Times Daily"
+        "2 Capsules Two Times Daily"
+        "2 Capsules One Time Daily In The Morning"
+        "2 Capsules One Time Daily At Night"
+        "2 Drops Four Times Daily"
+        "2 Drops Three Times Daily"
+        "2 Drops Two Times Daily"
+        "2 Drops One Time Daily In The Morning"
+        "2 Drops One Time Daily At Night"
+        "2 Injections Four Times Daily"
+        "2 Injections Three Times Daily"
+        "2 Injections Two Times Daily"
+        "2 Injections One Time Daily In The Morning"
+        "2 Injections One Time Daily At Night"
+        "2 Tablets Four Times Daily"
+        "2 Tablets Three Times Daily"
+        "2 Tablets Two Times Daily"
+        "2 Tablets One Time Daily In The Morning"
+        "2 Tablets One Time Daily At Night"
+        "1/2 Capsule Four Times Daily"
+        "1/2 Capsule Three Times Daily"
+        "1/2 Capsule Two Times Daily"
+        "1/2 Capsule One Time Daily In The Morning"
+        "1/2 Capsule One Time Daily At Night"
+        "1/2 Drop Four Times Daily"
+        "1/2 Drop Three Times Daily"
+        "1/2 Drop Two Times Daily"
+        "1/2 Drop One Time Daily In The Morning"
+        "1/2 Drop One Time Daily At Night"
+        "1/2 Injection Four Times Daily"
+        "1/2 Injection Three Times Daily"
+        "1/2 Injection Two Times Daily"
+        "1/2 Injection One Time Daily In The Morning"
+        "1/2 Injection One Time Daily At Night"
+        "1/2 Tablet Four Times Daily"
+        "1/2 Tablet Three Times Daily"
+        "1/2 Tablet Two Times Daily"
+        "1/2 Tablet One Time Daily In The Morning"
+        "1/2 Tablet One Time Daily At Night"
+        "1/4 Capsule Four Times Daily"
+        "1/4 Capsule Three Times Daily"
+        "1/4 Capsule Two Times Daily"
+        "1/4 Capsule One Time Daily In The Morning"
+        "1/4 Capsule One Time Daily At Night"
+        "1/4 Drop Four Times Daily"
+        "1/4 Drop Three Times Daily"
+        "1/4 Drop Two Times Daily"
+        "1/4 Drop One Time Daily In The Morning"
+        "1/4 Drop One Time Daily At Night"
+        "1/4 Injection Four Times Daily"
+        "1/4 Injection Three Times Daily"
+        "1/4 Injection Two Times Daily"
+        "1/4 Injection One Time Daily In The Morning"
+        "1/4 Injection One Time Daily At Night"
+        "1/4 Tablet Four Times Daily"
+        "1/4 Tablet Three Times Daily"
+        "1/4 Tablet Two Times Daily"
+        "1/4 Tablet One Time Daily In The Morning"
+        "1/4 Tablet One Time Daily At Night"
       ]
     
     medicineFormList:
@@ -394,7 +459,7 @@ Polymer {
     directionList:
       type: Array
       value: [
-        'Anytime'
+        'Not Related With Meal'
         'Before Meal'
         'After Meal'
         'Full Stomach'
@@ -417,6 +482,61 @@ Polymer {
         'Intravaginal'
         'Transdermal'
         'Custom'
+      ]
+
+    medicineDurationList:
+      type: Array
+      value: [
+        '1 Day'
+        '2 Days'
+        '3 Days'
+        '4 Days'
+        '5 Days'
+        '6 Days'
+        '7 Days'
+        '8 Days'
+        '9 Days'
+        '10 Days'
+        '11 Days'
+        '12 Days'
+        '13 Days'
+        '14 Days'
+        '15 Days'
+        '16 Days'
+        '17 Days'
+        '18 Days'
+        '19 Days'
+        '20 Days'
+        '21 Days'
+        '22 Days'
+        '23 Days'
+        '24 Days'
+        '25 Days'
+        '26 Days'
+        '27 Days'
+        '28 Days'
+        '29 Days'
+        '30 Days'
+        '1 Week'
+        '2 Weeks'
+        '3 Weeks'
+        '4 Weeks'
+        '5 Weeks'
+        '6 Weeks'
+        '7 Weeks'
+        '8 Weeks'
+        '1 Month'
+        '2 Months'
+        '3 Months'
+        '4 Months'
+        '5 Months'
+        '6 Months'
+        '7 Months'
+        '8 Months'
+        '9 Months'
+        '10 Months'
+        '11 Months'
+        '12 Months'
       ]
 
     intervalInDays:
@@ -484,10 +604,6 @@ Polymer {
     genericNameSourceDataList:
       type: Array
       value: []
-    
-    showDetailedForm:
-      type: Boolean
-      value: false
     
     showGuidelineDisclaimer:
       type: Boolean
@@ -1107,9 +1223,27 @@ Polymer {
   ### Prescription - start
   #####################################################################
 
+  # doseValueGiven: (e)->
+  #   if e.which is 13
+  #     @medicine.doseDirection = e.target.value
+  #     console.log 'given dose', @medicine.doseDirection
+
   doseSelected: (e)->
-    if e.which is 13
-      @medicine.doseDirection = e.target.value
+    return unless e.detail.value
+    selectedDose = e.detail.value
+    @medicine.doseDirection = selectedDose
+    console.log 'selected dose', @medicine.doseDirection
+
+    formIndex = null
+    for form,index in @medicineFormList
+      if selectedDose.toLowerCase().includes form.toLowerCase()
+        formIndex = index
+        break
+    
+    console.log 'matching dose at ', formIndex
+    @set 'medicineFormSelectedIndex', formIndex
+    @_medicineFormSelectedIndexChanged()
+
 
   
   _isFavoriteMedicineContentHidden: (index, favoriteMedicineShownIndex)->
@@ -1268,6 +1402,29 @@ Polymer {
     if startDate and (week or days)
       endDateTimeStamp = @_makeEndDateStampfromCustom startDate, week, days
       @set 'duplicateMedicineEditablePart.endDateTimeStamp', endDateTimeStamp
+
+
+  _medicineDurationSelected: (e)->
+    return unless e.detail.value
+    selectedDuration = e.detail.value
+    
+    days = 0
+    if selectedDuration.toLowerCase().includes 'day'
+      days = Number.parseInt selectedDuration
+    if selectedDuration.toLowerCase().includes 'week'
+      days = 7 * Number.parseInt selectedDuration
+    if selectedDuration.toLowerCase().includes 'month'
+      days = 30 * Number.parseInt selectedDuration
+      
+    console.log 'medicine duration selected', days, ' days'
+    
+    endDate = (new Date(@medicine.startDateTimeStamp)).getTime() + (days*24*60*60*1000)
+    @medicine.endDateTimeStamp = endDate
+    @generatedEndDate = lib.datetime.format((new Date endDate), 'yyyy-mm-dd')
+    console.log 'generated date', @generatedEndDate
+
+    
+
 
 
   # _doseValueChanged: (e)->
@@ -1474,35 +1631,11 @@ Polymer {
     @endDateTimeTypeArgument2SelectedIndex = 0
     @showCustomDoseDropdown = false
     @directionSelectedIndex = 0
+    @generatedEndDate = ''
 
   _saveSettings: ->
     @settings.lastModifiedDatetimeStamp = lib.datetime.now()
     app.db.upsert 'settings', @settings, ({serial}) => serial is @settings.serial
-
-
-  onCheckToggleManufaturerName: (e)->
-    if e.target.checked
-      @settings.flags.hideMedicineManufacturerName = true
-    else
-      @settings.flags.hideMedicineManufacturerName = false
-
-    @_saveSettings()
-
-    console.log @settings
-
-
-  onCheckToggleGenericName: (e)->
-    if e.target.checked
-      @settings.flags.hideMedicineGenericName = true
-    else
-      @settings.flags.hideMedicineGenericName = false
-
-    @_saveSettings()
-
-    console.log @settings
-
-
-
 
   _checkValidity: (inputsToValidate, cbfn)->
     validationStatusList = []
@@ -1561,38 +1694,40 @@ Polymer {
 
 
 
-  brandNameAutocompleteSelected: (e)->
-    brandName = e.detail.value
-    @matchingMedicineList = (item for item in @medicineCompositionList when item.brandName is brandName)
+  # brandNameAutocompleteSelected: (e)->
+  #   brandName = e.detail.value
+  #   @matchingMedicineList = (item for item in @medicineCompositionList when item.brandName is brandName)
     
-    if @matchingMedicineList.length isnt 0
-      @set 'medicine.medicineSerial', @matchingMedicineList[0].serial
-      @set 'medicine.manufacturer', @matchingMedicineList[0].manufacturer
-      @set 'medicine.genericName', @matchingMedicineList[0].composition[0].genericName
+  #   if @matchingMedicineList.length isnt 0
+  #     @set 'medicine.medicineSerial', @matchingMedicineList[0].serial
+  #     @set 'medicine.manufacturer', @matchingMedicineList[0].manufacturer
+  #     @set 'medicine.genericName', @matchingMedicineList[0].composition[0].genericName
       
-      selectedMedicineFormList = lib.array.unique (item.type for item in @matchingMedicineList)
-      @medicineFormList = []
-      @medicineFormList = selectedMedicineFormList
-      @push 'medicineFormList', 'Custom'
-      @set 'medicineFormSelectedIndex', null
-      # HACK - to fix setting selected index to other paper-menu element
-      lib.util.delay 5, ()=>
-        @set 'medicineFormSelectedIndex', 0
-      # HACK End
+  #     selectedMedicineFormList = lib.array.unique (item.type for item in @matchingMedicineList)
+  #     @medicineFormList = []
+  #     @medicineFormList = selectedMedicineFormList
+  #     @push 'medicineFormList', 'Custom'
+  #     @set 'medicineFormSelectedIndex', null
+  #     # HACK - to fix setting selected index to other paper-menu element
+  #     lib.util.delay 5, ()=>
+  #       @set 'medicineFormSelectedIndex', 0
+  #     # HACK End
 
-    # @populateDoseGuideline()
+  #   # @populateDoseGuideline()
 
-    # Validation
-    inputsToValidate = ['genericName', 'brandName', 'manufacturer']
-    @_checkValidity inputsToValidate, ()=>
+  #   # Validation
+  #   inputsToValidate = ['genericName', 'brandName', 'manufacturer']
+  #   @_checkValidity inputsToValidate, ()=>
     
-    @.$.form.invalid = false
-    @.$.doseUnit.invalid = false
+  #   @.$.form.invalid = false
+  #   @.$.doseUnit.invalid = false
+
     
   
   genericNameAutocompleteSelected: (e)->
     genericName = e.detail.text
     # For populating matching medicine brand name
+    @set 'medicine.genericName', genericName
     
     for item in @medicineCompositionList
      if item.composition
@@ -1606,35 +1741,24 @@ Polymer {
       manufacturerMap[item.manufacturer] = null
     @brandNameSourceDataList = ({text: item, value: item} for item in Object.keys brandNameMap)
     @manufacturerSourceDataList = ({text: item, value: item} for item in Object.keys manufacturerMap)
-    # @genericNameDependency = "by #{genericName} only"
 
-    # ==============
-    # @populateDoseGuideline()
+    # selectedMedicineFormList = lib.array.unique (item.type for item in @matchingMedicineList)
+    # selectedMedicineFormList.sort (a,b)=>
+    #   return -1 if a < b
+    #   return 1 if a > b
+    #   return 0
+    # @medicineFormList = []
+    # @medicineFormList = selectedMedicineFormList
+    # @push 'medicineFormList', 'Custom'
 
-  manufacturerAutocompleteSelected: (e)->
-    manufacturer = e.detail.text
-    matchingMedicineList = (item for item in @medicineCompositionList when item.manufacturer is manufacturer)
-    if matchingMedicineList.length isnt 0
-      genericNameMap = {}
-      brandNameMap = {}
-      for item in matchingMedicineList
-        brandNameMap[item.brandName] = null
-        if item.composition
-          genericNameMap[item.composition[0].genericName] = null
-      @genericNameSourceDataList = ({text: item, value: item} for item in Object.keys genericNameMap)
-      @brandNameSourceDataList = ({text: item, value: item} for item in Object.keys brandNameMap)
-      # @manufacturerDependency = "by #{manufacturer} only"
+    console.log 'matching medicine list', @matchingMedicineList
+    console.log 'matching brand name list', @brandNameSourceDataList
+    console.log 'matching mafucturer list', @manufacturerSourceDataList
+    console.log 'matching form list', @medicineFormList
 
-  brandNameCleared: (e)->
-    @_resetMedicineForm()
-    @activeDoseGuideline = {}
-    @_loadDefaultMedicineCompositionList()
-
-  manufacturerCleared: (e)->
-    @set 'medicine.manufacturer', null
-    @_loadDefaultMedicineCompositionList()
-    
+  
   genericNameCleared: (e)->
+    # @_resetMedicineForm()
     @set 'medicine.genericName', null
     @activeDoseGuideline = {}
     @_loadDefaultMedicineCompositionList()
@@ -1659,6 +1783,7 @@ Polymer {
     return false
   
   _isStregnthDropdown: ->
+    console.log 'inside is strength down', @matchingMedicineList
     return true if @matchingMedicineList.length
 
   _isStregnthCustom: ->
@@ -1706,7 +1831,8 @@ Polymer {
 
   _medicineFormSelectedIndexChanged: ()->
     return if @medicineFormSelectedIndex is null
-    item = @get ['medicineFormList', @medicineFormSelectedIndex]
+    item = @medicineFormList[@medicineFormSelectedIndex]
+    console.log 'current form', item
     if @medicineFormSelectedIndex is @medicineFormList.length-1
       # If Form is Custom Set Unit & Route to Custom
       @doseUnitSelectedIndex = @doseUnitList.length-1
@@ -1724,8 +1850,13 @@ Polymer {
         if medicine.type is item
           strengthList.push medicine.composition[0].strength
      
+      uniqueStrengthList = lib.array.unique (item for item in strengthList)
+      uniqueStrengthList.sort (a,b)=>
+        return -1 if a < b
+        return 1 if a > b
+        return 0
       @set 'strengthList', []
-      @set 'strengthList', strengthList
+      @set 'strengthList', uniqueStrengthList
       @push 'strengthList', 'Custom'
       @set 'strengthSelectedIndex', null
       # HACK - to fix setting selected index to other paper-menu element
@@ -1784,9 +1915,9 @@ Polymer {
         # HACK End
         break
 
+
     for key, value of routeMap
       if key is item
-        @set 'routeList', []
         @set 'routeList', value
         @push 'routeList', 'Custom'
         @set 'routeSelectedIndex', null
@@ -1798,6 +1929,8 @@ Polymer {
 
     @.$.form.invalid = false
     @.$.doseUnit.invalid = false
+
+
 
   _routeSelectedIndexChanged: ->
     if @routeSelectedIndex is @routeList.length-1
@@ -1846,9 +1979,9 @@ Polymer {
     # Check Validation then send
     
     if @medicineFormSelectedIndex is @medicineFormList.length-1
-      inputsToValidate = ['brandName', 'strength', 'custom-form', 'custom-dose-unit', 'custom-route']
+      inputsToValidate = ['genericName', 'strength', 'custom-form', 'custom-dose-unit', 'custom-route']
     else
-      inputsToValidate = ['brandName', 'form', 'doseUnit']
+      inputsToValidate = ['genericName', 'form', 'doseUnit']
 
     @_checkValidity inputsToValidate, (status)=>
       if status
@@ -1883,8 +2016,6 @@ Polymer {
         @domHost.showToast "Medicine Added!"
         @_resetMedicineForm()
         @_listPrescribedMedications @prescription.serial
-
-
       else
         @domHost.showModalDialog "Enter Required Inputs"
 
@@ -1915,9 +2046,9 @@ Polymer {
     # Check Validation then send
     
     if @medicineFormSelectedIndex is @medicineFormList.length-1
-      inputsToValidate = ['genericName', 'brandName', 'manufacturer', 'strength', 'custom-form', 'custom-dose-unit', 'custom-route']
+      inputsToValidate = ['genericName', 'strength', 'custom-form', 'custom-dose-unit', 'custom-route']
     else
-      inputsToValidate = ['genericName', 'brandName', 'manufacturer', 'strength', 'form', 'doseUnit']
+      inputsToValidate = ['genericName', 'form', 'doseUnit']
 
     @_checkValidity inputsToValidate, (status)=>
       if status
