@@ -5121,31 +5121,20 @@ Polymer {
 
 
   _checkUserAccess: (accessId)->
-
+    org = @getCurrentOrganization()
+    console.log {org}
     if accessId is 'none'
       return true
-    else
-      if @currentOrganization
-
-        if @currentOrganization.isCurrentUserAnAdmin
+    if org.isCurrentUserAnAdmin
+      return true
+    
+    if org.userActiveRole.privilegeList.length > 0
+      list = org.userActiveRole.privilegeList
+      for item in list
+        if item.serial is accessId
           return true
-        else if @currentOrganization.isCurrentUserAMember
-          if @currentOrganization.userActiveRole
-            privilegeList = @currentOrganization.userActiveRole.privilegeList
-            unless privilegeList.length is 0
-              for privilege in privilegeList
-                if privilege.serial is accessId
-                  return true
-          else
-            return true
-
-          return false
-        else
-          return false
-
-      else
-        # @navigateToPage "#/select-organization"
-        return true
+        
+      return false
 
   _loadVariousWallets: ->
     @async => @_loadPatientWallet(@patient.idOnServer)
