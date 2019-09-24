@@ -284,7 +284,7 @@ app.lang.phrases =
     'Billed':'বিল'
     'Paid':'পরিশোধ করেছে'
     'Edit':'সম্পাদন করুন'
-    'History & Physical':'পূর্ণাঙ ইতিহাস'
+    'History & Physical':'পূর্ণাঙ্গ ইতিহাস'
     'Record Title':'রেকর্ড শিরোনাম'
     'Add Symptoms':'উপসর্গ/ইতিহাস যোগ করুন'
     'Examination':'পরীক্ষা'
