@@ -222,6 +222,7 @@ app.lang.phrases =
     'for': 'করে'
     'Discharge Reason': 'ছাড়পত্র প্রদানের কারণ'
     'Advised Test': 'উপদেশকৃত পরিক্ষাসমুহ'
+    'Category': 'ক্যাটেগরি'
     'Symptoms': 'উপসর্গ/ইতিহাস'
     'Note(s)': 'নথি'
     'Next Visit': 'পরবর্তী সাক্ষাত'
